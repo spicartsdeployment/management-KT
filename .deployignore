@@ -1,0 +1,60 @@
+# Development Dependencies - not needed in production
+node_modules/
+.vite/
+.cache/
+
+# Build artifacts that will be regenerated
+dist/
+build/
+
+# Test and coverage files
+coverage/
+__test__/
+*.test.jsx
+*.test.js
+jest.config.cjs
+
+# Build system files
+webpack.config.js
+babel.config.cjs
+postcss.config.js
+tailwind.config.js
+tsconfig.json
+vite.config.js
+
+# Documentation
+*.md
+docs/
+CHANGELOG.md
+README.md
+
+# Development tools
+.eslintrc.cjs
+.prettierrc
+.github/
+.gitignore
+.git/
+.editorconfig
+
+# IDE and local files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.log
+
+# API & environment files (keep actual .env.production if needed)
+.env
+.env.local
+.env.*.local
+
+# Package manager lock files (yarn/npm handles from package.json)
+package-lock.json
+yarn.lock
+
+# Misc
+lerna.json
+oryx-manifest.toml
+node_modules.tar.gz

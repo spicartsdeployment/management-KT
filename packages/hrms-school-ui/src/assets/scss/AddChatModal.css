@@ -1,0 +1,640 @@
+/* AddChatModal.css - Common styles for Add Chat modal (HeroUI)
+   Applies to both group and direct chat tabs. */
+
+.add-chat-modal {
+  max-width: clamp(320px, 90vw, 560px);
+  max-height: clamp(500px, 82vh, 650px);
+  background: #fff;
+  border-radius: clamp(0.75rem, 2vw, 1rem);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  border: 1px solid #e5e7eb;
+  overflow: scroll;
+  width: clamp(320px, 85vw, 560px);
+  display: flex;
+  flex-direction: column;
+  /* position/top/left/transform removed — Modal (Headlessui Dialog) already
+     centers via flex. Keeping position: fixed here conflicts with the
+     scale-95→scale-100 Transition transforms and breaks centering. */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.add-chat-modal::-webkit-scrollbar {
+  display: none;
+}
+
+/* Dark mode support */
+:root.dark .add-chat-modal {
+  background: rgb(31, 41, 55);
+  border-color: rgb(55, 65, 81);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* Hide the default HeroUI left-side close button */
+.add-chat-modal button[aria-label="Close"]:first-of-type {
+  display: none;
+}
+
+/* .add-chat-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1.5rem 2.25rem;
+} */
+
+.std-add-modal-footer-btns-con {
+    display: flex;
+    justify-content: space-between;
+    gap: clamp(0.5rem, 1.8vw, 0.65rem);
+    margin-top: clamp(0.4rem, 1.2vw, 0.6rem);
+    flex-shrink: 0;
+}
+
+.std-add-modal-footer-btns-con button {
+    width: 48%;
+    min-width: 0;
+}
+
+.add_modal_header_description {
+    display: flex;
+    justify-content: space-between;
+    padding: clamp(0.65rem, 1.5vw, 0.85rem) clamp(0.85rem, 2.5vw, 1.25rem);
+    width: 100%;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.add-chat-modal__title {
+  font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+  font-weight: 600;
+  color: #1f2937;
+  line-height: 1.25;
+}
+
+:root.dark .add-chat-modal__title {
+  color: rgb(229, 231, 235);
+}
+
+.add-chat-modal__subtitle {
+  font-size: clamp(0.7rem, 1.6vw, 0.8rem);
+  color: #6b7280;
+  margin-top: 0.1rem;
+  line-height: 1.3;
+}
+
+:root.dark .add-chat-modal__subtitle {
+  color: rgb(156, 163, 175);
+}
+
+.add-chat-modal__close-btn {
+  padding: clamp(0.25rem, 1vw, 0.4rem);
+  border-radius: 0.375rem;
+  background: none;
+  border: none;
+  transition: background 0.2s;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(28px, 5vw, 36px);
+  height: clamp(28px, 5vw, 36px);
+}
+.add-chat-modal__close-btn:hover {
+  background: #f3f4f6;
+}
+
+.add-chat-modal__close-btn svg {
+  width: clamp(18px, 3vw, 22px) !important;
+  height: clamp(18px, 3vw, 22px) !important;
+}
+
+:root.dark .add-chat-modal__close-btn:hover {
+  background: rgb(55, 65, 81);
+}
+
+.add-chat-modal__tabs {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  padding: clamp(0.4rem, 1.2vw, 0.65rem) clamp(0.85rem, 2.5vw, 1.25rem);
+  gap: clamp(0.5rem, 1.5vw, 0.75rem);
+  flex-shrink: 0;
+}
+
+:root.dark .add-chat-modal__tabs {
+  background: rgb(31, 41, 55);
+  border-bottom-color: rgb(55, 65, 81);
+}
+
+.add-chat-modal__tab {
+  flex: 1;
+  padding: clamp(0.4rem, 1vw, 0.55rem) 0;
+  font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+  font-weight: 500;
+  border-radius: clamp(0.4rem, 1.2vw, 0.5rem);
+  background: none;
+  border: none;
+  color: #4b5563;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.add-chat-modal__tab--active {
+  background: #111827;
+  color: #fff;
+}
+.add-chat-modal__tab:not(.add-chat-modal__tab--active):hover {
+  background: #f3f4f6;
+}
+
+:root.dark .add-chat-modal__tab {
+  color: rgb(156, 163, 175);
+}
+
+:root.dark .add-chat-modal__tab--active {
+  background: rgb(59, 130, 246);
+  color: #fff;
+}
+
+:root.dark .add-chat-modal__tab:not(.add-chat-modal__tab--active):hover {
+  background: rgb(55, 65, 81);
+}
+
+.add-chat-modal__body {
+  flex: 1;
+  overflow-y: visible;
+  overflow-x: hidden;
+  padding: clamp(0.65rem, 1.8vw, 1rem) clamp(0.85rem, 2.5vw, 1.25rem);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+}
+
+.add-chat-modal__body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.add-chat-modal__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.add-chat-modal__body::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+:root.dark .add-chat-modal__body::-webkit-scrollbar-thumb {
+  background: rgb(75, 85, 99);
+}
+
+.add-chat-modal__footer {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem 2.25rem;
+  border-top: 1px solid #e5e7eb;
+  background: #f9fafb;
+  position: relative;
+}
+
+:root.dark .add-chat-modal__footer {
+  border-top-color: rgb(55, 65, 81);
+  background: rgb(31, 41, 55);
+}
+
+.add-chat-modal__input,
+.add-chat-modal__textarea {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: clamp(0.25rem, 1vw, 0.375rem);
+  padding: clamp(0.4rem, 1.2vw, 0.55rem) clamp(0.55rem, 1.8vw, 0.75rem);
+  font-size: clamp(0.75rem, 1.8vw, 0.825rem);
+  outline: none;
+  transition: border 0.2s;
+  margin-bottom: clamp(0.35rem, 1.2vw, 0.5rem);
+  line-height: 1.35;
+}
+.add-chat-modal__input:focus,
+.add-chat-modal__textarea:focus {
+  border-color: #6366f1;
+}
+
+.add-chat-modal__textarea {
+  resize: vertical;
+  min-height: clamp(50px, 8vh, 65px);
+  max-height: clamp(70px, 12vh, 90px);
+}
+
+:root.dark .add-chat-modal__input,
+:root.dark .add-chat-modal__textarea {
+  background: rgb(31, 41, 55);
+  border-color: rgb(55, 65, 81);
+  color: rgb(229, 231, 235);
+}
+
+:root.dark .add-chat-modal__input:focus,
+:root.dark .add-chat-modal__textarea:focus {
+  border-color: rgb(59, 130, 246);
+}
+
+.add-chat-modal__contact-list {
+  max-height: clamp(160px, 28vh, 220px);
+  min-height: clamp(140px, 25vh, 200px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: clamp(0.35rem, 1.2vw, 0.5rem);
+  scrollbar-width: thin;
+  flex-shrink: 1;
+}
+
+.add-chat-modal__contact-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.add-chat-modal__contact-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.add-chat-modal__contact-list::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+:root.dark .add-chat-modal__contact-list::-webkit-scrollbar-thumb {
+  background: rgb(75, 85, 99);
+}
+
+/* Empty State */
+.add-chat-modal__empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  text-align: center;
+  min-height: 180px;
+}
+
+.add-chat-modal__empty-icon {
+  width: 48px;
+  height: 48px;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+
+:root.dark .add-chat-modal__empty-icon {
+  color: rgb(107, 114, 128);
+}
+
+.add-chat-modal__empty-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin: 0 0 0.5rem 0;
+}
+
+:root.dark .add-chat-modal__empty-title {
+  color: rgb(156, 163, 175);
+}
+
+.add-chat-modal__empty-subtitle {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.4;
+}
+
+:root.dark .add-chat-modal__empty-subtitle {
+  color: rgb(107, 114, 128);
+}
+
+.add-chat-modal__contact-item {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.4rem, 1.2vw, 0.6rem);
+  padding: clamp(0.35rem, 1vw, 0.5rem) clamp(0.3rem, 0.8vw, 0.4rem);
+  border-radius: clamp(0.3rem, 0.8vw, 0.4rem);
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.add-chat-modal__contact-item:hover {
+  background: #f3f4f6;
+}
+
+:root.dark .add-chat-modal__contact-item:hover {
+  background: rgb(55, 65, 81);
+}
+
+.add-chat-modal__avatar {
+  width: clamp(1.75rem, 3.5vw, 2rem);
+  height: clamp(1.75rem, 3.5vw, 2rem);
+  border-radius: 9999px;
+  background: #e0e7ff;
+  color: #3730a3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+  flex-shrink: 0;
+}
+
+:root.dark .add-chat-modal__avatar {
+  background: rgb(59, 130, 246);
+  color: rgb(229, 231, 235);
+}
+
+.add-chat-modal__checkbox {
+  margin-right: 0;
+  width: clamp(13px, 2.2vw, 15px);
+  height: clamp(13px, 2.2vw, 15px);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.add-chat-modal__counter {
+  font-size: clamp(0.75rem, 1.8vw, 0.85rem);
+  color: #6b7280;
+  margin-bottom: clamp(0.25rem, 1vw, 0.4rem);
+  font-weight: 500;
+}
+
+:root.dark .add-chat-modal__counter {
+  color: rgb(156, 163, 175);
+}
+
+.add-chat-modal__button {
+  width: 50%;
+  padding: clamp(0.45rem, 1.2vw, 0.6rem) 0;
+  border-radius: clamp(0.3rem, 0.8vw, 0.4rem);
+  font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.add-chat-modal__button--primary {
+  background: #6366f1;
+  color: #fff;
+}
+.add-chat-modal__button--primary:hover:not(:disabled) {
+  background: #4f46e5;
+}
+.add-chat-modal__button--primary:disabled {
+  background: #c7d2fe;
+  color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+:root.dark .add-chat-modal__button--primary:disabled {
+  background: rgb(55, 65, 81);
+  color: rgb(107, 114, 128);
+}
+.add-chat-modal__button--secondary {
+  background: #e5e7eb;
+  color: #374151;
+}
+.add-chat-modal__button--secondary:hover {
+  background: #d1d5db;
+}
+
+/* Form Elements */
+.add-chat-modal__form {
+  display: flex;
+  flex-direction: column;
+  /* gap: clamp(0.4rem, 1.2vw, 0.6rem); */
+  width: 100%;
+  max-width: 100%;
+  min-height: 0;
+  overflow: visible;
+}
+
+.add-chat-modal__label {
+  font-size: clamp(0.75rem, 1.8vw, 0.85rem);
+  font-weight: 500;
+  color: #374151;
+  /* margin-bottom: clamp(0.2rem, 0.6vw, 0.3rem); */
+  display: block;
+}
+
+:root.dark .add-chat-modal__label {
+  color: rgb(209, 213, 219);
+}
+
+.add-chat-modal__required {
+  color: #ef4444;
+  margin-left: 0.15rem;
+}
+
+.add-chat-modal__contact-name {
+  font-size: clamp(0.75rem, 1.8vw, 0.825rem);
+  color: #1f2937;
+  font-weight: 500;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:root.dark .add-chat-modal__contact-name {
+  color: rgb(229, 231, 235);
+}
+
+.add-chat-modal__contact-role {
+  font-size: clamp(0.65rem, 1.6vw, 0.7rem);
+  color: #6b7280;
+  font-weight: 400;
+}
+
+:root.dark .add-chat-modal__contact-role {
+  color: rgb(156, 163, 175);
+}
+
+.add-chat-modal__char-count {
+  font-size: clamp(0.65rem, 1.5vw, 0.7rem);
+  color: #9ca3af;
+  text-align: right;
+  margin-top: -0.3rem;
+  /* margin-bottom: clamp(0.15rem, 0.8vw, 0.3rem); */
+}
+
+:root.dark .add-chat-modal__char-count {
+  color: rgb(107, 114, 128);
+}
+
+/* Header with back button */
+.add-chat-modal__header-left {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 1.5vw, 0.75rem);
+}
+
+.add-chat-modal__back-btn {
+  padding: clamp(0.25rem, 1vw, 0.4rem);
+  border-radius: 0.375rem;
+  background: none;
+  border: none;
+  transition: background 0.2s;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(28px, 5vw, 36px);
+  height: clamp(28px, 5vw, 36px);
+}
+
+.add-chat-modal__back-btn:hover {
+  background: #f3f4f6;
+}
+
+:root.dark .add-chat-modal__back-btn:hover {
+  background: rgb(55, 65, 81);
+}
+
+/* Clickable contact item */
+.add-chat-modal__contact-item--clickable {
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.add-chat-modal__contact-item--clickable:hover {
+  background: #e0e7ff;
+  transform: translateX(2px);
+}
+
+:root.dark .add-chat-modal__contact-item--clickable:hover {
+  background: rgb(55, 65, 81);
+}
+
+/* Group Chat Block Button */
+.add-chat-modal__group-chat-block {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.6rem, 1.5vw, 0.85rem);
+  padding: clamp(0.65rem, 1.5vw, 0.85rem) clamp(0.75rem, 2vw, 1rem);
+  margin-top: clamp(0.5rem, 1.2vw, 0.75rem);
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 1px solid #bae6fd;
+  border-radius: clamp(0.5rem, 1.2vw, 0.65rem);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-chat-modal__group-chat-block:hover {
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  border-color: #7dd3fc;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
+}
+
+:root.dark .add-chat-modal__group-chat-block {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.1) 100%);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+:root.dark .add-chat-modal__group-chat-block:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(37, 99, 235, 0.2) 100%);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.add-chat-modal__group-chat-icon {
+  width: clamp(36px, 6vw, 44px);
+  height: clamp(36px, 6vw, 44px);
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+:root.dark .add-chat-modal__group-chat-icon {
+  background: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%);
+}
+
+.add-chat-modal__group-chat-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.add-chat-modal__group-chat-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0369a1;
+}
+
+:root.dark .add-chat-modal__group-chat-title {
+  color: rgb(147, 197, 253);
+}
+
+.add-chat-modal__group-chat-subtitle {
+  font-size: clamp(0.65rem, 1.5vw, 0.725rem);
+  color: #64748b;
+  margin-top: 0.1rem;
+}
+
+:root.dark .add-chat-modal__group-chat-subtitle {
+  color: rgb(156, 163, 175);
+}
+
+.add-chat-modal__group-chat-arrow {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: #0ea5e9;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+:root.dark .add-chat-modal__group-chat-arrow {
+  color: rgb(96, 165, 250);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .add-chat-modal {
+    width: 95vw;
+    max-width: 95vw;
+    /* transform: translate(0%, -5%); */
+  }
+  
+  .add_modal_header_description {
+    padding: 0.75rem 1rem;
+  }
+  
+  .add-chat-modal__tabs {
+    padding: 0.5rem 1rem;
+  }
+  
+  .add-chat-modal__body {
+    padding: 0.75rem 1rem;
+  }
+}
+
+@media (min-resolution: 90dpi) and (max-resolution: 110dpi) {
+  .add-chat-modal {
+    max-width: clamp(320px, 88vw, 580px);
+  }
+}
+
+@media (min-resolution: 111dpi) and (max-resolution: 125dpi) {
+  .add-chat-modal {
+    max-width: clamp(320px, 82vw, 540px);
+    max-height: clamp(480px, 78vh, 620px);
+  }
+}
+
+@media (min-resolution: 126dpi) {
+  .add-chat-modal {
+    max-width: clamp(320px, 82vw, 540px);
+  }
+}

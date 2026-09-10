@@ -1,0 +1,1718 @@
+/**
+ * Grievances Module - Complete Design System
+ * Enterprise-grade styling for unified grievance management
+ * Prefix: .gr-*
+ */
+
+@import "./_erp-tokens.scss";
+
+// ─────────────────────────────────────────────────────────────────────────
+// VARIABLES & TOKENS
+// ─────────────────────────────────────────────────────────────────────────
+
+// Grievance-specific colors
+$gr-gold: $erp-gold;
+$gr-gold-dk: $erp-gold-dk;
+$gr-success: $erp-success;
+$gr-danger: $erp-danger;
+$gr-warning: $erp-warning;
+$gr-info: $erp-info;
+$gr-critical: #7f1d1d;
+
+// Semantic color palettes for grievance statuses
+$gr-color-open: #ef4444;
+$gr-color-assigned: #3b82f6;
+$gr-color-review: #8b5cf6;
+$gr-color-progress: #f59e0b;
+$gr-color-escalated: #dc2626;
+$gr-color-resolved: #22c55e;
+$gr-color-closed: #6b7280;
+$gr-color-rejected: #9333ea;
+$gr-color-awaiting: #0891b2;
+
+$gr-color-low: #22c55e;
+$gr-color-medium: #f59e0b;
+$gr-color-high: #ef4444;
+$gr-color-critical: #7f1d1d;
+
+// CSS Custom Properties (Light Mode)
+:root {
+  --gr-bg: var(--erp-bg);
+  --gr-surface: var(--erp-surface);
+  --gr-line: var(--erp-line);
+  --gr-text: var(--erp-text);
+  --gr-muted: var(--erp-muted);
+  --gr-input: var(--erp-input);
+  --gr-gold: #{$gr-gold};
+  --gr-success: #{$gr-success};
+  --gr-danger: #{$gr-danger};
+  --gr-warning: #{$gr-warning};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gr-bg: #0f1117;
+    --gr-surface: #1a1d23;
+    --gr-line: #2a2d35;
+    --gr-text: #f0f2f5;
+    --gr-muted: #9ca3af;
+    --gr-input: #1f2229;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// MIXINS
+// ─────────────────────────────────────────────────────────────────────────
+
+@mixin gr-bp($size) {
+  @if $size == xxs {
+    @media (max-width: 320px) {
+      @content;
+    }
+  } @else if $size == xs {
+    @media (max-width: 375px) {
+      @content;
+    }
+  } @else if $size == sm {
+    @media (max-width: 480px) {
+      @content;
+    }
+  } @else if $size == md {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $size == lg {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  } @else if $size == xl {
+    @media (min-width: 1440px) {
+      @content;
+    }
+  }
+}
+
+@mixin gr-shadow-hover {
+  box-shadow: $erp-shadow-md;
+  transform: translateY(-2px);
+  transition: all 0.15s ease;
+}
+
+@mixin gr-badge($color) {
+  background: rgba($color, 0.1);
+  color: $color;
+  border: 1px solid rgba($color, 0.2);
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// ANIMATIONS
+// ─────────────────────────────────────────────────────────────────────────
+
+@keyframes gr-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes gr-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gr-drawer-slide {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes gr-modal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// ROOT CONTAINER
+// ─────────────────────────────────────────────────────────────────────────
+
+.gr-root {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.75rem;
+  background: var(--gr-bg);
+  color: var(--gr-text);
+  font-family: $erp-font;
+
+  @include gr-bp(md) {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  @include gr-bp(sm) {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// PAGE HEADER
+// ─────────────────────────────────────────────────────────────────────────
+
+.gr-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.gr-header__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--gr-muted);
+
+  span {
+    &:not(.gr-header__separator) {
+      display: inline;
+    }
+  }
+}
+
+.gr-header__separator {
+  color: var(--gr-line);
+  margin: 0 0.25rem;
+}
+
+.gr-header__title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, $gr-gold, $gr-gold-dk);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+
+  @include gr-bp(md) {
+    font-size: 1.5rem;
+  }
+
+  @include gr-bp(sm) {
+    font-size: 1.25rem;
+  }
+}
+
+.gr-header__subtitle {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--gr-muted);
+  line-height: 1.5;
+
+  @include gr-bp(sm) {
+    font-size: 0.875rem;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// SECTIONS
+// ─────────────────────────────────────────────────────────────────────────
+
+.gr-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--gr-surface);
+  border-radius: 0.625rem;
+  border: 1px solid var(--gr-line);
+  box-shadow: $erp-shadow-sm;
+  transition: all 0.15s ease;
+
+  &:hover {
+    box-shadow: $erp-shadow-md;
+  }
+
+  @include gr-bp(md) {
+    padding: 1rem;
+  }
+
+  @include gr-bp(sm) {
+    padding: 0.75rem;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// METRICS CARDS (6-Column Grid)
+// ─────────────────────────────────────────────────────────────────────────
+
+.gr-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+
+  @media (min-width: 1025px) and (max-width: 1440px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @include gr-bp(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include gr-bp(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include gr-bp(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gr-metric-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--gr-surface);
+  border: 1px solid var(--gr-line);
+  border-radius: 0.625rem;
+  box-shadow: $erp-shadow-sm;
+  transition: all 0.2s ease;
+
+  &:hover {
+    @include gr-shadow-hover;
+  }
+
+  @include gr-bp(md) {
+    padding: 1rem;
+  }
+}
+
+.gr-metric-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.gr-metric-label {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--gr-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gr-metric-value {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--gr-text);
+}
+
+.gr-metric-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  font-size: 1.5rem;
+  background: rgba($gr-gold, 0.1);
+  border-radius: 0.5rem;
+}
+
+// Metric card status modifiers
+.gr-metric-card--open {
+  border-color: rgba($gr-color-open, 0.3);
+  background: linear-gradient(135deg, rgba($gr-color-open, 0.08), rgba($gr-color-open, 0.02));
+
+  .gr-metric-icon {
+    background: rgba($gr-color-open, 0.15);
+    color: $gr-color-open;
+  }
+}
+
+.gr-metric-card--progress {
+  border-color: rgba($gr-color-progress, 0.3);
+  background: linear-gradient(135deg, rgba($gr-color-progress, 0.08), rgba($gr-color-progress, 0.02));
+
+  .gr-metric-icon {
+    background: rgba($gr-color-progress, 0.15);
+    color: $gr-color-progress;
+  }
+}
+
+.gr-metric-card--escalated {
+  border-color: rgba($gr-color-escalated, 0.3);
+  background: linear-gradient(135deg, rgba($gr-color-escalated, 0.08), rgba($gr-color-escalated, 0.02));
+
+  .gr-metric-icon {
+    background: rgba($gr-color-escalated, 0.15);
+    color: $gr-color-escalated;
+  }
+}
+
+.gr-metric-card--resolved {
+  border-color: rgba($gr-color-resolved, 0.3);
+  background: linear-gradient(135deg, rgba($gr-color-resolved, 0.08), rgba($gr-color-resolved, 0.02));
+
+  .gr-metric-icon {
+    background: rgba($gr-color-resolved, 0.15);
+    color: $gr-color-resolved;
+  }
+}
+
+.gr-metric-card--critical {
+  border-color: rgba($gr-color-critical, 0.4);
+  background: linear-gradient(135deg, rgba($gr-color-critical, 0.1), rgba($gr-color-critical, 0.03));
+
+  .gr-metric-icon {
+    background: rgba($gr-color-critical, 0.2);
+    color: $gr-color-critical;
+  }
+}
+
+.gr-metric-card--total {
+  border-color: rgba($gr-gold, 0.3);
+  background: linear-gradient(135deg, rgba($gr-gold, 0.08), rgba($gr-gold, 0.02));
+
+  .gr-metric-icon {
+    background: rgba($gr-gold, 0.15);
+    color: $gr-gold;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// TOOLBAR / FILTERS
+// ─────────────────────────────────────────────────────────────────────────
+
+.gr-toolbar {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+
+  @include gr-bp(md) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.gr-toolbar__search {
+  flex: 1 1 300px;
+  min-width: 250px;
+
+  @include gr-bp(md) {
+    flex: 1 1 100%;
+  }
+
+  input {
+    width: 100%;
+    display: block;
+  }
+}
+
+.gr-toolbar__filters {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  flex: 1 1 auto;
+
+  select, button {
+    flex-shrink: 0;
+  }
+
+  @include gr-bp(lg) {
+    flex-wrap: wrap;
+  }
+
+  @include gr-bp(md) {
+    flex: 1 1 100%;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+
+    select, button {
+      flex-shrink: 1;
+    }
+  }
+}
+
+.gr-toolbar__row {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(5, 1fr);
+  gap: 1rem;
+  align-items: end;
+
+  @include gr-bp(lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include gr-bp(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gr-search {
+  position: relative;
+
+  .gr-search__icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gr-muted);
+    font-size: 1rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.625rem 0.75rem 0.625rem 2.5rem;
+    border: 1px solid var(--gr-line);
+    border-radius: 0.5rem;
+    background: var(--gr-input);
+    color: var(--gr-text);
+    font-size: 0.875rem;
+    transition: all 0.15s ease;
+
+    &:focus {
+      outline: none;
+      border-color: $gr-gold;
+      box-shadow: 0 0 0 3px rgba($gr-gold, 0.1);
+      background: var(--gr-surface);
+    }
+
+    &::placeholder {
+      color: var(--gr-muted);
+      opacity: 0.65;
+    }
+  }
+}
+
+.gr-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+
+  label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--gr-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  select {
+    padding: 0.625rem 0.75rem;
+    border: 1px solid var(--gr-line);
+    border-radius: 0.5rem;
+    background: var(--gr-input);
+    color: var(--gr-text);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    &:hover {
+      border-color: $gr-gold;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $gr-gold;
+      box-shadow: 0 0 0 3px rgba($gr-gold, 0.1);
+    }
+  }
+}
+
+.gr-toolbar__actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+
+  @include gr-bp(md) {
+    justify-content: flex-start;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// BULK ACTION BAR
+// ─────────────────────────────────────────────────────────────────────────
+
+.gr-bulk-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(90deg, rgba($gr-gold, 0.03), rgba($gr-gold, 0.02));
+  border: 1px solid rgba($gr-gold, 0.2);
+  border-radius: 0.625rem;
+  box-shadow: $erp-shadow-sm;
+
+  @include gr-bp(md) {
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.gr-bulk-bar__count {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--gr-text);
+}
+
+.gr-bulk-bar__actions {
+  display: flex;
+  gap: 0.75rem;
+
+  @include gr-bp(md) {
+    width: 100%;
+    gap: 0.5rem;
+
+    button {
+      flex: 1;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// TABLE
+// ─────────────────────────────────────────────────────────────────────────
+
+.gr-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 0.625rem;
+  box-shadow: $erp-shadow-sm;
+
+  @include gr-bp(md) {
+    overflow-x: auto;
+  }
+}
+
+.gr-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1100px;
+
+  @include gr-bp(md) {
+    min-width: 100%;
+  }
+}
+
+.gr-table thead {
+  background: linear-gradient(90deg, rgba($gr-gold, 0.03), rgba($gr-gold, 0.01));
+  border-bottom: 2px solid var(--gr-line);
+}
+
+.gr-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--gr-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    color: var(--gr-text);
+    background: rgba($gr-gold, 0.05);
+  }
+}
+
+.gr-table tbody tr {
+  border-bottom: 1px solid var(--gr-line);
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: rgba($gr-gold, 0.03);
+    box-shadow: inset 0 0 0 1px rgba($gr-gold, 0.1);
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.gr-table td {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: var(--gr-text);
+
+  &.gr-table__col--nowrap {
+    white-space: nowrap;
+  }
+}
+
+.gr-table__checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  accent-color: $gr-gold;
+}
+
+.gr-table__actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.gr-table__actions-horizontal {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+
+  button {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
+.gr-table__action-btn {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  border: 1px solid var(--gr-line);
+  border-radius: 0.375rem;
+  background: transparent;
+  color: var(--gr-text);
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: rgba($gr-gold, 0.1);
+    border-color: $gr-gold;
+    color: $gr-gold;
+  }
+}
+
+// Expanded Row Styles
+.gr-table__row--expanded {
+  background: linear-gradient(180deg, rgba($gr-gold, 0.03) 0%, transparent 100%);
+  border: 1px solid rgba($gr-gold, 0.2);
+
+  &:hover {
+    background: linear-gradient(180deg, rgba($gr-gold, 0.05) 0%, transparent 100%);
+  }
+
+  td {
+    padding: 1.5rem !important;
+  }
+}
+
+.gr-table__cell--details {
+  border-top: 2px solid rgba($gr-gold, 0.2) !important;
+}
+
+.gr-table__expanded-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.gr-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+
+  @include gr-bp(lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include gr-bp(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gr-details-column {
+  h4 {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--gr-text);
+    border-bottom: 2px solid rgba($gr-gold, 0.3);
+    padding-bottom: 0.5rem;
+  }
+
+  p {
+    margin: 0.5rem 0;
+    font-size: 0.875rem;
+    color: var(--gr-text);
+    line-height: 1.5;
+
+    strong {
+      color: var(--gr-text);
+      font-weight: 700;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+// Internal Notes
+.gr-internal-notes {
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba($gr-gold, 0.05), rgba($gr-gold, 0.02));
+  border: 1px solid rgba($gr-gold, 0.2);
+  border-radius: 0.5rem;
+
+  h4 {
+    margin: 0 0 1rem 0;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--gr-text);
+    border-bottom: 2px solid rgba($gr-gold, 0.3);
+    padding-bottom: 0.5rem;
+  }
+}
+
+.gr-notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.gr-note-item {
+  padding: 0.75rem;
+  background: var(--gr-surface);
+  border: 1px solid var(--gr-line);
+  border-radius: 0.375rem;
+
+  .gr-note-author {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: $gr-gold;
+  }
+
+  .gr-note-text {
+    margin: 0.25rem 0;
+    font-size: 0.875rem;
+    color: var(--gr-text);
+    line-height: 1.5;
+  }
+
+  .gr-note-date {
+    margin: 0.25rem 0 0 0;
+    font-size: 0.75rem;
+    color: var(--gr-muted);
+  }
+}
+
+// SLA Badge
+.gr-sla-badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-left: 0.5rem;
+
+  &--on_track {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+  }
+
+  &--at_risk {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+  }
+
+  &--overdue {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+  }
+
+  &--pending {
+    background: rgba(107, 114, 128, 0.1);
+    color: #6b7280;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// PAGINATION
+// ─────────────────────────────────────────────────────────────────────────
+
+.gr-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--gr-line);
+
+  button {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--gr-line);
+    border-radius: 0.5rem;
+    background: var(--gr-surface);
+    color: var(--gr-text);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.15s ease;
+
+    &:hover:not(:disabled) {
+      background: $gr-gold;
+      color: #fff;
+      border-color: $gr-gold;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  span {
+    font-size: 0.875rem;
+    color: var(--gr-muted);
+    font-weight: 600;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// DRAWER (Side Panel for Details)
+// ─────────────────────────────────────────────────────────────────────────
+
+.gr-drawer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  animation: gr-modal-fade 0.2s ease;
+}
+
+.gr-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 450px;
+  max-width: 90vw;
+  background: var(--gr-surface);
+  border-left: 1px solid var(--gr-line);
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 1000;
+  animation: gr-drawer-slide 0.3s ease;
+
+  @include gr-bp(lg) {
+    width: 100%;
+    max-width: 100vw;
+    animation: gr-slide-in 0.3s ease;
+  }
+
+  @include gr-bp(md) {
+    width: 100%;
+  }
+
+  @include gr-bp(sm) {
+    width: 100%;
+  }
+}
+
+.gr-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--gr-line);
+  position: sticky;
+  top: 0;
+  background: var(--gr-surface);
+  z-index: 10;
+}
+
+.gr-drawer__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gr-text);
+}
+
+.gr-drawer__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background: transparent;
+  color: var(--gr-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    color: var(--gr-text);
+    background: rgba($gr-gold, 0.1);
+    border-radius: 0.5rem;
+  }
+}
+
+.gr-drawer__content {
+  padding: 1.5rem;
+
+  @include gr-bp(md) {
+    padding: 1rem;
+  }
+}
+
+.gr-drawer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, rgba($gr-gold, 0.02), #fff);
+  border: 1px solid var(--gr-line);
+  border-radius: 0.5rem;
+}
+
+.gr-drawer-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+
+  h3 {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--gr-text);
+  }
+
+  .gr-drawer-section__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: var(--gr-muted);
+    transition: transform 0.2s ease;
+
+    &.gr-collapsed {
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.gr-drawer-section__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 500px;
+  overflow-y: auto;
+
+  &.gr-collapsed {
+    display: none;
+  }
+}
+
+.gr-drawer-section__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--gr-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .gr-drawer-section__value {
+    font-size: 0.875rem;
+    color: var(--gr-text);
+    word-break: break-word;
+  }
+}
+
+.gr-drawer__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border-top: 1px solid var(--gr-line);
+  position: sticky;
+  bottom: 0;
+  background: var(--gr-surface);
+}
+
+.gr-drawer__action-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+
+  @include gr-bp(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// MODALS
+// ─────────────────────────────────────────────────────────────────────────
+
+.gr-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  animation: gr-modal-fade 0.2s ease;
+  padding: 1rem;
+}
+
+.gr-modal {
+  position: relative;
+  background: var(--gr-surface);
+  border-radius: 0.625rem;
+  box-shadow: $erp-shadow-lg;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: gr-slide-in 0.3s ease;
+
+  @include gr-bp(sm) {
+    max-width: 100%;
+  }
+}
+
+.gr-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--gr-line);
+  background: linear-gradient(90deg, rgba($gr-gold, 0.03), rgba($gr-gold, 0.01));
+}
+
+.gr-modal__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gr-text);
+}
+
+.gr-modal__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background: transparent;
+  color: var(--gr-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    color: var(--gr-text);
+    background: rgba($gr-gold, 0.1);
+    border-radius: 0.5rem;
+  }
+}
+
+.gr-modal__body {
+  padding: 1.5rem;
+
+  @include gr-bp(sm) {
+    padding: 1rem;
+  }
+}
+
+.gr-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border-top: 1px solid var(--gr-line);
+  background: linear-gradient(90deg, rgba($gr-gold, 0.01), transparent);
+
+  @include gr-bp(sm) {
+    padding: 1rem;
+    flex-direction: column-reverse;
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// BADGES & INDICATORS
+// ─────────────────────────────────────────────────────────────────────────
+
+.gr-badge {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  // Priority Badges
+  &--priority-low {
+    @include gr-badge($gr-color-low);
+  }
+
+  &--priority-medium {
+    @include gr-badge($gr-color-medium);
+  }
+
+  &--priority-high {
+    @include gr-badge($gr-color-high);
+  }
+
+  &--priority-critical {
+    @include gr-badge($gr-color-critical);
+  }
+
+  // Status Badges
+  &--status-open {
+    @include gr-badge($gr-color-open);
+  }
+
+  &--status-assigned {
+    @include gr-badge($gr-color-assigned);
+  }
+
+  &--status-under-review {
+    @include gr-badge($gr-color-review);
+  }
+
+  &--status-in-progress {
+    @include gr-badge($gr-color-progress);
+  }
+
+  &--status-escalated {
+    @include gr-badge($gr-color-escalated);
+  }
+
+  &--status-resolved {
+    @include gr-badge($gr-color-resolved);
+  }
+
+  &--status-closed {
+    @include gr-badge($gr-color-closed);
+  }
+
+  &--status-rejected {
+    @include gr-badge($gr-color-rejected);
+  }
+
+  &--status-awaiting-response {
+    @include gr-badge($gr-color-awaiting);
+  }
+
+  // Category Badges - with highlighted backgrounds based on criticality
+  &--category {
+    padding: 0.4rem 1rem;
+    font-weight: 700;
+  }
+
+  &--category-academic {
+    background: rgba(37, 99, 235, 0.15);
+    color: #2563eb;
+    border: 1px solid rgba(37, 99, 235, 0.3);
+  }
+
+  &--category-discipline {
+    background: rgba(220, 38, 38, 0.15);
+    color: #dc2626;
+    border: 1px solid rgba(220, 38, 38, 0.3);
+  }
+
+  &--category-transport {
+    background: rgba(217, 119, 6, 0.15);
+    color: #d97706;
+    border: 1px solid rgba(217, 119, 6, 0.3);
+  }
+
+  &--category-hostel {
+    background: rgba(225, 29, 72, 0.15);
+    color: #e11d48;
+    border: 1px solid rgba(225, 29, 72, 0.3);
+  }
+
+  &--category-fees {
+    background: rgba(99, 102, 241, 0.15);
+    color: #6366f1;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+  }
+
+  &--category-infrastructure {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+
+  &--category-sports {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  &--category-safety {
+    background: rgba(185, 28, 28, 0.15);
+    color: #b91c1c;
+    border: 1px solid rgba(185, 28, 28, 0.3);
+  }
+
+  &--category-hr {
+    background: rgba(124, 58, 237, 0.15);
+    color: #7c3aed;
+    border: 1px solid rgba(124, 58, 237, 0.3);
+  }
+
+  &--category-administration {
+    background: rgba(8, 145, 178, 0.15);
+    color: #0891b2;
+    border: 1px solid rgba(8, 145, 178, 0.3);
+  }
+
+  &--category-maintenance {
+    background: rgba(132, 204, 22, 0.15);
+    color: #84cc16;
+    border: 1px solid rgba(132, 204, 22, 0.3);
+  }
+
+  // Legacy support
+  &--open {
+    @include gr-badge($gr-color-open);
+  }
+
+  &--assigned {
+    @include gr-badge($gr-color-assigned);
+  }
+
+  &--review {
+    @include gr-badge($gr-color-review);
+  }
+
+  &--progress {
+    @include gr-badge($gr-color-progress);
+  }
+
+  &--escalated {
+    @include gr-badge($gr-color-escalated);
+  }
+
+  &--resolved {
+    @include gr-badge($gr-color-resolved);
+  }
+
+  &--closed {
+    @include gr-badge($gr-color-closed);
+  }
+
+  &--rejected {
+    @include gr-badge($gr-color-rejected);
+  }
+
+  &--awaiting {
+    @include gr-badge($gr-color-awaiting);
+  }
+
+  &--low {
+    @include gr-badge($gr-color-low);
+  }
+
+  &--medium {
+    @include gr-badge($gr-color-medium);
+  }
+
+  &--high {
+    @include gr-badge($gr-color-high);
+  }
+
+  &--critical {
+    @include gr-badge($gr-color-critical);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// BUTTONS
+// ─────────────────────────────────────────────────────────────────────────
+
+.gr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  user-select: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--primary {
+    background: linear-gradient(90deg, $gr-gold, $gr-gold-dk);
+    color: #fff;
+    border: 1px solid $gr-gold-dk;
+
+    &:hover:not(:disabled) {
+      @include gr-shadow-hover;
+      background: linear-gradient(90deg, $gr-gold-dk, #1a1d23);
+    }
+  }
+
+  &--secondary {
+    background: rgba($gr-gold, 0.1);
+    color: $gr-gold;
+    border: 1px solid rgba($gr-gold, 0.3);
+
+    &:hover:not(:disabled) {
+      background: rgba($gr-gold, 0.2);
+      border-color: $gr-gold;
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: var(--gr-text);
+    border: 1px solid var(--gr-line);
+
+    &:hover:not(:disabled) {
+      background: rgba($gr-gold, 0.05);
+      border-color: $gr-gold;
+      color: $gr-gold;
+    }
+  }
+
+  &--danger {
+    background: rgba($gr-danger, 0.1);
+    color: $gr-danger;
+    border: 1px solid rgba($gr-danger, 0.3);
+
+    &:hover:not(:disabled) {
+      background: $gr-danger;
+      color: #fff;
+      border-color: $gr-danger;
+    }
+  }
+
+  &--success {
+    background: rgba($gr-success, 0.1);
+    color: $gr-success;
+    border: 1px solid rgba($gr-success, 0.3);
+
+    &:hover:not(:disabled) {
+      background: $gr-success;
+      color: #fff;
+      border-color: $gr-success;
+    }
+  }
+
+  &--warning {
+    background: rgba($gr-warning, 0.1);
+    color: $gr-warning;
+    border: 1px solid rgba($gr-warning, 0.3);
+
+    &:hover:not(:disabled) {
+      background: $gr-warning;
+      color: #fff;
+      border-color: $gr-warning;
+    }
+  }
+
+  &--info {
+    background: rgba(#3b82f6, 0.1);
+    color: #3b82f6;
+    border: 1px solid rgba(#3b82f6, 0.3);
+
+    &:hover:not(:disabled) {
+      background: #3b82f6;
+      color: #fff;
+      border-color: #3b82f6;
+    }
+  }
+
+  // Button sizes
+  &--xs {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+    height: 1.625rem;
+  }
+
+  &--sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+    height: 1.875rem;
+  }
+
+  &--md {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  &--lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// FORM ELEMENTS
+// ─────────────────────────────────────────────────────────────────────────
+
+.gr-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.gr-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.gr-form-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--gr-text);
+  letter-spacing: 0.03em;
+}
+
+.gr-form-input,
+.gr-form-select,
+.gr-form-textarea {
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--gr-line);
+  border-radius: 0.5rem;
+  background: var(--gr-input);
+  color: var(--gr-text);
+  font-size: 0.875rem;
+  font-family: $erp-font;
+  transition: all 0.15s ease;
+
+  &:focus {
+    outline: none;
+    border-color: $gr-gold;
+    box-shadow: 0 0 0 3px rgba($gr-gold, 0.1);
+    background: var(--gr-surface);
+  }
+
+  &::placeholder {
+    color: var(--gr-muted);
+    opacity: 0.65;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: var(--gr-bg);
+  }
+}
+
+.gr-form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// TOAST NOTIFICATIONS
+// ─────────────────────────────────────────────────────────────────────────
+
+.gr-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  max-width: 400px;
+  padding: 1rem 1.5rem;
+  border-radius: 0.625rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  box-shadow: $erp-shadow-lg;
+  z-index: 2000;
+  animation: gr-slide-in 0.3s ease;
+
+  @include gr-bp(md) {
+    bottom: 1rem;
+    right: 1rem;
+    max-width: 320px;
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  &--success {
+    background: rgba($gr-success, 0.1);
+    color: $gr-success;
+    border: 1px solid rgba($gr-success, 0.3);
+  }
+
+  &--error {
+    background: rgba($gr-danger, 0.1);
+    color: $gr-danger;
+    border: 1px solid rgba($gr-danger, 0.3);
+  }
+
+  &--warning {
+    background: rgba($gr-warning, 0.1);
+    color: $gr-warning;
+    border: 1px solid rgba($gr-warning, 0.3);
+  }
+
+  &--info {
+    background: rgba($gr-info, 0.1);
+    color: $gr-info;
+    border: 1px solid rgba($gr-info, 0.3);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// TIMELINE
+// ─────────────────────────────────────────────────────────────────────────
+
+.gr-timeline {
+  position: relative;
+  padding-left: 2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gr-line);
+  }
+}
+
+.gr-timeline-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--gr-line);
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -1.875rem;
+    top: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: var(--gr-surface);
+    border: 3px solid $gr-gold;
+  }
+}
+
+.gr-timeline-item__time {
+  font-size: 0.75rem;
+  color: var(--gr-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
+}
+
+.gr-timeline-item__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--gr-text);
+  margin-bottom: 0.25rem;
+}
+
+.gr-timeline-item__description {
+  font-size: 0.8125rem;
+  color: var(--gr-muted);
+  line-height: 1.5;
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// ANALYTICS SECTION
+// ─────────────────────────────────────────────────────────────────────────
+
+.gr-analytics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+
+  @include gr-bp(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gr-analytics-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba($gr-gold, 0.02), #fff);
+  border: 1px solid var(--gr-line);
+  border-radius: 0.625rem;
+
+  .gr-analytics-metric__label {
+    font-size: 0.875rem;
+    color: var(--gr-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .gr-analytics-metric__value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gr-text);
+    margin: 0;
+  }
+}

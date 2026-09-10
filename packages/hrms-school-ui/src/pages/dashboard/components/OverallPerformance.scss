@@ -1,0 +1,638 @@
+/* ================================================
+   min-width: 375px and max-width: 479px — medium mobile
+   ================================================ */
+
+@media (min-width: 375px) and (max-width: 479px) {
+  .overall-performance-card {
+    .overall-footer-strict {
+      .overall-footer__label {
+        font-size: 0.8rem;
+      }
+      .overall-footer__value--large {
+        font-size: 0.95rem;
+      }
+      .footer-dot {
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
+}
+/* ================================================
+   OVERALL PERFORMANCE
+   Base styles — web / desktop (> 1024px)
+   ================================================ */
+
+.overall-performance-card {
+  border-radius: 18px;
+  box-shadow: 0 2px 16px 0 rgba(44, 62, 80, 0.07);
+  padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+  width: 50%;
+  max-width: 50%;
+
+  .dark & {
+    background: rgba(30, 41, 59, 0.8);
+  }
+
+  .overall-header {
+    font-size: 1.18rem;
+    font-weight: 600;
+    color: #222B45;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+
+    .dark & {
+      color: #E5E7EB;
+    }
+  }
+
+  .overall-chart-section {
+    width: 100%;
+    min-width: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .overall-legend {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+    margin-left: 0.2rem;
+    font-size: 0.97rem;
+    color: #6B7280;
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 500;
+    }
+
+    .legend-dot {
+      width: 18px;
+      height: 4px;
+      border-radius: 2px;
+      display: inline-block;
+
+      &.actual {
+        background: #4CAF9A;
+      }
+
+      &.target {
+        background: repeating-linear-gradient(90deg, #8E7CFF, #8E7CFF 7px, transparent 7px, transparent 14px);
+      }
+    }
+  }
+
+  .overall-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 0.7rem;
+    gap: 0.5rem;
+    font-size: 1.08rem;
+
+    .footer-section {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+
+      &.center {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.15rem;
+        min-width: 90px;
+      }
+
+      &.left,
+      &.right {
+        min-width: 90px;
+      }
+    }
+
+    .footer-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+
+      &.attendance {
+        background: #F2994A;
+      }
+
+      &.due {
+        background: #4CAF9A22;
+        border: 2px solid #4CAF9A;
+
+        &.filled {
+          background: #4CAF9A;
+        }
+      }
+
+      &.study {
+        background: #8E7CFF;
+      }
+    }
+
+    .footer-label {
+      color: #6B7280;
+      font-size: 0.98rem;
+      font-weight: 500;
+
+      &.sub {
+        color: #B0B7C3;
+        font-size: 0.93rem;
+        margin-left: 0.3rem;
+      }
+    }
+
+    .footer-value {
+      color: #4CAF9A;
+      font-weight: 700;
+      font-size: 1.18rem;
+      margin-left: 0.2rem;
+
+      &.attendance {
+        color: #F2994A;
+      }
+
+      &.study {
+        color: #8E7CFF;
+      }
+
+      .footer-unit {
+        font-size: 0.9rem;
+        color: #B0B7C3;
+        margin-left: 0.1rem;
+      }
+    }
+  }
+
+  .overall-tooltip {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px 0 rgba(44, 62, 80, 0.13);
+    padding: 0.7rem 1.1rem;
+    color: #222B45;
+    font-size: 0.98rem;
+
+    .overall-tooltip-label {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .overall-tooltip-row {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.1rem;
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+
+        &.actual {
+          background: #4CAF9A;
+        }
+
+        &.target {
+          background: #8E7CFF;
+        }
+      }
+    }
+  }
+
+  .overall-footer-strict {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    .overall-footer__item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-width: 90px;
+
+      &.center {
+        align-items: flex-start;
+        min-width: 110px;
+      }
+
+      &.right {
+        align-items: flex-start;
+      }
+    }
+
+    .overall-footer__label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 1.04rem;
+      color: #6B7280;
+      font-weight: 500;
+      margin-bottom: 0.18rem;
+    }
+
+    .overall-footer__value {
+      margin-top: 2px;
+
+      &--large {
+        font-size: 1.45rem;
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.5px;
+      }
+
+      &--attendance {
+        color: #F2994A;
+      }
+
+      &--study {
+        color: #8E7CFF;
+      }
+
+      &--small {
+        font-size: 0.98rem;
+        font-weight: 500;
+        color: #B0B7C3;
+        margin-left: 2px;
+      }
+    }
+
+    .dues-squares {
+      display: flex;
+      gap: 0.22rem;
+      margin: 2px 0 0 0;
+
+      .dues-square {
+        width: 13px;
+        height: 13px;
+        border-radius: 4px;
+        background: #E5F6F1;
+        border: 1.5px solid #4CAF9A;
+
+        &.filled {
+          background: #4CAF9A;
+        }
+      }
+    }
+
+    .dues-label {
+      margin-top: 2px;
+      text-align: center;
+      color: #B0B7C3;
+      font-size: 0.93rem;
+      font-weight: 500;
+    }
+
+    .footer-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-bottom: 2px;
+
+      &.attendance { background: #F2994A; }
+      &.due        { background: #4CAF9A; }
+      &.study      { background: #8E7CFF; }
+    }
+  }
+
+  .overal-attendance-xaxis {
+    font-family: inherit;
+  }
+}
+
+
+
+
+/* ================================================
+   max-width: 374px — extra small
+   ================================================ */
+
+@media (min-width: 320px) and (max-width: 376px) {
+  .overall-performance-card {
+    padding: 0.5rem 0.4rem 0.4rem 0.4rem;
+    gap: 0.15rem;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    .overall-chart-section {
+      width: 100%;
+      min-width: 0;
+      margin-bottom: 0.1rem;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .recharts-responsive-container {
+      height: 220px !important;
+      width: 100% !important;
+      overflow: hidden;
+    }
+
+    svg {
+      overflow: visible;
+    }
+
+    .overall-header {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+      padding: 0 0.15rem;
+    }
+
+    .overall-legend {
+      gap: 0.15rem;
+      margin-top: 0.08rem;
+      margin-left: 0;
+      margin-right: 0;
+      font-size: 0.6rem;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0;
+      overflow: hidden;
+      max-width: 100%;
+
+      .legend-item {
+        gap: 0.1rem;
+        font-size: 0.6rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .legend-dot {
+        width: 8px;
+        height: 2px;
+        border-radius: 1px;
+        flex-shrink: 0;
+
+        &.target {
+          background: repeating-linear-gradient(90deg, #8E7CFF, #8E7CFF 4px, transparent 4px, transparent 8px);
+        }
+      }
+    }
+
+    .overall-footer {
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.08rem;
+      gap: 0.3rem;
+      font-size: 0.7rem;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 0.15rem;
+      overflow: hidden;
+
+      .footer-section {
+        align-items: center;
+        gap: 0.2rem;
+        flex: 1;
+        min-width: 0;
+
+        &.center {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.03rem;
+          min-width: auto;
+        }
+
+        &.left,
+        &.right {
+          min-width: auto;
+        }
+      }
+
+      .footer-dot {
+        width: 8px;
+        height: 8px;
+        flex-shrink: 0;
+
+        &.due {
+          border: 1px solid #4CAF9A;
+        }
+      }
+
+      .footer-label {
+        font-size: 0.65rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &.sub {
+          font-size: 0.6rem;
+          margin-left: 0.08rem;
+        }
+      }
+
+      .footer-value {
+        font-size: 0.8rem;
+        margin-left: 0.05rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+
+        .footer-unit {
+          font-size: 0.55rem;
+          margin-left: 0;
+        }
+      }
+    }
+
+    .overall-footer-strict {
+      width: 95%;
+
+      .footer-dot {
+        width: 10px;
+        height: 10px;
+      }
+
+      .overall-footer__label {
+        font-size: 0.75rem !important;
+      }
+      .overall-footer__value--large {
+        font-size: 0.85rem;
+      }
+    }
+
+    .overall-tooltip {
+      border-radius: 6px;
+      padding: 0.35rem 0.5rem;
+      font-size: 0.65rem;
+
+      .overall-tooltip-label {
+        font-size: 0.7rem;
+        margin-bottom: 0.1rem;
+      }
+
+      .overall-tooltip-row {
+        gap: 0.25rem;
+        margin-top: 0.05rem;
+
+        .dot {
+          width: 6px;
+          height: 6px;
+        }
+      }
+    }
+  }
+}
+
+/* ================================================
+   min-width: 376px and max-width: 480px — medium mobile
+   ================================================ */
+
+@media (min-width: 376px) and (max-width: 480px) {
+  .overall-performance-card {
+    .overall-footer-strict {
+      .overall-footer__label {
+        font-size: 0.8rem;
+      }
+      .overall-footer__value--large {
+        font-size: 0.95rem;
+      }
+      .footer-dot {
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
+}
+
+
+/* ================================================
+   max-width: 480px — small mobile
+   ================================================ */
+
+@media (min-width: 481px) {
+  .overall-performance-card {
+    padding: 1rem 1rem 0.8rem 1rem;
+
+    .overall-header {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .overall-legend {
+      font-size: 0.72rem;
+      gap: 0.5rem;
+      margin-top: 0.35rem;
+
+      .legend-item {
+        font-size: 0.72rem;
+        gap: 0.25rem;
+      }
+
+      .legend-dot {
+        width: 14px;
+        height: 3px;
+      }
+    }
+
+    .overall-footer {
+      margin-top: 0.5rem;
+      gap: 0.35rem;
+      font-size: 0.9rem;
+
+      .footer-section {
+        gap: 0.3rem;
+
+        &.center {
+          min-width: 80px;
+          gap: 0.1rem;
+        }
+
+        &.left,
+        &.right {
+          min-width: 80px;
+        }
+      }
+
+      .footer-label {
+        font-size: 0.85rem;
+
+        &.sub {
+          font-size: 0.8rem;
+          margin-left: 0.2rem;
+        }
+      }
+
+      .footer-value {
+        font-size: 1rem;
+        margin-left: 0.15rem;
+
+        .footer-unit {
+          font-size: 0.8rem;
+          margin-left: 0.05rem;
+        }
+      }
+    }
+
+    .overall-footer-strict {
+      .overall-footer__label {
+        font-size: 0.8rem;
+      }
+      .overall-footer__value--large {
+        font-size: 0.95rem;
+      }
+      .footer-dot {
+        width: 10px;
+        height: 10px;
+      }
+    }
+
+    .overall-tooltip {
+      padding: 0.5rem 0.8rem;
+      font-size: 0.85rem;
+    }
+  }
+
+   .learning-streak__circle-text {
+    left: -0.5rem;
+    top: -0.4rem;
+  }
+}
+
+/* ================================================
+   Tablet and above (min-width: 768px)
+   ================================================ */
+
+@media (min-width: 768px) {
+  .learning-streak__circle-value {
+    font-size: 2rem;
+  }
+
+  .learning-streak__circle-text {
+    left: -0.5rem;
+    top: -0.4rem;
+  }
+
+  
+    .overall-footer-strict {
+      .overall-footer__label {
+        font-size: 0.75rem !important;
+      }
+    }
+}
+
+
+/* ================================================
+   max-width: 1023px — tablet / small laptop
+   (100% width at 1024px and 768px)
+   ================================================ */
+@media (max-width: 1023px) {
+  .overall-performance-card {
+    width: 100%;
+    max-width: 100%;
+  }
+}

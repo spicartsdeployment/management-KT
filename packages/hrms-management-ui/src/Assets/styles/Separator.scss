@@ -1,0 +1,19 @@
+// src/Assets/styles/Separator.scss
+// BEM-based styles for the Separator component
+
+.separator {
+    flex-shrink: 0;
+    background-color: var(--border);
+
+    // Horizontal orientation
+    &[data-orientation="horizontal"] {
+        height: 1px;
+        width: 100%;
+    }
+
+    // Vertical orientation
+    &[data-orientation="vertical"] {
+        height: 100%;
+        width: 1px;
+    }
+}

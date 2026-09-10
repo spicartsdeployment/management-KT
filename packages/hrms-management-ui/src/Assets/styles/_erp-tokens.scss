@@ -1,0 +1,139 @@
+// ─── ERP Unified Design Tokens ─────────────────────────────────────────────
+// Master design system derived from the Policies module.
+// Import this in every module SCSS via: @import './_erp-tokens.scss';
+//
+// ─── Core Palette ─────────────────────────────────────────────────────────────
+$erp-gold:        #c9a962;
+$erp-gold-dk:     #a8894a;
+$erp-white:       #ffffff;
+$erp-bg:          #f5f6fa;
+$erp-surface:     #ffffff;
+$erp-line:        #e8ecf0;
+$erp-text:        #1a1d23;
+$erp-muted:       #6b7280;
+$erp-label:       #374151;
+$erp-input-bg:    #f9fafb;
+$erp-success:     #16a34a;
+$erp-warning:     #d97706;
+$erp-danger:      #dc2626;
+$erp-info:        #2563eb;
+
+// ─── Shadows ──────────────────────────────────────────────────────────────────
+$erp-shadow-sm:   0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+$erp-shadow-md:   0 4px 12px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.05);
+$erp-shadow-lg:   0 12px 32px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.07);
+
+// ─── Radii ────────────────────────────────────────────────────────────────────
+$erp-radius:      0.625rem;
+$erp-radius-sm:   0.375rem;
+
+// ─── Typography ───────────────────────────────────────────────────────────────
+$erp-font:        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+// ─── Shared navbar / control mixin ───────────────────────────────────────────
+@mixin management-header-control {
+    background: var(--input-background, #{$erp-input-bg}) !important;
+    border: 1.5px solid var(--border, #{$erp-line}) !important;
+    color: var(--foreground, #{$erp-text}) !important;
+    cursor: pointer;
+    transition: background 0.18s, border-color 0.18s, color 0.18s, transform 0.12s;
+
+    &:hover {
+        background: var(--accent, rgba(201, 169, 98, 0.10)) !important;
+        border-color: $erp-gold !important;
+        color: $erp-gold !important;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--ring, #{$erp-gold});
+        outline-offset: 2px;
+    }
+
+    &:active {
+        transform: scale(0.97);
+    }
+
+    &[data-state="open"] {
+        background: var(--accent, rgba(201, 169, 98, 0.12)) !important;
+        border-color: $erp-gold !important;
+        color: $erp-gold !important;
+    }
+}
+
+// ─── Module prefix bridge ─────────────────────────────────────────────────────
+@mixin erp-module-bridge($prefix) {
+    --#{$prefix}-bg:      var(--erp-bg);
+    --#{$prefix}-surface: var(--erp-surface);
+    --#{$prefix}-line:    var(--erp-line);
+    --#{$prefix}-text:    var(--erp-text);
+    --#{$prefix}-muted:   var(--erp-muted);
+    --#{$prefix}-input:   var(--erp-input);
+}
+
+@mixin erp-all-module-bridges {
+    @include erp-module-bridge(db);
+    @include erp-module-bridge(sm);
+    @include erp-module-bridge(ra);
+    @include erp-module-bridge(eg);
+    @include erp-module-bridge(ar);
+    @include erp-module-bridge(ac);
+    @include erp-module-bridge(su);
+    @include erp-module-bridge(br);
+    @include erp-module-bridge(cs);
+    @include erp-module-bridge(gr);
+    @include erp-module-bridge(an);
+    @include erp-module-bridge(ma);
+    @include erp-module-bridge(gs);
+    @include erp-module-bridge(ci);
+    @include erp-module-bridge(sp);
+    @include erp-module-bridge(cc);
+    @include erp-module-bridge(ns);
+    @include erp-module-bridge(lt);
+    @include erp-module-bridge(pt);
+    @include erp-module-bridge(fo);
+    @include erp-module-bridge(rd);
+    @include erp-module-bridge(ab);
+    @include erp-module-bridge(dm);
+    @include erp-module-bridge(cg);
+    @include erp-module-bridge(cf);
+    @include erp-module-bridge(rm);
+    @include erp-module-bridge(alm);
+    @include erp-module-bridge(em);
+    @include erp-module-bridge(lm);
+    @include erp-module-bridge(aa);
+    @include erp-module-bridge(um);
+    @include erp-module-bridge(pm);
+}
+
+// ─── CSS Custom Properties (Light + Dark via app theme toggle) ─────────────────
+:root,
+[data-theme='light'] {
+    --erp-bg:      #{$erp-bg};
+    --erp-surface: #{$erp-surface};
+    --erp-line:    #{$erp-line};
+    --erp-text:    #{$erp-text};
+    --erp-muted:   #{$erp-muted};
+    --erp-input:   #{$erp-input-bg};
+    @include erp-all-module-bridges;
+}
+
+.dark,
+[data-theme='dark'] {
+    --erp-bg:      #0f1117;
+    --erp-surface: #1a1d23;
+    --erp-line:    #2a2d35;
+    --erp-text:    #f0f2f5;
+    --erp-muted:   #9ca3af;
+    --erp-input:   #1f2229;
+    @include erp-all-module-bridges;
+}
+
+// ─── Breakpoints ─────────────────────────────────────────────────────────────
+@mixin erp-bp($size) {
+    @if $size == xxs { @media (max-width: 320px)  { @content; } }
+    @if $size == xs  { @media (max-width: 375px)  { @content; } }
+    @if $size == sm  { @media (max-width: 480px)  { @content; } }
+    @if $size == md  { @media (max-width: 768px)  { @content; } }
+    @if $size == lg  { @media (max-width: 1024px) { @content; } }
+    @if $size == xl  { @media (min-width: 1440px) { @content; } }
+}

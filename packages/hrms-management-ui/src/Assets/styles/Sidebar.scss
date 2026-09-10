@@ -1,0 +1,956 @@
+﻿// ── Theme tokens ─────────────────────────────────────────────────────────────
+@import './_erp-tokens.scss';
+
+// ── Dark palette ─────────────────────────────────────────────────────────────
+$gold:        #D4AF37;
+$gold-glow:   rgba(212, 175, 55, 0.18);
+$gold-border: rgba(212, 175, 55, 0.35);
+$dark-bg:     #111827;
+$dark-card:   #1A1F2E;
+$dark-border: rgba(255,255,255,0.07);
+$dark-hover:  rgba(255,255,255,0.05);
+$text-primary:#F0F0F0;
+$text-muted:  #6B7280;
+$text-gold:   #D4AF37;
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// NAVBAR (full-width top bar)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+.navbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // width: calc(100% - 2%);
+    height: 4.25rem;
+    // background: var(--card, #1a1f2e);
+    margin: 1rem 1rem 0 1rem;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid $dark-border;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+    gap: 1rem;
+    // overflow: hidden removed — portalled dropdowns need unconstrained parent stacking
+    z-index: 40;
+    box-shadow: 0 2px 12px rgba(0,0,0,.35);
+}
+
+// .navbar__accent {
+//     position: absolute;
+//     top: 0; left: 0; right: 0;
+//     height: 2px;
+//     background: linear-gradient(90deg, $gold 0%, rgba(212,175,55,.4) 60%, transparent 100%);
+//     pointer-events: none;
+// }
+
+// ── Brand / Logo ──────────────────────────────────────────────
+.navbar__left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+    min-width: 11rem;
+}
+
+.navbar__mobile-trigger {
+    display: none;  // hidden on desktop, shown via ≤768px breakpoint
+    color: white;
+    align-items: center;
+}
+
+.navbar__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+}
+
+.navbar__brand-icon {
+    width: 2.375rem;
+    height: 2.375rem;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, $gold 0%, #2C2C2C 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 10px rgba(212,175,55,.3);
+}
+
+.navbar__brand-icon-svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #fff;
+}
+
+.navbar__brand-name {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, $gold 0%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+}
+
+// ── Greeting (center) ─────────────────────────────────────────
+.navbar__center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+}
+
+.navbar__greeting {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    background: rgba(212,175,55,.06);
+    border: 1px solid $gold-border;
+    border-radius: 2rem;
+    padding: 0.8rem 1.25rem;
+    max-width: 28rem;
+}
+
+.navbar__greeting-sparkle {
+    width: 1.1rem;
+    height: 1.1rem;
+    color: $gold;
+    flex-shrink: 0;
+}
+
+.navbar__greeting-body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.navbar__greeting-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $text-primary;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.navbar__greeting-sub {
+    font-size: 0.82rem;
+    color: $text-muted;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &::before {
+        content: '•';
+        margin-right: 0.5rem;
+        opacity: 0.4;
+    }
+}
+
+// ── Right controls ────────────────────────────────────────────
+.navbar__right {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    flex-shrink: 0;
+}
+
+.navbar__icon-btn {
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    border-radius: 0.75rem !important;
+    // background: $dark-hover !important;
+    border: 1px solid $dark-border !important;
+    color: $text-muted !important;
+    transition: background 0.15s, border-color 0.15s, color 0.15s !important;
+
+    &:hover {
+        background: $gold-glow !important;
+        border-color: $gold-border !important;
+        color: $gold !important;
+    }
+}
+
+// .navbar__icon-btn--notif — extra specificity handled on the base class
+
+.navbar__icon-btn-svg {
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+.navbar__notif-badge {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.3rem;
+    min-width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 99px;
+    background: $gold;
+    color: #111;
+    font-size: 0.6rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.2rem;
+    border: 1.5px solid $dark-card;
+    pointer-events: none;
+}
+
+// Notifications dropdown
+.navbar__notif-dropdown {
+    width: 23rem;
+    max-width: calc(100vw - 1.5rem);
+    border-radius: 1rem !important;
+    background: #0a0a0a !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    box-shadow:
+        0 24px 64px rgba(0,0,0,.75),
+        0 4px 24px rgba(0,0,0,.5),
+        0 0 0 1px rgba(212,175,55,.08) !important;
+    padding: 0 !important;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.navbar__notif-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 1rem 0.75rem;
+    gap: 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.02);
+}
+
+.navbar__notif-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar__notif-header-icon {
+    width: 1rem;
+    height: 1rem;
+    color: $gold;
+}
+
+.navbar__notif-header-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: $text-primary;
+}
+
+.navbar__notif-count-badge {
+    background: $gold !important;
+    color: #111 !important;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.1rem 0.45rem;
+    border-radius: 99px;
+}
+
+.navbar__notif-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-left: auto;
+}
+
+.navbar__notif-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: none;
+    border: 1px solid $dark-border;
+    border-radius: 0.5rem;
+    padding: 0.3rem 0.625rem;
+    font-size: 0.72rem;
+    color: $text-muted;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+
+    &:hover {
+        background: $gold-glow;
+        border-color: $gold-border;
+        color: $gold;
+    }
+
+    &--danger {
+        padding: 0.3rem 0.5rem;
+        &:hover {
+            background: rgba(239,68,68,.1);
+            border-color: rgba(239,68,68,.4);
+            color: #f87171;
+        }
+    }
+}
+
+.navbar__notif-action-icon {
+    width: 0.8rem;
+    height: 0.8rem;
+}
+
+.navbar__notif-list {
+    max-height: 22rem;
+    overflow-y: auto;
+    padding: 0.375rem 0.25rem 0.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(43 35 8 / 35%) transparent;
+
+    &::-webkit-scrollbar { width: 4px; }
+    &::-webkit-scrollbar-thumb { background: $gold-border; border-radius: 4px; }
+}
+
+.navbar__notif-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    padding: 0.35rem 0.875rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-left-width: 3px;
+    cursor: pointer;
+    margin: 0.3rem 0.25rem;
+    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+    background: rgba(255,255,255,0.02);
+
+    &:hover {
+        background: rgba(255,255,255,0.05);
+    }
+
+    &--read {
+        opacity: 0.55;
+    }
+
+    // new = low severity → green
+    &--new {
+        border-left-color: #22c55e;
+        box-shadow: inset 3px 0 8px rgba(34,197,94,.08);
+        &:hover { box-shadow: inset 3px 0 12px rgba(34,197,94,.15), 0 2px 12px rgba(34,197,94,.08); }
+    }
+
+    // info = medium severity → orange
+    &--info {
+        border-left-color: #f97316;
+        box-shadow: inset 3px 0 8px rgba(249,115,22,.08);
+        &:hover { box-shadow: inset 3px 0 12px rgba(249,115,22,.15), 0 2px 12px rgba(249,115,22,.08); }
+    }
+
+    // alert = high severity → red
+    &--alert {
+        border-left-color: #ef4444;
+        box-shadow: inset 3px 0 8px rgba(239,68,68,.1);
+        &:hover { box-shadow: inset 3px 0 12px rgba(239,68,68,.18), 0 2px 12px rgba(239,68,68,.1); }
+    }
+}
+
+.navbar__notif-item-dot-col {
+    padding-top: 0.25rem;
+    flex-shrink: 0;
+}
+
+.navbar__notif-dot {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+
+    &--unread {
+        background: $gold;
+        box-shadow: 0 0 5px rgba(212,175,55,.6);
+    }
+
+    &--read {
+        background: $text-muted;
+        opacity: 0.5;
+    }
+}
+
+// dot color matches severity
+.navbar__notif-item--new    .navbar__notif-dot--unread { background: #22c55e; box-shadow: 0 0 5px rgba(34,197,94,.5); }
+.navbar__notif-item--info   .navbar__notif-dot--unread { background: #f97316; box-shadow: 0 0 5px rgba(249,115,22,.5); }
+.navbar__notif-item--alert  .navbar__notif-dot--unread { background: #ef4444; box-shadow: 0 0 5px rgba(239,68,68,.5); }
+
+.navbar__notif-item-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+    flex: 1;
+}
+
+.navbar__notif-item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.navbar__notif-item-title {
+    font-size: 0.725rem;
+    font-weight: 600;
+    color: $text-primary;
+    line-height: 1.2;
+}
+
+.navbar__notif-new-badge {
+    background: rgba(212,175,55,.15) !important;
+    color: $gold !important;
+    font-size: 0.52rem;
+    font-weight: 700;
+    padding: 0.1rem 0.4rem;
+    border-radius: 99px;
+    flex-shrink: 0;
+}
+
+.navbar__notif-item-desc {
+    font-size: 0.7rem;
+    color: $text-muted;
+    line-height: 1.4;
+}
+
+.navbar__notif-item-time {
+    font-size: 0.65rem;
+    color: $text-muted;
+    opacity: 0.75;
+}
+
+.navbar__notif-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 2.5rem 1rem;
+    color: $text-muted;
+    font-size: 0.85rem;
+}
+
+.navbar__notif-empty-icon {
+    width: 2rem;
+    height: 2rem;
+    color: $text-muted;
+    opacity: 0.4;
+}
+
+// Profile button
+.navbar__profile-btn {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.625rem !important;
+    padding: 0.375rem 0.875rem 0.375rem 0.5rem !important;
+    border-radius: 0.875rem !important;
+    // background: $dark-hover !important;
+    // border: 1px solid $dark-border !important;
+    height: 2.5rem !important;
+    transition: background 0.15s, border-color 0.15s !important;
+
+    &:hover {
+        background: $gold-glow !important;
+        border-color: $gold-border !important;
+    }
+}
+
+.navbar__avatar {
+    width: 1.875rem;
+    height: 1.875rem;
+    flex-shrink: 0;
+}
+
+.navbar__avatar-fallback {
+    background: linear-gradient(135deg, $gold 0%, #2C2C2C 100%) !important;
+    color: #fff !important;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.navbar__profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+}
+
+.navbar__profile-name {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: $text-primary;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.navbar__profile-role {
+    font-size: 0.6875rem;
+    color: $gold;
+    line-height: 1.2;
+}
+
+.navbar__profile-chevron {
+    width: 0.9rem;
+    height: 0.9rem;
+    color: $gold;
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+.navbar__profile-dropdown {
+    width: 15.5rem;
+    max-width: calc(100vw - 1.5rem);
+    border-radius: 1rem !important;
+    background: #111112;
+    border: 1px solid $dark-border !important;
+    box-shadow: 0 16px 48px rgba(0,0,0,.5) !important;
+    z-index: 9999;
+    padding: 0.25rem !important;
+}
+
+.navbar__profile-dropdown-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $text-muted;
+    padding: 0.625rem 0.75rem 0.375rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.navbar__profile-dropdown-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.625rem !important;
+    padding: 0.625rem 0.75rem !important;
+    border-radius: 0.625rem !important;
+    font-size: 0.85rem !important;
+    color: $text-primary !important;
+    cursor: pointer;
+    margin: 0.125rem 0.25rem;
+    transition: background 0.15s, color 0.15s;
+
+    &:hover {
+        background: $gold-glow !important;
+        color: $gold !important;
+    }
+
+    &--danger {
+        color: #f87171 !important;
+        &:hover {
+            background: rgba(239,68,68,.1) !important;
+            color: #f87171 !important;
+        }
+    }
+}
+
+.navbar__profile-dropdown-icon {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    opacity: 0.8;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SIDEBAR (left nav panel)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+.sidebar {
+    // background: $dark-bg;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: $text-primary;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    transition: width 0.3s cubic-bezier(.4,0,.2,1);
+    position: relative;
+    // Width is controlled entirely by .main-layout__sidebar container
+    width: 100%;
+}
+
+// The container (.main-layout__sidebar--collapsed/expanded) owns the
+// actual pixel width. The aside just fills it.
+.sidebar--collapsed { width: 100%; }
+.sidebar--expanded  { width: 100%; }
+
+.sidebar__gradient {
+    position: absolute;
+    inset: 0;
+    // background: linear-gradient(
+    //     180deg,
+    //     rgba(212,175,55,.04) 0%,
+    //     transparent 40%,
+    //     rgba(0,0,0,.06) 100%
+    // );
+    
+    pointer-events: none;
+}
+
+// ── Collapse toggle ───────────────────────────────────────────
+.sidebar__collapse-btn {
+    position: sticky;
+    top: 0.875rem;
+    float: right;
+    margin-right: 0.75rem;
+    margin-bottom: -2.625rem;
+    z-index: 30;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 0.5rem;
+    background: $dark-bg;
+    border: 1px solid $dark-border;
+    color: $text-muted;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    box-shadow: 0 2px 8px rgba(0,0,0,.4);
+
+    &:hover {
+        background: $gold-glow;
+        border-color: $gold-border;
+        color: $gold;
+    }
+}
+
+.sidebar__collapse-icon {
+    width: 0.9rem;
+    height: 0.9rem;
+}
+
+// ── Nav ───────────────────────────────────────────────────────
+.sidebar__nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem 0.75rem 1rem;
+    position: relative;
+    z-index: 10;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(57 45 4 / 35%) transparent;
+
+    &::-webkit-scrollbar { width: 3px; }
+    &::-webkit-scrollbar-thumb { background: $gold-border; border-radius: 4px; }
+}
+
+.sidebar__nav-group {
+    margin-bottom: 0.125rem;
+}
+
+.sidebar__nav-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 0.75rem;
+    border-radius: 0.75rem;
+    transition: background 0.18s, color 0.18s, border-color 0.18s;
+    position: relative;
+    cursor: pointer;
+    font-size: 0.9rem;
+    background: none;
+    border: none;
+    text-decoration: none;
+    color: $text-muted;
+    border-left: 3px solid transparent;
+    margin-bottom: 0.125rem;
+
+    &:hover:not(.sidebar__nav-btn--active) {
+        background: $dark-hover;
+        color: $text-primary;
+        border-left-color: rgba(212,175,55,.3);
+    }
+}
+
+.sidebar__nav-btn--active {
+    background: rgba(212,175,55,.12) !important;
+    color: $gold !important;
+    // border-left-color: $gold !important;
+    font-weight: 600;
+}
+
+.sidebar__nav-btn--inactive {
+    color: $text-muted;
+}
+
+.sidebar__nav-btn__icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    flex-shrink: 0;
+}
+
+.sidebar__nav-emoji {
+    font-size: 1.15rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,.4));
+    transition: transform 0.15s;
+
+    .sidebar__nav-btn--active & {
+        transform: scale(1.15);
+        filter: drop-shadow(0 2px 6px rgba(0,0,0,.5));
+    }
+
+    .sidebar__nav-btn:hover:not(.sidebar__nav-btn--active) & {
+        transform: scale(1.1);
+    }
+}
+
+.sidebar__nav-btn__label {
+    flex: 1;
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar__nav-btn__chevron {
+    width: 0.9rem;
+    height: 0.9rem;
+    flex-shrink: 0;
+    opacity: 0.6;
+}
+
+.sidebar__nav-btn__pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 0.75rem;
+    background: rgba(212,175,55,.06);
+    animation: sidebar-pulse 1.5s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes sidebar-pulse {
+    0%   { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.sidebar__nav-btn__dot {
+    margin-left: auto;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background: $gold;
+    flex-shrink: 0;
+}
+
+// ── Submenu ───────────────────────────────────────────────────
+.sidebar__submenu {
+    margin-left: 1.625rem;
+    border-left: 1.5px solid rgba(212,175,55,.18);
+    padding-left: 0.75rem;
+    margin-bottom: 0.125rem;
+}
+
+.sidebar__submenu-link {
+    display: block;
+    padding: 0.5rem 0.625rem;
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    margin-bottom: 0.1rem;
+
+    &--active {
+        background: rgba(212,175,55,.14);
+        color: $gold;
+        font-weight: 500;
+    }
+
+    &--inactive {
+        color: $text-muted;
+    }
+
+    &:hover:not(.sidebar__submenu-link--active) {
+        background: $dark-hover;
+        color: $text-primary;
+    }
+}
+
+// ── Responsive ───────────────────────────────────────────────
+
+// 1440px — full sidebar
+@media (min-width: 1440px) {
+    .navbar__greeting { max-width: 34rem; }
+}
+@media (min-width: 1025px) and (max-width: 1439px) {
+    .navbar__greeting { max-width: 30rem; }
+}
+
+// 1024px
+@media (max-width: 1024px) {
+    .navbar__greeting-sub { display: none; }
+    .navbar__greeting { padding: 0.4rem 1rem; }
+}
+
+// ≤768px — tablet / mobile breakpoint
+// Sidebar becomes an off-canvas drawer (controlled by MainLayout.scss).
+// ≤768px — tablet / mobile breakpoint
+// Sidebar becomes an off-canvas drawer (controlled by MainLayout.scss).
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 0.625rem 0 0.5rem;
+        height: 3.75rem;
+        justify-content: center;
+    }
+
+    .navbar__center { display: none; }
+
+    .navbar__left {
+        min-width: auto;
+        gap: 0.375rem;
+    }
+
+    // Show the hamburger trigger — sits left of the brand icon
+    .navbar__mobile-trigger {
+        display: flex;
+        margin-left: 0;
+    }
+}
+
+// ── Hamburger icon colour per theme ──────────────────────────────────────────
+// Dark mode: icon inherits white (navbar text is light)
+[data-theme='dark'] .navbar__mobile-trigger,
+[data-theme='dark'] .navbar__hamburger-btn {
+    color: #ffffff;
+}
+// Light mode: icon is dark slate
+[data-theme='light'] .navbar__mobile-trigger,
+[data-theme='light'] .navbar__hamburger-btn {
+    color: #1e293b;
+}
+
+// ── Off-canvas drawer — LIGHT theme ──────────────────────────────────────────
+// Applied when [data-theme='light'] is on <html> AND viewport ≤768px
+@media (max-width: 768px) {
+    [data-theme='light'] {
+        .sidebar {
+            background: #ffffff !important;
+            border-color: rgba(0, 0, 0, 0.07) !important;
+            color: #1e293b !important;
+        }
+
+        .sidebar__collapse-btn {
+            background: #f1f5f9 !important;
+            border-color: rgba(0, 0, 0, 0.1) !important;
+            color: #475569 !important;
+
+            &:hover {
+                background: rgba(212, 175, 55, 0.12) !important;
+                border-color: rgba(212, 175, 55, 0.4) !important;
+                color: #92700a !important;
+            }
+        }
+
+        .sidebar__nav { scrollbar-color: rgba(0, 0, 0, 0.15) transparent; }
+
+        .sidebar__nav-btn {
+            color: #475569 !important;
+            &:hover:not(.sidebar__nav-btn--active) {
+                background: rgba(0, 0, 0, 0.05) !important;
+                color: #1e293b !important;
+                border-left-color: rgba(212, 175, 55, 0.4) !important;
+            }
+        }
+
+        .sidebar__nav-btn--active  { background: rgba(212, 175, 55, 0.14) !important; color: #7a5c00 !important; }
+        .sidebar__nav-btn--inactive { color: #64748b !important; }
+        .sidebar__submenu          { border-left-color: rgba(0, 0, 0, 0.12) !important; }
+        .sidebar__submenu-link--inactive { color: #64748b !important; }
+        .sidebar__submenu-link--active   { background: rgba(212, 175, 55, 0.14) !important; color: #7a5c00 !important; }
+        .sidebar__submenu-link:hover:not(.sidebar__submenu-link--active) {
+            background: rgba(0, 0, 0, 0.05) !important;
+            color: #1e293b !important;
+        }
+        .sidebar__nav-btn__chevron { opacity: 0.45; }
+        .sidebar__nav-btn__dot     { background: #92700a !important; }
+    }
+}
+
+// ── Off-canvas drawer — DARK theme ───────────────────────────────────────────
+// Drawer inherits the existing dark palette variables — no overrides needed.
+// Only restore any values that the light block above could accidentally bleed in.
+@media (max-width: 768px) {
+
+    .navbar__brand-name { font-size: 0.9rem; }
+    [data-theme='dark'] {
+        .sidebar {
+            background: #1a1f2e !important;
+            border-color: rgba(255, 255, 255, 0.06) !important;
+            color: #f0f2f5 !important;
+        }
+
+        .sidebar__collapse-btn {
+            background: #111827 !important;
+            border-color: rgba(255, 255, 255, 0.07) !important;
+            color: #9ca3af !important;
+        }
+
+        .sidebar__nav-btn          { color: #9ca3af !important; }
+        .sidebar__nav-btn--active  { background: rgba(212, 175, 55, 0.12) !important; color: $gold !important; }
+        .sidebar__nav-btn--inactive { color: #9ca3af !important; }
+        .sidebar__nav-btn__dot     { background: $gold !important; }
+    }
+}
+
+// 480px
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0 0.75rem;
+        height: 3.5rem;
+        width: calc(100% - 1.5rem);
+        margin: 1rem 0.75rem 0 0.75rem;
+    }
+
+    .navbar__brand-name { display: none; }
+
+    .navbar__profile-info { display: none; }
+
+    .navbar__profile-btn {
+        padding: 0.25rem !important;
+        gap: 0 !important;
+    }
+
+    // Dropdowns fill most of the screen width, anchored to the right
+    .navbar__notif-dropdown {
+        width: calc(100vw - 1.5rem) !important;
+        max-width: 22rem;
+    }
+
+    .navbar__profile-dropdown {
+        width: calc(100vw - 1.5rem) !important;
+        max-width: 16rem;
+    }
+}
+
+// 375px
+@media (max-width: 375px) {
+    .navbar__icon-btn {
+        width: 2.125rem;
+        height: 2.125rem;
+        min-width: 2.125rem;
+    }
+}
+
+// 320px
+@media (max-width: 320px) {
+    .navbar { gap: 0.25rem; padding: 0 0.5rem; }
+    .navbar__right { gap: 0.25rem; }
+}

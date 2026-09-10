@@ -1,0 +1,404 @@
+// ============================================
+// HRMS Teacher UI - Floating Layout System
+// ============================================
+// This file contains the complete floating layout structure
+// for navbar, sidebar, and main content area
+
+@import './variables';
+
+// ============================================
+// Base Styles
+// ============================================
+
+.teacher-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 1rem;
+  background: #f5f7fb;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  // Floating Navbar
+  .teacher-navbar {
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: visible;
+  }
+
+  // Body Container (Sidebar + Content)
+  .teacher-body {
+    display: flex;
+    gap: 1rem;
+    height: calc(100% - 80px); // Adjust based on navbar height
+    min-height: 0;
+  }
+
+  // Floating Sidebar
+  .teacher-sidebar {
+    width: 260px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    // Hide scrollbar in sidebar
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  // Floating Main Content
+  .teacher-content {
+    flex: 1;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1.5rem;
+
+    // Hide scrollbar but keep functionality
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+}
+
+.teacher-layout .teacher-navbar {
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.teacher-layout .teacher-body {
+  display: flex;
+  gap: 1rem;
+  height: calc(100% - 80px); // Adjust based on navbar height
+  min-height: 0;
+}
+
+.teacher-layout .teacher-sidebar {
+  width: 260px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.teacher-layout .teacher-sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.teacher-layout .teacher-content {
+  flex: 1;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.5rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.teacher-layout .teacher-content::-webkit-scrollbar {
+  display: none;
+}
+
+// ============================================
+// Dark Theme Support
+// ============================================
+
+[data-theme='dark'] .teacher-layout {
+  background: #0f172a;
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .teacher-layout {
+    padding: 0.75rem;
+
+    .teacher-navbar {
+      margin-bottom: 0.75rem;
+    }
+
+    .teacher-body {
+      gap: 0.75rem;
+    }
+
+    .teacher-sidebar {
+      width: 220px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .teacher-layout {
+    padding: 0.5rem;
+
+    .teacher-navbar {
+      margin-bottom: 0.5rem;
+    }
+
+    .teacher-body {
+      flex-direction: column;
+      gap: 0.5rem;
+      height: auto;
+    }
+
+    .teacher-sidebar {
+      width: 100%;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .teacher-content {
+      height: calc(100vh - 300px);
+      padding: 1rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .teacher-layout {
+    padding: 0.25rem;
+
+    .teacher-content {
+      padding: 0.75rem;
+    }
+  }
+}
+
+// Mobile: sidebar becomes an off-canvas drawer (zero width in flow)
+@media (max-width: 768px) {
+  .teacher-layout {
+    .teacher-sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100dvh;
+      width: 260px;
+      z-index: 1050;
+      transform: translateX(-100%);
+      transition: transform 250ms ease-in-out;
+      border-radius: 0;
+      box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
+
+      &.open {
+        transform: translateX(0);
+      }
+    }
+
+    .teacher-body {
+      // Remove sidebar from flow – content takes full width
+      .teacher-sidebar { flex-shrink: 0; width: 0; overflow: visible; background: transparent; box-shadow: none; }
+    }
+
+    .teacher-content {
+      height: calc(100dvh - 120px);
+      padding: 0.875rem;
+    }
+  }
+}
+
+// ============================================
+// Utility Classes for Floating Elements
+// ============================================
+
+.floating-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.floating-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.floating-section {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+// ============================================
+// Scrollbar Utilities
+// ============================================
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+// ============================================
+// Spacing Consistency
+// ============================================
+
+.gap-1 {
+  gap: 1rem;
+}
+
+.gap-half {
+  gap: 0.5rem;
+}
+
+.margin-1 {
+  margin: 1rem;
+}
+
+.padding-1 {
+  padding: 1rem;
+}
+
+.rounded-12 {
+  border-radius: 12px;
+}
+
+.shadow-floating {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-floating-hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+// ============================================
+// Desktop — max-width: 1535px
+// ============================================
+
+@media (max-width: 1535px) {}
+
+// ============================================
+// Laptop — max-width: 1279px
+// ============================================
+
+@media (max-width: 1279px) {}
+
+// ============================================
+// Tablet — max-width: 1023px
+// ============================================
+
+@media (max-width: 1023px) {
+  .teacher-layout {
+    padding: 0.75rem;
+  }
+
+  .teacher-layout .teacher-navbar {
+    margin-bottom: 0.75rem;
+  }
+
+  .teacher-layout .teacher-body {
+    gap: 0.75rem;
+  }
+
+  .teacher-layout .teacher-sidebar {
+    width: 220px;
+  }
+}
+
+// ============================================
+// Mobile — max-width: 767px
+// ============================================
+
+@media (max-width: 767px) {
+  .teacher-layout {
+    padding: 0.5rem;
+  }
+
+  .teacher-layout .teacher-navbar {
+    margin-bottom: 0.5rem;
+  }
+
+  .teacher-layout .teacher-body {
+    flex-direction: column;
+    gap: 0.5rem;
+    height: auto;
+  }
+
+  // Off-canvas sidebar: removed from flow, becomes a fixed drawer
+  .teacher-layout .teacher-body .teacher-sidebar {
+    width: 0;
+    overflow: visible;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .teacher-layout .teacher-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: 260px;
+    z-index: 1050;
+    transform: translateX(-100%);
+    transition: transform 250ms ease-in-out;
+    border-radius: 0;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
+  }
+
+  .teacher-layout .teacher-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .teacher-layout .teacher-content {
+    height: calc(100dvh - 120px);
+    padding: 0.875rem;
+  }
+}
+
+// ============================================
+// Small Mobile — max-width: 479px
+// ============================================
+
+@media (max-width: 479px) {
+  .teacher-layout {
+    padding: 0.25rem;
+  }
+
+  .teacher-layout .teacher-content {
+    padding: 0.75rem;
+  }
+}

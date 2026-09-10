@@ -1,0 +1,1615 @@
+﻿// â”€â”€â”€ Campus Facilities SCSS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Prefix: cf-*  |  Design language: aligned with Policies (pm-*) system
+
+// â”€â”€â”€ Variables â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+$gold:    #c9a962;
+$ink:     #a8894a;
+$text:    #1a1d23;
+$muted:   #6b7280;
+$line:    #e8ecf0;
+$bg:      #f5f6fa;
+$white:   #ffffff;
+$danger:  #dc2626;
+$warning: #d97706;
+$success: #16a34a;
+$blue:    #2563eb;
+$teal:    #14b8a6;
+$cyan:    #06b6d4;
+$violet:  #8b5cf6;
+$indigo:  #4f46e5;
+$amber:   #d97706;
+$rose:    #f43f5e;
+$sky:     #38bdf8;
+$green:   #16a34a;
+$orange:  #f97316;
+$purple:  #a21caf;
+$red:     #dc2626;
+
+$radius-sm: 0.375rem;
+$radius:    0.625rem;
+$radius-lg: 0.625rem;
+$radius-xl: 0.625rem;
+
+$shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+$shadow:    0 4px 12px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.05);
+$shadow-lg: 0 12px 32px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.07);
+
+// â”€â”€ Dark-mode custom properties â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+:root {
+  --cf-bg:      #{$bg};
+  --cf-surface: #{$white};
+  --cf-line:    #{$line};
+  --cf-text:    #{$text};
+  --cf-muted:   #{$muted};
+  --cf-input:   #f9fafb;
+  --cf-hover-bg:     var(--cf-line);
+  --cf-hover-border: var(--cf-line);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cf-bg:      #0f1117;
+    --cf-surface: #1a1d23;
+    --cf-line:    #2a2d35;
+    --cf-text:    #f0f2f5;
+    --cf-muted:   #9ca3af;
+    --cf-input:   #1f2229;
+    --cf-hover-bg:     var(--cf-line);
+    --cf-hover-border: var(--cf-line);
+  }
+}
+
+$tones: (
+  blue:   (#eff6ff, #2563eb, #1d4ed8),
+  indigo: (#eef2ff, #4f46e5, #3730a3),
+  violet: (#f5f3ff, #7c3aed, #6d28d9),
+  amber:  (#fffbeb, #d97706, #b45309),
+  teal:   (#f0fdfa, #0d9488, #0f766e),
+  cyan:   (#ecfeff, #0891b2, #0e7490),
+  green:  (#f0fdf4, #16a34a, #15803d),
+  red:    (#fef2f2, #dc2626, #b91c1c),
+  sky:    (#f0f9ff, #0284c7, #0369a1),
+  rose:   (#fff1f2, #e11d48, #be123c),
+  orange: (#fff7ed, #ea580c, #c2410c),
+  purple: (#fdf4ff, #9333ea, #7e22ce),
+);
+
+// â”€â”€â”€ Mixins â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+@mixin card {
+  background: var(--cf-surface);
+  border: 1px solid var(--cf-line);
+  border-radius: $radius;
+  box-shadow: $shadow-sm;
+}
+
+@mixin card-hover {
+  transition: box-shadow .2s, transform .18s;
+  &:hover { box-shadow: $shadow; transform: translateY(-2px); }
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin focus-ring {
+  &:focus-visible { outline: 2px solid $gold; outline-offset: 2px; }
+}
+
+@mixin bp($s) {
+  @if $s == xxs { @media (max-width: 320px)  { @content; } }
+  @if $s == xs  { @media (max-width: 375px)  { @content; } }
+  @if $s == sm  { @media (max-width: 480px)  { @content; } }
+  @if $s == md  { @media (max-width: 768px)  { @content; } }
+  @if $s == lg  { @media (max-width: 1024px) { @content; } }
+  @if $s == xl  { @media (max-width: 1440px) { @content; } }
+}
+
+@mixin hover-bg($prefix) {
+  &:hover {
+    background: var(--#{$prefix}-hover-bg);
+    color: var(--#{$prefix}-text);
+  }
+}
+
+@mixin button-outline-hover($prefix) {
+  &:hover:not(:disabled) {
+    background: var(--#{$prefix}-hover-bg);
+    border-color: var(--#{$prefix}-hover-border);
+    color: var(--#{$prefix}-text);
+  }
+}
+
+// â”€â”€â”€ Root â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-root {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.75rem;
+  background: var(--cf-bg);
+  min-height: 100vh;
+  color: var(--cf-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  @include bp(md) { padding: 1.25rem; gap: 1.25rem; }
+  @include bp(sm) { padding: .875rem; gap: 1rem; }
+  @include bp(xxs){ padding: .625rem; }
+}
+
+// â”€â”€â”€ Page Header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-page-header {
+  margin-bottom: 1.5rem;
+
+  &__row {
+    @include flex-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+}
+
+.cf-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--cf-muted);
+  margin-bottom: 0.35rem;
+
+  &__sep     { color: var(--cf-muted); }
+  &__current { color: var(--cf-text); font-weight: 600; }
+}
+
+.cf-page-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, $gold, $ink);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  margin: 0;
+
+  @include bp(sm) { font-size: 1.25rem; }
+}
+
+.cf-page-desc {
+  font-size: .8125rem;
+  color: var(--cf-muted);
+  margin: 0.25rem 0 0;
+}
+
+// â”€â”€â”€ Tabs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-tabs-wrap {
+  margin-bottom: 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--cf-bg);
+  padding: 0.5rem 0;
+}
+
+.cf-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.875rem 1rem;
+  background: var(--cf-surface);
+  border: 1px solid var(--cf-line);
+  border-radius: $radius-lg;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  scrollbar-width: thin;
+  scrollbar-color: rgba($gold, .3) transparent;
+
+  &::-webkit-scrollbar { height: 4px; }
+  &::-webkit-scrollbar-thumb { background: rgba($gold, .3); border-radius: 2px; }
+}
+
+.cf-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--cf-line);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  background: var(--cf-input);
+  color: var(--cf-muted);
+  transition: all .15s;
+  flex-shrink: 0;
+  @include focus-ring;
+
+  &:hover {
+    border-color: $gold;
+    color: $gold;
+    background: rgba($gold, .06);
+  }
+
+  &--active {
+    background: $gold;
+    border-color: $gold;
+    color: $white;
+    box-shadow: 0 2px 8px rgba($gold, .25);
+  }
+}
+
+.cf-tab-panel { min-height: 400px; }
+
+.cf-tab-content {
+  animation: cf-fade-in .2s ease;
+}
+
+@keyframes cf-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+// â”€â”€â”€ Section Title â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cf-text);
+  margin: 1.5rem 0 1rem;
+}
+
+// â”€â”€â”€ Metric Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  @include bp(xl) { grid-template-columns: repeat(3, 1fr); }
+  @include bp(lg) { grid-template-columns: repeat(3, 1fr); }
+  @include bp(md) { grid-template-columns: repeat(2, 1fr); }
+  @include bp(xs) { grid-template-columns: 1fr; }
+}
+
+.cf-metric-card {
+  @include card;
+  @include card-hover;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: default;
+  min-height: 100px;
+
+  @include bp(xl) {
+    padding: 0.6rem;
+    gap: 0.6rem;
+  }
+  @include bp(lg) {
+    padding: 0.6rem;
+    gap: 0.5rem;
+  }
+
+   @include bp(md) {
+      padding: 0.5rem;
+      gap: 0.4rem;
+    }
+
+  &__icon {
+    font-size: 1.6rem;
+    line-height: 1;
+    flex-shrink: 0;
+    padding: 0.5rem;
+    border-radius: $radius;
+    background: rgba(0,0,0,.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+
+    @include bp(xl) {
+      font-size: 1.4rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: 0.5rem;
+    }
+    @include bp(lg) {
+      font-size: 1.13rem;
+      width: 2.25rem;
+      height: 2.25rem;
+      padding: 0.4rem;
+    }
+  }
+
+  &__body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  &__value {
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--cf-text);
+    word-break: break-word;
+
+
+    @include bp(xl) {
+      font-size: 1.25rem;
+    }
+    @include bp(lg) {
+      font-size: 1.2rem;
+    }
+  }
+
+  &__label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--cf-muted);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+
+
+    @include bp(xl) {
+      font-size: 0.75rem;
+    }
+    @include bp(lg) {
+      font-size: 0.57rem;
+    }
+  }
+
+  &__sub {
+    font-size: 0.7rem;
+    color: var(--cf-muted);
+    line-height: 1.3;
+
+
+    @include bp(xl) {
+      font-size: 0.75rem;
+    }
+    @include bp(lg) {
+      font-size: 0.6rem;
+    }
+  }
+
+  @each $name, $colors in $tones {
+    $bg-color:    nth($colors, 1);
+    $val-color:   nth($colors, 2);
+
+    &--#{$name} {
+      background: $bg-color;
+      border-color: rgba($val-color, .2);
+      .cf-metric-card__value { color: $val-color; }
+    }
+  }
+}
+
+
+.cf-category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  @include bp(xl) { grid-template-columns: repeat(2, 1fr); }
+  @include bp(lg) { grid-template-columns: repeat(3, 1fr); }
+  @include bp(md) { grid-template-columns: 1fr; }
+  @include bp(xs) { grid-template-columns: 1fr; }
+}
+
+.cf-category-card {
+  @include card;
+  @include card-hover;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+
+  &__icon {
+    font-size: 1.5rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: $radius;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__body { flex: 1; min-width: 0; }
+
+  &__name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--cf-text);
+    margin-bottom: 0.25rem;
+  }
+
+  &__stats {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.72rem;
+    color: var(--cf-muted);
+    margin-bottom: 0.35rem;
+  }
+
+  &__util {
+    font-size: 0.7rem;
+    color: var(--cf-muted);
+    margin-top: 0.2rem;
+  }
+}
+
+// â”€â”€â”€ Quick Actions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.cf-quick-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+// â”€â”€â”€ Event List â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.cf-event-item {
+  @include card;
+  @include flex-between;
+  padding: 0.85rem 1rem;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  border-left: 4px solid var(--cf-line);
+
+  &--academic { border-left-color: $indigo; }
+  &--event    { border-left-color: $amber;  }
+  &--sports   { border-left-color: $green;  }
+
+  &__date {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--cf-muted);
+    white-space: nowrap;
+    min-width: 6rem;
+  }
+
+  &__body { flex: 1; min-width: 0; }
+
+  &__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--cf-text);
+  }
+
+  &__time {
+    font-size: 0.75rem;
+    color: var(--cf-muted);
+    margin-top: 0.1rem;
+  }
+}
+
+// â”€â”€â”€ Facility Grid & Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-facility-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  // @include bp(xl) { grid-template-columns: repeat(2, 1fr); }
+  @include bp(lg) { grid-template-columns: repeat(2, 1fr); }
+  @include bp(md) { grid-template-columns: repeat(2, 1fr); }
+  @include bp(sm) { grid-template-columns: 1fr; }
+}
+
+.cf-facility-card {
+  @include card;
+  @include card-hover;
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+
+  &__header {
+    @include flex-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--cf-text);
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.78rem;
+    color: var(--cf-muted);
+  }
+
+  &__chips {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    padding-top: 0.25rem;
+    border-top: 1px solid var(--cf-line);
+    margin-top: auto;
+  }
+}
+
+// â”€â”€â”€ Sports Grid & Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-sports-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+
+
+  @include bp(lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include bp(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include bp(xs) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cf-sports-card {
+  @include card;
+  @include card-hover;
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  text-align: center;
+
+  &__icon {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  &__name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--cf-text);
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.75rem;
+    color: var(--cf-muted);
+    text-align: left;
+  }
+
+  &__status {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+// â”€â”€â”€ Dining Grid & Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-dining-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  @include bp(lg) { grid-template-columns: repeat(2, 1fr); }
+  @include bp(sm) { grid-template-columns: 1fr; }
+}
+
+.cf-dining-card {
+  @include card;
+  @include card-hover;
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  &__header {
+    @include flex-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--cf-text);
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.78rem;
+    color: var(--cf-muted);
+  }
+
+  &__hygiene { display: flex; }
+
+  &__occ {
+    font-size: 0.75rem;
+    color: var(--cf-muted);
+    margin-top: -0.25rem;
+  }
+
+  &__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  &__menu-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--cf-muted);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+
+  &__menu-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+}
+
+// â”€â”€â”€ Transport Grid & Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-transport-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  @include bp(lg) { grid-template-columns: repeat(2, 1fr); }
+  @include bp(sm) { grid-template-columns: 1fr; }
+}
+
+.cf-transport-card {
+  @include card;
+  @include card-hover;
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  &__header {
+    @include flex-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__route {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--cf-text);
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.78rem;
+    color: var(--cf-muted);
+  }
+
+  &__occ {
+    font-size: 0.75rem;
+    color: var(--cf-muted);
+    margin-top: -0.25rem;
+  }
+
+  &__stops { display: flex; flex-direction: column; gap: 0.35rem; }
+
+  &__stops-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--cf-muted);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+
+  &__stop-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+}
+
+// â”€â”€â”€ Recreational Grid & Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-rec-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  @include bp(lg) { grid-template-columns: repeat(2, 1fr); }
+  @include bp(md) { grid-template-columns: repeat(2, 1fr); }
+  @include bp(xs) { grid-template-columns: 1fr; }
+}
+
+.cf-rec-card {
+  @include card;
+  @include card-hover;
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  &__icon {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  &__body { display: flex; flex-direction: column; gap: 0.4rem; flex: 1; }
+
+  &__name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--cf-text);
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+    font-size: 0.75rem;
+    color: var(--cf-muted);
+  }
+
+  &__occ {
+    font-size: 0.72rem;
+    color: var(--cf-muted);
+    margin-top: -0.2rem;
+  }
+}
+
+// â”€â”€â”€ Health Alert â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-health-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: #fef2f2;
+  border: 1px solid rgba($danger, .25);
+  border-radius: $radius-lg;
+  font-size: 0.85rem;
+  color: #991b1b;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+// â”€â”€â”€ IT Uptime â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-it-uptime {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--cf-muted);
+    flex-shrink: 0;
+    min-width: 3.5rem;
+  }
+}
+
+// â”€â”€â”€ Progress Bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &__track {
+    flex: 1;
+    height: 6px;
+    background: $line;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  &__fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width .4s ease;
+  }
+
+  &__label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--cf-muted);
+    min-width: 2.4rem;
+    text-align: right;
+  }
+}
+
+// â”€â”€â”€ Status & Severity Badges â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  &--active,
+  &--operational,
+  &--available,
+  &--open,
+  &--online    { background: #f0fdf4; color: #15803d; }
+
+  &--occupied,
+  &--booked    { background: #eff6ff; color: #1d4ed8; }
+
+  &--maintenance,
+  &--scheduled,
+  &--on-maintenance { background: #fffbeb; color: #b45309; }
+
+  &--in-progress { background: #eff6ff; color: #1d4ed8; }
+
+  &--pending   { background: #fef9c3; color: #854d0e; }
+  &--approved  { background: #f0fdf4; color: #15803d; }
+  &--rejected  { background: #fef2f2; color: #b91c1c; }
+  &--cancelled { background: #f1f5f9; color: var(--cf-muted);   }
+  &--completed { background: #f0fdf4; color: #15803d; }
+
+  &--urgent    { background: #fef2f2; color: #b91c1c; }
+  &--resolved  { background: #f0fdf4; color: #15803d; }
+  &--offline   { background: #fef2f2; color: #b91c1c; }
+  &--busy      { background: #fff7ed; color: #c2410c; }
+
+  &--academic  { background: #eef2ff; color: #4f46e5; }
+  &--event     { background: #fffbeb; color: #b45309; }
+  &--sports    { background: #f0fdf4; color: #15803d; }
+}
+
+.cf-severity {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  white-space: nowrap;
+
+  &--low    { background: #f0fdf4; color: #15803d; }
+  &--medium { background: #fffbeb; color: #b45309; }
+  &--high   { background: #fff7ed; color: #c2410c; }
+  &--urgent { background: #fef2f2; color: #b91c1c; }
+}
+
+// â”€â”€â”€ Inline Chips â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  &--green  { background: #f0fdf4; color: #15803d; }
+  &--red    { background: #fef2f2; color: #b91c1c; }
+  &--amber  { background: #fffbeb; color: #b45309; }
+  &--muted  { background: #f1f5f9; color: var(--cf-muted);   }
+  &--blue   { background: #eff6ff; color: #1d4ed8; }
+}
+
+// â”€â”€â”€ Status Filter Chips â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-status-chips {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.cf-chip-btn {
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid var(--cf-line);
+  background: var(--cf-surface);
+  color: var(--cf-muted);
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+  @include focus-ring;
+
+  &:hover { background: var(--cf-input); color: var(--cf-text); }
+
+  &--active {
+    background: $gold;
+    border-color: $gold;
+    color: $white;
+    font-weight: 700;
+  }
+}
+
+// â”€â”€â”€ Buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: $radius;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, box-shadow .15s, transform .1s;
+  white-space: nowrap;
+  @include focus-ring;
+
+  &:active { transform: scale(0.98); }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &--primary {
+    background: linear-gradient(135deg, $gold 0%, darken($gold, 12%) 100%);
+    color: $white;
+    border-color: $gold;
+    &:hover { box-shadow: 0 4px 12px rgba($gold, .4); }
+  }
+
+  &--ghost {
+    background: var(--cf-surface);
+    color: var(--cf-text);
+    border-color: var(--cf-line);
+    &:hover { background: var(--cf-hover-bg); border-color: var(--cf-hover-border); }
+  }
+
+  &--outline {
+    background: transparent;
+    color: $gold;
+    border-color: $gold;
+    &:hover { background: rgba($gold, .06); }
+  }
+
+  &--danger {
+    background: $danger;
+    color: $white;
+    border-color: $danger;
+    &:hover { background: #a91c1c; }
+  }
+
+  &--success {
+    background: $success;
+    color: $white;
+    border-color: $success;
+    &:hover { background: darken($success, 8%); }
+  }
+
+  &--sm  { padding: 0.42rem 0.85rem; font-size: 0.8rem; }
+  &--xs  { padding: 0.28rem 0.65rem; font-size: 0.72rem; }
+}
+
+// â”€â”€â”€ Filters Bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-filters-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+
+  &__right {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-left: auto;
+  }
+
+  @include bp(sm) { &__right { margin-left: 0; } }
+}
+
+.cf-search {
+  flex: 1;
+  min-width: 10rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--cf-line);
+  border-radius: $radius;
+  font-size: 0.875rem;
+  background: var(--cf-surface);
+  color: var(--cf-text);
+  transition: border-color .15s, box-shadow .15s;
+
+  &::placeholder { color: var(--cf-muted); }
+  &:focus { outline: none; border-color: $gold; box-shadow: 0 0 0 3px rgba($gold, .15); }
+}
+
+.cf-select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--cf-line);
+  border-radius: $radius;
+  font-size: 0.875rem;
+  background: var(--cf-surface);
+  color: var(--cf-text);
+  cursor: pointer;
+  @include focus-ring;
+}
+
+// â”€â”€â”€ Table â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-table-wrap {
+  overflow-x: auto;
+  border-radius: $radius-lg;
+  border: 1px solid var(--cf-line);
+  background: var(--cf-surface);
+  margin-bottom: 1.25rem;
+}
+
+.cf-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+
+  th, td {
+    padding: 0.7rem 1rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  thead {
+    background: #f8fafc;
+    th {
+      font-size: 0.73rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--cf-muted);
+      border-bottom: 1px solid var(--cf-line);
+    }
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--cf-line);
+    transition: background .15s;
+    &:hover { background: var(--cf-hover-bg); color: var(--cf-text); }
+    &:last-child { border-bottom: none; }
+  }
+
+  &__id {
+    font-family: monospace;
+    font-weight: 700;
+    color: $indigo;
+    font-size: 0.8rem;
+  }
+
+  &__timing,
+  &__purpose {
+    max-width: 14rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.35rem;
+  }
+}
+
+// â”€â”€â”€ Empty State â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-empty-state {
+  grid-column: 1 / -1;
+  padding: 3rem;
+  text-align: center;
+  color: var(--cf-muted);
+  font-size: 0.9rem;
+  background: var(--cf-surface);
+}
+
+// â”€â”€â”€ Approve Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-approve-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  &__info {
+    @include card;
+    padding: 0.85rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  &__row {
+    @include flex-between;
+    font-size: 0.82rem;
+    gap: 1rem;
+
+    span   { color: var(--cf-muted); }
+    strong { color: var(--cf-text); font-weight: 600; text-align: right; }
+  }
+}
+
+// â”€â”€â”€ Form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+
+    &--2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+
+      @include bp(xs) { grid-template-columns: 1fr; }
+    }
+
+    &--3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+
+      @include bp(sm) { grid-template-columns: 1fr 1fr; }
+      @include bp(xs) { grid-template-columns: 1fr; }
+    }
+  }
+
+  &__label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--cf-text);
+  }
+
+  &__input,
+  &__select,
+  &__textarea {
+    width: 100%;
+    padding: 0.55rem 0.85rem;
+    border: 1px solid var(--cf-line);
+    border-radius: $radius;
+    font-size: 0.875rem;
+    color: var(--cf-text);
+    background: var(--cf-surface);
+    box-sizing: border-box;
+    transition: border-color .15s, box-shadow .15s;
+    font-family: inherit;
+
+    &::placeholder { color: var(--cf-muted); }
+    &:focus { outline: none; border-color: $gold; box-shadow: 0 0 0 3px rgba($gold, .15); }
+  }
+
+  &__select { cursor: pointer; }
+  &__textarea { resize: vertical; min-height: 80px; }
+
+  &__time-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    input { flex: 1; }
+  }
+
+  &__time-sep {
+    font-size: 0.8rem;
+    color: var(--cf-muted);
+    flex-shrink: 0;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--cf-line);
+    margin-top: 0.25rem;
+    flex-wrap: wrap;
+  }
+}
+
+// â”€â”€â”€ Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  padding: 1.5rem;
+  animation: cf-fade-in .2s ease;
+  backdrop-filter: blur(2px);
+
+  @include bp(sm) { padding: .75rem; align-items: flex-end; }
+}
+
+.cf-modal {
+  background: var(--cf-surface);
+  border-radius: $radius;
+  box-shadow: $shadow-lg;
+  width: 100%;
+  max-width: 520px;
+  max-height: 92vh;
+  overflow-y: auto;
+  animation: cf-slide-up .22s ease;
+  display: flex;
+  flex-direction: column;
+
+  &--wide { max-width: 680px; }
+
+  @include bp(sm) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    max-height: 94vh;
+  }
+
+  &__header {
+    @include flex-between;
+    padding: 1.125rem 1.375rem;
+    border-bottom: 1px solid var(--cf-line);
+    position: sticky;
+    top: 0;
+    background: var(--cf-surface);
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, $gold, $ink);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    color: var(--cf-muted);
+    cursor: pointer;
+    padding: 0.2rem;
+    line-height: 1;
+    border-radius: $radius-sm;
+    transition: color .15s;
+    @include focus-ring;
+    &:hover { color: var(--cf-text); }
+  }
+
+  &__body { padding: 1.4rem; }
+
+  @include bp(xs) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    border-radius: $radius-xl $radius-xl 0 0;
+    max-height: 85vh;
+    animation: cf-slide-up-mobile .2s ease;
+  }
+}
+
+@keyframes cf-slide-up {
+  from { opacity: 0; transform: translateY(16px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);   }
+}
+
+@keyframes cf-slide-up-mobile {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0);    }
+}
+
+// â”€â”€â”€ Analytics â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.cf-analytics {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cf-analytics-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+
+  @include bp(lg) { grid-template-columns: repeat(2, 1fr); }
+  @include bp(xs) { grid-template-columns: 1fr; }
+}
+
+.cf-analytics-stat {
+  @include card;
+  @include card-hover;
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+
+  &__icon  { font-size: 1.5rem; line-height: 1; }
+  &__value { font-size: 1.5rem; font-weight: 700; }
+  &__label { font-size: 0.75rem; color: var(--cf-muted); font-weight: 500; }
+
+  @each $name, $colors in $tones {
+    $bg-color:  nth($colors, 1);
+    $val-color: nth($colors, 2);
+
+    &--#{$name} {
+      background: $bg-color;
+      border-color: rgba($val-color, .2);
+      .cf-analytics-stat__value { color: $val-color; }
+    }
+  }
+}
+
+.cf-analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+  @include bp(md) { grid-template-columns: 1fr; }
+}
+
+.cf-chart-card {
+  @include card;
+  padding: 1.25rem;
+
+  &--wide { grid-column: 1 / -1; }
+
+  &__title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--cf-text);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--cf-line);
+  }
+}
+
+// Horizontal bar chart
+.cf-hbar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  &__label {
+    font-size: 0.75rem;
+    color: var(--cf-muted);
+    min-width: 7rem;
+    flex-shrink: 0;
+
+    @include bp(xs) { min-width: 5rem; font-size: 0.68rem; }
+  }
+
+  &__track {
+    flex: 1;
+    height: 8px;
+    background: $line;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  &__fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width .5s ease;
+
+    &--teal { background: $teal; }
+    &--gold { background: $gold; }
+    &--blue { background: $blue; }
+  }
+
+  &__val {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--cf-text);
+    min-width: 2.5rem;
+    text-align: right;
+  }
+}
+
+// Vertical bar chart
+.cf-vbar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  height: 10rem;
+  padding-bottom: 1.75rem;
+  position: relative;
+
+  &--wide { gap: 0.75rem; }
+
+  &__col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.25rem;
+    height: 100%;
+    position: relative;
+  }
+
+  &__val {
+    font-size: 0.65rem;
+    color: var(--cf-muted);
+    font-weight: 600;
+    position: absolute;
+    top: 0;
+  }
+
+  &__bar {
+    width: 100%;
+    min-height: 4px;
+    border-radius: $radius-sm $radius-sm 0 0;
+    transition: height .5s ease;
+
+    &--blue   { background: $blue; }
+    &--amber  { background: $amber; }
+    &--indigo { background: $indigo; }
+    &--teal   { background: $teal; }
+  }
+
+  &__label {
+    font-size: 0.65rem;
+    color: var(--cf-muted);
+    text-align: center;
+    position: absolute;
+    bottom: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 5rem;
+  }
+}
+
+// â”€â”€â”€ Responsive Overrides â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+
+@include bp(xl) {
+  .cf-metrics-grid  { grid-template-columns: repeat(4, 1fr); }
+  .cf-category-grid { grid-template-columns: repeat(2, 1fr); }
+  .cf-facility-grid { grid-template-columns: repeat(3, 1fr); }
+  .cf-sports-grid   { grid-template-columns: repeat(3, 1fr); }
+  .cf-dining-grid   { grid-template-columns: repeat(3, 1fr); }
+  .cf-analytics-stats { grid-template-columns: repeat(4, 1fr); }
+}
+@include bp(lg) {
+  .cf-metrics-grid  { grid-template-columns: repeat(3, 1fr); }
+  .cf-category-grid { grid-template-columns: repeat(1, 1fr); }
+  .cf-facility-grid { grid-template-columns: repeat(2, 1fr); }
+  .cf-sports-grid   { grid-template-columns: repeat(2, 1fr); }
+  .cf-dining-grid   { grid-template-columns: repeat(2, 1fr); }
+  .cf-analytics-stats { grid-template-columns: repeat(3, 1fr); }
+}
+
+
+@include bp(md) {
+  .cf-metrics-grid   { grid-template-columns: repeat(2, 1fr); }
+  .cf-category-grid  { grid-template-columns: 1fr; }
+  .cf-facility-grid  { grid-template-columns: 1fr; }
+  .cf-sports-grid    { grid-template-columns: repeat(2, 1fr); }
+  .cf-dining-grid    { grid-template-columns: 1fr; }
+  .cf-transport-grid { grid-template-columns: 1fr; }
+  .cf-rec-grid       { grid-template-columns: repeat(2, 1fr); }
+  .cf-analytics-stats { grid-template-columns: repeat(2, 1fr); }
+  .cf-analytics-grid  { grid-template-columns: 1fr; }
+}
+
+@include bp(sm) {
+  .cf-metrics-grid  { grid-template-columns: 1fr; }
+  .cf-category-grid { grid-template-columns: 1fr; }
+  .cf-sports-grid   { grid-template-columns: 1fr; }
+  .cf-rec-grid      { grid-template-columns: 1fr; }
+  .cf-filters-bar { flex-direction: column; align-items: stretch; }
+  .cf-search       { min-width: 0; }
+  .cf-quick-actions { flex-direction: column; }
+  .cf-quick-btn    { width: 100%; justify-content: center; }
+  .cf-facility-card__actions { flex-wrap: wrap; }
+  .cf-vbar-chart { height: 8rem; }
+}
+
+@include bp(xs) {
+  .cf-analytics-stats { grid-template-columns: 1fr; }
+  .cf-sports-card { text-align: left; }
+  .cf-sports-card__status { justify-content: flex-start; }
+}
+
+
+
+// ── Dark-mode: neutralise tone-card pastel backgrounds ──────────────────────
+@media (prefers-color-scheme: dark) {
+  @each $name, $colors in $tones {
+    $val-color: nth($colors, 2);
+    .cf-metric-card--#{$name} {
+      background: var(--cf-surface);
+      border-color: rgba($val-color, .15);
+      border-left: 3px solid $val-color;
+    }
+  }
+}

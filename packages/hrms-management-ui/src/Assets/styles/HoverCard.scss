@@ -1,0 +1,13 @@
+// HoverCard.scss
+
+.hover-card-content {
+    background: var(--color-popover, #fff);
+    color: var(--color-popover-foreground, #111827);
+    border-radius: 0.375rem;
+    border: 1px solid var(--color-border, #e5e7eb);
+    width: 16rem;
+    padding: 1rem;
+    box-shadow: 0 10px 32px 0 rgba(0, 0, 0, 0.12);
+    z-index: 50;
+    outline: none;
+}

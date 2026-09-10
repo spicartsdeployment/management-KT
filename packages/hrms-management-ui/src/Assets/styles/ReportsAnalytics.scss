@@ -1,0 +1,1196 @@
+﻿// ─── Reports & Analytics — SCSS (prefix: ra-*) ───────────────────────────────
+
+// ── Variables ─────────────────────────────────────────────────────────────────
+$ra-gold: #c9a962;
+$ra-gold-dk: #a8894a;
+$ra-gold-lt: #d4b06a;
+$ra-white: #ffffff;
+$ra-bg: #f5f6fa;
+$ra-surface: #ffffff;
+$ra-line: #e8ecf0;
+$ra-text: #1a1d23;
+$ra-muted: #6b7280;
+$ra-label: #374151;
+$ra-input-bg: #f9fafb;
+$ra-success: #16a34a;
+$ra-warning: #d97706;
+$ra-danger: #dc2626;
+$ra-info: #2563eb;
+$ra-purple: #7c3aed;
+$ra-teal: #0891b2;
+$ra-shadow-sm: 0 1px 3px rgba(0, 0, 0, .06), 0 1px 2px rgba(0, 0, 0, .04);
+$ra-shadow-md: 0 4px 12px rgba(0, 0, 0, .08), 0 2px 4px rgba(0, 0, 0, .05);
+$ra-shadow-lg: 0 12px 32px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .07);
+$ra-radius: 0.625rem;
+$ra-radius-sm: 0.375rem;
+$ra-radius-lg: 0.875rem;
+
+// ── Dark-mode tokens ──────────────────────────────────────────────────────────
+:root {
+  --ra-bg: #{$ra-bg};
+  --ra-surface: #{$ra-surface};
+  --ra-line: #{$ra-line};
+  --ra-text: #{$ra-text};
+  --ra-muted: #{$ra-muted};
+  --ra-input: #{$ra-input-bg};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ra-bg: #0f1117;
+    --ra-surface: #1a1d23;
+    --ra-line: #2a2d35;
+    --ra-text: #f0f2f5;
+    --ra-muted: #9ca3af;
+    --ra-input: #1f2229;
+  }
+}
+
+[data-theme="dark"] {
+  --ra-bg: #0f1117;
+  --ra-surface: #1a1d23;
+  --ra-line: #2a2d35;
+  --ra-text: #f0f2f5;
+  --ra-muted: #9ca3af;
+  --ra-input: #1f2229;
+}
+
+// ── Breakpoints ───────────────────────────────────────────────────────────────
+@mixin ra-bp($s) {
+  @if $s ==xxs {
+    @media (max-width: 320px) {
+      @content;
+    }
+  }
+
+  @if $s ==xs {
+    @media (max-width: 375px) {
+      @content;
+    }
+  }
+
+  @if $s ==sm {
+    @media (max-width: 480px) {
+      @content;
+    }
+  }
+
+  @if $s ==md {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+
+  @if $s ==lg {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  }
+
+  @if $s ==xl {
+    @media (min-width: 1440px) {
+      @content;
+    }
+  }
+}
+
+// ── Root ──────────────────────────────────────────────────────────────────────
+.ra-root {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.75rem;
+  background: var(--ra-bg);
+  min-height: 100vh;
+  color: var(--ra-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  @include ra-bp(sm) {
+    padding: 1rem;
+    gap: 1.25rem;
+  }
+
+  @include ra-bp(xxs) {
+    padding: .75rem;
+    gap: 1rem;
+  }
+}
+
+// ── Header ────────────────────────────────────────────────────────────────────
+.ra-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+  }
+
+  &__actions {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  @include ra-bp(md) {
+    flex-direction: column;
+  }
+}
+
+.ra-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: .375rem;
+  font-size: .75rem;
+  color: var(--ra-muted);
+
+  &__sep {
+    opacity: .4;
+  }
+
+  &__active {
+    color: var(--ra-text);
+    font-weight: 500;
+  }
+}
+
+.ra-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  background: linear-gradient(135deg, $ra-gold 0%, $ra-gold-dk 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+
+  @include ra-bp(sm) {
+    font-size: 1.375rem;
+  }
+}
+
+.ra-subtitle {
+  font-size: .875rem;
+  color: var(--ra-muted);
+  margin: 0;
+
+  @include ra-bp(sm) {
+    font-size: .8rem;
+  }
+}
+
+// ── Buttons ───────────────────────────────────────────────────────────────────
+.ra-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .375rem;
+  padding: .5rem 1rem;
+  border-radius: $ra-radius-sm;
+  font-size: .8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all .15s;
+  white-space: nowrap;
+
+  &--primary {
+    background: $ra-gold;
+    color: #fff;
+    border-color: $ra-gold;
+
+    &:hover {
+      background: $ra-gold-dk;
+      border-color: $ra-gold-dk;
+    }
+  }
+
+  &--ghost {
+    background: var(--ra-surface);
+    color: var(--ra-text);
+    border-color: var(--ra-line);
+
+    &:hover {
+      border-color: $ra-gold;
+      color: $ra-gold;
+    }
+  }
+}
+
+// ── Toolbar ───────────────────────────────────────────────────────────────────
+.ra-toolbar {
+  display: flex;
+  align-items: stretch;
+  gap: .5rem;
+  flex-wrap: wrap;
+  background: var(--ra-surface);
+  border: 1px solid var(--ra-line);
+  border-radius: $ra-radius;
+  padding: .625rem .75rem;
+  box-shadow: $ra-shadow-sm;
+
+  @include ra-bp(md) {
+    gap: .375rem;
+    padding: .5rem;
+  }
+
+  &__search-wrap {
+    display: flex;
+    align-items: center;
+    gap: .375rem;
+    flex: 1;
+    min-width: 12rem;
+    background: var(--ra-input);
+    border: 1px solid var(--ra-line);
+    border-radius: $ra-radius-sm;
+    padding: 0 .625rem;
+
+    @include ra-bp(sm) {
+      min-width: 100%;
+    }
+  }
+
+  &__search-icon {
+    font-size: .875rem;
+    opacity: .5;
+    flex-shrink: 0;
+  }
+
+  &__search {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: .8125rem;
+    color: var(--ra-text);
+    padding: .4rem 0;
+
+    &::placeholder {
+      color: var(--ra-muted);
+    }
+  }
+
+  &__sel,
+  &__date {
+    background: var(--ra-input);
+    border: 1px solid var(--ra-line);
+    border-radius: $ra-radius-sm;
+    padding: .4rem .625rem;
+    font-size: .8rem;
+    color: var(--ra-text);
+    cursor: pointer;
+    outline: none;
+    transition: border-color .15s;
+
+    &:focus {
+      border-color: $ra-gold;
+    }
+
+    @include ra-bp(sm) {
+      flex: 1;
+      min-width: calc(50% - .25rem);
+    }
+  }
+
+  &__clear {
+    background: rgba($ra-danger, .08);
+    border: 1px solid rgba($ra-danger, .2);
+    color: $ra-danger;
+    border-radius: $ra-radius-sm;
+    padding: .4rem .75rem;
+    font-size: .8rem;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all .15s;
+
+    &:hover {
+      background: rgba($ra-danger, .15);
+    }
+  }
+}
+
+// ── Tabs ──────────────────────────────────────────────────────────────────────
+.ra-tabs {
+  display: flex;
+  gap: 0;
+  background: var(--ra-surface);
+  border: 1px solid var(--ra-line);
+  border-radius: $ra-radius;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: .25rem;
+  box-shadow: $ra-shadow-sm;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.ra-tab {
+  display: flex;
+  align-items: center;
+  gap: .375rem;
+  padding: .5rem .875rem;
+  font-size: .8rem;
+  font-weight: 500;
+  color: var(--ra-muted);
+  border: none;
+  border-radius: $ra-radius-sm;
+  background: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .15s, background .15s;
+
+  &__icon {
+    font-size: .875rem;
+  }
+
+  &__label {
+    @include ra-bp(xs) {
+      display: none;
+    }
+  }
+
+  &:hover {
+    color: var(--ra-text);
+    background: var(--ra-bg);
+  }
+
+  &--active {
+    color: $ra-gold;
+    background: rgba($ra-gold, .1);
+    font-weight: 600;
+    box-shadow: inset 0 0 0 1px rgba($ra-gold, .25);
+  }
+
+  @include ra-bp(sm) {
+    padding: .5rem .625rem;
+  }
+}
+
+// ── Tab body ──────────────────────────────────────────────────────────────────
+.ra-tab-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+// ── Section ───────────────────────────────────────────────────────────────────
+.ra-section {
+  background: var(--ra-surface);
+  border: 1px solid var(--ra-line);
+  border-radius: $ra-radius-lg;
+  padding: 1.25rem 1.5rem;
+  box-shadow: $ra-shadow-sm;
+
+  @include ra-bp(sm) {
+    padding: .875rem 1rem;
+  }
+
+  @include ra-bp(xs) {
+    min-width: 5rem;
+  }
+
+  @include ra-bp(xxs) {
+    min-width: 4rem;
+  }
+
+  &__hd {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: .9375rem;
+    font-weight: 600;
+    color: var(--ra-text);
+    margin: 0;
+  }
+
+  &__action {
+    display: flex;
+    gap: .5rem;
+  }
+}
+
+// ── Metrics grid ──────────────────────────────────────────────────────────────
+.ra-metrics-grid {
+  display: grid;
+  gap: .75rem;
+
+  &--9 {
+    grid-template-columns: repeat(5, 1fr);
+
+    @media(min-width: 1025px) and (max-width: 1440px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include ra-bp(lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include ra-bp(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include ra-bp(sm) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  &--7 {
+    grid-template-columns: repeat(7, 1fr);
+
+    @media(min-width: 1025px) and (max-width: 1440px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @include ra-bp(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include ra-bp(md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include ra-bp(sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &--6 {
+    grid-template-columns: repeat(6, 1fr);
+
+    @media(min-width: 1025px) and (max-width: 1440px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @include ra-bp(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include ra-bp(md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include ra-bp(sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &--5 {
+    grid-template-columns: repeat(5, 1fr);
+
+    @include ra-bp(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include ra-bp(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include ra-bp(sm) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+// ── Metric card ───────────────────────────────────────────────────────────────
+.ra-metric {
+  background: var(--ra-surface);
+  border: 1px solid var(--ra-line);
+  border-radius: $ra-radius;
+  padding: .875rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  box-shadow: $ra-shadow-sm;
+  transition: box-shadow .2s, transform .15s;
+
+  &:hover {
+    box-shadow: $ra-shadow-md;
+    transform: translateY(-1px);
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: .25rem;
+  }
+
+  &__icon {
+    font-size: 1.125rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: $ra-radius-sm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__val {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  &__lbl {
+    font-size: .6875rem;
+    color: var(--ra-muted);
+  }
+
+  &__sub {
+    font-size: .65rem;
+    color: var(--ra-muted);
+    margin-top: .125rem;
+  }
+
+  $colors: (
+    "primary": $ra-gold,
+    "success": $ra-success,
+    "warning": $ra-warning,
+    "danger": $ra-danger,
+    "info": $ra-info,
+    "purple": $ra-purple
+  );
+
+@each $n, $c in $colors {
+  &--#{$n} {
+    border-left: 3px solid $c;
+
+    .ra-metric__icon {
+      background: rgba($c, .1);
+      color: $c;
+    }
+  }
+}
+}
+
+// ── Charts ────────────────────────────────────────────────────────────────────
+.ra-charts-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+
+   @media(min-width: 1025px) and (max-width: 1440px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include ra-bp(lg) {
+    grid-template-columns: 1fr;
+  }
+
+  @include ra-bp(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ra-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  @include ra-bp(lg) {
+    grid-template-columns: 1fr;
+  }
+  @include ra-bp(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ra-chart-box {
+  width: 100%;
+  overflow-x: auto;
+  padding: .25rem 0;
+}
+
+.ra-chart-xlbls {
+  display: flex;
+  justify-content: space-between;
+  padding: .25rem .5rem 0;
+
+  span {
+    font-size: .625rem;
+    color: var(--ra-muted);
+  }
+}
+
+.ra-chart-legend {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin-top: .75rem;
+}
+
+.ra-sparkline {
+  display: block;
+}
+
+.ra-donut {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &__center {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .0625rem;
+  }
+
+  &__pct {
+    font-size: .8rem;
+    font-weight: 700;
+  }
+
+  &__lbl {
+    font-size: .55rem;
+    color: var(--ra-muted);
+    text-align: center;
+  }
+}
+
+.ra-area {
+  display: block;
+  overflow: visible;
+}
+
+.ra-barchart {
+  display: flex;
+  align-items: flex-end;
+  gap: .25rem;
+  padding: .5rem 0 1.25rem;
+  width: 100%;
+
+  &__col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: .25rem;
+    height: 100%;
+  }
+
+  &__bar {
+    width: 100%;
+    border-radius: $ra-radius-sm $ra-radius-sm 0 0;
+    min-height: 2px;
+    transition: height .3s ease;
+  }
+
+  &__lbl {
+    font-size: .6rem;
+    color: var(--ra-muted);
+    text-align: center;
+  }
+}
+
+.ra-minibar {
+  flex: 1;
+  height: .375rem;
+  background: var(--ra-line);
+  border-radius: 9px;
+  overflow: hidden;
+  min-width: 4rem;
+
+  &__fill {
+    height: 100%;
+    border-radius: 9px;
+    transition: width .4s ease;
+  }
+
+  @include ra-bp(xxs) {
+    min-width: 3rem;
+  }
+}
+
+// ── Progress rows ─────────────────────────────────────────────────────────────
+.ra-prog-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .375rem 0;
+  border-bottom: 1px solid var(--ra-line);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &__lbl {
+    font-size: .8rem;
+    color: var(--ra-text);
+    flex-shrink: 0;
+  }
+
+  &__track {
+    flex: 1;
+    height: .375rem;
+    background: var(--ra-line);
+    border-radius: 9px;
+    overflow: hidden;
+  }
+
+  &__fill {
+    height: 100%;
+    border-radius: 9px;
+    transition: width .4s ease;
+  }
+
+  &__val {
+    font-size: .8rem;
+    font-weight: 600;
+    min-width: 3rem;
+    text-align: right;
+  }
+
+  //  @include ra-bp(xxs) { &__lbl { min-width: 3rem; } };
+}
+
+// ── Subject row ───────────────────────────────────────────────────────────────
+.ra-subj-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .375rem 0;
+  border-bottom: 1px solid var(--ra-line);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &__name {
+    font-size: .8rem;
+    min-width: 6rem;
+    flex-shrink: 0;
+
+    @include ra-bp(xs) {
+      min-width: 4rem;
+    }
+
+    @include ra-bp(xxs) {
+      min-width: 4rem;
+    }
+  }
+
+}
+
+// ── Stat chip ─────────────────────────────────────────────────────────────────
+.ra-stat-chip {
+  display: flex;
+  flex-direction: column;
+  gap: .125rem;
+
+  &__lbl {
+    font-size: .65rem;
+    color: var(--ra-muted);
+  }
+
+  &__val {
+    font-size: .9rem;
+    font-weight: 700;
+  }
+
+  &__delta {
+    font-size: .65rem;
+
+    &--up {
+      color: $ra-success;
+    }
+
+    &--dn {
+      color: $ra-danger;
+    }
+  }
+}
+
+// ── Alert card ────────────────────────────────────────────────────────────────
+.ra-alert-card {
+  display: flex;
+  align-items: flex-start;
+  gap: .625rem;
+  padding: .625rem .875rem;
+  border-radius: $ra-radius-sm;
+  margin-bottom: .5rem;
+  border-left: 3px solid;
+
+  &__dot {
+    width: .5rem;
+    height: .5rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: .3rem;
+  }
+
+  &__title {
+    font-size: .8125rem;
+    font-weight: 600;
+    margin: 0 0 .125rem;
+  }
+
+  &__detail {
+    font-size: .75rem;
+    color: var(--ra-muted);
+    margin: 0;
+  }
+
+  &--danger {
+    background: rgba($ra-danger, .06);
+    border-color: $ra-danger;
+
+    .ra-alert-card__dot {
+      background: $ra-danger;
+    }
+  }
+
+  &--warn {
+    background: rgba($ra-warning, .06);
+    border-color: $ra-warning;
+
+    .ra-alert-card__dot {
+      background: $ra-warning;
+    }
+  }
+
+  &--info {
+    background: rgba($ra-info, .06);
+    border-color: $ra-info;
+
+    .ra-alert-card__dot {
+      background: $ra-info;
+    }
+  }
+}
+
+// ── Insight cards ─────────────────────────────────────────────────────────────
+.ra-insights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .75rem;
+
+  @include ra-bp(lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include ra-bp(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ra-insight-card {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: .875rem 1rem;
+  border-radius: $ra-radius;
+  border: 1px solid var(--ra-line);
+  border-left: 3px solid;
+  box-shadow: $ra-shadow-sm;
+  transition: box-shadow .2s;
+
+  &:hover {
+    box-shadow: $ra-shadow-md;
+  }
+
+  &__icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: .8125rem;
+    font-weight: 600;
+    margin: 0 0 .25rem;
+  }
+
+  &__body {
+    font-size: .75rem;
+    color: var(--ra-muted);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  &--success {
+    background: rgba($ra-success, .04);
+    border-color: $ra-success;
+  }
+
+  &--warn {
+    background: rgba($ra-warning, .04);
+    border-color: $ra-warning;
+  }
+
+  &--danger {
+    background: rgba($ra-danger, .04);
+    border-color: $ra-danger;
+  }
+
+  &--info {
+    background: rgba($ra-info, .04);
+    border-color: $ra-info;
+  }
+}
+
+// ── Badge ─────────────────────────────────────────────────────────────────────
+.ra-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: .1875rem .5rem;
+  border-radius: 99px;
+  font-size: .6875rem;
+  font-weight: 600;
+  text-transform: capitalize;
+
+  &--success {
+    background: rgba($ra-success, .12);
+    color: $ra-success;
+  }
+
+  &--warning {
+    background: rgba($ra-warning, .12);
+    color: $ra-warning;
+  }
+
+  &--danger {
+    background: rgba($ra-danger, .12);
+    color: $ra-danger;
+  }
+
+  &--info {
+    background: rgba($ra-info, .12);
+    color: $ra-info;
+  }
+}
+
+// ── Data table ────────────────────────────────────────────────────────────────
+.ra-tbl-wrap {
+  overflow-x: auto;
+  border-radius: $ra-radius;
+  border: 1px solid var(--ra-line);
+}
+
+.ra-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .8rem;
+
+  thead tr {
+    background: var(--ra-bg);
+    border-bottom: 1px solid var(--ra-line);
+  }
+
+  th {
+    text-align: left;
+    padding: .625rem 1rem;
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--ra-muted);
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--ra-line);
+    transition: background .12s;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background: var(--ra-bg);
+    }
+  }
+
+  td {
+    padding: .625rem 1rem;
+    color: var(--ra-text);
+  }
+}
+
+// ── Export ────────────────────────────────────────────────────────────────────
+.ra-export-fmts {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+.ra-export-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .625rem 1.25rem;
+  border-radius: $ra-radius;
+  border: 1px solid var(--btn-color, #{$ra-gold});
+  background: rgba(var(--btn-color, #{$ra-gold}), .08);
+  color: var(--btn-color, #{$ra-gold});
+  font-size: .8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .15s;
+
+  @include ra-bp(sm) {
+    padding: .5rem 1rem;
+    gap: .375rem;
+    overflow: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    justify-content: center;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  @include ra-bp(xs) {
+    gap: .375rem;
+    padding: .375rem .5rem;
+    overflow: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    justify-content: center;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  @include ra-bp(xxs) {
+    justify-content: center;
+    width: 100%;
+  }
+
+  &:hover {
+    background: var(--btn-color, #{$ra-gold});
+    color: #fff;
+    box-shadow: $ra-shadow-sm;
+  }
+
+}
+
+.ra-export-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+
+  @media (min-width: 1025px) and (max-width: 1440px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include ra-bp(lg) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  @include ra-bp(md) {
+    grid-template-columns: 1fr;
+  }
+  @include ra-bp(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ra-report-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+
+.ra-report-item {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+  padding: .5rem .625rem;
+  border-radius: $ra-radius-sm;
+  border: 1px solid var(--ra-line);
+  transition: background .12s;
+
+
+  @include ra-bp(sm) {
+    gap: .375rem;
+    padding: .375rem .5rem;
+    overflow: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    justify-content: center;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  @include ra-bp(xs) {
+    gap: .375rem;
+    padding: .375rem .5rem;
+    overflow: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    justify-content: center;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  @include ra-bp(xxs) {
+    gap: .375rem;
+    padding: .375rem .5rem;
+    overflow: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    justify-content: center;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+
+  &:hover {
+    background: var(--ra-bg);
+  }
+
+  &__icon {
+    font-size: .875rem;
+    flex-shrink: 0;
+  }
+
+  &__name {
+    font-size: .8rem;
+    flex: 1;
+  }
+
+  &__actions {
+    display: flex;
+    gap: .25rem;
+  }
+
+  &__btn {
+    padding: .2rem .5rem;
+    border-radius: $ra-radius-sm;
+    border: 1px solid rgba(var(--c, #{$ra-gold}), .3);
+    background: rgba(var(--c, #{$ra-gold}), .07);
+    color: var(--c, #{$ra-gold});
+    font-size: .65rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .12s;
+
+    &:hover {
+      background: var(--c, #{$ra-gold});
+      color: #fff;
+    }
+  }
+}

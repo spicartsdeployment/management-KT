@@ -1,0 +1,70 @@
+// src/Assets/styles/RadioGroup.scss
+// BEM-based styles for the RadioGroup component
+
+// ─── Block: radio-group ──────────────────────────────────────────────────────
+
+.radio-group {
+    display: grid;
+    gap: 0.75rem; // gap-3
+
+    // ─── Element: item (the radio button circle) ──────────────────────
+
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 1 / 1;
+        width: 1rem; // size-4
+        height: 1rem;
+        flex-shrink: 0;
+        border-radius: 9999px; // rounded-full
+        border: 1px solid var(--input);
+        color: var(--primary);
+        background-color: color-mix(in srgb, var(--input) 30%, transparent); // dark:bg-input/30
+        box-shadow: var(--shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.05));
+        outline: none;
+        transition: color 150ms ease, box-shadow 150ms ease;
+        cursor: pointer;
+
+        &:focus-visible {
+            border-color: var(--ring);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        &[aria-invalid="true"] {
+            border-color: var(--destructive);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--destructive) 20%, transparent);
+
+            @media (prefers-color-scheme: dark) {
+                box-shadow: 0 0 0 3px color-mix(in srgb, var(--destructive) 40%, transparent);
+            }
+        }
+    }
+
+    // ─── Element: indicator (wrapper shown when checked) ─────────────
+
+    &__indicator {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // ─── Element: dot (the filled circle icon) ────────────────────────
+
+    &__dot {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0.5rem; // size-2
+        height: 0.5rem;
+        fill: var(--primary);
+        color: var(--primary);
+    }
+}

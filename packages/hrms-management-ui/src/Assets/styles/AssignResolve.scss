@@ -1,0 +1,194 @@
+// AssignResolve.scss
+
+.assign-resolve {
+    &__header-title {
+        font-size: 2rem;
+        font-weight: 700;
+        background: linear-gradient(90deg, #C9A962, #2C2C2C);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+    }
+
+    &__header-desc {
+        color: var(--muted-foreground, #6B7280);
+        margin-top: 0.25rem;
+    }
+
+    &__main-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+
+        @media (min-width: 1024px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    &__details-col {
+        grid-column: span 2;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    &__card {
+        border-radius: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        border: none;
+    }
+
+    &__card-header {
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    &__card-title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    &__priority-badge {
+        &--critical {
+            background: rgba(239, 68, 68, 0.1);
+            color: #EF4444;
+            font-size: 1rem;
+            padding: 0.25rem 1rem;
+        }
+
+        &--high {
+            background: rgba(245, 158, 11, 0.1);
+            color: #F59E0B;
+            font-size: 1rem;
+            padding: 0.25rem 1rem;
+        }
+    }
+
+    &__info-label {
+        font-size: 0.75rem;
+        color: var(--muted-foreground, #6B7280);
+    }
+
+    &__info-value {
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin-top: 0.25rem;
+    }
+
+    &__desc-box {
+        margin-top: 0.5rem;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        background: rgba(16, 185, 129, 0.05); // accent/50
+    }
+
+    &__comments-card {
+        border-radius: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        border: none;
+    }
+
+    &__comment {
+        padding: 1rem;
+        border-radius: 0.75rem;
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), transparent);
+        border: 1px solid rgba(79, 70, 229, 0.2);
+        margin-bottom: 1rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__comment-header {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+    }
+
+    &__comment-user {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    &__comment-date {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 0.75rem;
+        color: var(--muted-foreground, #6B7280);
+    }
+
+    &__comment-status {
+        margin-top: 0.5rem;
+        background: rgba(79, 70, 229, 0.1);
+        color: #4F46E5;
+        font-size: 0.75rem;
+        padding: 0.125rem 0.75rem;
+        border-radius: 0.5rem;
+        display: inline-block;
+    }
+
+    &__add-comment {
+        padding-top: 1rem;
+        border-top: 1px solid #e5e7eb;
+        margin-top: 1rem;
+    }
+
+    &__add-comment-row {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    &__sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    &__status-box {
+        padding: 1rem;
+        border-radius: 0.75rem;
+        background: rgba(239, 68, 68, 0.1);
+        border-left: 4px solid #EF4444;
+    }
+
+    &__status-title {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #EF4444;
+    }
+
+    &__status-desc {
+        font-size: 0.75rem;
+        color: var(--muted-foreground, #6B7280);
+        margin-top: 0.25rem;
+    }
+
+    &__action-btn {
+        width: 100%;
+        background: linear-gradient(90deg, #C9A962, #2C2C2C);
+        color: #fff;
+
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+
+    &__resolve-btn {
+        width: 100%;
+        border: 1px solid #22C55E;
+        color: #22C55E;
+        background: transparent;
+
+        &:hover {
+            background: rgba(34, 197, 94, 0.1);
+        }
+    }
+}

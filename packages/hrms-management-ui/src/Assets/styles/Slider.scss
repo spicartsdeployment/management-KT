@@ -1,0 +1,48 @@
+// src/Assets/styles/Slider.scss
+
+.slider {
+    position: relative;
+    display: flex;
+    width: 100%;
+    touch-action: none;
+    align-items: center;
+    user-select: none;
+
+    &__track {
+        position: relative;
+        height: 4px;
+        width: 100%;
+        flex-grow: 1;
+        overflow: hidden;
+        border-radius: 9999px;
+        background-color: var(--color-secondary, #e2e8f0);
+    }
+
+    &__range {
+        position: absolute;
+        height: 100%;
+        background-color: var(--color-primary, #3b82f6);
+    }
+
+    &__thumb {
+        display: block;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        border: 2px solid var(--color-primary, #3b82f6);
+        background-color: var(--color-background, #ffffff);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.15s ease;
+        cursor: pointer;
+
+        &:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--color-ring, rgba(59, 130, 246, 0.4));
+        }
+
+        &:disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+    }
+}

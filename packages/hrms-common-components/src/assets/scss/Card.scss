@@ -1,0 +1,81 @@
+@use '../../../../hrms-school-ui/src/assets/scss/variables' as *;
+@use '../../../../hrms-school-ui/src/assets/scss/mixins' as *;
+
+.card {
+  @include card-base;
+  padding: var(--spacing-sm);
+}
+
+/* ========================================
+   COMMON CARD COMPONENT STYLES
+   Converted from Tailwind utilities
+   ======================================== */
+
+/* Base classes - Converted from: rounded-glass transition-all duration-300 */
+.common-card-base {
+  border-radius: 1rem; /* rounded-glass */
+  transition: all 0.2s ease; /* transition-all duration-200 */
+}
+
+/* Variant: Default - Converted from: bg-white dark:bg-dark-card border border-light-border dark:border-dark-border */
+.common-card-default {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+:root.dark .common-card-default,
+[data-theme='dark'] .common-card-default {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Variant: Glass - Converted from: backdrop-blur-glass bg-white/80 dark:bg-dark-card/80 border border-white/20 dark:border-white/10 shadow-glass dark:shadow-glass-dark */
+.common-card-glass {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+:root.dark .common-card-glass,
+[data-theme='dark'] .common-card-glass {
+  background: rgb(10, 17, 40);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Variant: Elevated - Converted from: bg-white dark:bg-dark-card shadow-lg border border-light-border dark:border-dark-border */
+.common-card-elevated {
+  background: white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+:root.dark .common-card-elevated,
+[data-theme='dark'] .common-card-elevated {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Padding classes - Converted from: p-4, p-6, p-8 */
+.common-card-padding-sm {
+  padding: clamp(0.75rem, 2vw, 1rem); /* p-4 */
+}
+
+.common-card-padding-default {
+  padding: clamp(0.6rem, 1.5vw, 0.8rem) clamp(0.75rem, 2vw, 1rem) !important; /* p-6 */
+}
+
+.common-card-padding-lg {
+  padding: clamp(1.5rem, 3vw, 2rem); /* p-8 */
+}
+
+/* Clickable state - Converted from: cursor-pointer hover:shadow-lg hover:scale-[1.02] */
+.common-card-clickable {
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transform: scale(1.02);
+  }
+}

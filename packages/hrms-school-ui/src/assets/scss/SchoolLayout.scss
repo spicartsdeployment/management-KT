@@ -1,0 +1,415 @@
+@import './mixins.scss';
+
+.school-layout-root {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--bg-light, #dae0e6);
+}
+
+.school-layout-topbar {
+  width: 100%;
+  position: relative;
+  z-index: 100;
+  margin: 1rem 1rem 0.4rem 1rem;
+  flex-shrink: 0;
+}
+
+.school-layout-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+  // padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+}
+
+.school-layout-sidebar {
+  position: fixed;
+  left: 20px;
+  background: var(--bg-white, #ffffff);
+  border: 1px solid var(--border-color, #e5e7eb);
+  transition: width 0.3s ease;
+  overflow-y: auto;
+  z-index: 50;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  &-expanded {
+    width: 260px;
+  }
+
+  &-collapsed {
+    width: 80px;
+  }
+}
+
+/* ========================================
+   MAIN LAYOUT
+   ======================================== */
+
+.school-layout-main {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+
+  background: var(--bg-white, #ffffff);
+  border-radius: 1rem;
+
+  margin-right: 1rem;
+  padding: 1rem;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Communication page - no padding */
+  &--no-padding {
+    padding: 0 !important;
+
+    @media (min-width: 1024px) {
+      margin-right: 0 !important;
+    }
+  }
+}
+
+/* ========================================
+   LAYOUT CARD COMPONENT
+   ======================================== */
+
+.sch-layout-card {
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* ========================================
+   DARK MODE
+   ======================================== */
+
+[data-theme='dark'],
+:root.dark {
+  .school-layout-root {
+    background: #171a20;
+  }
+
+  .school-layout-sidebar {
+    background: #070e18;
+    border-color: rgba(255, 255, 255, 0.06);
+  }
+
+  .school-layout-main {
+    background: #070e18;
+  }
+}
+
+:root.dark .sch-layout-card,
+[data-theme='dark'] .sch-layout-card {
+  background: rgba(31, 41, 55, 0.8);
+}
+
+/* ========================================
+   MOBILE SIDEBAR BACKDROP
+   ======================================== */
+
+.school-layout-sidebar-backdrop {
+  display: none;
+}
+
+/* ========================================
+   RESPONSIVE LAYOUT
+   DESKTOP-FIRST, NON-OVERLAPPING RANGES
+   ------------------------------------------------
+   NOTE ON BREAKPOINT BOUNDARIES:
+   Each range below uses a closed max-width that stops
+   exactly 1px before the next range's min-width
+   (479 / 767 / 1023 -> 480 / 768 / 1024). This guarantees
+   only ONE media query block can ever be active at a given
+   viewport width. Previously the "mobile" range used
+   "max-width: 768px" and the "tablet" range used
+   "min-width: 768px", so at exactly 768px BOTH blocks
+   matched simultaneously. Because of CSS source order and
+   specificity ties, this caused the tablet rules to silently
+   override (or fight with) the mobile drawer/backdrop rules,
+   producing inconsistent sidebar widths, margin-left values,
+   and occasional horizontal shifting right at the boundary.
+   Adjusting the mobile range to "max-width: 767px" removes
+   that 1px collision window entirely.
+   ======================================== */
+
+/* ========================================
+   VERY SMALL DEVICES (< 480px)
+   ======================================== */
+
+@media (max-width: 479px) {
+  .school-layout-topbar {
+    /* FIX: Proper responsive margins for small screens */
+    margin: 0.5rem;
+    width: calc(100% - 1rem);
+    position: relative;
+    z-index: 100;
+  }
+
+  .school-layout-body {
+    /* FIX: Prevent horizontal scrolling */
+    padding: 0.5rem;
+    overflow: visible;
+  }
+
+  .school-layout-sidebar {
+    /* FIX: Mobile drawer positioning */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px !important;
+    height: 100vh !important;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 200;
+    border-radius: 0 1rem 1rem 0;
+
+    &.mobile-open {
+      transform: translateX(0);
+    }
+  }
+
+  .school-layout-main {
+    /* FIX: Full width on mobile */
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 0.75rem;
+    min-height: calc(100vh - 90px);
+  }
+
+  .school-layout-sidebar-backdrop {
+    display: block;
+  }
+}
+
+/* ========================================
+   MOBILE & TABLET SMALL (480px - 767px)
+   ------------------------------------------------
+   BREAKPOINT FIX: upper bound changed from 768px to
+   767px so this range ends exactly where the Tablet
+   range (min-width: 768px) begins. This prevents the
+   double-match at 768px described above and ensures
+   the mobile drawer styles (transform/backdrop) never
+   compete with the tablet fixed-sidebar styles.
+   ======================================== */
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .school-layout-root {
+    gap: 0.5rem;
+    overflow: hidden;
+  }
+
+  .school-layout-topbar {
+    /* FIX: Proper responsive spacing */
+    margin: 0.5rem;
+    width: calc(100% - 1rem);
+    position: relative;
+    z-index: 110;
+  }
+
+  .school-layout-body {
+    /* FIX: Proper responsive padding */
+    flex-direction: column;
+    padding: 0.5rem;
+    overflow: visible;
+  }
+
+  .school-layout-sidebar {
+    /* FIX: Mobile drawer positioning for this breakpoint */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100vh;
+    z-index: 200;
+    border-radius: 0 1rem 1rem 0;
+    transform: translateX(-100%);
+    transition:
+      transform 0.3s ease,
+      width 0.3s ease;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+
+    &-expanded,
+    &-collapsed {
+      width: 260px;
+      transform: translateX(-100%);
+    }
+
+    &.mobile-open {
+      transform: translateX(0);
+    }
+  }
+
+  .school-layout-main {
+    /* FIX: Full width, no sidebar overlap */
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 0.75rem;
+    min-height: calc(100vh - 90px);
+    border-radius: 1rem;
+  }
+
+  .school-layout-sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 199;
+    animation: backdrop-fade-in 0.2s ease;
+  }
+
+  .school-layout-root.mobile-nav-open {
+    overflow: hidden;
+
+    .school-layout-main {
+      overflow: hidden;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .school-layout-topbar.topbar-behind-nav {
+      z-index: 100;
+    }
+  }
+
+  @keyframes backdrop-fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/* ================================================
+   TABLET (768px - 1023px)
+   ------------------------------------------------
+   This range already started at the correct 768px
+   min-width; the conflict was caused solely by the
+   Mobile range above also matching at 768px. With the
+   Mobile range now capped at 767px, Tablet is the only
+   block active from 768px to 1023px, so the fixed
+   sidebar (not a drawer) and margin-left calculations
+   below apply cleanly without being overridden by
+   mobile drawer transforms.
+   ================================================ */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .school-layout-topbar {
+    /* FIX: Consistent responsive spacing */
+    margin: 0.5rem;
+    width: calc(100% - 1rem);
+  }
+
+  .school-layout-body {
+    /* FIX: Proper padding for tablet */
+    padding-bottom: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .school-layout-sidebar {
+    /* FIX: Adjust top position and height for this breakpoint */
+    left: 10px;
+    // top: calc(90px + 0.5rem);
+    height: calc(100vh - 99px);
+
+    &-expanded {
+      width: 220px;
+    }
+
+    &-collapsed {
+      width: 80px;
+    }
+  }
+
+  .school-layout-main {
+    /* FIX: Proper flex and responsive margins */
+    flex: 1;
+    min-width: 0;
+    overflow-x: hidden;
+    border-radius: 1rem;
+    margin-right: 0 !important;
+  }
+
+  /* FIX: Align marginLeft with actual sidebar widths */
+  .school-layout-sidebar-expanded+.school-layout-main {
+    margin-left: calc(220px + 1rem) !important;
+  }
+
+  .school-layout-sidebar-collapsed+.school-layout-main {
+    margin-left: calc(80px + 1rem) !important;
+  }
+
+  .school-layout-sidebar-collapsed+.school-layout-main .school-layout-body {
+    padding-right: 0;
+  }
+}
+
+/* ========================================
+   DESKTOP (1024px+)
+   ======================================== */
+
+@media (min-width: 1024px) {
+  .school-layout-topbar {
+    /* FIX: Desktop margins with proper spacing */
+    margin: 1rem 1rem 0.5rem 1rem;
+    width: calc(100% - 2rem);
+  }
+
+  .school-layout-body {
+    /* FIX: Desktop padding */
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+  }
+
+  .school-layout-sidebar {
+    /* FIX: Desktop positioning - no changes needed from base, but ensure proper heights */
+    left: 20px;
+    // top: calc(100px + 1rem);
+    height: calc(100vh - 118px);
+
+    &-expanded {
+      width: 260px;
+    }
+
+    &-collapsed {
+      width: 80px;
+    }
+  }
+
+  .school-layout-main {
+    /* FIX: Proper margins maintained */
+    margin-right: 0 !important;
+    padding: 1rem;
+  }
+
+  .school-layout-sidebar-collapsed+.school-layout-main .school-layout-body {
+    padding-right: 0;
+  }
+}

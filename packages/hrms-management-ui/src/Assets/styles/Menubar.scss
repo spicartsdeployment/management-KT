@@ -1,0 +1,359 @@
+// src/Assets/styles/Menubar.scss
+// BEM-based styles for the Menubar component
+
+// ─── Animation keyframes ────────────────────────────────────────────────────
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.95);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes zoomOut {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(0.95);
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(-0.5rem);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(0.5rem);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-0.5rem);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(0.5rem);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+// ─── Block: menubar ──────────────────────────────────────────────────────────
+
+.menubar {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    height: 2.25rem;
+    padding: 0.25rem;
+    border-radius: 0.375rem;
+    border: 1px solid var(--border);
+    background-color: var(--background);
+    box-shadow: var(--shadow-xs, 0 1px 2px rgba(0, 0, 0, 0.05));
+
+    // ─── Element: trigger ───────────────────────────────────────────────
+
+    &__trigger {
+        display: flex;
+        align-items: center;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        outline: none;
+        user-select: none;
+        cursor: default;
+
+        &:focus,
+        &[data-state="open"] {
+            background-color: var(--accent);
+            color: var(--accent-foreground);
+        }
+    }
+
+    // ─── Element: content ───────────────────────────────────────────────
+
+    &__content {
+        z-index: 50;
+        min-width: 12rem;
+        overflow: hidden;
+        border-radius: 0.375rem;
+        border: 1px solid var(--border);
+        padding: 0.25rem;
+        background-color: var(--popover);
+        color: var(--popover-foreground);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transform-origin: var(--radix-menubar-content-transform-origin);
+
+        &[data-state="open"] {
+            animation:
+                fadeIn 150ms ease,
+                zoomIn 150ms ease;
+        }
+
+        &[data-state="closed"] {
+            animation:
+                fadeOut 150ms ease,
+                zoomOut 150ms ease;
+        }
+
+        &[data-side="bottom"] {
+            animation-name: fadeIn, slideInFromTop;
+        }
+
+        &[data-side="top"] {
+            animation-name: fadeIn, slideInFromBottom;
+        }
+
+        &[data-side="left"] {
+            animation-name: fadeIn, slideInFromRight;
+        }
+
+        &[data-side="right"] {
+            animation-name: fadeIn, slideInFromLeft;
+        }
+    }
+
+    // ─── Element: item (shared base for item / checkbox / radio) ────────
+
+    &__item,
+    &__checkbox-item,
+    &__radio-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-radius: 0.25rem;
+        padding: 0.375rem 0.5rem;
+        font-size: 0.875rem;
+        outline: none;
+        user-select: none;
+        cursor: default;
+
+        &:focus {
+            background-color: var(--accent);
+            color: var(--accent-foreground);
+        }
+
+        &[data-disabled] {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        // inset variant
+        &[data-inset] {
+            padding-left: 2rem;
+        }
+
+        // destructive variant (item only)
+        &[data-variant="destructive"] {
+            color: var(--destructive);
+
+            &:focus {
+                background-color: color-mix(in srgb, var(--destructive) 10%, transparent);
+                color: var(--destructive);
+            }
+
+            svg {
+                color: var(--destructive) !important;
+            }
+        }
+
+        // SVG defaults
+        svg {
+            pointer-events: none;
+            flex-shrink: 0;
+
+            &:not([class*="size-"]) {
+                width: 1rem;
+                height: 1rem;
+            }
+
+            &:not([class*="text-"]) {
+                color: var(--muted-foreground);
+            }
+        }
+    }
+
+    // checkbox & radio items have left-padded layout for the indicator
+    &__checkbox-item,
+    &__radio-item {
+        padding-top: 0.375rem;
+        padding-bottom: 0.375rem;
+        padding-right: 0.5rem;
+        padding-left: 2rem;
+        border-radius: 0.125rem; // rounded-xs
+    }
+
+    // ─── Element: item-indicator (the check/circle icon wrapper) ────────
+
+    &__item-indicator {
+        position: absolute;
+        left: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 0.875rem;
+        height: 0.875rem;
+        pointer-events: none;
+    }
+
+    // ─── Element: icon ──────────────────────────────────────────────────
+
+    &__icon {
+        width: 1rem;
+        height: 1rem;
+
+        &--radio {
+            width: 0.5rem;
+            height: 0.5rem;
+            fill: currentColor;
+        }
+    }
+
+    // ─── Element: label ─────────────────────────────────────────────────
+
+    &__label {
+        padding: 0.375rem 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+
+        &[data-inset] {
+            padding-left: 2rem;
+        }
+    }
+
+    // ─── Element: separator ─────────────────────────────────────────────
+
+    &__separator {
+        height: 1px;
+        margin: 0.25rem -0.25rem;
+        background-color: var(--border);
+    }
+
+    // ─── Element: shortcut ──────────────────────────────────────────────
+
+    &__shortcut {
+        margin-left: auto;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        color: var(--muted-foreground);
+    }
+
+    // ─── Element: sub-trigger ───────────────────────────────────────────
+
+    &__sub-trigger {
+        display: flex;
+        align-items: center;
+        padding: 0.375rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+        outline: none;
+        user-select: none;
+        cursor: default;
+
+        &:focus,
+        &[data-state="open"] {
+            background-color: var(--accent);
+            color: var(--accent-foreground);
+        }
+
+        &[data-inset] {
+            padding-left: 2rem;
+        }
+    }
+
+    &__sub-trigger-icon {
+        margin-left: auto;
+        width: 1rem;
+        height: 1rem;
+    }
+
+    // ─── Element: sub-content ───────────────────────────────────────────
+
+    &__sub-content {
+        z-index: 50;
+        min-width: 8rem;
+        overflow: hidden;
+        border-radius: 0.375rem;
+        border: 1px solid var(--border);
+        padding: 0.25rem;
+        background-color: var(--popover);
+        color: var(--popover-foreground);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        transform-origin: var(--radix-menubar-content-transform-origin);
+
+        &[data-state="open"] {
+            animation:
+                fadeIn 150ms ease,
+                zoomIn 150ms ease;
+        }
+
+        &[data-state="closed"] {
+            animation:
+                fadeOut 150ms ease,
+                zoomOut 150ms ease;
+        }
+
+        &[data-side="bottom"] {
+            animation-name: fadeIn, slideInFromTop;
+        }
+
+        &[data-side="top"] {
+            animation-name: fadeIn, slideInFromBottom;
+        }
+
+        &[data-side="left"] {
+            animation-name: fadeIn, slideInFromRight;
+        }
+
+        &[data-side="right"] {
+            animation-name: fadeIn, slideInFromLeft;
+        }
+    }
+}

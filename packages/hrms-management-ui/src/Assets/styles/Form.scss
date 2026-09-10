@@ -1,0 +1,33 @@
+// Form.scss
+
+.form-item {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.form-label {
+    font-weight: 500;
+
+    &[data-error="true"] {
+        color: var(--color-destructive, #ef4444);
+    }
+}
+
+.form-control {
+    width: 100%;
+    outline: none;
+    border: none;
+    background: transparent;
+    font: inherit;
+    color: inherit;
+}
+
+.form-description {
+    color: var(--color-muted-foreground, #6b7280);
+    font-size: 0.875rem;
+}
+
+.form-message {
+    color: var(--color-destructive, #ef4444);
+    font-size: 0.875rem;
+}

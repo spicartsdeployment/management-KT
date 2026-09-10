@@ -1,0 +1,172 @@
+// ============================================
+// HRMS Teacher UI - Theme System
+// ============================================
+
+@import './variables.scss';
+
+// Light Theme (Default)
+:root,
+[data-theme='light'] {
+  --bg-color: #{$light-bg};
+  --bg-secondary: #{$light-bg-secondary};
+  --bg-tertiary: #{$gray-100};
+  
+  --text-color: #{$light-text};
+  --text-secondary: #{$light-text-secondary};
+  --text-muted: #{$gray-500};
+  
+  --border-color: #{$light-border};
+  --border-hover: #{$gray-300};
+  
+  --shadow: #{$light-shadow};
+  
+  --primary: #{$primary-color};
+  --primary-hover: #{$primary-dark};
+  --primary-light: #{$primary-light};
+  
+  --secondary: #{$secondary-color};
+  --accent: #{$accent-color};
+  --danger: #{$danger-color};
+  --warning: #{$warning-color};
+  --info: #{$info-color};
+  --success: #{$success-color};
+  
+  --sidebar-bg: #{$white};
+  --sidebar-text: #{$gray-700};
+  --sidebar-hover: #{$gray-100};
+  --sidebar-active: #{$primary-color};
+  --sidebar-active-bg: rgba($primary-color, 0.1);
+  
+  --navbar-bg: #{$white};
+  --navbar-border: #{$gray-200};
+  
+  --card-bg: #{$white};
+  --card-hover: #{$gray-50};
+  
+  --input-bg: #{$white};
+  --input-border: #{$gray-300};
+  --input-focus: #{$primary-color};
+  
+  --overlay-bg: rgba(0, 0, 0, 0.5);
+}
+
+// Dark Theme
+[data-theme='dark'] {
+  --bg-color: #{$dark-bg};
+  --bg-secondary: #{$dark-bg-secondary};
+  --bg-tertiary: #{$gray-800};
+  
+  --text-color: #{$dark-text};
+  --text-secondary: #{$dark-text-secondary};
+  --text-muted: #{$gray-500};
+  
+  --border-color: #{$dark-border};
+  --border-hover: #{$gray-600};
+  
+  --shadow: #{$dark-shadow};
+  
+  --primary: #{$primary-light};
+  --primary-hover: #{$primary-color};
+  --primary-light: #{$primary-dark};
+  
+  --secondary: #{$secondary-light};
+  --accent: #{$accent-light};
+  --danger: #{$danger-light};
+  --warning: #{$warning-color};
+  --info: #{$info-color};
+  --success: #{$success-light};
+  
+  --sidebar-bg: #{$dark-bg-secondary};
+  --sidebar-text: #{$gray-300};
+  --sidebar-hover: #{$gray-700};
+  --sidebar-active: #{$primary-light};
+  --sidebar-active-bg: rgba($primary-light, 0.15);
+  
+  --navbar-bg: #{$dark-bg-secondary};
+  --navbar-border: #{$gray-700};
+  
+  --card-bg: #{$dark-bg-secondary};
+  --card-hover: #{$gray-800};
+  
+  --input-bg: #{$gray-800};
+  --input-border: #{$gray-700};
+  --input-focus: #{$primary-light};
+  
+  --overlay-bg: rgba(0, 0, 0, 0.7);
+}
+
+// Global Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  color: var(--text-color);
+  background: var(--bg-color);
+  transition: background-color $transition-base, color $transition-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-heading;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  color: var(--text-color);
+}
+
+h1 { font-size: $font-size-4xl; }
+h2 { font-size: $font-size-3xl; }
+h3 { font-size: $font-size-2xl; }
+h4 { font-size: $font-size-xl; }
+h5 { font-size: $font-size-lg; }
+h6 { font-size: $font-size-base; }
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: var(--primary-hover);
+  }
+}
+
+button {
+  font-family: inherit;
+}
+
+input, textarea, select {
+  font-family: inherit;
+}
+
+// Utility Classes
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.fw-light { font-weight: $font-weight-light; }
+.fw-normal { font-weight: $font-weight-normal; }
+.fw-medium { font-weight: $font-weight-medium; }
+.fw-semibold { font-weight: $font-weight-semibold; }
+.fw-bold { font-weight: $font-weight-bold; }
+
+.text-primary { color: var(--primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-danger { color: var(--danger); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-info { color: var(--info); }
+
+.bg-primary { background: var(--primary); }
+.bg-secondary { background: var(--bg-secondary); }
+.bg-danger { background: var(--danger); }
+.bg-success { background: var(--success); }
+.bg-warning { background: var(--warning); }
+.bg-info { background: var(--info); }

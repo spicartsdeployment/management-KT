@@ -1,0 +1,323 @@
+// ─── Manage Announcements Mock Data (ma-*) ────────────────────────────────────
+
+export const MA_CATEGORIES = [
+  { id: 'general',     label: 'General',     icon: '📢', color: '#2563eb',  bg: 'rgba(37,99,235,.1)'   },
+  { id: 'emergency',   label: 'Emergency',   icon: '🚨', color: '#dc2626',  bg: 'rgba(220,38,38,.1)'   },
+  { id: 'fee',         label: 'Fee',         icon: '💰', color: '#d97706',  bg: 'rgba(217,119,6,.1)'   },
+  { id: 'event',       label: 'Event',       icon: '🎉', color: '#8b5cf6',  bg: 'rgba(139,92,246,.1)'  },
+  { id: 'holiday',     label: 'Holiday',     icon: '🌴', color: '#06b6d4',  bg: 'rgba(6,182,212,.1)'   },
+  { id: 'exam',        label: 'Exam',        icon: '📝', color: '#7c3aed',  bg: 'rgba(124,58,237,.1)'  },
+  { id: 'transport',   label: 'Transport',   icon: '🚌', color: '#6366f1',  bg: 'rgba(99,102,241,.1)'  },
+  { id: 'staff',       label: 'Staff',       icon: '👥', color: '#14b8a6',  bg: 'rgba(20,184,166,.1)'  },
+  { id: 'maintenance', label: 'Maintenance', icon: '🔧', color: '#64748b',  bg: 'rgba(100,116,139,.1)' },
+];
+
+export const MA_STATUSES = [
+  { value: 'published', label: 'Published', color: '#16a34a', bg: 'rgba(22,163,74,.1)'    },
+  { value: 'scheduled', label: 'Scheduled', color: '#2563eb', bg: 'rgba(37,99,235,.1)'    },
+  { value: 'draft',     label: 'Draft',     color: '#6b7280', bg: 'rgba(107,114,128,.12)' },
+  { value: 'expired',   label: 'Expired',   color: '#d97706', bg: 'rgba(217,119,6,.1)'    },
+  { value: 'archived',  label: 'Archived',  color: '#6366f1', bg: 'rgba(99,102,241,.1)'   },
+  { value: 'failed',    label: 'Failed',    color: '#dc2626', bg: 'rgba(220,38,38,.1)'     },
+];
+
+export const MA_PRIORITIES = [
+  { value: 'low',    label: 'Low',    color: '#16a34a', bg: 'rgba(22,163,74,.1)'   },
+  { value: 'medium', label: 'Medium', color: '#d97706', bg: 'rgba(217,119,6,.1)'   },
+  { value: 'high',   label: 'High',   color: '#dc2626', bg: 'rgba(220,38,38,.1)'   },
+  { value: 'urgent', label: 'Urgent', color: '#9f1239', bg: 'rgba(159,18,57,.1)'   },
+];
+
+export const MA_CHANNELS = {
+  'in-app':     { label: 'In-App',     icon: '🔔' },
+  email:        { label: 'Email',      icon: '📧' },
+  sms:          { label: 'SMS',        icon: '💬' },
+  push:         { label: 'Push',       icon: '📱' },
+  website:      { label: 'Website',    icon: '🌐' },
+  'parent-app': { label: 'Parent App', icon: '👨‍👩‍👧' },
+  'staff-app':  { label: 'Staff App',  icon: '💼' },
+};
+
+export const MA_AUDIENCE_OPTIONS = [
+  'All Students', 'All Parents', 'All Staff', 'Class 10', 'Class 12',
+  'Bus Students', 'Hostel Students', 'Teachers', 'Transport Staff',
+];
+
+export const MA_CREATOR_OPTIONS = [
+  'Principal Sharma', 'Admin Head', 'Finance Office', 'Events Committee',
+  'Transport Manager', 'Librarian', 'Exam Controller', 'Sports Coordinator',
+];
+
+/** @type {Array<Object>} */
+export const MOCK_ANNOUNCEMENTS = [
+  {
+    id: 'ann-001',
+    title: 'School Reopening – May 26, 2026',
+    category: 'general',
+    audience: 'All Students, Parents, Staff',
+    createdBy: 'Principal Sharma',
+    publishDate: '2026-05-25',
+    expiryDate: '2026-06-25',
+    channels: ['in-app', 'email', 'sms', 'website'],
+    status: 'published',
+    priority: 'high',
+    recipients: 3420,
+    delivered: 3380,
+    readCount: 2148,
+    ackCount: 1820,
+    clickCount: 342,
+    failed: 40,
+    pinned: true,
+    emergencyAlert: false,
+    summary: 'The school will reopen on May 26, 2026 after the summer break.',
+    editHistory: [
+      { by: 'Admin Riya', at: '2026-05-25T08:00:00', action: 'Published' },
+      { by: 'Admin Riya', at: '2026-05-24T14:30:00', action: 'Updated content' },
+    ],
+  },
+  {
+    id: 'ann-002',
+    title: 'Transport Schedule Update – June Routes',
+    category: 'transport',
+    audience: 'Bus Students, Parents',
+    createdBy: 'Transport Manager',
+    publishDate: '2026-05-24',
+    expiryDate: '2026-06-24',
+    channels: ['in-app', 'sms', 'parent-app'],
+    status: 'published',
+    priority: 'medium',
+    recipients: 856,
+    delivered: 841,
+    readCount: 632,
+    ackCount: 500,
+    clickCount: 128,
+    failed: 15,
+    pinned: false,
+    emergencyAlert: false,
+    summary: 'Updated route timings for June 2026.',
+    editHistory: [
+      { by: 'Transport Manager', at: '2026-05-24T10:30:00', action: 'Published' },
+    ],
+  },
+  {
+    id: 'ann-003',
+    title: 'Annual Day 2026 – Save The Date',
+    category: 'event',
+    audience: 'All Students, Parents',
+    createdBy: 'Events Committee',
+    publishDate: '2026-06-15',
+    expiryDate: '2026-06-20',
+    channels: ['in-app', 'email', 'sms'],
+    status: 'scheduled',
+    priority: 'high',
+    recipients: 4100,
+    delivered: 0,
+    readCount: 0,
+    ackCount: 0,
+    clickCount: 0,
+    failed: 0,
+    pinned: false,
+    emergencyAlert: false,
+    summary: 'Grand annual celebration on June 15, 2026 at School Auditorium.',
+    editHistory: [
+      { by: 'Events Committee', at: '2026-05-22T11:00:00', action: 'Scheduled' },
+    ],
+  },
+  {
+    id: 'ann-004',
+    title: 'Q3 Fee Payment Due Reminder',
+    category: 'fee',
+    audience: 'All Parents',
+    createdBy: 'Finance Office',
+    publishDate: '2026-06-01',
+    expiryDate: '2026-06-10',
+    channels: ['email', 'sms'],
+    status: 'scheduled',
+    priority: 'medium',
+    recipients: 2800,
+    delivered: 0,
+    readCount: 0,
+    ackCount: 0,
+    clickCount: 0,
+    failed: 0,
+    pinned: false,
+    emergencyAlert: false,
+    summary: 'Q3 fee payment deadline is June 10, 2026. Late fee applies after deadline.',
+    editHistory: [
+      { by: 'Finance Office', at: '2026-05-20T09:00:00', action: 'Scheduled' },
+    ],
+  },
+  {
+    id: 'ann-005',
+    title: 'Summer Vacation Schedule 2026',
+    category: 'holiday',
+    audience: 'All Students, Parents',
+    createdBy: 'Admin Head',
+    publishDate: null,
+    expiryDate: null,
+    channels: ['in-app', 'email'],
+    status: 'draft',
+    priority: 'low',
+    recipients: 0,
+    delivered: 0,
+    readCount: 0,
+    ackCount: 0,
+    clickCount: 0,
+    failed: 0,
+    pinned: false,
+    emergencyAlert: false,
+    summary: 'Information about summer vacation dates and schedule.',
+    editHistory: [
+      { by: 'Admin Head', at: '2026-05-20T14:30:00', action: 'Created draft' },
+    ],
+  },
+  {
+    id: 'ann-006',
+    title: 'Sports Day Registration Open',
+    category: 'event',
+    audience: 'All Students',
+    createdBy: 'Sports Coordinator',
+    publishDate: null,
+    expiryDate: null,
+    channels: ['in-app'],
+    status: 'draft',
+    priority: 'low',
+    recipients: 0,
+    delivered: 0,
+    readCount: 0,
+    ackCount: 0,
+    clickCount: 0,
+    failed: 0,
+    pinned: false,
+    emergencyAlert: false,
+    summary: 'Registration details for upcoming sports day on July 10, 2026.',
+    editHistory: [
+      { by: 'Sports Coordinator', at: '2026-05-22T10:00:00', action: 'Created draft' },
+    ],
+  },
+  {
+    id: 'ann-007',
+    title: 'Library Books Return Deadline',
+    category: 'general',
+    audience: 'Class 10 Students',
+    createdBy: 'Librarian',
+    publishDate: '2026-04-15',
+    expiryDate: '2026-04-30',
+    channels: ['in-app', 'sms'],
+    status: 'expired',
+    priority: 'medium',
+    recipients: 120,
+    delivered: 118,
+    readCount: 97,
+    ackCount: 80,
+    clickCount: 30,
+    failed: 2,
+    pinned: false,
+    emergencyAlert: false,
+    summary: 'All library books must be returned by April 30, 2026.',
+    editHistory: [
+      { by: 'Librarian', at: '2026-04-15T09:00:00', action: 'Published' },
+    ],
+  },
+  {
+    id: 'ann-008',
+    title: 'Parent-Teacher Meeting – March',
+    category: 'event',
+    audience: 'All Parents, Teachers',
+    createdBy: 'Admin Head',
+    publishDate: '2026-03-10',
+    expiryDate: '2026-03-20',
+    channels: ['in-app', 'email', 'sms'],
+    status: 'archived',
+    priority: 'medium',
+    recipients: 3200,
+    delivered: 3150,
+    readCount: 2860,
+    ackCount: 2400,
+    clickCount: 600,
+    failed: 50,
+    pinned: false,
+    emergencyAlert: false,
+    summary: 'PTM scheduled for March 15, 2026 at school premises.',
+    editHistory: [
+      { by: 'Admin Head', at: '2026-03-21T10:00:00', action: 'Archived' },
+      { by: 'Admin Head', at: '2026-03-10T09:00:00', action: 'Published' },
+    ],
+  },
+  {
+    id: 'ann-009',
+    title: 'Emergency: Cyclone Alert – Stay Home',
+    category: 'emergency',
+    audience: 'All Students, Parents, Staff',
+    createdBy: 'Principal Sharma',
+    publishDate: '2026-05-20',
+    expiryDate: '2026-05-22',
+    channels: ['in-app', 'email', 'sms', 'push', 'website'],
+    status: 'expired',
+    priority: 'urgent',
+    recipients: 5200,
+    delivered: 5180,
+    readCount: 5050,
+    ackCount: 4800,
+    clickCount: 1200,
+    failed: 20,
+    pinned: true,
+    emergencyAlert: true,
+    summary: 'School closed on May 20-22 due to Cyclone Asna. All students and staff to stay home.',
+    editHistory: [
+      { by: 'Principal Sharma', at: '2026-05-20T06:00:00', action: 'Emergency Published' },
+    ],
+  },
+  {
+    id: 'ann-010',
+    title: 'SMS Gateway Failure – Exam Results',
+    category: 'exam',
+    audience: 'Class 12 Parents',
+    createdBy: 'Exam Controller',
+    publishDate: '2026-05-18',
+    expiryDate: '2026-05-19',
+    channels: ['sms'],
+    status: 'failed',
+    priority: 'high',
+    recipients: 480,
+    delivered: 12,
+    readCount: 0,
+    ackCount: 0,
+    clickCount: 0,
+    failed: 468,
+    pinned: false,
+    emergencyAlert: false,
+    summary: 'Class 12 exam results notification – delivery failed due to SMS gateway outage.',
+    editHistory: [
+      { by: 'Exam Controller', at: '2026-05-18T14:00:00', action: 'Publish failed – SMS gateway error' },
+    ],
+  },
+];
+
+export const MA_AUDIT_LOG = [
+  { id: 'log-001', admin: 'Principal Sharma',  action: 'Published',         module: 'School Reopening – May 26, 2026',      at: '2026-05-25T08:00:00', severity: 'info'    },
+  { id: 'log-002', admin: 'Transport Manager', action: 'Published',         module: 'Transport Schedule Update',            at: '2026-05-24T10:30:00', severity: 'info'    },
+  { id: 'log-003', admin: 'Events Committee',  action: 'Scheduled',         module: 'Annual Day 2026 – Save The Date',      at: '2026-05-22T11:00:00', severity: 'info'    },
+  { id: 'log-004', admin: 'Finance Office',    action: 'Scheduled',         module: 'Q3 Fee Payment Due Reminder',          at: '2026-05-20T09:00:00', severity: 'info'    },
+  { id: 'log-005', admin: 'Principal Sharma',  action: 'Emergency Alert',   module: 'Emergency: Cyclone Alert – Stay Home', at: '2026-05-20T06:00:00', severity: 'high'    },
+  { id: 'log-006', admin: 'Exam Controller',   action: 'Delivery Failed',   module: 'SMS Gateway Failure – Exam Results',   at: '2026-05-18T14:00:00', severity: 'danger'  },
+  { id: 'log-007', admin: 'Admin Head',        action: 'Archived',          module: 'Parent-Teacher Meeting – March',       at: '2026-03-21T10:00:00', severity: 'warning' },
+  { id: 'log-008', admin: 'Librarian',         action: 'Published',         module: 'Library Books Return Deadline',        at: '2026-04-15T09:00:00', severity: 'info'    },
+];
+
+/**
+ * Compute top-level metrics from announcements list.
+ * @param {Array} list
+ * @returns {object}
+ */
+export function computeMetrics(list) {
+  const total     = list.length;
+  const published = list.filter((a) => a.status === 'published').length;
+  const scheduled = list.filter((a) => a.status === 'scheduled').length;
+  const drafts    = list.filter((a) => a.status === 'draft').length;
+  const failed    = list.filter((a) => a.status === 'failed').length;
+  const totalRecipients = list.reduce((s, a) => s + (a.recipients || 0), 0);
+  const totalRead       = list.reduce((s, a) => s + (a.readCount  || 0), 0);
+  const readRate = totalRecipients > 0 ? Math.round((totalRead / totalRecipients) * 100) : 0;
+  return { total, published, scheduled, drafts, failed, readRate };
+}

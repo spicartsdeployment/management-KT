@@ -1,0 +1,262 @@
+@import './mixins.scss';
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--bg-white, #ffffff);
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+  height: 60px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-logo-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-logo-img {
+  width: 24px;
+  height: 24px;
+}
+
+.navbar-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-brand-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary, #111827);
+}
+
+.navbar-brand-tagline {
+  font-size: 0.75rem;
+  color: var(--text-secondary, #6b7280);
+}
+
+.navbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.navbar-greeting {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, rgba(249, 182, 111, 0.1), rgba(76, 201, 240, 0.08));
+  border: 1px solid rgba(249, 182, 111, 0.15);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  color: var(--text-primary, #111827);
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-theme-toggle {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  background: var(--toggle-bg, #e5e7eb);
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  overflow: hidden;
+
+  &--dark {
+    background: #4b5563;
+  }
+}
+
+// Sun / moon icon containers inside the toggle
+.navbar-theme-icon-left {
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  color: #f59e0b;
+}
+
+.navbar-theme-icon-right {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  color: #9ca3af;
+}
+
+.navbar-icon-sm {
+  width: 14px;
+  height: 14px;
+}
+
+// Sliding knob — used as navbar-theme-knob (matches JSX classNames)
+.navbar-theme-toggle-knob,
+.navbar-theme-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.navbar-theme-knob-dark {
+  transform: translateX(24px);
+}
+
+.navbar-theme-knob-light {
+  transform: translateX(0);
+}
+
+.navbar-notification {
+  position: relative;
+  cursor: pointer;
+}
+
+.navbar-notification-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: var(--hover-bg, #f3f4f6);
+  }
+}
+
+.navbar-notification-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--text-secondary, #6b7280);
+}
+
+.navbar-notification-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.625rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 9999px;
+  min-width: 18px;
+  text-align: center;
+}
+
+.navbar-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: var(--hover-bg, #f3f4f6);
+  }
+}
+
+.navbar-profile-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.navbar-profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.navbar-profile-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary, #111827);
+}
+
+.navbar-profile-grade {
+  font-size: 0.75rem;
+  color: var(--text-secondary, #6b7280);
+}
+
+// Dark mode
+[data-theme='dark'] {
+  .navbar-container {
+    background: #1f2937;
+    border-bottom-color: #374151;
+  }
+
+  .navbar-brand-name {
+    color: #f9fafb;
+  }
+
+  .navbar-brand-tagline {
+    color: #9ca3af;
+  }
+
+  .navbar-greeting {
+    background: linear-gradient(135deg, rgba(76, 201, 240, 0.08), rgba(249, 182, 111, 0.1));
+    border: 1px solid rgba(76, 201, 240, 0.15);
+    color: #e2e8f0;
+  }
+
+  .navbar-profile:hover {
+    background: #374151;
+  }
+
+  .navbar-profile-name {
+    color: #f9fafb;
+  }
+
+  .navbar-profile-grade {
+    color: #9ca3af;
+  }
+
+  .navbar-notification-icon {
+    color: #9ca3af;
+  }
+}

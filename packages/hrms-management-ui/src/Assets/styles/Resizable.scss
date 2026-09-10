@@ -1,0 +1,86 @@
+// src/Assets/styles/Resizable.scss
+// BEM-based styles for the Resizable component
+
+// ─── Block: resizable-group ──────────────────────────────────────────────────
+
+.resizable-group {
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    // vertical direction — switch main axis to column
+    &[data-panel-group-direction="vertical"] {
+        flex-direction: column;
+    }
+}
+
+// ─── Block: resizable-handle ─────────────────────────────────────────────────
+
+.resizable-handle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // horizontal handle (default): thin vertical bar
+    width: 1px;
+    background-color: var(--border);
+    outline: none;
+
+    // the invisible wider hit-area pseudo-element
+    &::after {
+        content: "";
+        position: absolute;
+        inset-block: 0; // after:inset-y-0
+        left: 50%;
+        width: 0.25rem; // after:w-1
+        transform: translateX(-50%); // after:-translate-x-1/2
+    }
+
+    &:focus-visible {
+        outline: none;
+        box-shadow:
+            0 0 0 1px var(--ring),
+            0 0 0 3px var(--background); // ring-offset-1 approximation
+    }
+
+    // vertical direction overrides
+    &[data-panel-group-direction="vertical"] {
+        height: 1px;
+        width: 100%;
+
+        &::after {
+            top: 50%;
+            left: 0;
+            height: 0.25rem; // after:h-1
+            width: 100%; // after:w-full
+            transform: translateY(-50%); // after:-translate-y-1/2
+        }
+
+        // rotate the grip icon 90° when vertical
+        >.resizable-handle__grip {
+            transform: rotate(90deg);
+        }
+    }
+
+    // ─── Element: grip (the visible draggable pill) ──────────────────
+
+    &__grip {
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 0.75rem; // w-3
+        height: 1rem; // h-4
+        border-radius: 0.125rem; // rounded-xs
+        border: 1px solid var(--border);
+        background-color: var(--border);
+    }
+
+    // ─── Element: grip-icon ──────────────────────────────────────────
+
+    &__grip-icon {
+        width: 0.625rem; // size-2.5
+        height: 0.625rem;
+    }
+}

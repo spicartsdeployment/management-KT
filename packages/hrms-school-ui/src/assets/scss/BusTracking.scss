@@ -1,0 +1,2775 @@
+﻿@import './mixins.scss';
+
+/* ========================================
+   CSS CUSTOM PROPERTIES FOR CARD THEMES
+   ======================================== */
+:root {
+    --profile-avatar-shadow: 0px 4px 16px rgba(59, 130, 246, 0.28);
+    --profile-avatar-shadow-staff: 0px 4px 16px rgba(236, 72, 153, 0.22);
+  /* Light Theme Card Colors */
+  --card-border-status: rgba(91, 169, 118, 0.2);
+  --card-border-driver: rgba(59, 130, 246, 0.2);
+  --card-border-staff: rgba(236, 72, 153, 0.2);
+  --card-border-incharge: rgba(59, 130, 246, 0.2);
+  --card-border-location: rgba(59, 130, 246, 0.2);
+  --card-border-route: rgba(234, 179, 8, 0.2);
+  --card-border-performance: rgba(34, 197, 94, 0.2);
+  --card-border-safety: rgba(239, 68, 68, 0.2);
+  --card-border-analytics: rgba(168, 85, 247, 0.2);
+  
+  --card-shadow-color-status: rgba(91, 169, 118, 0.15);
+  --card-shadow-color-driver: rgba(59, 130, 246, 0.15);
+  --card-shadow-color-staff: rgba(236, 72, 153, 0.15);
+  --card-shadow-color-incharge: rgba(59, 130, 246, 0.15);
+  --card-shadow-color-location: rgba(59, 130, 246, 0.15);
+  --card-shadow-color-route: rgba(234, 179, 8, 0.15);
+  --card-shadow-color-performance: rgba(34, 197, 94, 0.15);
+  --card-shadow-color-safety: rgba(239, 68, 68, 0.15);
+  --card-shadow-color-analytics: rgba(168, 85, 247, 0.15);
+}
+
+:root.dark {
+    --profile-avatar-shadow: 0px 4px 16px rgba(59, 130, 246, 0.38);
+    --profile-avatar-shadow-staff: 0px 4px 16px rgba(236, 72, 153, 0.32);
+  /* Dark Theme Card Colors - Increased opacity for better visibility */
+  --card-border-status: rgba(91, 169, 118, 0.25);
+  --card-border-driver: rgba(59, 130, 246, 0.25);
+  --card-border-staff: rgba(236, 72, 153, 0.25);
+  --card-border-incharge: rgba(59, 130, 246, 0.25);
+  --card-border-location: rgba(59, 130, 246, 0.25);
+  --card-border-route: rgba(234, 179, 8, 0.25);
+  --card-border-performance: rgba(34, 197, 94, 0.25);
+  --card-border-safety: rgba(239, 68, 68, 0.25);
+  --card-border-analytics: rgba(168, 85, 247, 0.25);
+  
+  --card-shadow-color-status: rgba(91, 169, 118, 0.2);
+  --card-shadow-color-driver: rgba(59, 130, 246, 0.2);
+  --card-shadow-color-staff: rgba(236, 72, 153, 0.2);
+  --card-shadow-color-incharge: rgba(59, 130, 246, 0.2);
+  --card-shadow-color-location: rgba(59, 130, 246, 0.2);
+  --card-shadow-color-route: rgba(234, 179, 8, 0.2);
+  --card-shadow-color-performance: rgba(34, 197, 94, 0.2);
+  --card-shadow-color-safety: rgba(239, 68, 68, 0.2);
+  --card-shadow-color-analytics: rgba(168, 85, 247, 0.2);
+
+  .staff-name,
+  .driver-name,
+  .incharge-name {
+    color: #cdd5df !important;
+  }
+}
+
+/* ========================================
+   REUSABLE CARD SHADOW CLASSES
+   ======================================== */
+.card-shadow-status {
+  box-shadow: var(--card-shadow-color-status) 0px 4px 8px;
+}
+
+.card-shadow-driver {
+  box-shadow: var(--card-shadow-color-driver) 0px 4px 8px;
+}
+
+.card-shadow-staff {
+  box-shadow: var(--card-shadow-color-staff) 0px 4px 8px;
+}
+
+.card-shadow-incharge {
+  box-shadow: var(--card-shadow-color-incharge) 0px 4px 8px;
+}
+
+.card-shadow-location {
+  box-shadow: var(--card-shadow-color-location) 0px 4px 8px;
+}
+
+.card-shadow-route {
+  box-shadow: var(--card-shadow-color-route) 0px 4px 8px;
+}
+
+.card-shadow-performance {
+  box-shadow: var(--card-shadow-color-performance) 0px 4px 8px;
+}
+
+.card-shadow-safety {
+  box-shadow: var(--card-shadow-color-safety) 0px 4px 8px;
+}
+
+.card-shadow-analytics {
+  box-shadow: var(--card-shadow-color-analytics) 0px 4px 8px;
+}
+
+/* ========================================
+   PROFILE IMAGE SHADOW CLASSES
+   ======================================== */
+.profile-shadow-status {
+  box-shadow: var(--card-shadow-color-status) 0px 2px 6px;
+}
+
+.profile-shadow-driver {
+  box-shadow: var(--card-shadow-color-driver) 0px 2px 6px;
+}
+
+.profile-shadow-staff {
+  box-shadow: var(--card-shadow-color-staff) 0px 2px 6px;
+}
+
+.profile-shadow-incharge {
+  box-shadow: var(--card-shadow-color-incharge) 0px 2px 6px;
+}
+
+/* Ensure MapView and Leaflet map are visible */
+.mapview-container {
+  height: 285px;
+  min-height: 285px;
+  width: 100%;
+  position: relative;
+}
+
+.leaflet-container {
+  height: 285px !important;
+  min-height: 200px !important;
+  width: 100% !important;
+  z-index: 1;
+}
+
+.bus-tracking-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  // height: calc(100vh - 200px);
+}
+
+@media (max-width: 1280px) {
+  .bus-tracking-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1023px) {
+  .bus-tracking-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .bus-tracking-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Main Container */
+.bus-tracking-container {
+  padding: 0.5rem;
+  background: #f9fafb;
+  min-height: 126vh;
+
+  // @media (min-width: 1024px) {
+  //   padding: 1.5rem;
+  // }
+}
+
+/* Page Header */
+.bus-tracking-header {
+  margin-bottom: 1.5rem;
+}
+
+.bus-tracking-title {
+  font-size: clamp(0.9rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 0.25rem 0;
+}
+
+.bus-tracking-subtitle {
+  font-size: clamp(0.65rem, 1.5vw, 0.875rem);
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Panel Layout */
+.bus-tracking-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  height: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.bus-tracking-center {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 101%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Card Styling */
+.card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 4px;
+  padding: 0.4rem;
+}
+
+.card-header {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  // margin-left: 0.5rem;
+
+  .emoji {
+    font-size: 1rem;
+  }
+}
+
+.card-title {
+  color: rgb(31, 41, 55);
+  font-size: clamp(0.9rem, 2vw, 1.125rem);
+  font-family: Inter, sans-serif;
+  // margin-bottom: 20px;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  // margin-bottom: 15px
+}
+
+/* Status Card */
+.status-card {
+  border: 1px solid var(--card-border-status);
+  border-radius: 1rem;
+  box-shadow: var(--card-shadow-color-status) 0px 4px 8px;
+
+  .card-title {
+    color: rgb(31, 41, 55);
+    font-size: 18px;
+    font-family: Inter, sans-serif;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .bt-status-badge {
+    border-radius: 1rem;
+    border-color: rgb(91, 169, 118);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &.bg-green-100 {
+      background-color: rgb(110 186 136 / 10%) !important;
+    }
+  }
+
+  .sch-bus-status-icon {
+    width: 4em;
+    height: 4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    &.bg-green-500 {
+      background: linear-gradient(135deg, rgb(110, 186, 136) 0%, rgb(91, 169, 118) 100%) !important;
+      box-shadow: rgba(110, 186, 136, 0.4) 0px 4px 12px !important;
+    }
+
+    .icon {
+      width: 1.75rem;
+      height: 1.75rem;
+      color: white;
+    }
+  }
+
+  .status-content {
+    flex: 1;
+  }
+
+  .status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .status-dot {
+    width: 0.7rem;
+    height: 0.7rem;
+    background: rgba(110, 186, 136, 0.4);
+    border-radius: 50%;
+  }
+
+  .status-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .bus-number {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+  }
+
+  .bus-route {
+    font-size: 0.75rem;
+    color: #4b5563;
+    margin: 0;
+  }
+
+  .next-stop {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+  }
+}
+
+/* Driver Card */
+.driver-card {
+  border: 1px solid var(--card-border-driver);
+  border-radius: 1rem;
+  box-shadow: var(--card-shadow-color-driver) 0px 4px 8px;
+
+  .card-header {
+    margin-bottom: 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .call-button {
+    background: #dcfce7;
+    border: none;
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    text-decoration: none;
+
+    :root.dark & {
+      background: rgba(22, 163, 74, 0.2);
+    }
+
+    .icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: #16a34a;
+    }
+
+    &:hover {
+      background: #bbf7d0;
+      transform: scale(1.05);
+    }
+  }
+
+  .driver-content {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .driver-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: white;
+    box-shadow: var(--profile-avatar-shadow) !important;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .driver-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    // gap: 0.5rem;
+  }
+
+  .driver-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+  }
+
+  .driver-role {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  .driver-license {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin: 0;
+  }
+
+  .driver-experience {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #6b7280;
+
+    span:first-child {
+      font-size: 1rem;
+    }
+  }
+
+  .verified-badge {
+    display: inline-block;
+    background: #dcfce7;
+    color: #16a34a;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    width: fit-content;
+    margin-top: 0.5rem;
+
+    :root.dark & {
+      background: rgba(22, 163, 74, 0.2);
+      color: #4ade80;
+    }
+  }
+}
+
+/* Support Staff Card */
+.support-staff-card {
+  border: 1px solid var(--card-border-staff);
+  border-radius: 1rem;
+  box-shadow: var(--card-shadow-color-staff) 0px 4px 8px;
+
+  .support-staff-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .staff-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    :root.dark & {
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .staff-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    position: relative;
+  }
+
+  .staff-avatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #e5e7eb;
+    background: white;
+    box-shadow: var(--profile-avatar-shadow-staff) !important;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .staff-details {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .staff-role {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  .staff-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+  }
+
+  .staff-id {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  .staff-certification-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    width: fit-content;
+    margin-top: 0.5rem;
+    text-align: center;
+    transition: all 0.2s ease;
+
+    &.safety-certified {
+      background: #fce7f3;
+      color: #be185d;
+
+      :root.dark & {
+        background: rgba(190, 24, 93, 0.2);
+        color: #f472b6;
+      }
+    }
+
+    &.hygiene-certified {
+      background: #ede9fe;
+      color: #7c3aed;
+
+      :root.dark & {
+        background: rgba(124, 58, 237, 0.2);
+        color: #d8b4fe;
+      }
+    }
+    &.transport-licensed {
+      background: #dbeafe;
+      color: #1d4ed8;
+
+      :root.dark & {
+        background: rgba(29, 78, 216, 0.2);
+        color: #93c5fd;
+      }
+    }
+
+    // Fallback for unknown / gray certification types
+    &:not(.safety-certified):not(.hygiene-certified):not(.transport-licensed) {
+      background: #fce7f3;
+      color: #be185d;
+
+      :root.dark & {
+        background: rgba(190, 24, 93, 0.2);
+        color: #f472b6;
+      }
+    }
+  }
+}
+
+/* Transport Incharge Card */
+.transport-incharge-card {
+  border: 1px solid var(--card-border-incharge);
+  border-radius: 1rem;
+  box-shadow: var(--card-shadow-color-incharge) 0px 4px 8px;
+
+  .card-header {
+    display: flex;
+    margin-bottom: 1rem;
+
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .call-button {
+    background: #3b82f6;
+    border: none;
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    text-decoration: none;
+
+    :root.dark & {
+      background: #0e2046;
+    }
+
+    .icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: white;
+
+      :root.dark & {
+        color: #1e40af;
+      }
+    }
+
+    &:hover {
+      background: #2563eb;
+      transform: scale(1.05);
+    }
+  }
+
+  .incharge-content {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .incharge-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: var(--card-shadow-color-incharge) 0px 2px 6px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .incharge-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .incharge-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+  }
+
+  .incharge-role {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  .incharge-id {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin: 0;
+  }
+
+  .incharge-experience {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #3b82f6;
+
+    span {
+      color: #9ca3af;
+    }
+  }
+
+  .availability-badge {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 0.15rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    width: fit-content;
+
+    :root.dark & {
+      background: rgba(37, 35, 84, 0.2);
+      color: #1e40af;
+    }
+  }
+}
+
+/* Location Card */
+.location-card {
+  border: 1px solid var(--card-border-location);
+  border-radius: 1rem;
+  box-shadow: var(--card-shadow-color-location) 0px 4px 8px;
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .card-title {
+    color: rgb(31, 41, 55);
+    font-size: 18px;
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .refresh-button {
+    background: #3b82f6;
+    border: none;
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+
+    .icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: white;
+    }
+
+    .icon.spinning {
+      animation: spin 1s linear infinite;
+    }
+
+    &:hover {
+      background: #2563eb;
+      transform: scale(1.05);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .tracking-info-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-radius: 0.75rem;
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      text-align: center;
+
+      .info-label {
+        font-size: 0.75rem;
+        color: #64748b;
+        font-weight: 500;
+      }
+
+      .info-value {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1e40af;
+
+        &.eta-highlight {
+          color: #059669;
+        }
+      }
+    }
+  }
+
+  .status-message-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.45rem 1rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.775rem;
+    font-weight: 400;
+
+    &.moving {
+      background: #d1fae5;
+      color: #065f46;
+      border: 1px solid #6ee7b7;
+    }
+
+    &.stopped {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+
+    &.delayed {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+    }
+
+    .banner-icon {
+      font-size: 1rem;
+    }
+
+    .status-text {
+      flex: 1;
+    }
+  }
+
+  .timing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .timing-card {
+    border-radius: 0.75rem;
+    padding: 1rem;
+
+    &.pickup {
+      background: #eff6ff;
+    }
+
+    &.drop {
+      background: #fef2f2;
+    }
+
+    .timing-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      // margin-bottom: 0.5rem;
+
+      .icon {
+        width: 1rem;
+        height: 1rem;
+      }
+
+      span {
+        font-size: 0.75rem;
+      }
+    }
+
+    &.pickup .timing-header {
+      .icon {
+        color: #3b82f6;
+      }
+
+      span {
+        color: #0202028f;
+
+        :root.dark & {
+          color: rgb(134, 127, 127);
+        }
+      }
+    }
+
+    &.drop .timing-header {
+      .icon {
+        color: #ef4444;
+      }
+
+      span {
+        color: #0202028f;
+
+        :root.dark & {
+          color: rgb(134, 127, 127);
+        }
+      }
+    }
+
+    .timing-value {
+     font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+        margin: 0.5rem 0 0.25rem 0;
+
+    }
+
+    &.pickup .timing-value {
+      color: #1e40af;
+    }
+
+    &.drop .timing-value {
+      color: #b91c1c;
+    }
+
+    .timing-desc {
+      font-size: 0.75rem;
+      margin: 0;
+    }
+
+    &.pickup .timing-desc {
+      color: #0202028f;
+
+      :root.dark & {
+        color: #8a8c91;
+      }
+    }
+
+    &.drop .timing-desc {
+      color: #0202028f;
+       :root.dark & {
+        color: #8a8c91;
+      }
+    }
+  }
+
+  .map-container {
+    background: #f3f4f6;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    height: 285px !important;
+    min-height: 285px !important;
+    width: 100% !important;
+    position: relative;
+  }
+}
+
+/* Route Card */
+.route-card {
+  border: 1px solid var(--card-border-route);
+  border-radius: 1rem;
+  box-shadow: var(--card-shadow-color-route) 0px 4px 8px;
+  
+
+  .card-header {
+
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    display: flex;
+    width: 100%;
+
+    .icon {
+      margin-left: 0.5rem;
+      width: 1.25rem;
+
+
+
+      height: 1.25rem;
+      color: #f97316;
+    }
+  }
+
+  .route-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    /* height removed for content-based sizing */
+  }
+
+  .route-stop {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+
+    &.completed {
+      background: #f9fafb;
+    }
+
+    &.current {
+      background: #fff7ed;
+    }
+
+    &.pending {
+      background: #f9fafb;
+    }
+
+    .stop-icon {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    &.completed .stop-icon {
+      background: #22c55e;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &.current .stop-icon {
+      background: #f97316;
+      position: relative;
+
+      .current-dot {
+        width: 8px;
+        height: 8px;
+        background: white;
+        border-radius: 50%;
+      }
+    }
+
+    &.pending .stop-icon {
+
+      background:  #adb0b5;
+
+      :root.dark &{
+      background: #212a36;
+      }
+
+      .empty-circle {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+      }
+    }
+
+    .stop-details {
+      flex: 1;
+    }
+
+    .stop-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    &.completed .stop-name {
+      color: #4b5563;
+    }
+    &.current .stop-name {
+      color: #989da4;
+    }
+
+    &.pending .stop-name {
+      color: #4b5563;
+    }
+
+    .stop-time {
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    &.completed .stop-time {
+      color: #4b5563;
+    }
+
+    &.current .stop-time {
+      color: #c2410c;
+    }
+
+    &.pending .stop-time {
+      color: #4b5563;
+    }
+  }
+}
+
+/* Performance Card */
+.performance-card {
+  border: 1px solid var(--card-border-performance);
+  border-radius: 1rem;
+  box-shadow: var(--card-shadow-color-performance) 0px 4px 8px;
+
+  .card-title {
+    color: rgb(31, 41, 55);
+    font-size: 18px;
+    font-family: Inter, sans-serif;
+    // margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .bus-metric-card {
+    border-radius: 0.75rem;
+    padding: 1rem;
+    text-align: center;
+
+    &.bg-green-50 {
+      background: linear-gradient(135deg, rgb(209, 250, 229) 0%, rgb(220, 252, 231) 100%);
+    }
+
+    &.bg-blue-50 {
+      background: linear-gradient(135deg, rgb(219, 234, 254) 0%, rgb(239, 246, 255) 100%);
+    }
+
+    &.bg-yellow-50 {
+      background: linear-gradient(135deg, rgb(254, 243, 199) 0%, rgb(254, 249, 195) 100%);
+    }
+
+    &.bg-purple-50 {
+      background: linear-gradient(135deg, rgb(252, 231, 243) 0%, rgb(253, 242, 248) 100%);
+    }
+
+    .metric-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 0.25rem 0;
+
+      &.text-green-600 {
+        color: rgb(6, 95, 70);
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      &.text-blue-600 {
+        color: rgb(30, 64, 175);
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      &.text-yellow-600 {
+        color: rgb(146, 64, 14);
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      &.text-purple-600 {
+        color: rgb(159, 18, 57);
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 1;
+      }
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin: 0;
+
+      &.text-green-600 {
+        color: rgb(9 10 9 / 55%);
+      }
+
+      &.text-blue-600 {
+        color: rgb(107, 114, 128);
+        font-size: 11px;
+        margin-top: 6px;
+      }
+
+      &.text-yellow-600 {
+        color: rgb(107, 114, 128);
+        font-size: 11px;
+        margin-top: 6px;
+      }
+
+      &.text-purple-600 {
+        color: rgb(107, 114, 128);
+        font-size: 11px;
+        margin-top: 6px;
+      }
+    }
+  }
+
+  .status-message {
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    .emoji {
+      font-size: 1rem;
+    }
+
+    .message {
+      color: rgb(34, 197, 94);
+      font-size: 13px;
+      font-weight: 600;
+    }
+  }
+}
+
+/* Safety Card */
+.safety-card {
+  border: 1px solid var(--card-border-safety);
+  border-radius: 1rem;
+  box-shadow: var(--card-shadow-color-safety) 0px 4px 8px;
+
+  .card-header {
+    .icon {
+      // margin-bottom: 1rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      color: #ef4444;
+    }
+  }
+
+  .alerts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .alert-item {
+    border-radius: 0.75rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    // gap: 0.5rem;
+
+    .alert-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .alert-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      .icon-text {
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+    }
+
+    .alert-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .alert-message {
+      font-size: 0.75rem;
+      margin: 0;
+      padding-left: 2.25rem;
+    }
+  }
+
+  .emergency-button {
+    width: 100%;
+    background: #ef4444;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.5);
+    color: white;
+    text-decoration: none;
+
+    .icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .text {
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+
+    &:hover {
+      background: #dc2626;
+    }
+  }
+}
+
+/* Analytics Card */
+.analytics-card {
+  border: 1px solid var(--card-border-analytics);
+  border-radius: 1rem;
+  box-shadow: var(--card-shadow-color-analytics) 0px 4px 8px;
+  height: auto;
+
+  .stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0.6rem;
+    background: var(--card-background, #f9fafb);
+    border-radius: 12px;
+    border: 1px solid var(--border-color, #e5e7eb);
+
+    :root.dark & {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary, #6b7280);
+
+      :root.dark & {
+        color: #b5bac5;
+      }
+    }
+
+    .stat-value {
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+  }
+
+  .report-button {
+    width: 100%;
+    background: #e9d5ff;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    color: #6b21a8;
+
+    :root.dark & {
+      color: #5b21b6;
+      background-color: #1d1738;
+    }
+
+    .text {
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    &:hover {
+      background: #d8b4fe;
+    }
+  }
+}
+
+/* Scrollbar styling */
+.bus-tracking-panel::-webkit-scrollbar {
+  display: none;
+}
+
+.bus-tracking-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.bus-tracking-panel::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.bus-tracking-panel::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Responsive design */
+@media (max-width: 1536px) {
+  .bus-tracking-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 1280px) {
+  .bus-tracking-grid {
+    grid-template-columns: 1fr 1fr;
+    height: auto;
+  }
+
+  .bus-tracking-panel {
+    max-height: none;
+    height: auto;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .bus-tracking-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .bus-tracking-panel {
+    max-height: none;
+    height: auto;
+    min-width: 0;
+  }
+}
+
+/* ========================================
+   DARK MODE STYLES
+   ======================================== */
+:root.dark {
+
+  /* Container */
+  .bus-tracking-container {
+    background: rgb(30 41 59 / 0%);
+    ;
+  }
+
+  /* Text Elements */
+  .bus-tracking-title {
+    color: #e2e8f0;
+  }
+
+  .bus-tracking-subtitle {
+    color: #94a3b8;
+  }
+
+  /* Cards */
+  .card {
+    background: linear-gradient(135deg, rgba(15, 17, 26, 0.9) 0%, rgba(20, 25, 40, 0.8) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .card-title {
+    color: #e2e8f0;
+  }
+
+  /* Status Badge */
+  .bt-status-badge {
+    background: rgba(30, 41, 59, 0.6);
+    border-color: rgba(91, 169, 118, 0.4);
+  }
+
+  /* Apply dark mode gradient background to all semantic cards */
+  .status-card,
+  .driver-card,
+  .support-staff-card,
+  .transport-incharge-card,
+  .location-card,
+  .route-card,
+  .performance-card,
+  .safety-card,
+  .analytics-card {
+    background: linear-gradient(135deg, rgba(15, 17, 26, 0.9) 0%, rgba(20, 25, 40, 0.8) 100%);
+    border: 1px solid !important;
+    box-shadow: 0px 4px 8px !important;
+  }
+
+  /* Specific border and shadow colors for each card type in dark mode */
+  .status-card {
+    border-color: var(--card-border-status) !important;
+    box-shadow: var(--card-shadow-color-status) 0px 4px 8px !important;
+  }
+
+  .driver-card {
+    border-color: var(--card-border-driver) !important;
+    box-shadow: var(--card-shadow-color-driver) 0px 4px 8px !important;
+  }
+
+  .support-staff-card {
+    border-color: var(--card-border-staff) !important;
+    box-shadow: var(--card-shadow-color-staff) 0px 4px 8px !important;
+  }
+
+  .transport-incharge-card {
+    border-color: var(--card-border-incharge) !important;
+    box-shadow: var(--card-shadow-color-incharge) 0px 4px 8px !important;
+  }
+
+  .location-card {
+    border-color: var(--card-border-location) !important;
+    box-shadow: var(--card-shadow-color-location) 0px 4px 8px !important;
+  }
+
+  .route-card {
+    border-color: var(--card-border-route) !important;
+    box-shadow: var(--card-shadow-color-route) 0px 4px 8px !important;
+  }
+
+  .performance-card {
+    border-color: var(--card-border-performance) !important;
+    box-shadow: var(--card-shadow-color-performance) 0px 4px 8px !important;
+  }
+
+  .safety-card {
+    border-color: var(--card-border-safety) !important;
+    box-shadow: var(--card-shadow-color-safety) 0px 4px 8px !important;
+  }
+
+  .analytics-card {
+    border-color: var(--card-border-analytics) !important;
+    box-shadow: var(--card-shadow-color-analytics) 0px 4px 8px !important;
+  }
+
+  .status-text {
+    color: #cbd5e1;
+  }
+
+  .status-time {
+    color: #94a3b8;
+  }
+
+  /* Bus Details */
+  .bus-detail-item {
+    background: rgba(30, 41, 59, 0.4);
+    border-color: rgba(255, 255, 255, 0.08);
+
+    .label {
+      color: #94a3b8;
+    }
+
+    .value {
+      color: #e2e8f0;
+    }
+  }
+
+  /* Buttons */
+  .action-button {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+    border-color: rgba(59, 130, 246, 0.3);
+
+    &:hover {
+      background: rgba(59, 130, 246, 0.3);
+    }
+  }
+
+  /* Bus Cards */
+  .bus-card {
+    background: rgba(30, 41, 59, 0.6);
+    border-color: rgba(255, 255, 255, 0.08);
+
+    &:hover {
+      background: rgba(30, 41, 59, 0.8);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    &.selected {
+      background: rgba(59, 130, 246, 0.2);
+      border-color: #60a5fa;
+    }
+  }
+
+  .bus-number {
+    color: #e2e8f0;
+  }
+
+  .bus-route {
+    color: #94a3b8;
+  }
+
+  .bus-status {
+    &.status-on-time {
+      background: rgba(34, 197, 94, 0.2);
+      color: #4ade80;
+    }
+
+    &.status-delayed {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+    }
+  }
+
+  /* Live Updates */
+  .update-item {
+    background: rgba(30, 41, 59, 0.4);
+    border-left-color: rgba(59, 130, 246, 0.6);
+
+    .update-title {
+      color: #e2e8f0;
+    }
+
+    .update-time,
+    .update-location {
+      color: #94a3b8;
+    }
+  }
+
+  /* Map Container */
+  .map-container {
+    background: rgba(30, 41, 59, 0.6);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  /* Timing Cards - Dark Mode */
+  .timing-card {
+    &.pickup {
+       background: rgba(59, 130, 246, 0.15) !important;
+
+       .timing-value {
+         color: rgb(96, 165, 250);
+       }
+    }
+
+    &.drop {
+      background: rgba(239, 68, 68, 0.15) !important;
+
+      .timing-value {
+        color: rgb(252, 165, 165);
+      }
+    }
+  }
+
+  /* Student List */
+  .student-item {
+    background: rgba(30, 41, 59, 0.4);
+
+    .student-name {
+      color: #e2e8f0;
+    }
+
+    .student-stop {
+      color: #94a3b8;
+    }
+  }
+
+
+  /* Route Stops (custom for .route-stop) */
+  .route-stop.completed {
+    background: #121c27 !important;
+
+    .stop-name,
+    .stop-time {
+      color: #94a3b8 !important;
+    }
+  }
+  .route-stop.current {
+    background: #2b2115 !important;
+  }
+  .route-stop.pending {
+    background: #121c27 !important;
+
+    .stop-name,
+    .stop-time {
+      color: #94a3b8 !important;
+    }
+  }
+
+  /* Alerts */
+  .alert-card {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+
+    .alert-title {
+      color: #fca5a5;
+    }
+
+    .alert-message {
+      color: #cbd5e1;
+    }
+  }
+
+  /* Scrollbar */
+  .bus-tracking-panel::-webkit-scrollbar-track {
+    background: rgba(30, 41, 59, 0.4);
+  }
+
+  .bus-tracking-panel::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.4);
+  }
+
+  .bus-tracking-panel::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.6);
+  }
+
+  /* Share Button */
+  .share-button {
+    background: rgba(168, 85, 247, 0.2);
+    color: #c084fc;
+
+    &:hover {
+      background: rgba(168, 85, 247, 0.3);
+    }
+  }
+
+  .bus-tracking-center {
+    height: auto;
+  }
+
+  /* ========================================
+     DARK THEME CARD COLOR VARIANTS
+     ======================================== */
+
+  /* Green Cards */
+  .bt-status-badge.bg-green-100 {
+    // background: rgba(30, 41, 59, 0.6) !important;
+    border: 1px solid rgba(91, 169, 118, 0.4) !important;
+    color: #86efac !important;
+  }
+
+  .bt-status-badge.sch-bus-status-bg-green {
+    background: linear-gradient(135deg, rgba(110, 186, 136, 0.2) 0%, rgba(110, 186, 136, 0.1) 100%);
+    border: 1px solid rgba(110, 186, 136, 0.3);
+  }
+
+  .bg-green-50 {
+    background: rgb(25, 50, 34) !important;
+    border: 1px solid rgba(91, 169, 118, 0.3) !important;
+  }
+
+  .text-green-600,
+  .text-green-700,
+  .text-green-800 {
+    color: #86efac !important;
+  }
+
+  .border-green-200,
+  .border-green-300 {
+    border-color: rgba(91, 169, 118, 0.4) !important;
+  }
+
+  /* Red Cards */
+  .bg-red-100,
+  .bg-red-50 {
+    background: rgba(60, 30, 30, 0.6) !important;
+    border: 1px solid rgba(200, 80, 80, 0.4) !important;
+  }
+
+  .text-red-600,
+  .text-red-700,
+  .text-red-800 {
+    color: #fca5a5 !important;
+  }
+
+  .border-red-200,
+  .border-red-300 {
+    border-color: rgba(200, 80, 80, 0.4) !important;
+  }
+
+  /* Blue Cards */
+  .bg-blue-100,
+  .bg-blue-50 {
+    background: rgba(30, 30, 60, 0.6) !important;
+    border: 1px solid rgba(80, 120, 200, 0.4) !important;
+  }
+
+  .text-blue-600,
+  .text-blue-700,
+  .text-blue-800 {
+    color: #93c5fd !important;
+  }
+
+  .border-blue-200,
+  .border-blue-300 {
+    border-color: rgba(80, 120, 200, 0.4) !important;
+  }
+
+  /* Yellow Cards */
+  .bg-yellow-100,
+  .bg-yellow-50 {
+    background: rgba(60, 60, 30, 0.6) !important;
+    border: 1px solid rgba(200, 200, 120, 0.4) !important;
+  }
+
+  .text-yellow-600,
+  .text-yellow-700,
+  .text-yellow-800 {
+    color: #fde047 !important;
+  }
+
+  .border-yellow-200,
+  .border-yellow-300 {
+    border-color: rgba(200, 200, 120, 0.4) !important;
+  }
+
+  /* Orange Cards */
+  .bg-orange-100,
+  .bg-orange-50 {
+    background: rgba(60, 40, 30, 0.6) !important;
+    border: 1px solid rgba(234, 138, 80, 0.4) !important;
+  }
+
+  .text-orange-600,
+  .text-orange-700,
+  .text-orange-800 {
+    color: #fdba74 !important;
+  }
+
+  .border-orange-200,
+  .border-orange-300 {
+    border-color: rgba(234, 138, 80, 0.4) !important;
+  }
+
+  /* Purple Cards */
+  .bg-purple-100,
+  .bg-purple-50 {
+    background: rgba(50, 30, 60, 0.6) !important;
+    border: 1px solid rgba(168, 85, 247, 0.4) !important;
+  }
+
+  .text-purple-600,
+  .text-purple-700,
+  .text-purple-800 {
+    color: #c4b5fd !important;
+  }
+
+  .border-purple-200,
+  .border-purple-300 {
+    border-color: rgba(168, 85, 247, 0.4) !important;
+  }
+
+  /* Gray Cards */
+  .bg-gray-100,
+  .bg-gray-50 {
+    background: rgba(30, 41, 59, 0.6) !important;
+    border: 1px solid rgba(148, 163, 184, 0.3) !important;
+  }
+
+  .text-gray-600,
+  .text-gray-700,
+  .text-gray-800 {
+    color: #cbd5e1 !important;
+  }
+
+  .text-gray-500 {
+    color: #94a3b8 !important;
+  }
+
+  .border-gray-200,
+  .border-gray-300 {
+    border-color: rgba(148, 163, 184, 0.3) !important;
+  }
+
+  /* White background cards */
+  .bg-white {
+    background: rgba(30, 41, 59, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  /* Live Tracking Info Bar */
+  .tracking-info-bar {
+    background: rgba(30, 41, 59, 0.6) !important;
+    border: 1px solid rgba(59, 130, 246, 0.3) !important;
+
+    .info-label {
+      color: #94a3b8 !important;
+    }
+
+    .info-value {
+      color: #60a5fa !important;
+
+      &.eta-highlight {
+        color: #4ade80 !important;
+      }
+    }
+  }
+
+  /* Status Message Banner */
+  .status-message-banner {
+    &.moving {
+      background: rgba(34, 197, 94, 0.2) !important;
+      color: #4ade80 !important;
+      border-color: rgba(34, 197, 94, 0.4) !important;
+    }
+
+    &.stopped {
+      background: rgba(239, 68, 68, 0.2) !important;
+      color: #fca5a5 !important;
+      border-color: rgba(239, 68, 68, 0.4) !important;
+    }
+
+    &.delayed {
+      background: rgba(251, 191, 36, 0.2) !important;
+      color: #fbbf24 !important;
+      border-color: rgba(251, 191, 36, 0.4) !important;
+    }
+  }
+
+  /* Refresh Button */
+  .refresh-button {
+    background: rgba(59, 130, 246, 0.3) !important;
+
+    &:hover {
+      background: rgba(59, 130, 246, 0.5) !important;
+    }
+  }
+}
+
+/* ========================================
+   SCH-BUS SEMANTIC CLASSES
+   Converted from Tailwind utility classes
+   ======================================== */
+
+/* Status Badge Background Colors
+   Converted from: bg-green-100, bg-blue-100, bg-yellow-100, bg-red-100, bg-gray-100 */
+.sch-bus-status-bg-green {
+  background: linear-gradient(135deg, rgba(110, 186, 136, 0.2) 0%, rgba(110, 186, 136, 0.1) 100%);
+    border: 1px solid rgba(110, 186, 136, 0.3);
+  
+}
+
+.sch-bus-status-bg-blue {
+  background-color: rgb(219, 234, 254);
+}
+
+.sch-bus-status-bg-yellow {
+  background-color: rgb(254, 249, 195);
+}
+
+.sch-bus-status-bg-red {
+  background-color: rgb(254, 226, 226);
+}
+
+.sch-bus-status-bg-gray {
+  background-color: rgb(243, 244, 246);
+}
+
+/* Status Badge Icon Colors
+   Converted from: bg-green-500, bg-blue-500, bg-yellow-500, bg-red-500, bg-gray-500 */
+.sch-bus-badge-green {
+  background: linear-gradient(135deg, rgb(110, 186, 136) 0%, rgb(91, 169, 118) 100%);
+  box-shadow: rgba(110, 186, 136, 0.4) 0px 4px 12px;
+}
+
+.sch-bus-badge-blue {
+  background: linear-gradient(135deg, rgb(96, 165, 250) 0%, rgb(59, 130, 246) 100%);
+  box-shadow: rgba(59, 130, 246, 0.4) 0px 4px 12px;
+}
+
+.sch-bus-badge-yellow {
+  background: linear-gradient(135deg, rgb(251, 191, 36) 0%, rgb(245, 158, 11) 100%);
+  box-shadow: rgba(245, 158, 11, 0.4) 0px 4px 12px;
+}
+
+.sch-bus-badge-red {
+  background: linear-gradient(135deg, rgb(248, 113, 113) 0%, rgb(239, 68, 68) 100%);
+  box-shadow: rgba(239, 68, 68, 0.4) 0px 4px 12px;
+}
+
+.sch-bus-badge-gray {
+  background: linear-gradient(135deg, rgb(156, 163, 175) 0%, rgb(107, 114, 128) 100%);
+  box-shadow: rgba(107, 114, 128, 0.4) 0px 4px 12px;
+}
+
+/* Status Label Text Colors
+   Converted from: text-green-800, text-blue-800, text-yellow-800, text-red-800, text-gray-800 */
+.sch-bus-text-green {
+  color: rgb(22, 101, 52);
+}
+
+.sch-bus-text-blue {
+  color: rgb(30, 64, 175);
+}
+
+.sch-bus-text-yellow {
+  color: rgb(146, 64, 14);
+}
+
+.sch-bus-text-red {
+  color: rgb(153, 27, 27);
+}
+
+.sch-bus-text-gray {
+  color: rgb(31, 41, 55);
+}
+
+/* Metric Card Background Colors
+   Converted from: bg-green-50, bg-blue-50, bg-yellow-50, bg-purple-50 */
+.sch-bus-metric-bg-green {
+  background: linear-gradient(135deg, rgb(209, 250, 229) 0%, rgb(220, 252, 231) 100%);
+}
+
+.sch-bus-metric-bg-blue {
+  background: linear-gradient(135deg, rgb(219, 234, 254) 0%, rgb(239, 246, 255) 100%);
+}
+
+.sch-bus-metric-bg-yellow {
+  background: linear-gradient(135deg, rgb(254, 243, 199) 0%, rgb(254, 249, 195) 100%);
+}
+
+.sch-bus-metric-bg-purple {
+  background: linear-gradient(135deg, rgb(252, 231, 243) 0%, rgb(253, 242, 248) 100%);
+}
+
+/* Metric Card Text Colors
+   Converted from: text-green-600, text-blue-600, text-yellow-600, text-purple-600 */
+.sch-bus-metric-text-green {
+  color: rgb(6, 95, 70);
+}
+
+.sch-bus-metric-text-blue {
+  color: rgb(30, 64, 175);
+}
+
+.sch-bus-metric-text-yellow {
+  color: rgb(146, 64, 14);
+}
+
+.sch-bus-metric-text-purple {
+  color: rgb(159, 18, 57);
+}
+
+/* Metric Label Text Override - Labels should be gray, not accent color */
+.metric-label.sch-bus-metric-text-green,
+.metric-label.sch-bus-metric-text-blue,
+.metric-label.sch-bus-metric-text-yellow,
+.metric-label.sch-bus-metric-text-purple {
+  color: #6b7280;
+}
+
+/* Alert Item Background Colors
+   Converted from: bg-green-50, bg-yellow-50 */
+.sch-bus-alert-bg-green {
+  background-color: rgb(240, 253, 244);
+}
+
+.sch-bus-alert-bg-yellow {
+  background-color: rgb(254, 252, 232);
+}
+
+/* Alert Title Text Colors
+   Converted from: text-green-700, text-yellow-700 */
+.sch-bus-alert-text-green {
+  color: rgb(21, 128, 61);
+}
+
+.sch-bus-alert-text-yellow {
+  color: rgb(161, 98, 7);
+}
+
+/* Alert Icon Background Colors
+   Converted from: bg-green-500, bg-yellow-500 */
+.sch-bus-alert-icon-green {
+  background-color: rgb(34, 197, 94);
+}
+
+.sch-bus-alert-icon-yellow {
+  background-color: rgb(234, 179, 8);
+}
+
+/* Stat Value Text Colors
+   Converted from: text-green-600, text-blue-600, text-orange-600, text-purple-600 */
+.sch-bus-stat-text-green {
+  color: rgb(22, 163, 74);
+}
+
+.sch-bus-stat-text-blue {
+  color: rgb(37, 99, 235);
+}
+
+.sch-bus-stat-text-orange {
+  color: rgb(234, 88, 12);
+}
+
+.sch-bus-stat-text-purple {
+  color: #f405f0;
+}
+
+/* ========================================
+   SCH-BUS DARK MODE OVERRIDES
+   ======================================== */
+:root.dark {
+  /* Status Badge Backgrounds (Dark Mode) */
+  .sch-bus-status-bg-green {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(91, 169, 118, 0.4);
+  }
+
+  .sch-bus-status-bg-blue {
+    background: rgba(30, 30, 60, 0.6);
+    border: 1px solid rgba(80, 120, 200, 0.4);
+  }
+
+  .sch-bus-status-bg-yellow {
+    background: rgba(60, 60, 30, 0.6);
+    border: 1px solid rgba(200, 200, 120, 0.4);
+  }
+
+  .sch-bus-status-bg-red {
+    background: rgba(60, 30, 30, 0.6);
+    border: 1px solid rgba(200, 80, 80, 0.4);
+  }
+
+  .sch-bus-status-bg-gray {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+  }
+
+  /* Status Label Text Colors (Dark Mode) */
+  .sch-bus-text-green {
+    color: #86efac;
+  }
+
+  .sch-bus-text-blue {
+    color: #93c5fd;
+  }
+
+  .sch-bus-text-yellow {
+    color: #fde047;
+  }
+
+  .sch-bus-text-red {
+    color: #fca5a5;
+  }
+
+  .sch-bus-text-gray {
+    color: #cbd5e1;
+  }
+
+  /* Metric Card Backgrounds (Dark Mode) */
+  .sch-bus-metric-bg-green {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.05) 100%);
+    
+    // border: 1px solid rgba(91, 169, 118, 0.3);
+  }
+
+  .sch-bus-metric-bg-blue {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.05) 100%);
+    // border: 1px solid rgba(80, 120, 200, 0.4);
+  }
+
+  .sch-bus-metric-bg-yellow {
+        background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(251, 191, 36, 0.05) 100%);
+    // border: 1px solid rgba(200, 200, 120, 0.4);
+  }
+
+  .sch-bus-metric-bg-purple {
+    background: rgba(50, 30, 60, 0.6);
+    // border: 1px solid rgba(168, 85, 247, 0.4);
+  }
+
+  /* Metric Card Text Colors (Dark Mode) */
+  .sch-bus-metric-text-green {
+    color: #86efac;
+  }
+
+  .sch-bus-metric-text-blue {
+    color: #93c5fd;
+  }
+
+  .sch-bus-metric-text-yellow {
+    color: #fde047;
+  }
+
+  .sch-bus-metric-text-purple {
+    color: #c4b5fd;
+  }
+
+  /* Metric Label Text Override (Dark Mode) - Labels should be gray */
+  .metric-label.sch-bus-metric-text-green,
+  .metric-label.sch-bus-metric-text-blue,
+  .metric-label.sch-bus-metric-text-yellow,
+  .metric-label.sch-bus-metric-text-purple {
+    color: #9ca3af;
+  }
+
+  /* Alert Item Backgrounds (Dark Mode) */
+  .sch-bus-alert-bg-green {
+    background: rgb(25, 50, 34);
+    border: 1px solid rgba(91, 169, 118, 0.3);
+  }
+
+  .sch-bus-alert-bg-yellow {
+    background: rgba(60, 60, 30, 0.6);
+    border: 1px solid rgba(200, 200, 120, 0.4);
+  }
+
+  /* Alert Title Text Colors (Dark Mode) */
+  .sch-bus-alert-text-green {
+    color: #86efac;
+  }
+
+  .sch-bus-alert-text-yellow {
+    color: #fde047;
+  }
+
+  /* Stat Value Text Colors (Dark Mode) */
+  .sch-bus-stat-text-green {
+    color: #4ade80;
+  }
+
+  .sch-bus-stat-text-blue {
+    color: #60a5fa;
+  }
+
+  .sch-bus-stat-text-orange {
+    color: #fb923c;
+  }
+
+  .sch-bus-stat-text-purple {
+    color: #fa05d5;
+  }
+}
+/* ========================================
+   RESPONSIVE BUS TRACKING
+   ======================================== */
+
+/* Tablet and below (max-width: 1023px) */
+@media (max-width: 1023px) {
+  .bus-tracking-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile and below (max-width: 768px) */
+@media (max-width: 768px) {
+  .bus-tracking-container {
+    padding: 0.5rem;
+    min-height: auto;
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  .bus-tracking-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .bus-tracking-panel,
+  .bus-tracking-center {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    flex: 1 1 100%;
+    height: auto;
+    overflow-x: hidden;
+  }
+
+  .card {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .bus-tracking-title {
+    font-size: 1.25rem;
+  }
+
+  .bus-tracking-center {
+    height: auto;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .mapview-container,
+  .leaflet-container {
+    height: 220px !important;
+    min-height: 200px !important;
+  }
+
+  .bus-tracking-header {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Small mobile (max-width: 479px) */
+@media (max-width: 479px) {
+  .bus-tracking-container {
+    padding: 0.25rem;
+    overflow-x: hidden;
+  }
+
+  .bus-tracking-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .bus-tracking-panel,
+  .bus-tracking-center {
+    width: 100%;
+    min-width: 0;
+    flex: 1 1 100%;
+  }
+
+  .card {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 0.75rem;
+  }
+
+  .mapview-container,
+  .leaflet-container {
+    height: 200px !important;
+    min-height: 180px !important;
+  }
+}
+
+/* Extra-small mobile (320px–375px) - Comprehensive optimization */
+@media (min-width: 320px) and (max-width: 374px) {
+  /* ===== CONTAINER & GRID ===== */
+  .bus-tracking-container {
+    padding: 0.15rem;
+    overflow-x: hidden;
+    background: #f9fafb;
+  }
+
+  .bus-tracking-grid {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .bus-tracking-panel,
+  .bus-tracking-center {
+    width: 100%;
+    min-width: 0;
+    gap: 0.35rem;
+  }
+
+  /* ===== HEADER ===== */
+  .bus-tracking-header {
+    margin-bottom: 0.75rem;
+    padding: 0 0.15rem;
+  }
+
+  .bus-tracking-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 0.15rem 0;
+  }
+
+  .bus-tracking-subtitle {
+    font-size: 0.7rem;
+    margin: 0;
+  }
+
+  /* ===== CARD BASE ===== */
+  .card {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+  }
+
+  .card-header {
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-left: 0.25rem;
+  }
+
+  /* ===== STATUS CARD ===== */
+  .status-card .bt-status-badge {
+    padding: 0.75rem;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+  }
+
+  .status-card .sch-bus-status-icon {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .status-card .bus-number {
+    font-size: 0.85rem;
+  }
+
+  .status-card .bus-route,
+  .status-card .next-stop {
+    font-size: 0.7rem;
+  }
+
+  /* ===== DRIVER CARD ===== */
+  .driver-card .driver-content {
+    gap: 0.75rem;
+  }
+
+  .driver-card .driver-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+  }
+
+  .driver-card .driver-name {
+    font-size: 0.95rem;
+  }
+
+  .driver-card .driver-license,
+  .driver-card .driver-experience {
+    font-size: 0.7rem;
+  }
+
+  .driver-card .verified-badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    margin-top: 0.35rem;
+  }
+
+  .driver-card .call-button {
+    padding: 0.35rem;
+    flex-shrink: 0;
+  }
+
+  /* ===== SUPPORT STAFF CARD ===== */
+  .support-staff-card .support-staff-list {
+    gap: 0.75rem;
+  }
+
+  .support-staff-card .staff-item {
+    padding-bottom: 0.75rem;
+    gap: 0.2rem;
+  }
+
+  .support-staff-card .staff-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+  }
+
+  .support-staff-card .staff-role {
+    font-size: 0.65rem;
+  }
+
+  .support-staff-card .staff-name {
+    font-size: 0.8rem;
+  }
+
+  .support-staff-card .staff-id {
+    font-size: 0.65rem;
+  }
+
+  .support-staff-card .staff-certification-badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    margin-top: 0.35rem;
+  }
+
+  /* ===== TRANSPORT INCHARGE CARD ===== */
+  .transport-incharge-card .incharge-content {
+    gap: 0.75rem;
+  }
+
+  .transport-incharge-card .incharge-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+  }
+
+  .transport-incharge-card .incharge-name {
+    font-size: 0.95rem;
+  }
+
+  .transport-incharge-card .incharge-role,
+  .transport-incharge-card .incharge-id,
+  .transport-incharge-card .incharge-experience {
+    font-size: 0.7rem;
+  }
+
+  .transport-incharge-card .availability-badge {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.5rem;
+  }
+
+  .transport-incharge-card .call-button {
+    padding: 0.35rem;
+    flex-shrink: 0;
+  }
+
+  /* ===== LOCATION CARD ===== */
+  .location-card .tracking-info-bar {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding: 0.7rem;
+  }
+
+  .location-card .info-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+  }
+
+  .location-card .info-label {
+    font-weight: 600;
+    color: #6b7280;
+  }
+
+  .location-card .info-value {
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  .location-card .status-message-banner {
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.7rem;
+    gap: 0.5rem;
+  }
+
+  .location-card .timing-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .location-card .timing-card {
+    padding: 0.7rem;
+    border-radius: 0.6rem;
+  }
+
+  .location-card .timing-header {
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .location-card .timing-header .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .location-card .timing-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .location-card .timing-desc {
+    font-size: 0.65rem;
+    margin-top: 0.3rem;
+  }
+
+  .location-card .map-container,
+  .location-card .leaflet-container {
+    height: 160px !important;
+    min-height: 140px !important;
+    border-radius: 0.6rem;
+  }
+
+  .location-card .refresh-button {
+    padding: 0.35rem;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+
+  .location-card .refresh-button .icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* ===== ROUTE CARD ===== */
+  .route-card .route-list {
+    gap: 0.6rem;
+  }
+
+  .route-card .route-stop {
+    padding: 0.6rem;
+    border-radius: 0.6rem;
+    gap: 0.6rem;
+  }
+
+  .route-card .stop-icon {
+    min-width: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .route-card .stop-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .route-card .stop-time {
+    font-size: 0.7rem;
+    flex-shrink: 0;
+  }
+
+  .route-card .card-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .route-card .card-header .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ===== PERFORMANCE CARD ===== */
+  .performance-card .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .performance-card .bus-metric-card {
+    padding: 0.7rem;
+    border-radius: 0.6rem;
+  }
+
+  .performance-card .metric-value {
+    font-size: 1.25rem;
+  }
+
+  .performance-card .metric-label {
+    font-size: 0.7rem;
+  }
+
+  .performance-card .status-message {
+    padding: 0.6rem;
+    border-radius: 0.6rem;
+    gap: 0.4rem;
+  }
+
+  .performance-card .status-message svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .performance-card .message {
+    font-size: 0.7rem;
+  }
+
+  /* ===== SAFETY CARD ===== */
+  .safety-card .alerts-list {
+    gap: 0.6rem;
+  }
+
+  .safety-card .alert-item {
+    padding: 0.7rem;
+    border-radius: 0.6rem;
+  }
+
+  .safety-card .alert-header {
+    gap: 0.6rem;
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .safety-card .alert-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+  }
+
+  .safety-card .alert-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .safety-card .alert-message {
+    font-size: 0.7rem;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .safety-card .emergency-button {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.6rem;
+    font-size: 0.8rem;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+  }
+
+  .safety-card .emergency-button .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .safety-card .card-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .safety-card .card-header .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ===== ANALYTICS CARD ===== */
+  .analytics-card {
+    height: auto;
+  }
+
+  .analytics-card .stats-list {
+    gap: 0.5rem;
+  }
+
+  .analytics-card .stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    font-size: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .analytics-card .stat-label {
+    font-size: 0.7rem;
+    color: #6b7280;
+  }
+
+  .analytics-card .stat-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .analytics-card .card-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .analytics-card .card-header .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ===== TEXT & TYPOGRAPHY ADJUSTMENTS ===== */
+  body {
+    font-size: 14px;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  /* ===== OVERFLOW PREVENTION ===== */
+  * {
+    box-sizing: border-box;
+  }
+
+  .mapview-container {
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,20 @@
+// Feature page exports
+export { default as Dashboard } from "./dashboard";
+export { default as StudentEnrollment } from "./student-enrollment";
+export { default as TeacherEnrollment } from "./teacher-enrollment";
+export { default as FeeManagement } from "./fee-management";
+export { default as Transport } from "./transport";
+export { default as Grievances } from "./grievances";
+export { default as Announcements } from "./announcements";
+export { default as Events } from "./events";
+export { default as Academic } from "./academic";
+export { default as StaffManagement } from "./staff-management";
+export { default as Policies } from "./policies";
+export { default as LeaveApprovals } from "./leave-approvals";
+export { default as MeetingScheduler } from "./meeting-scheduler";
+export { default as AlumniMentors } from "./alumni-mentors";
+export { default as ScholarshipManagement } from "./scholarship-management";
+export { default as CommunityAnnouncements } from "./community-announcements";
+export { default as RoleManagement } from "./role-management";
+export { default as Settings } from "./settings";
+export { OperationalInsights } from "./analytics";

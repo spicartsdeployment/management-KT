@@ -1,0 +1,32 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [
+      "/assets/*",
+      "/alumni-enroll.html",
+      "*.png",
+      "*.jpg",
+      "*.svg",
+      "*.ico",
+      "*.css",
+      "*.js"
+    ]
+  },
+  "routes": [
+    {
+      "route": "/alumni-enroll",
+      "rewrite": "/alumni-enroll.html"
+    }
+  ],
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/index.html",
+      "statusCode": 200
+    }
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "Content-Security-Policy": "frame-ancestors 'self'"
+  }
+}

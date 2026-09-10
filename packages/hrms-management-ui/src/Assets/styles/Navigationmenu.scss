@@ -1,0 +1,373 @@
+// src/Assets/styles/NavigationMenu.scss
+// BEM-based styles for the NavigationMenu component
+
+// ─── Animation keyframes ────────────────────────────────────────────────────
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes zoomIn90 {
+    from {
+        transform: scale(0.9);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes zoomIn95 {
+    from {
+        transform: scale(0.95);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes zoomOut95 {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(0.95);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(13rem);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-13rem);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRight {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(13rem);
+    }
+}
+
+@keyframes slideOutToLeft {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-13rem);
+    }
+}
+
+// ─── Block: nav-menu ─────────────────────────────────────────────────────────
+
+.nav-menu {
+    position: relative;
+    display: flex;
+    flex: 1;
+    max-width: max-content;
+    align-items: center;
+    justify-content: center;
+
+    // ─── Element: list ────────────────────────────────────────────────
+
+    &__list {
+        display: flex;
+        flex: 1;
+        list-style: none;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    // ─── Element: item ────────────────────────────────────────────────
+
+    &__item {
+        position: relative;
+    }
+
+    // ─── Element: trigger ─────────────────────────────────────────────
+
+    &__trigger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 2.25rem;
+        width: max-content;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        background-color: var(--background);
+        font-size: 0.875rem;
+        font-weight: 500;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        transition: color 150ms ease, box-shadow 150ms ease;
+
+        &:hover,
+        &:focus {
+            background-color: var(--accent);
+            color: var(--accent-foreground);
+        }
+
+        &:disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        &[data-state="open"] {
+            background-color: color-mix(in srgb, var(--accent) 50%, transparent);
+            color: var(--accent-foreground);
+
+            &:hover,
+            &:focus {
+                background-color: var(--accent);
+            }
+        }
+
+        &:focus-visible {
+            outline: 1px solid currentColor;
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+        }
+    }
+
+    // ─── Element: trigger-icon (chevron) ──────────────────────────────
+
+    &__trigger-icon {
+        position: relative;
+        top: 1px;
+        margin-left: 0.25rem;
+        width: 0.75rem;
+        height: 0.75rem;
+        transition: transform 300ms ease;
+
+        // Rotate when parent trigger is open
+        .nav-menu__trigger[data-state="open"] & {
+            transform: rotate(180deg);
+        }
+    }
+
+    // ─── Element: content ─────────────────────────────────────────────
+
+    &__content {
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 0.5rem;
+        padding-right: 0.625rem;
+
+        // Motion animations (from-/to- directions)
+        &[data-motion^="from-"] {
+            animation: fadeIn 200ms ease;
+        }
+
+        &[data-motion^="to-"] {
+            animation: fadeOut 200ms ease;
+        }
+
+        &[data-motion="from-end"] {
+            animation: fadeIn 200ms ease, slideInFromRight 200ms ease;
+        }
+
+        &[data-motion="from-start"] {
+            animation: fadeIn 200ms ease, slideInFromLeft 200ms ease;
+        }
+
+        &[data-motion="to-end"] {
+            animation: fadeOut 200ms ease, slideOutToRight 200ms ease;
+        }
+
+        &[data-motion="to-start"] {
+            animation: fadeOut 200ms ease, slideOutToLeft 200ms ease;
+        }
+
+        @media (min-width: 768px) {
+            position: absolute;
+            width: auto;
+        }
+
+        // When viewport is disabled: the content acts as its own popover
+        [data-viewport="false"] & {
+            background-color: var(--popover);
+            color: var(--popover-foreground);
+            top: 100%;
+            margin-top: 0.375rem;
+            overflow: hidden;
+            border-radius: 0.375rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition-duration: 200ms;
+
+            &[data-state="open"] {
+                animation: fadeIn 200ms ease, zoomIn95 200ms ease;
+            }
+
+            &[data-state="closed"] {
+                animation: fadeOut 200ms ease, zoomOut95 200ms ease;
+            }
+        }
+
+        // Remove focus ring from nested nav-menu-link slots
+        *[data-slot="navigation-menu-link"] {
+            &:focus {
+                box-shadow: none;
+                outline: none;
+            }
+        }
+    }
+
+    // ─── Element: viewport-wrapper ────────────────────────────────────
+
+    &__viewport-wrapper {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        isolation: isolate;
+        z-index: 50;
+        display: flex;
+        justify-content: center;
+    }
+
+    // ─── Element: viewport ────────────────────────────────────────────
+
+    &__viewport {
+        position: relative;
+        margin-top: 0.375rem;
+        height: var(--radix-navigation-menu-viewport-height);
+        width: 100%;
+        overflow: hidden;
+        border-radius: 0.375rem;
+        border: 1px solid var(--border);
+        background-color: var(--popover);
+        color: var(--popover-foreground);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        transform-origin: top center;
+
+        &[data-state="open"] {
+            animation: fadeIn 200ms ease, zoomIn90 200ms ease;
+        }
+
+        &[data-state="closed"] {
+            animation: fadeOut 200ms ease, zoomOut95 200ms ease;
+        }
+
+        @media (min-width: 768px) {
+            width: var(--radix-navigation-menu-viewport-width);
+        }
+    }
+
+    // ─── Element: link ────────────────────────────────────────────────
+
+    &__link {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        border-radius: 0.125rem;
+        padding: 0.5rem;
+        font-size: 0.875rem;
+        outline: none;
+        transition: background-color 150ms ease, color 150ms ease;
+
+        &:hover,
+        &:focus {
+            background-color: var(--accent);
+            color: var(--accent-foreground);
+        }
+
+        &:focus-visible {
+            outline: 1px solid currentColor;
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+        }
+
+        &[data-active="true"] {
+            background-color: color-mix(in srgb, var(--accent) 50%, transparent);
+            color: var(--accent-foreground);
+
+            &:hover,
+            &:focus {
+                background-color: var(--accent);
+            }
+        }
+
+        // SVG defaults
+        svg {
+            &:not([class*="text-"]) {
+                color: var(--muted-foreground);
+            }
+
+            &:not([class*="size-"]) {
+                width: 1rem;
+                height: 1rem;
+            }
+        }
+    }
+
+    // ─── Element: indicator ───────────────────────────────────────────
+
+    &__indicator {
+        top: 100%;
+        z-index: 1;
+        display: flex;
+        height: 0.375rem;
+        align-items: flex-end;
+        justify-content: center;
+        overflow: hidden;
+
+        &[data-state="visible"] {
+            animation: fadeIn 200ms ease;
+        }
+
+        &[data-state="hidden"] {
+            animation: fadeOut 200ms ease;
+        }
+    }
+
+    // ─── Element: indicator-arrow (the rotated square) ────────────────
+
+    &__indicator-arrow {
+        position: relative;
+        top: 60%;
+        height: 0.5rem;
+        width: 0.5rem;
+        transform: rotate(45deg);
+        border-radius: 2px 0 0 0; // rounded-tl-sm
+        background-color: var(--border);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+}

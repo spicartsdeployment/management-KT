@@ -1,0 +1,2725 @@
+﻿@import './mixins.scss';
+
+/* Overview/Dashboard Styles - Complete Restoration */
+
+/* Text Utilities */
+.sch-ov-text-center {
+  text-align: center !important;
+  margin-left: 14rem;
+}
+
+.sch-ov-dashboard-bar-footer-text {
+  width: 100%;
+  text-align: center;
+}
+
+/* Main Container */
+.sch-ov-dashboard-main-container {
+  padding: 0;
+  background: transparent;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0.5rem;
+}
+
+/* Dashboard Overview Page Specific Styles */
+.sch-ov-dashboard-overview-container {
+  padding: 1.5rem;
+  background: transparent;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Student Info Card */
+.sch-ov-dashboard-student-info-card,
+.sch-ov-student-info-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: rgb(30 41 59);
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.sch-ov-dashboard-student-avatar,
+.sch-ov-student-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+}
+
+.sch-ov-dashboard-student-details,
+.sch-ov-student-details {
+  flex: 1;
+}
+
+.sch-ov-dashboard-student-name,
+.sch-ov-student-name {
+  font-size: clamp(0.9rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+}
+
+.sch-ov-dashboard-student-meta,
+.sch-ov-student-meta {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.sch-ov-dashboard-meta-item,
+.sch-ov-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: clamp(0.75rem, 1.3vw, 0.9375rem);
+  color: #6b7280;
+}
+
+.sch-ov-dashboard-meta-icon,
+.sch-ov-meta-icon {
+  font-size: 1rem;
+}
+
+.sch-ov-dashboard-student-actions,
+.sch-ov-student-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+// .sch-ov-dashboard-action-button,
+// .sch-ov-action-button {
+//   width: 40px;
+//   height: 40px;
+//   border-radius: 50%;
+//   border: none;
+//   background: #f3f4f6;
+//   cursor: pointer;
+//   transition: all 0.2s;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+
+//   &:hover {
+//     background: #e5e7eb;
+//   }
+
+//   .sch-ov-dashboard-icon,
+//   .icon {
+//     font-size: 1.125rem;
+//   }
+// }
+
+/* Profile Header */
+.sch-ov-dashboard-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 0 1rem 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  // justify-content: space-between;
+  width: 100%;
+}
+
+.sch-ov-dashboard-profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sch-ov-dashboard-profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sch-ov-dashboard-profile-name {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.sch-ov-dashboard-profile-badges {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.sch-ov-dashboard-badge {
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.sch-ov-dashboard-badge-grade {
+  background: #fed7aa;
+  color: #9a3412;
+}
+
+.sch-ov-dashboard-badge-roll {
+  background: #99f6e4;
+  color: #115e59;
+}
+
+/* Student Action Buttons */
+.sch-ov-dashboard-student-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.sch-ov-dashboard-action-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #f3f4f6;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: #e5e7eb;
+    transform: scale(1.05);
+  }
+
+  .sch-ov-dashboard-icon {
+    font-size: 1.125rem;
+  }
+}
+
+/* Stat Cards Grid */
+.sch-ov-dashboard-stat-cards-grid,
+.sch-ov-stat-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 1023px) {
+  .sch-ov-dashboard-stat-cards-grid,
+  .sch-ov-stat-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .sch-ov-dashboard-stat-cards-grid,
+  .sch-ov-stat-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sch-ov-dashboard-stat-card,
+.sch-ov-stat-card {
+  background: rgb(30 41 59) !important;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.sch-ov-dashboard-stat-header,
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.sch-ov-dashboard-stat-icon-wrapper,
+.stat-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+
+  &.sch-ov-dashboard-attendance-icon,
+  &.attendance-icon {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    color: #1e40af;
+  }
+
+  &.sch-ov-dashboard-assignments-icon,
+  &.assignments-icon {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    color: #92400e;
+  }
+
+  &.sch-ov-dashboard-grade-icon,
+  &.grade-icon {
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    color: #065f46;
+  }
+
+  &.sch-ov-dashboard-rank-icon,
+  &.rank-icon {
+    background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+    color: #9f1239;
+  }
+
+  &.sch-ov-dashboard-hours-icon,
+  &.hours-icon {
+    background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+    color: #3730a3;
+  }
+
+  &.sch-ov-dashboard-scores-icon,
+  &.scores-icon {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    color: #991b1b;
+  }
+}
+
+.sch-ov-dashboard-stat-trend,
+.stat-trend {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+
+  &.sch-ov-dashboard-positive,
+  &.positive {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  &.sch-ov-dashboard-negative,
+  &.negative {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+}
+
+.sch-ov-dashboard-stat-content,
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sch-ov-dashboard-stat-label,
+.stat-label {
+  font-size: clamp(0.7rem, 1.2vw, 0.8125rem);
+  color: #6b7280;
+  margin: 0;
+}
+
+.sch-ov-dashboard-stat-value,
+.sch-ov-dashboard-main-container .stat-value {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.sch-ov-dashboard-stat-description,
+.stat-description {
+  font-size: clamp(0.6rem, 0.9vw, 0.75rem);
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* Top Row - Performance & Stats */
+.sch-ov-dashboard-top-row {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.sch-ov-dashboard-performance-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  min-width: 0;
+}
+
+.sch-ov-dashboard-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sch-ov-dashboard-section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.sch-ov-dashboard-chart-wrapper {
+  width: 100%;
+}
+
+/* Stats Section */
+.sch-ov-dashboard-stats-section {
+  // flex: 1;
+  width: 50%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sch-ov-dashboard-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.sch-ov-dashboard-stats-row-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.dashboard-stats-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Stat Card Specific Colors */
+.sch-ov-dashboard-stat-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  // height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: none !important;
+  border-radius: 1rem;
+  padding: 1rem;
+  position: relative;
+  
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  .sch-ov-dashboard-stat-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.25rem;
+  }
+
+  .sch-ov-dashboard-stat-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.25rem;
+  }
+
+  .sch-ov-dashboard-stat-icon {
+    font-size: 1rem;
+    color: #78ae73;
+  }
+
+  .sch-ov-dashboard-stat-subtitle {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 0.25rem;
+  }
+  
+  .sch-ov-dashboard-stat-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    position: relative;
+  }
+}
+
+/* Stat Card Trends */
+.sch-ov-dashboard-stat-trend {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+
+  &.sch-ov-dashboard-positive {
+    background: rgba(16, 185, 129, 0.2);
+    color: #065f46;
+  }
+
+  &.sch-ov-dashboard-negative {
+    background: rgba(239, 68, 68, 0.2);
+    color: #991b1b;
+  }
+}
+
+.sch-ov-dashboard-stat-description {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 0.25rem;
+}
+
+/* Stat cards in row 2 have different layout */
+.sch-ov-dashboard-stats-row-2 .sch-ov-dashboard-stat-card {
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: left;
+  
+  .sch-ov-dashboard-stat-content {
+    align-items: flex-start;
+  }
+  
+  .sch-ov-dashboard-stat-icon {
+    font-size: 2rem;
+    margin-bottom: 0;
+    align-self: flex-end;
+  }
+}
+
+/* Individual Stat Card Gradients */
+.sch-ov-dashboard-stat-card-1 {
+  background: linear-gradient(135deg, rgb(255, 180, 123) 0%, rgb(255, 145, 77) 100%) !important;
+  box-shadow: rgba(255, 145, 77, 0.3) 0px 4px 16px !important;
+}
+
+.sch-ov-dashboard-stat-card-2 {
+  background: linear-gradient(135deg, rgb(92, 225, 230) 0%, rgb(160, 231, 229) 100%) !important;
+  box-shadow: rgba(92, 225, 230, 0.25) 0px 4px 12px !important;
+}
+
+.sch-ov-dashboard-stat-card-3 {
+  background: linear-gradient(135deg, rgb(127, 232, 154) 0%, rgb(167, 243, 208) 100%) !important;
+  box-shadow: rgba(127, 232, 154, 0.25) 0px 4px 12px !important;
+}
+
+.sch-ov-dashboard-stat-card-4 {
+  background: linear-gradient(135deg, rgb(255, 166, 193) 0%, rgb(255, 212, 229) 100%) !important;
+  box-shadow: rgba(255, 166, 193, 0.25) 0px 4px 12px !important;
+}
+
+.sch-ov-dashboard-stat-card-5 {
+  background: linear-gradient(135deg, rgb(108, 145, 255) 0%, rgb(168, 192, 255) 100%) !important;
+  box-shadow: rgba(108, 145, 255, 0.25) 0px 4px 12px !important;
+}
+
+.sch-ov-dashboard-stat-card-6 {
+  background: linear-gradient(135deg, rgb(255, 216, 138) 0%, rgb(255, 232, 179) 100%) !important;
+  box-shadow: rgba(255, 216, 138, 0.25) 0px 4px 12px !important;
+}
+
+/* Alert Banner Card - Full Width */
+.dashboard-alert-banner-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.2);
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-alert-banner-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.dashboard-alert-banner-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dashboard-alert-banner-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #92400e;
+  margin: 0;
+}
+
+.dashboard-alert-banner-message {
+  font-size: 0.875rem;
+  color: #78350f;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.dashboard-alert-banner-action {
+  padding: 0.5rem 1.5rem;
+  background: #f59e0b;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+
+  &:hover {
+    background: #d97706;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(245, 158, 11, 0.3);
+  }
+}
+
+/* Alerts Column */
+.dashboard-alerts-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.sch-ov-dashboard-alerts-card {
+  background: linear-gradient(135deg, rgb(199, 125, 255) 0%, rgb(224, 170, 255) 100%) !important;
+  box-shadow: rgba(199, 125, 255, 0.25) 0px 4px 12px !important;
+  border: none !important;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 165px;
+  gap: 0.5rem;
+}
+
+.sch-ov-dashboard-alerts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0;
+}
+
+.sch-ov-dashboard-alerts-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sch-ov-dashboard-alerts-icon {
+  font-size: 1.5rem;
+  color: #fbbf24;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  padding: 0.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  margin-right: 0.5rem;
+}
+
+.sch-ov-dashboard-alerts-count {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.sch-ov-dashboard-alerts-count-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  margin-left: 0.25rem;
+}
+
+.sch-ov-dashboard-alerts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 80px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.sch-ov-dashboard-alert-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.sch-ov-dashboard-alert-dot {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sch-ov-dashboard-alert-text {
+  font-size: 0.75rem;
+  color: white;
+}
+
+/* Middle Row - Level & Subject */
+.sch-ov-dashboard-middle-row {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.sch-ov-dashboard-level-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  width: 50%;
+  min-width: 0;
+}
+
+.sch-ov-dashboard-level-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sch-ov-dashboard-pie-chart-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sch-ov-dashboard-pie-center-text {
+  position: absolute;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+
+  [data-theme="dark"] & {
+    color: #f3f4f6;
+  }
+}
+
+.sch-ov-dashboard-level-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.sch-ov-dashboard-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.sch-ov-dashboard-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.sch-ov-dashboard-legend-label {
+  font-size: 0.8125rem;
+  color: #6b7280;
+}
+
+.sch-ov-dashboard-legend-level-item {
+  cursor: pointer;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  border: 1.5px solid #e5e7eb;
+  transition: border-color 0.18s, background-color 0.18s;
+  user-select: none;
+
+  &:hover:not(.sch-ov-dashboard-legend-level-active) {
+    border-color: #d1d5db;
+    background-color: #f9fafb;
+  }
+
+  [data-theme="dark"] & {
+    border-color: #374151;
+
+    &:hover:not(.sch-ov-dashboard-legend-level-active) {
+      border-color: #4b5563;
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+}
+
+/* Subject Card */
+.sch-ov-dashboard-subject-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  width: 50%;
+  min-width: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.sch-ov-dashboard-bar-chart-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 0.75rem;
+  align-items: flex-end;
+  height: 160px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.sch-ov-dashboard-bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  width: 100%;
+}
+
+.sch-ov-dashboard-bar {
+  width: 100%;
+  min-width: 0;
+  max-width: 80px;
+  border-radius: 0.5rem 0.5rem 0 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.5rem;
+  transition: height 0.3s ease;
+}
+
+.sch-ov-dashboard-bar-value {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+}
+
+.sch-ov-dashboard-bar-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+.sch-ov-dashboard-bar-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // margin-top: 1rem;
+  // padding-top: 1rem;
+  // border-top: 1px solid #e5e7eb;
+}
+
+/* Bottom Row - Schedule & Progress */
+.sch-ov-dashboard-bottom-row {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.sch-ov-dashboard-schedule-column {
+  flex: 1;
+  width: 50%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 1rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.sch-ov-dashboard-schedule-card {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  flex: 1;
+  // margin-bottom: 1.5rem;
+}
+
+.sch-ov-dashboard-schedule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.sch-ov-dashboard-schedule-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1c1f23;
+}
+
+.sch-ov-dashboard-schedule-count {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6b7280;
+  background-color: #f3f4f6;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.sch-ov-dashboard-schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 720px;
+  overflow-y: auto;
+  padding: 1rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.sch-ov-dashboard-schedule-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0.75rem;
+  position: relative;
+  transition: all 0.2s;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  background-color: #e9f1ff;
+  // border: 1px solid #e0e7ff;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+.sch-ov-dashboard-schedule-current {
+  /* Current period card: soft neon green highlight matching screenshot */
+  background: rgba(16, 185, 129, 0.08) !important; /* subtle green wash over dark UI */
+  border: 1px solid #22c55e !important; /* crisp green rim */
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.35), /* outer ring glow */
+              0 0 16px rgba(34, 197, 94, 0.25);   /* diffuse glow */
+  border-radius: 0.875rem; /* match rounded card corners in image */
+
+  .sch-ov-dashboard-schedule-subject {
+    color: #22c55e; /* subject label picks up the green accent */
+  }
+}
+
+.sch-ov-dashboard-schedule-icon-wrapper {
+  flex-shrink: 0;
+  margin-right: 0.75rem;
+}
+
+.sch-ov-dashboard-schedule-time-box {
+  width: 56px;
+  height: 56px;
+  padding: 0.5rem;
+  background: #dbe4f8;
+  border-radius: 0.625rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  // Color variations for different time slots
+  &.sch-ov-dashboard-schedule-time-color-0 {
+    /* Slot 0 – Orange time (solid text, lighter bg) */
+    background: rgba(255, 152, 0, 0.16) !important;
+    border: 1px solid rgba(255, 152, 0, 0.28);
+    .sch-ov-dashboard-schedule-time { color: #ff9800; font-weight: 700; }
+  }
+  
+  &.sch-ov-dashboard-schedule-time-color-1 {
+    /* Slot 1 – Amber (Chemistry): text #ffc107, lighter bg */
+    background: rgba(255, 193, 7, 0.16) !important;
+    border: 1px solid rgba(255, 193, 7, 0.28);
+    .sch-ov-dashboard-schedule-time { color: #ffc107; font-weight: 700; }
+  }
+  
+  &.sch-ov-dashboard-schedule-time-color-2 {
+    /* Slot 2 – Blue (Lunch): text #60A5FA, lighter bg */
+    background: rgba(96, 165, 250, 0.16) !important;
+    border: 1px solid rgba(96, 165, 250, 0.28);
+    .sch-ov-dashboard-schedule-time { color: #60a5fa; font-weight: 700; }
+  }
+  
+  &.sch-ov-dashboard-schedule-time-color-3 {
+    /* Slot 3 – Purple (Computer): text #a855f7, lighter bg */
+    background: rgba(168, 85, 247, 0.16) !important;
+    border: 1px solid rgba(168, 85, 247, 0.28);
+    .sch-ov-dashboard-schedule-time { color: #a855f7; font-weight: 700; }
+  }
+  
+  &.sch-ov-dashboard-schedule-time-color-4 {
+    /* Slot 4 – Teal (Geography): text #14b8a6, lighter bg */
+    background: rgba(20, 184, 166, 0.16) !important;
+    border: 1px solid rgba(20, 184, 166, 0.28);
+    .sch-ov-dashboard-schedule-time { color: #14b8a6; font-weight: 700; }
+  }
+  
+  &.sch-ov-dashboard-schedule-time-color-5 {
+    /* Slot 5 – Red (History): text #ef4444, lighter bg */
+    background: rgba(239, 68, 68, 0.16) !important;
+    border: 1px solid rgba(239, 68, 68, 0.28);
+    .sch-ov-dashboard-schedule-time { color: #ef4444; font-weight: 700; }
+  }
+}
+
+.sch-ov-dashboard-schedule-time-current {
+  /* Time box inside current card: brighter green with subtle rim */
+  background: rgba(34, 197, 94, 0.18) !important;
+  border: 1px solid rgba(34, 197, 94, 0.32);
+  
+  .sch-ov-dashboard-schedule-time {
+    color: #22c55e;
+  }
+}
+
+.sch-ov-dashboard-schedule-time {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #5a6c8f;
+}
+
+.sch-ov-dashboard-schedule-break-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fef3c7;
+  border-radius: 24px;
+  font-size: 1.25rem;
+}
+
+.sch-ov-dashboard-schedule-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.sch-ov-dashboard-schedule-subject {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1c1f23;
+}
+
+.sch-ov-dashboard-schedule-subject-break {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #92400e;
+}
+
+.sch-ov-dashboard-schedule-topic {
+  font-size: 0.75rem;
+  color: #6b7280;
+  display: block;
+}
+
+.sch-ov-dashboard-schedule-duration {
+  font-size: 0.75rem;
+  color: #a16207;
+  display: block;
+}
+
+.sch-ov-dashboard-schedule-check {
+  color: #10b981;
+  font-size: 1.25rem;
+  position: absolute;
+  right: 1rem;
+}
+
+.sch-ov-dashboard-schedule-now-badge {
+  position: absolute;
+  top: 0.85rem;
+  right: 1rem;
+  padding: 0.375rem 0.75rem;
+  background: #22c55e;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 9999px;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25), 0 6px 18px rgba(34, 197, 94, 0.22);
+}
+
+/* Right Column */
+.sch-ov-dashboard-right-column {
+  flex: 1;
+  width: 50%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sch-ov-dashboard-progress-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.sch-ov-dashboard-progress-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.sch-ov-dashboard-progress-item {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  
+  .sch-ov-dashboard-progress-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .sch-ov-dashboard-progress-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+  }
+}
+
+.sch-ov-dashboard-progress-subject {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.sch-ov-dashboard-progress-value {
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+.sch-ov-dashboard-progress-bar-bg {
+  height: 0.5rem;
+  border-radius: 9999px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.sch-ov-dashboard-progress-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+/* Progress Item Colors - Mathematics */
+.sch-ov-dashboard-progress-item:nth-child(1) {
+  background-color: #fef3c7;
+  
+  .sch-ov-dashboard-progress-icon {
+    background-color: rgba(251, 191, 36, 0.2);
+  }
+  
+  .sch-ov-dashboard-progress-subject {
+    color: #92400e;
+  }
+  
+  .sch-ov-dashboard-progress-value {
+    color: #f59e0b;
+  }
+  
+  .sch-ov-dashboard-progress-bar-bg {
+    background-color: #fde68a;
+  }
+  
+  .sch-ov-dashboard-progress-bar-fill {
+    background-color: #f59e0b;
+  }
+}
+
+/* Progress Item Colors - Science */
+.sch-ov-dashboard-progress-item:nth-child(2) {
+  background-color: #dbeafe;
+  
+  .sch-ov-dashboard-progress-icon {
+    background-color: rgba(96, 165, 250, 0.2);
+  }
+  
+  .sch-ov-dashboard-progress-subject {
+    color: #1e40af;
+  }
+  
+  .sch-ov-dashboard-progress-value {
+    color: #3b82f6;
+  }
+  
+  .sch-ov-dashboard-progress-bar-bg {
+    background-color: #bfdbfe;
+  }
+  
+  .sch-ov-dashboard-progress-bar-fill {
+    background-color: #3b82f6;
+  }
+}
+
+/* Progress Item Colors - English */
+.sch-ov-dashboard-progress-item:nth-child(3) {
+  background-color: #d1fae5;
+  
+  .sch-ov-dashboard-progress-icon {
+    background-color: rgba(52, 211, 153, 0.2);
+  }
+  
+  .sch-ov-dashboard-progress-subject {
+    color: #065f46;
+  }
+  
+  .sch-ov-dashboard-progress-value {
+    color: #10b981;
+  }
+  
+  .sch-ov-dashboard-progress-bar-bg {
+    background-color: #a7f3d0;
+  }
+  
+  .sch-ov-dashboard-progress-bar-fill {
+    background-color: #10b981;
+  }
+}
+
+/* Progress Item Colors - Computer */
+.sch-ov-dashboard-progress-item:nth-child(4) {
+  background-color: #e9d5ff;
+  
+  .sch-ov-dashboard-progress-icon {
+    background-color: rgba(167, 139, 250, 0.2);
+  }
+  
+  .sch-ov-dashboard-progress-subject {
+    color: #6b21a8;
+  }
+  
+  .sch-ov-dashboard-progress-value {
+    color: #8b5cf6;
+  }
+  
+  .sch-ov-dashboard-progress-bar-bg {
+    background-color: #ddd6fe;
+  }
+  
+  .sch-ov-dashboard-progress-bar-fill {
+    background-color: #8b5cf6;
+  }
+}
+
+/* Achievements */
+.sch-ov-dashboard-achievements-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.sch-ov-dashboard-achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.sch-ov-dashboard-achievement-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  transition: transform 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Achievement Item Colors - First Achievement */
+.sch-ov-dashboard-achievement-item:nth-child(1) {
+  background-color: #e0e7ff;
+  
+  .sch-ov-dashboard-achievement-icon {
+    color: #6366f1;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sch-ov-dashboard-achievement-title {
+    color: #4338ca;
+  }
+}
+
+/* Achievement Item Colors - Second Achievement */
+.sch-ov-dashboard-achievement-item:nth-child(2) {
+  background-color: #dbeafe;
+  
+  .sch-ov-dashboard-achievement-icon {
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sch-ov-dashboard-achievement-title {
+    color: #1e40af;
+  }
+}
+
+/* Achievement Item Colors - Third Achievement */
+.sch-ov-dashboard-achievement-item:nth-child(3) {
+  background-color: #fce7f3;
+  
+  .sch-ov-dashboard-achievement-icon {
+    color: #ec4899;
+    background: rgba(236, 72, 153, 0.1);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sch-ov-dashboard-achievement-title {
+    color: #9f1239;
+  }
+}
+
+/* Achievement Item Colors - Fourth Achievement */
+.sch-ov-dashboard-achievement-item:nth-child(4) {
+  background-color: #d1fae5;
+  
+  .sch-ov-dashboard-achievement-icon {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sch-ov-dashboard-achievement-title {
+    color: #065f46;
+  }
+}
+
+.sch-ov-dashboard-achievement-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.sch-ov-dashboard-achievement-content {
+  flex: 1;
+}
+
+.sch-ov-dashboard-achievement-title {
+  font-size: 1rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.125rem;
+}
+
+.sch-ov-dashboard-achievement-desc {
+  font-size: 0.75rem;
+  color: #6b7280;
+  display: block;
+}
+
+/* Dark Theme */
+:root.dark {
+  .sch-ov-dashboard-schedule-title {
+    color: #ffffff !important;
+  }
+
+  .sch-ov-dashboard-main-container,
+  .sch-ov-dashboard-overview-container {
+    background: transparent;
+  }
+
+  .sch-ov-dashboard-profile-header{
+    background: none;
+  }
+  .sch-ov-dashboard-performance-card,
+  .sch-ov-dashboard-level-card,
+  .sch-ov-dashboard-subject-card,
+  .sch-ov-student-info-card,
+  .sch-ov-stat-card {
+    background: #1e293b;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+ 
+
+  .sch-ov-dashboard-schedule-card,
+  .sch-ov-dashboard-progress-card, 
+  .sch-ov-dashboard-achievements-card
+   {
+    transition: background 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+    background: #0d1428f2 !important;
+      border: 1px solid #11819c !important;
+
+    &:hover {
+      // background: rgba(64, 161, 184, 0.05) !important;
+      border: 1px solid #11819c !important;
+      // box-shadow: 0 0 0 1px rgba(64, 161, 184, 0.2), 0 0 12px rgba(64, 161, 184, 0.15);
+      box-shadow: 0 0 0 1px rgba(64, 161, 184, 0.35), 0 0 16px rgba(64, 161, 184, 0.35);
+    }
+  }
+
+  .sch-ov-dashboard-progress-card {
+    // background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 24px rgba(2, 6, 23, 0.45);
+    transition: box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease, border 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      // background: rgba(64, 161, 184, 0.05) !important;
+      border: 1px solid #40a1b8 !important;
+      // box-shadow: 0 0 0 1px rgba(64, 161, 184, 0.2), 0 0 12px rgba(64, 161, 184, 0.15), 0 12px 32px rgba(2, 6, 23, 0.6);
+      box-shadow: 0 0 0 1px rgba(64, 161, 184, 0.35), 0 0 16px rgba(64, 161, 184, 0.35);
+    }
+  }
+
+  .sch-ov-dashboard-achievements-card {
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 24px rgba(2, 6, 23, 0.45);
+    transition: box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease, border 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      // background: rgba(64, 161, 184, 0.05) !important;
+      border: 1px solid #40a1b8 !important;
+      box-shadow: 0 0 0 1px rgba(64, 161, 184, 0.2), 0 0 12px rgba(64, 161, 184, 0.15), 0 12px 32px rgba(2, 6, 23, 0.6);
+      box-shadow: 0 0 0 1px rgba(64, 161, 184, 0.35), 0 0 16px rgba(64, 161, 184, 0.35);
+    }
+  }
+
+  .sch-ov-dashboard-schedule-column {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 24px rgba(2, 6, 23, 0.45);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(2, 6, 23, 0.6);
+    }
+  }
+
+  .sch-ov-dashboard-progress-item {
+    /* Unified dark-mode bg to match schedule break cards */
+    background: rgba(2, 6, 23, 0.35) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3),
+    &:nth-child(4) {
+      .sch-ov-dashboard-progress-subject {
+        color: #e2e8f0 !important;
+      }
+    }
+    
+    &:nth-child(1) .sch-ov-dashboard-progress-value {
+      color: #f59e0b !important;
+    }
+    
+    &:nth-child(2) .sch-ov-dashboard-progress-value {
+      color: #3b82f6 !important;
+    }
+    
+    &:nth-child(3) .sch-ov-dashboard-progress-value {
+      color: #10b981 !important;
+    }
+    
+    &:nth-child(4) .sch-ov-dashboard-progress-value {
+      color: #8b5cf6 !important;
+    }
+  }
+
+  .sch-ov-dashboard-achievement-item {
+    /* Unified dark-mode bg to match schedule break cards */
+    background: rgba(2, 6, 23, 0.35) !important;
+    // border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3) {
+      .sch-ov-dashboard-achievement-title {
+        color: #e2e8f0;
+      }
+    }
+  }
+  .sch-ov-dashboard-profile-name,
+  .sch-ov-dashboard-section-title {
+    color: #e2e8f0;
+  }
+  
+  .sch-ov-dashboard-pie-center-text {
+    color: white;
+  }
+  
+  .sch-ov-dashboard-schedule-subject {
+    color: #a5b2c4;
+  }
+  
+  .sch-ov-dashboard-stat-card {
+    &:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+    }
+  }
+  
+  .sch-ov-dashboard-alerts-card {
+    box-shadow: rgba(199, 125, 255, 0.4) 0px 4px 16px !important;
+  }
+
+  .sch-ov-dashboard-schedule-count,
+  .sch-ov-dashboard-schedule-topic,
+  .sch-ov-dashboard-bar-label,
+  .sch-ov-dashboard-legend-label,
+  .sch-ov-dashboard-bar-footer-text,
+  .sch-ov-meta-item,
+  .stat-label,
+  .stat-description {
+    color: #9ca3af;
+  }
+
+  .sch-ov-dashboard-schedule-count {
+    color: #54d2ef !important;
+    background-color: #0a131f;
+  }
+
+  .sch-ov-dashboard-achievement-desc {
+    color: #94a3b8;
+  }
+
+
+  .sch-ov-dashboard-progress-subject,
+  .sch-ov-dashboard-achievement-title,
+  .sch-ov-dashboard-profile-name,
+  .sch-ov-dashboard-section-title
+   {
+    color: #e2e8f0;
+  }
+
+  .sch-ov-dashboard-progress-value {
+    color: #f1f5f9;
+  }
+
+  .sch-ov-dashboard-schedule-item {
+    /* Match break card background for all items in dark mode */
+    background: rgba(2, 6, 23, 0.35);
+  }
+
+  // .sch-ov-dashboard-schedule-current {
+  //   background: rgba(59, 130, 246, 0.2);
+  // }
+
+  .sch-ov-dashboard-schedule-break {
+    background: rgba(2, 6, 23, 0.35);
+  }
+
+  .sch-ov-dashboard-schedule-time-box {
+    background: rgba(75, 85, 99, 0.6);
+    color: #e5e7eb;
+  }
+
+  .sch-ov-dashboard-bar-footer {
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .sch-ov-action-button {
+    background: rgba(55, 65, 81, 0.6);
+    color: #e5e7eb;
+
+    &:hover {
+      background: rgba(75, 85, 99, 0.8);
+    }
+  }
+  
+  .sch-ov-dashboard-action-button {
+    background: rgba(55, 65, 81, 0.6);
+    color: #e5e7eb;
+
+    &:hover {
+      background: rgba(75, 85, 99, 0.8);
+    }
+  }
+  
+  .dashboard-alert-banner-card {
+    background: linear-gradient(135deg, rgba(254, 243, 199, 0.15) 0%, rgba(253, 230, 138, 0.15) 100%);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+  }
+  
+  .dashboard-alert-banner-title {
+    color: #fbbf24;
+  }
+  
+  .dashboard-alert-banner-message {
+    color: #fde68a;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1280px) {
+  .sch-ov-dashboard-top-row,
+  .sch-ov-dashboard-middle-row,
+  .sch-ov-dashboard-bottom-row {
+    flex-direction: column;
+  }
+
+  .sch-ov-dashboard-performance-card,
+  .sch-ov-dashboard-stats-section,
+  .sch-ov-dashboard-level-card,
+  .sch-ov-dashboard-subject-card,
+  .sch-ov-dashboard-schedule-column,
+  .sch-ov-dashboard-right-column {
+    width: 100%;
+    flex: none;
+  }
+
+  .sch-ov-dashboard-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1023px) {
+  .sch-ov-stat-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  // .sch-ov-dashboard-progress-grid {
+  //   grid-template-columns: 1fr;
+  // }
+}
+
+@media (max-width: 640px) {
+  .sch-ov-dashboard-stats-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .sch-ov-dashboard-stats-row-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .sch-ov-stat-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sch-ov-student-info-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .sch-ov-student-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* ========================================
+   RESPONSIVE OVERVIEW / DASHBOARD
+   ======================================== */
+
+/* Large screens (< 1440px) */
+@media (max-width: 1439px) {
+  .sch-ov-dashboard-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet landscape (< 1280px) */
+@media (max-width: 1279px) {
+  .sch-ov-dashboard-top-row {
+    flex-wrap: wrap;
+  }
+
+  .sch-ov-dashboard-performance-card,
+  .sch-ov-dashboard-stats-section {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .sch-ov-dashboard-stats-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Tablet (< 1024px) */
+@media (max-width: 1023px) {
+  .sch-ov-dashboard-stat-cards-grid,
+  .sch-ov-stat-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sch-ov-dashboard-profile-name {
+    font-size: 1.5rem;
+  }
+}
+
+/* Tablet portrait (< 768px) */
+@media (max-width: 768px) {
+  .sch-ov-dashboard-main-container,
+  .sch-ov-dashboard-overview-container {
+    padding: 0.25rem;
+    gap: 1rem;
+  }
+
+  .sch-ov-dashboard-top-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sch-ov-dashboard-performance-card,
+  .sch-ov-dashboard-stats-section {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .sch-ov-dashboard-stat-cards-grid,
+  .sch-ov-stat-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .sch-ov-dashboard-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .sch-ov-dashboard-stats-row-2 {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .sch-ov-dashboard-profile-header {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .sch-ov-dashboard-profile-name {
+    font-size: 1.25rem;
+  }
+
+  .sch-ov-dashboard-student-info-card,
+  .sch-ov-student-info-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .sch-ov-dashboard-student-meta,
+  .sch-ov-student-meta {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .sch-ov-dashboard-student-actions,
+  .sch-ov-student-actions {
+    margin-left: 0;
+  }
+}
+
+/* Mobile (< 640px) */
+@media (max-width: 639px) {
+  .sch-ov-dashboard-stat-cards-grid,
+  .sch-ov-stat-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sch-ov-dashboard-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sch-ov-dashboard-profile-badges {
+    flex-wrap: wrap;
+  }
+
+  .sch-ov-text-center {
+    margin-left: 0;
+  }
+}
+
+/* Very small screens (< 480px) */
+@media (max-width: 479px) {
+  .sch-ov-dashboard-main-container,
+  .sch-ov-dashboard-overview-container {
+    padding: 0.125rem;
+    gap: 0.75rem;
+  }
+
+  .sch-ov-dashboard-profile-avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .sch-ov-dashboard-profile-name {
+    font-size: 1.125rem;
+  }
+}
+
+/* ========================================
+   RESPONSIVE OVERVIEW / DASHBOARD
+   ======================================== */
+
+/* Large screens (< 1440px) */
+@media (max-width: 1439px) {
+  .sch-ov-dashboard-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet landscape (< 1280px) */
+@media (max-width: 1279px) {
+  .sch-ov-dashboard-top-row {
+    flex-wrap: wrap;
+  }
+
+  .sch-ov-dashboard-performance-card,
+  .sch-ov-dashboard-stats-section {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .sch-ov-dashboard-stats-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Tablet (< 1024px) */
+@media (max-width: 1023px) {
+  .sch-ov-dashboard-stat-cards-grid,
+  .sch-ov-stat-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sch-ov-dashboard-profile-name {
+    font-size: 1.5rem;
+  }
+}
+
+/* Tablet portrait (< 768px) */
+@media (max-width: 768px) {
+  .sch-ov-dashboard-main-container,
+  .sch-ov-dashboard-overview-container {
+    padding: 0.25rem;
+    gap: 1rem;
+  }
+
+  .sch-ov-dashboard-top-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sch-ov-dashboard-performance-card,
+  .sch-ov-dashboard-stats-section {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .sch-ov-dashboard-stat-cards-grid,
+  .sch-ov-stat-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .sch-ov-dashboard-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .sch-ov-dashboard-stats-row-2 {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .sch-ov-dashboard-profile-header {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .sch-ov-dashboard-profile-name {
+    font-size: 1.25rem;
+  }
+
+  .sch-ov-dashboard-student-info-card,
+  .sch-ov-student-info-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .sch-ov-dashboard-student-meta,
+  .sch-ov-student-meta {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .sch-ov-dashboard-student-actions,
+  .sch-ov-student-actions {
+    margin-left: 0;
+  }
+}
+
+/* Mobile (< 640px) */
+@media (max-width: 639px) {
+  .sch-ov-dashboard-stat-cards-grid,
+  .sch-ov-stat-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sch-ov-dashboard-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sch-ov-dashboard-profile-badges {
+    flex-wrap: wrap;
+  }
+
+  .sch-ov-text-center {
+    margin-left: 0;
+  }
+}
+
+/* Very small screens (< 480px) */
+@media (max-width: 479px) {
+  .sch-ov-dashboard-main-container,
+  .sch-ov-dashboard-overview-container {
+    padding: 0.125rem;
+    gap: 0.75rem;
+  }
+
+  .sch-ov-dashboard-profile-avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .sch-ov-dashboard-profile-name {
+    font-size: 1.125rem;
+  }
+}
+
+/* ================================================
+   STUDENT OVERVIEW - MOBILE PROFILE FIX (360-480)
+   ================================================ */
+
+/* < 480px: keep profile image + name side-by-side, prevent overflow */
+@media (max-width: 479px) {
+  .sch-ov-dashboard-main-container,
+  .sch-ov-dashboard-overview-container {
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  /* Force horizontal layout � override the flex-wrap:wrap from < 768px */
+  .sch-ov-dashboard-profile-header {
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Avatar: fixed size, never shrinks */
+  .sch-ov-dashboard-profile-avatar {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+  }
+
+  /* Info section: allow it to shrink and truncate */
+  .sch-ov-dashboard-profile-info {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .sch-ov-dashboard-profile-name {
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sch-ov-dashboard-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  /* Ensure grids don't overflow */
+  .sch-ov-dashboard-stat-cards-grid,
+  .sch-ov-stat-cards-grid {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* < 360px: even more compact */
+@media (max-width: 359px) {
+  .sch-ov-dashboard-profile-avatar {
+    width: 44px;
+    height: 44px;
+  }
+
+  .sch-ov-dashboard-profile-name {
+    font-size: 0.875rem;
+  }
+}
+
+
+/* ================================================
+   STUDENT OVERVIEW BAR CHART - RESPONSIVE
+   ================================================ */
+
+/* Tablet (< 768px) */
+@media (max-width: 768px) {
+  .sch-ov-dashboard-bar-chart-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 0.5rem;
+    height: 140px;
+  }
+
+  .sch-ov-dashboard-bar {
+    max-width: 70px;
+  }
+
+  .sch-ov-dashboard-bar-value {
+    font-size: 0.7rem;
+  }
+
+  .sch-ov-dashboard-bar-label {
+    font-size: 0.7rem;
+  }
+
+  .sch-ov-dashboard-subject-card {
+    padding: 1rem;
+  }
+}
+
+/* Mobile (< 480px) */
+@media (max-width: 479px) {
+  .sch-ov-dashboard-bar-chart-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 0.375rem;
+    height: 120px;
+  }
+
+  .sch-ov-dashboard-bar-item {
+    gap: 0.375rem;
+  }
+
+  .sch-ov-dashboard-progress-grid {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+  }
+  .sch-ov-dashboard-bar {
+    max-width: 60px;
+  }
+
+  .sch-ov-dashboard-bar-value {
+    font-size: 0.65rem;
+  }
+
+  .sch-ov-dashboard-bar-label {
+    font-size: 0.65rem;
+    word-break: break-word;
+  }
+
+  .sch-ov-dashboard-subject-card {
+    padding: 0.75rem;
+    width: 100%;
+  }
+}
+
+/* Very small (< 360px) */
+@media (max-width: 359px) {
+  .sch-ov-dashboard-bar-chart-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+    gap: 0.25rem;
+    height: 115px;
+  }
+
+  .sch-ov-dashboard-bar {
+    max-width: 50px;
+  }
+}
+
+/* ================================================
+   EXTRA SMALL SCREENS (320px - 375px)
+   Comprehensive optimization for edge devices
+   ================================================ */
+
+@media (min-width: 320px) and (max-width: 374px) {
+  /* Main Container - Minimal padding, prevent overflow */
+  .sch-ov-dashboard-main-container,
+  .sch-ov-dashboard-overview-container {
+    padding: 0.15rem;
+    gap: 0.5rem;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  /* Profile Header - Compact layout */
+  .sch-ov-dashboard-profile-header {
+    flex-wrap: nowrap;
+    gap: 0.35rem;
+    padding: 0 0.15rem 0.5rem 0.15rem;
+    align-items: center;
+  }
+
+  .sch-ov-dashboard-profile-avatar {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-width: 2px;
+  }
+
+  .sch-ov-dashboard-profile-info {
+    min-width: 0;
+    overflow: hidden;
+    gap: 0.25rem;
+  }
+
+  .sch-ov-dashboard-profile-name {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+
+  .sch-ov-dashboard-profile-badges {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .sch-ov-dashboard-badge {
+    font-size: 0.625rem;
+    padding: 0.2rem 0.35rem;
+    border-radius: 9999px;
+  }
+
+  .sch-ov-dashboard-student-actions,
+  .sch-ov-student-actions {
+    margin-left: 0;
+    gap: 0.35rem;
+  }
+
+  .sch-ov-dashboard-action-button {
+    width: 32px;
+    height: 32px;
+    font-size: 0.875rem;
+  }
+
+  /* Stat Cards Grid - Single column */
+  .sch-ov-dashboard-stat-cards-grid,
+  .sch-ov-stat-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    max-width: 100%;
+  }
+
+  .sch-ov-dashboard-stat-card {
+    padding: 0.5rem;
+    min-height: 70px;
+    border-radius: 0.75rem;
+  }
+
+  .sch-ov-dashboard-stat-label {
+    font-size: 0.65rem;
+    margin-bottom: 0.125rem;
+  }
+
+  .sch-ov-dashboard-stat-value {
+    font-size: 1.125rem;
+    margin-bottom: 0.125rem;
+  }
+
+  .sch-ov-dashboard-stat-subtitle {
+    font-size: 0.65rem;
+    margin-top: 0.125rem;
+  }
+
+  .sch-ov-dashboard-stat-icon {
+    font-size: 0.875rem;
+  }
+
+  .sch-ov-dashboard-stat-trend {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.35rem;
+    top: 0.35rem;
+    right: 0.35rem;
+  }
+
+  /* Row layouts - Stack vertically */
+  .sch-ov-dashboard-top-row,
+  .sch-ov-dashboard-middle-row,
+  .sch-ov-dashboard-bottom-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .sch-ov-dashboard-performance-card,
+  .sch-ov-dashboard-stats-section,
+  .sch-ov-dashboard-level-card,
+  .sch-ov-dashboard-subject-card,
+  .sch-ov-dashboard-schedule-column,
+  .sch-ov-dashboard-right-column {
+    width: 100%;
+    // padding: 0.5rem;
+    gap: 0.35rem;
+  }
+
+  /* Card Content */
+  .sch-ov-dashboard-card-content {
+    gap: 0.35rem;
+  }
+
+  /* Section Title */
+  .sch-ov-dashboard-section-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Stats Row Grid */
+  .sch-ov-dashboard-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.35rem;
+  }
+
+  .sch-ov-dashboard-stats-row-2 {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  /* Chart Wrapper - Reduced height */
+  .sch-ov-dashboard-chart-wrapper {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .sch-ov-dashboard-pie-chart-wrapper {
+    max-height: 150px;
+  }
+
+  .sch-ov-dashboard-pie-center-text {
+    font-size: 1.125rem;
+  }
+
+  /* Level Legend */
+  .sch-ov-dashboard-level-legend {
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .sch-ov-dashboard-legend-item {
+    gap: 0.25rem;
+  }
+
+  .sch-ov-dashboard-legend-label {
+    font-size: 0.7rem;
+  }
+
+  .sch-ov-dashboard-legend-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .sch-ov-dashboard-legend-level-item {
+    padding: 0.15rem 0.35rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+  }
+
+  /* Bar Chart - Reduced height and min width */
+  .sch-ov-dashboard-bar-chart-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 0.25rem;
+    height: 110px;
+  }
+
+  .sch-ov-dashboard-bar-item {
+    gap: 0.25rem;
+  }
+
+  .sch-ov-dashboard-bar {
+    max-width: 50px;
+    border-radius: 0.375rem 0.375rem 0 0;
+  }
+
+  .sch-ov-dashboard-bar-value {
+    font-size: 0.6rem;
+    padding-top: 0.25rem;
+  }
+
+  .sch-ov-dashboard-bar-label {
+    font-size: 0.6rem;
+    word-break: break-word;
+  }
+
+  .sch-ov-dashboard-bar-footer {
+    padding: 0.5rem 0 0 0;
+  }
+
+  .sch-ov-dashboard-bar-footer-text {
+    font-size: 0.7rem;
+  }
+
+  /* Alert Banner */
+  .dashboard-alert-banner-card {
+    padding: 0.65rem;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .dashboard-alert-banner-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+
+  .dashboard-alert-banner-title {
+    font-size: 0.875rem;
+    margin-bottom: 0;
+  }
+
+  .dashboard-alert-banner-message {
+    font-size: 0.75rem;
+    display: none;
+  }
+
+  .dashboard-alert-banner-action {
+    padding: 0.35rem 1rem;
+    font-size: 0.75rem;
+    order: 3;
+    width: 100%;
+  }
+
+  /* Alerts Card */
+  .sch-ov-dashboard-alerts-card {
+    padding: 0.65rem;
+    min-height: 140px;
+    gap: 0.35rem;
+  }
+
+  .sch-ov-dashboard-alerts-title {
+    font-size: 1rem;
+  }
+
+  .sch-ov-dashboard-alerts-count {
+    font-size: 1.25rem;
+  }
+
+  .sch-ov-dashboard-alerts-count-label {
+    font-size: 0.65rem;
+  }
+
+  .sch-ov-dashboard-alerts-icon {
+    font-size: 1.25rem;
+    padding: 0.35rem;
+    margin-right: 0.25rem;
+  }
+
+  .sch-ov-dashboard-alerts-list {
+    gap: 0.35rem;
+    max-height: 65px;
+  }
+
+  .sch-ov-dashboard-alert-item {
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .sch-ov-dashboard-alert-dot {
+    width: 0.65rem;
+    height: 0.65rem;
+  }
+
+  .sch-ov-dashboard-alert-text {
+    font-size: 0.65rem;
+  }
+
+  /* Schedule Column */
+  .sch-ov-dashboard-schedule-column {
+    border-radius: 0.75rem;
+    // padding: 0.5rem;
+  }
+
+  .sch-ov-dashboard-schedule-card {
+    padding: 0.5rem;
+    border-radius: 0.65rem;
+  }
+
+  .sch-ov-dashboard-schedule-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .sch-ov-dashboard-schedule-title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+  }
+
+  .sch-ov-dashboard-schedule-count {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+  }
+
+  .sch-ov-dashboard-schedule-list {
+    gap: 0.5rem;
+    max-height: 500px;
+    padding: 0.5rem;
+  }
+
+  .sch-ov-dashboard-schedule-item {
+    gap: 0.5rem;
+    padding: 0.5rem 0.65rem;
+    border-radius: 0.65rem;
+  }
+
+  .sch-ov-dashboard-schedule-icon-wrapper {
+    margin-right: 0.35rem;
+  }
+
+  .sch-ov-dashboard-schedule-time-box {
+    width: 48px;
+    height: 48px;
+    padding: 0.35rem;
+    border-radius: 0.5rem;
+  }
+
+  .sch-ov-dashboard-schedule-time {
+    font-size: 0.75rem;
+  }
+
+  .sch-ov-dashboard-schedule-break-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  .sch-ov-dashboard-schedule-details {
+    gap: 0.1rem;
+  }
+
+  .sch-ov-dashboard-schedule-subject,
+  .sch-ov-dashboard-schedule-subject-break {
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  .sch-ov-dashboard-schedule-topic {
+    font-size: 0.7rem;
+  }
+
+  .sch-ov-dashboard-schedule-duration {
+    font-size: 0.7rem;
+  }
+
+  .sch-ov-dashboard-schedule-check {
+    font-size: 1rem;
+    right: 0.5rem;
+  }
+
+  .sch-ov-dashboard-schedule-now-badge {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.65rem;
+  }
+
+  /* Progress Card */
+  .sch-ov-dashboard-progress-card {
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+  }
+
+  .sch-ov-dashboard-progress-grid {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+  }
+
+  .sch-ov-dashboard-progress-item {
+    padding: 0.65rem;
+    gap: 0.35rem;
+    border-radius: 0.65rem;
+  }
+
+  .sch-ov-dashboard-progress-header {
+    gap: 0.5rem;
+  }
+
+  .sch-ov-dashboard-progress-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.25rem;
+  }
+
+  .sch-ov-dashboard-progress-subject {
+    font-size: 0.8125rem;
+  }
+
+  .sch-ov-dashboard-progress-value {
+    font-size: 0.65rem;
+  }
+
+  .sch-ov-dashboard-progress-bar-bg {
+    height: 0.375rem;
+  }
+
+  /* Achievements Card */
+  .sch-ov-dashboard-achievements-card {
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+  }
+
+  .sch-ov-dashboard-achievements-list {
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+  }
+
+  .sch-ov-dashboard-achievement-item {
+    gap: 0.5rem;
+    padding: 0.65rem;
+    border-radius: 0.65rem;
+  }
+
+  .sch-ov-dashboard-achievement-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+
+  .sch-ov-dashboard-achievement-title {
+    font-size: 0.875rem;
+    margin-bottom: 0;
+  }
+
+  .sch-ov-dashboard-achievement-desc {
+    font-size: 0.7rem;
+  }
+
+  /* Student Info Card */
+  .sch-ov-dashboard-student-info-card,
+  .sch-ov-student-info-card {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.65rem;
+    border-radius: 0.75rem;
+  }
+
+  .sch-ov-dashboard-student-avatar,
+  .sch-ov-student-avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 1.75rem;
+  }
+
+  .sch-ov-dashboard-student-details,
+  .sch-ov-student-details {
+    gap: 0.35rem;
+  }
+
+  .sch-ov-dashboard-student-name,
+  .sch-ov-student-name {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .sch-ov-dashboard-student-meta,
+  .sch-ov-student-meta {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .sch-ov-dashboard-meta-item,
+  .sch-ov-meta-item {
+    font-size: 0.7rem;
+    gap: 0.25rem;
+  }
+
+  .sch-ov-dashboard-meta-icon,
+  .sch-ov-meta-icon {
+    font-size: 0.875rem;
+  }
+}
+
+/* Dark Mode - 320px-375px */
+:root.dark {
+  @media (min-width: 320px) and (max-width: 374px) {
+    .sch-ov-dashboard-main-container,
+    .sch-ov-dashboard-overview-container {
+      background: transparent;
+    }
+
+    .sch-ov-dashboard-schedule-card,
+    .sch-ov-dashboard-progress-card,
+    .sch-ov-dashboard-achievements-card {
+      background: #0d1428f2 !important;
+      border: 1px solid #11819c !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .sch-ov-dashboard-performance-card,
+    .sch-ov-dashboard-level-card,
+    .sch-ov-dashboard-subject-card {
+      background: #1e293b;
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .sch-ov-dashboard-profile-name,
+    .sch-ov-dashboard-section-title {
+      color: #e2e8f0;
+    }
+
+    .sch-ov-dashboard-schedule-subject {
+      color: #a5b2c4;
+    }
+
+    .sch-ov-dashboard-schedule-count {
+      background-color: #0a131f;
+      color: #54d2ef;
+    }
+
+    .sch-ov-dashboard-achievement-title {
+      color: #e2e8f0;
+    }
+
+    .sch-ov-dashboard-progress-subject {
+      color: #e2e8f0 !important;
+    }
+
+    .sch-ov-dashboard-schedule-item {
+      background: rgba(2, 6, 23, 0.35);
+    }
+
+    .sch-ov-dashboard-achievement-item {
+      background: rgba(2, 6, 23, 0.35) !important;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    }
+
+    .sch-ov-dashboard-progress-item {
+      background: rgba(2, 6, 23, 0.35) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    }
+
+    .sch-ov-dashboard-action-button {
+      background: rgba(55, 65, 81, 0.6);
+      color: #e5e7eb;
+
+      &:hover {
+        background: rgba(75, 85, 99, 0.8);
+      }
+    }
+
+    .dashboard-alert-banner-card {
+      background: linear-gradient(135deg, rgba(254, 243, 199, 0.15) 0%, rgba(253, 230, 138, 0.15) 100%);
+      border: 1px solid rgba(251, 191, 36, 0.2);
+    }
+
+    .dashboard-alert-banner-title {
+      color: #fbbf24;
+    }
+
+    .dashboard-alert-banner-message {
+      color: #fde68a;
+    }
+  }
+}

@@ -1,0 +1,246 @@
+/* Communication Chat Layout - Complete Layout Styles */
+/* This CSS handles the core two-column chat layout */
+
+/* ========================================
+   MAIN CHAT CONTAINER LAYOUT
+   ======================================== */
+
+/* Chat Container - Main wrapper for two-column layout */
+.chat-container {
+  display: flex;
+  height: 100%;
+  background: transparent;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* ========================================
+   PANEL STYLING - Two Column Layout
+   ======================================== */
+
+/* Panel styling - aligned to 85vh height matching sidebar */
+.communication-left-panel,
+.communication-right-panel {
+  height: 85vh;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.communication-left-panel {
+  flex: 1;
+  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.communication-right-panel {
+  width: 30%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Comm Panel Classes (used in ChatContainer.jsx) */
+.comm-left-panel {
+  flex: 1;
+  max-width: 70%;
+  height: 85vh;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.comm-right-panel {
+  width: 30%;
+  flex-shrink: 0;
+  height: 85vh;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+/* Chat Panel (LeftPanel.jsx) */
+.comm-chat-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+/* Contacts Panel (RightPanel.jsx) */
+.comm-contacts-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+/* ========================================
+   SCROLLBAR HIDING
+   ======================================== */
+
+/* Chat list scrollbar hiding - Chrome, Safari, Edge */
+.chat-list-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Chat list scrollbar hiding - Firefox */
+.chat-list-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Left panel - no scroll */
+.left-panel {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Right panel - no scroll on container */
+.right-panel {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-left: 1rem;
+}
+
+/* ========================================
+   CONTACTS HEADER
+   ======================================== */
+
+.comm-contacts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  /* border-bottom: 1px solid #e5e7eb; */
+  flex-shrink: 0;
+}
+
+.comm-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.comm-header-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.comm-add-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.comm-add-btn:hover {
+  transform: scale(1.1);
+}
+
+/* ========================================
+   RESPONSIVE STYLES
+   ======================================== */
+
+@media (max-width: 1023px) {
+  .communication-left-panel,
+  .comm-left-panel {
+    max-width: 65%;
+  }
+  
+  .communication-right-panel,
+  .comm-right-panel {
+    width: 35%;
+  }
+
+  .right-panel {
+    width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .chat-container {
+    flex-direction: column;
+  }
+
+  .communication-left-panel,
+  .comm-left-panel {
+    max-width: 100%;
+    height: 87vh;
+  }
+  
+  .communication-right-panel,
+  .comm-right-panel {
+    display: none;
+    height: 87vh;
+  }
+
+  .right-panel {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+}
+
+/* ========================================
+   DARK MODE STYLES
+   ======================================== */
+
+:root.dark {
+  .communication-left-panel,
+  .communication-right-panel,
+  .comm-left-panel,
+  .comm-right-panel {
+    background: rgba(15, 23, 42, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .comm-chat-panel,
+  .comm-contacts-panel {
+    background: rgba(30, 41, 59, 0.95);
+  }
+
+  .chat-container {
+    background: #0f172a;
+  }
+
+  /* Override any light backgrounds */
+  .left-panel,
+  .right-panel {
+    background: rgba(30, 41, 59, 0.8);
+  }
+
+
+  .comm-header-title {
+    color: #e5e7eb;
+  }
+}

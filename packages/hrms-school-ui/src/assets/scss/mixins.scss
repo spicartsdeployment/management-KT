@@ -1,0 +1,183 @@
+@import './variables.scss';
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Card styles
+@mixin card-base {
+  background-color: var(--color-bg-primary);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-sm);
+}
+
+@mixin card-hover {
+  transition: all var(--transition-base) ease-in-out;
+  
+  &:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+}
+
+// Text utilities
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-truncate-lines($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Scrollbar styling
+@mixin custom-scrollbar(
+  $width: 6px,
+  $track-color: #f1f5f9,
+  $thumb-color: #cbd5e1,
+  $thumb-hover-color: #94a3b8,
+  $radius: 3px
+) {
+  scrollbar-width: thin;
+  scrollbar-color: $thumb-color $track-color;
+
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+    border-radius: $radius;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $radius;
+
+    &:hover {
+      background: $thumb-hover-color;
+    }
+  }
+}
+
+// Responsive breakpoints (max-width / desktop-first)
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'xs' {
+    @media (max-width: 479px) { @content; }
+  }
+  @else if $breakpoint == 'mobile' {
+    @media (max-width: 639px) { @content; }
+  }
+  @else if $breakpoint == 'sm' {
+    @media (max-width: 639px) { @content; }
+  }
+  @else if $breakpoint == 'md' {
+    @media (max-width: 768px) { @content; }
+  }
+  @else if $breakpoint == 'tablet' {
+    @media (max-width: 1023px) { @content; }
+  }
+  @else if $breakpoint == 'lg' {
+    @media (max-width: 1023px) { @content; }
+  }
+  @else if $breakpoint == 'xl' {
+    @media (max-width: 1279px) { @content; }
+  }
+  @else if $breakpoint == '2xl' {
+    @media (max-width: 1439px) { @content; }
+  }
+  @else if $breakpoint == 'desktop' {
+    @media (min-width: 1024px) { @content; }
+  }
+}
+
+// Mobile-first breakpoint helpers (min-width)
+@mixin respond-above($bp) {
+  @if $bp == 'xs'  { @media (min-width: 480px)  { @content; } }
+  @else if $bp == 'sm'  { @media (min-width: 640px)  { @content; } }
+  @else if $bp == 'md'  { @media (min-width: 768px)  { @content; } }
+  @else if $bp == 'lg'  { @media (min-width: 1024px) { @content; } }
+  @else if $bp == 'xl'  { @media (min-width: 1280px) { @content; } }
+  @else if $bp == '2xl' { @media (min-width: 1440px) { @content; } }
+}
+
+// Button reset
+@mixin button-reset {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  outline: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+// Transition helper
+@mixin transition($property: all, $duration: 0.3s, $timing: ease-in-out) {
+  transition: $property $duration $timing;
+}
+
+// Box shadow helpers
+@mixin shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+@mixin shadow-md {
+  box-shadow: var(--shadow-md);
+}
+
+@mixin shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+// ─── School Layout Sidebar-State Helpers ──────────────────────────────────────
+// Use these inside @media blocks to scope styles to a specific sidebar state.
+//
+// Example:
+//   @media (max-width: 1023px) {
+//     @include sidebar-state-collapsed {
+//       .sch-fm-breakdown-amounts { gap: 8rem; }
+//     }
+//   }
+
+@mixin sidebar-state-collapsed {
+  .school-layout-sidebar-collapsed + .school-layout-main {
+    @content;
+  }
+}
+
+@mixin sidebar-state-expanded {
+  .school-layout-sidebar-expanded + .school-layout-main {
+    @content;
+  }
+}
+
+// When collapsed and expanded share identical overrides
+@mixin sidebar-state-any {
+  .school-layout-sidebar-collapsed + .school-layout-main,
+  .school-layout-sidebar-expanded + .school-layout-main {
+    @content;
+  }
+}

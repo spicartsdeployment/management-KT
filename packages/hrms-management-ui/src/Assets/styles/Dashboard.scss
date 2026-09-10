@@ -1,0 +1,732 @@
+﻿// ─── Management Dashboard — SCSS (prefix: db-*) ──────────────────────────────
+
+// ── Variables ─────────────────────────────────────────────────────────────────
+$db-gold:      #c9a962;
+$db-gold-dk:   #a8894a;
+$db-gold-lt:   #d4b06a;
+$db-bg:        #f5f6fa;
+$db-surface:   #ffffff;
+$db-line:      #e8ecf0;
+$db-text:      #1a1d23;
+$db-muted:     #6b7280;
+$db-input-bg:  #f9fafb;
+$db-success:   #16a34a;
+$db-warning:   #d97706;
+$db-danger:    #dc2626;
+$db-info:      #2563eb;
+$db-purple:    #7c3aed;
+$db-shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+$db-shadow-md: 0 4px 12px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.05);
+$db-shadow-lg: 0 20px 40px rgba(0,0,0,.12), 0 8px 16px rgba(0,0,0,.08);
+$db-radius:    0.625rem;
+$db-radius-sm: 0.375rem;
+$db-radius-lg: 0.875rem;
+$db-radius-xl: 1.25rem;
+
+// ── CSS tokens ────────────────────────────────────────────────────────────────
+:root {
+  --db-bg:      #{$db-bg};
+  --db-surface: #{$db-surface};
+  --db-line:    #{$db-line};
+  --db-text:    #{$db-text};
+  --db-muted:   #{$db-muted};
+  --db-input:   #{$db-input-bg};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --db-bg:      #0f1117;
+    --db-surface: #1a1d23;
+    --db-line:    #2a2d35;
+    --db-text:    #f0f2f5;
+    --db-muted:   #9ca3af;
+    --db-input:   #1f2229;
+  }
+}
+
+[data-theme="dark"] {
+  --db-bg:      #0f1117;
+  --db-surface: #1a1d23;
+  --db-line:    #2a2d35;
+  --db-text:    #f0f2f5;
+  --db-muted:   #9ca3af;
+  --db-input:   #1f2229;
+}
+
+// ── Breakpoints ───────────────────────────────────────────────────────────────
+@mixin db-bp($s) {
+  @if $s == xxs { @media (max-width: 320px)  { @content; } }
+  @if $s == xs  { @media (max-width: 375px)  { @content; } }
+  @if $s == sm  { @media (max-width: 480px)  { @content; } }
+  @if $s == md  { @media (max-width: 768px)  { @content; } }
+  @if $s == lg  { @media (max-width: 1024px) { @content; } }
+  @if $s == xl  { @media (min-width: 1440px) { @content; } }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  ROOT
+// ══════════════════════════════════════════════════════════════════════════════
+.db-root {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  padding: 1.75rem;
+  background: var(--db-bg);
+  min-height: 100vh;
+  color: var(--db-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  @include db-bp(sm)  { padding: 1rem;   gap: 1.25rem; }
+  @include db-bp(xs)  { padding: .875rem; gap: 1.125rem; }
+  @include db-bp(xxs) { padding: .75rem; gap: 1rem;    }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  HEADER
+// ══════════════════════════════════════════════════════════════════════════════
+.db-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  background: var(--db-surface);
+  border: 1px solid var(--db-line);
+  border-radius: $db-radius-xl;
+  padding: 1.5rem 1.75rem;
+  box-shadow: $db-shadow-sm;
+  position: relative;
+  overflow: hidden;
+
+  @include db-bp(sm) { padding: 1.125rem 1.25rem; }
+  @include db-bp(xs) { padding: 1rem 1.125rem; }
+  @include db-bp(xxs) { padding: .875rem 1rem; }
+
+  // Subtle gold accent stripe
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      $db-gold 0%,
+      $db-gold-dk 50%,
+      transparent 100%
+    );
+    border-radius: $db-radius-xl $db-radius-xl 0 0;
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: .625rem;
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    background: linear-gradient(135deg, $db-gold 0%, $db-gold-dk 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+
+    @include db-bp(sm) { font-size: 1.375rem; }
+    @include db-bp(xs) { font-size: 1.125rem; }
+    @include db-bp(xxs) { font-size: 1rem; }
+  }
+
+  &__sub {
+    font-size: .875rem;
+    color: var(--db-muted);
+    margin: 0;
+
+    @include db-bp(xs) { font-size: .8125rem; }
+    @include db-bp(xxs) { font-size: .75rem; }
+  }
+
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .25rem;
+    padding: .25rem .75rem;
+    border-radius: 99px;
+    font-size: .75rem;
+    font-weight: 600;
+
+    @include db-bp(xs) {
+      padding: .1875rem .625rem;
+      font-size: .6875rem;
+    }
+
+    @include db-bp(xxs) {
+      padding: .15rem .5rem;
+      font-size: .625rem;
+    }
+
+    &--live {
+      background: rgba($db-success, .12);
+      color: $db-success;
+    }
+
+    &--year {
+      background: rgba($db-gold, .12);
+      color: $db-gold;
+    }
+  }
+
+  &__date {
+    font-size: .75rem;
+    color: var(--db-muted);
+    padding: .25rem .75rem;
+    background: var(--db-bg);
+    border: 1px solid var(--db-line);
+    border-radius: 99px;
+    white-space: nowrap;
+
+    @include db-bp(xs) {
+      display: none;
+    }
+  }
+
+  @include db-bp(md) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.db-breadcrumb {
+  display: flex; align-items: center; gap: .375rem;
+  font-size: .75rem; color: var(--db-muted);
+  margin-bottom: .125rem;
+  &__sep    { opacity: .4; }
+  &__active { color: var(--db-text); font-weight: 500; }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  SECTION
+// ══════════════════════════════════════════════════════════════════════════════
+.db-section {
+  background: var(--db-surface);
+  border: 1px solid var(--db-line);
+  border-radius: $db-radius-lg;
+  padding: 1.25rem 1.5rem;
+  box-shadow: $db-shadow-sm;
+  @include db-bp(sm) { padding: .875rem 1rem; }
+  @include db-bp(xs) { padding: .75rem .875rem; }  // ← tighter at 375px
+  @include db-bp(xxs) { padding: .625rem .75rem; }  // ← aggressive padding at 320px
+
+  &__hd {
+    display: flex; align-items: center; gap: .625rem;
+    margin-bottom: 1rem;
+    @include db-bp(xs) { gap: .5rem; margin-bottom: .75rem; }  // ← tighter at 375px
+    @include db-bp(xxs) { gap: .375rem; margin-bottom: .625rem; }  // ← tighter spacing at 320px
+  }
+  &__title {
+    font-size: .9375rem; font-weight: 600; color: var(--db-text); margin: 0; flex: 1;
+  }
+  &__badge {
+    background: rgba($db-gold, .12); color: $db-gold;
+    padding: .125rem .5rem; border-radius: 99px;
+    font-size: .6875rem; font-weight: 600;
+  }
+}
+
+// ── Two-column layout ─────────────────────────────────────────────────────────
+.db-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  @include db-bp(lg) { grid-template-columns: 1fr; }
+  @include db-bp(sm) { grid-template-columns: 1fr; gap: 1.25rem; }  // ← single column at 480px+
+  @include db-bp(xs) { grid-template-columns: 1fr; gap: 1.125rem; }  // ← single column at 375px
+  @include db-bp(xxs) { grid-template-columns: 1fr; gap: 1rem; }  // ← single column at 320px
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  METRIC CARDS
+// ══════════════════════════════════════════════════════════════════════════════
+.db-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .875rem;
+  @include db-bp(lg) { grid-template-columns: repeat(3, 1fr); }
+  @include db-bp(md) { grid-template-columns: repeat(2, 1fr); }
+  @include db-bp(sm) { grid-template-columns: 1fr; }
+}
+
+.db-metric {
+  display: flex;
+  align-items: center;
+  gap: .875rem;
+  padding: 1rem 1.125rem;
+  border-radius: $db-radius;
+  border: 1px solid var(--db-line);
+  border-left: 3px solid;
+  box-shadow: $db-shadow-sm;
+  transition: box-shadow .2s, transform .15s;
+  &:hover { box-shadow: $db-shadow-md; transform: translateY(-1px); }
+  @include db-bp(xs) { gap: .625rem; padding: 0.75rem 0.875rem; }
+  @include db-bp(xxs) { gap: .5rem; padding: 0.625rem 0.75rem; }
+
+  &__icon {
+    font-size: 1.375rem;
+    width: 2.5rem; height: 2.5rem;
+    border-radius: $db-radius;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    @include db-bp(xs) { font-size: 1.125rem; width: 2rem; height: 2rem; }
+    @include db-bp(xxs) { font-size: 1rem; width: 1.75rem; height: 1.75rem; }
+  }
+  &__body  { display: flex; flex-direction: column; gap: .1rem; }
+  &__val   {
+    font-size: 1.375rem; font-weight: 700; line-height: 1;
+    @include db-bp(xs) { font-size: 1.125rem; }
+    @include db-bp(xxs) { font-size: 1rem; }
+  }
+  &__lbl   {
+    font-size: .75rem; color: var(--db-muted);
+    @include db-bp(xs) { font-size: .6875rem; }
+    @include db-bp(xxs) { font-size: .625rem; }
+  }
+  &__sub   { font-size: .6875rem; color: var(--db-muted); margin-top: .125rem; }
+
+  $colors: (primary: $db-gold, success: $db-success, warning: $db-warning, danger: $db-danger, info: $db-info, purple: $db-purple);
+  @each $n, $c in $colors {
+    &--#{$n} {
+      border-left-color: $c;
+      .db-metric__icon { background: rgba($c, .1); color: $c; }
+    }
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  QUICK ACTIONS
+// ══════════════════════════════════════════════════════════════════════════════
+.db-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .75rem;
+  @include db-bp(lg) { grid-template-columns: repeat(3, 1fr); }
+  @include db-bp(md) { grid-template-columns: repeat(1, 1fr); }
+  @include db-bp(sm) { grid-template-columns: 1fr; }
+}
+
+.db-action {
+  display: flex;
+  align-items: center;
+  gap: .875rem;
+  padding: 1rem 1.125rem;
+  border-radius: $db-radius;
+  border: 1px solid var(--db-line);
+  background: var(--db-surface);
+  cursor: pointer;
+  text-align: left;
+  transition: box-shadow .18s, transform .15s, border-color .15s;
+  &:hover { box-shadow: $db-shadow-md; transform: translateY(-1px); }
+  @include db-bp(xs) { gap: .625rem; padding: 0.75rem 0.875rem; }
+  @include db-bp(xxs) { gap: .5rem; padding: 0.625rem 0.75rem; }
+
+  &__icon {
+    font-size: 1.25rem;
+    width: 2.5rem; height: 2.5rem;
+    @include db-bp(xs) { font-size: 1rem; width: 2rem; height: 2rem; }
+    @include db-bp(xxs) { font-size: 0.875rem; width: 1.75rem; height: 1.75rem; }
+    border-radius: $db-radius;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: transform .15s;
+  }
+  &:hover &__icon { transform: scale(1.1); }
+
+  &__body  { flex: 1; display: flex; flex-direction: column; gap: .125rem; }
+  &__label {
+    font-size: .875rem; font-weight: 600; color: var(--db-text);
+    @include db-bp(xs) { font-size: .8125rem; }
+    @include db-bp(xxs) { font-size: .75rem; }
+  }
+  &__desc  {
+    font-size: .75rem;  color: var(--db-muted);
+    @include db-bp(xs) { font-size: .6875rem; }
+    @include db-bp(xxs) { font-size: .625rem; }
+  }
+  &__arrow {
+    font-size: 1.25rem; color: var(--db-muted); opacity: .4; transition: opacity .15s, transform .15s;
+    @include db-bp(xs) { font-size: 1rem; }
+    @include db-bp(xxs) { font-size: 0.875rem; }
+  }
+  &:hover &__arrow { opacity: .8; transform: translateX(2px); }
+
+  $colors: (primary: $db-gold, success: $db-success, warning: $db-warning, info: $db-info, purple: $db-purple, gold: $db-gold);
+  @each $n, $c in $colors {
+    &--#{$n} {
+      &:hover { border-color: rgba($c, .4); }
+      .db-action__icon { background: rgba($c, .1); color: $c; }
+    }
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  RECENT ACTIVITY
+// ══════════════════════════════════════════════════════════════════════════════
+.db-activity-list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 0;
+}
+
+.db-activity-item {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .625rem 0;
+  border-bottom: 1px solid var(--db-line);
+
+  @include db-bp(xs) { gap: .625rem; padding: .5rem 0;flex-direction: column; }  // ← tighter at 375px
+  &:last-child { border-bottom: none; }
+
+  &__icon {
+    font-size: .9375rem;
+    width: 2rem; height: 2rem;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  &__body  { flex: 1; min-width: 0; }  // ← min-width: 0 for text wrapping
+  &__title { font-size: .8125rem; font-weight: 500; color: var(--db-text); margin: 0 0 .0625rem; word-break: break-word; }
+  &__desc  { font-size: .75rem; color: var(--db-muted); margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  &__time  { font-size: .6875rem; color: var(--db-muted); white-space: nowrap; flex-shrink: 0; }
+
+  // Responsive: tighten gaps on very small screens
+  @include db-bp(sm) { gap: .625rem; padding: .5rem 0; }  // ← tighter at 480px
+  @include db-bp(xs) { gap: .5rem; padding: .4375rem 0; }  // ← tighter at 375px
+  @include db-bp(xxs) { gap: 0.375rem; padding: .375rem 0; }  // ← minimal padding at 320px
+
+  $colors: (primary: $db-gold, success: $db-success, warning: $db-warning, info: $db-info, purple: $db-purple);
+  @each $n, $c in $colors {
+    &__icon--#{$n} { background: rgba($c, .1); color: $c; }
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  UPCOMING EVENTS
+// ══════════════════════════════════════════════════════════════════════════════
+.db-event-list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: .5rem;
+  @include db-bp(xs) { gap: .375rem; }  // ← tighter at 375px
+  @include db-bp(xxs) { gap: .25rem; }  // ← minimal gap at 320px
+}
+
+.db-event-item {
+  display: flex;
+  align-items: center;
+  gap: .875rem;
+  padding: .75rem .875rem;
+  border-radius: $db-radius;
+  border: 1px solid var(--db-line);
+  border-left: 3px solid;
+  transition: box-shadow .15s;
+  &:hover { box-shadow: $db-shadow-sm; }
+
+  &__date-chip {
+    font-size: .6875rem; font-weight: 600;
+    padding: .25rem .5rem; border-radius: $db-radius-sm;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  &__body  { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: .5rem; flex-wrap: wrap; }  // ← min-width: 0 for flex shrinking
+  &__title { font-size: .8125rem; font-weight: 500; color: var(--db-text); margin: 0; min-width: 0; word-break: break-word; }  // ← min-width: 0 for text wrapping
+  &__badge { font-size: .6875rem; font-weight: 600; padding: .125rem .5rem; border-radius: 99px; white-space: nowrap; flex-shrink: 0; }
+
+  // Responsive: tighter spacing on very small screens
+  @include db-bp(sm) { gap: .625rem; padding: .625rem .75rem; }  // ← tighter at 480px
+  @include db-bp(xs) { gap: .5rem; padding: .625rem .75rem; }  // ← tighter at 375px
+  @include db-bp(xxs) { gap: 0.375rem; padding: .375rem .5rem; }  // ← minimal padding at 320px
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  ALERTS
+// ══════════════════════════════════════════════════════════════════════════════
+.db-alerts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .75rem;
+  @include db-bp(md) { grid-template-columns: 1fr; }
+}
+
+.db-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: .875rem 1rem;
+  border-radius: $db-radius;
+  border: 1px solid;
+  border-left: 3px solid;
+
+  &__icon  { font-size: 1.125rem; flex-shrink: 0; margin-top: .0625rem; }
+  &__title { font-size: .8125rem; font-weight: 600; margin: 0 0 .1875rem; }
+  &__detail{ font-size: .75rem;  color: var(--db-muted); margin: 0; line-height: 1.4; }
+
+  &--danger  { background: rgba($db-danger,  .05); border-color: rgba($db-danger,  .2); border-left-color: $db-danger;  }
+  &--warning { background: rgba($db-warning, .05); border-color: rgba($db-warning, .2); border-left-color: $db-warning; }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  MODAL
+// ══════════════════════════════════════════════════════════════════════════════
+.db-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.25rem;
+  overflow-y: auto;
+
+  // On mobile the modal is a bottom sheet — anchor overlay to the bottom edge
+  @include db-bp(sm) { align-items: flex-end; padding: 0; }
+}
+
+.db-modal {
+  background: var(--db-surface);
+  border: 1px solid var(--db-line);
+  border-radius: $db-radius-xl;
+  width: 100%;
+  max-width: 28rem;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: $db-shadow-lg;
+  animation: db-modal-in .2s ease;
+
+  &--wide { max-width: 42rem; }
+
+  &__hd {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--db-line);
+    position: sticky; top: 0;
+    background: var(--db-surface);
+    z-index: 1;
+    border-radius: $db-radius-xl $db-radius-xl 0 0;
+    @include db-bp(xs) { padding: 0.875rem 1rem; }
+    @include db-bp(xxs) { padding: 0.75rem 0.875rem; }
+  }
+  &__title { font-size: 1rem; font-weight: 600; color: var(--db-text); margin: 0; }
+  &__close {
+    width: 1.875rem; height: 1.875rem;
+    border-radius: 50%; border: none;
+    background: var(--db-bg);
+    color: var(--db-muted); font-size: .875rem;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background .15s, color .15s;
+    &:hover { background: rgba($db-danger, .1); color: $db-danger; }
+  }
+  &__body {
+    padding: 1.25rem 1.5rem;
+    display: flex; flex-direction: column; gap: 1.25rem;
+    @include db-bp(xs) { padding: 0.875rem 1rem; gap: 0.875rem; }
+    @include db-bp(xxs) { padding: 0.75rem 0.875rem; gap: 0.75rem; }
+  }
+  &__footer {
+    display: flex; gap: .625rem; justify-content: flex-end;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--db-line);
+    background: var(--db-bg);
+    border-radius: 0 0 $db-radius-xl $db-radius-xl;
+    position: sticky; bottom: 0;
+    @include db-bp(sm) { flex-direction: column-reverse; }
+    @include db-bp(xs) { padding: 0.75rem 1rem; gap: 0.5rem; }
+    @include db-bp(xxs) { padding: 0.625rem 0.875rem; gap: 0.375rem; }
+  }
+
+  // ≤768px — tablet: keep centered floating dialog, shrink wide modals
+  @include db-bp(md) {
+    max-width: min(34rem, calc(100vw - 2.5rem));
+    max-height: 86vh;
+    &.db-modal--wide { max-width: min(90vw, 38rem); }
+  }
+
+  // ≤480px — mobile: bottom sheet, constrained height so it never covers the full screen
+  @include db-bp(sm) {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    border-radius: $db-radius-lg $db-radius-lg 0 0;
+    max-height: 78vh;
+    align-self: flex-end;
+    &.db-modal--wide { max-height: 82vh; }
+  }
+
+  // ≤375px — small phones
+  @include db-bp(xs) { max-height: 72vh; &.db-modal--wide { max-height: 76vh; } }
+
+  // ≤320px — very small screens
+  @include db-bp(xxs) { max-height: 68vh; &.db-modal--wide { max-height: 72vh; } }
+}
+
+@keyframes db-modal-in {
+  from { opacity: 0; transform: translateY(12px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);   }
+}
+
+// ── Form elements ─────────────────────────────────────────────────────────────
+.db-form-section {
+  display: flex; flex-direction: column; gap: .75rem;
+  @include db-bp(xs) { gap: .5rem; }
+  @include db-bp(xxs) { gap: .375rem; }
+
+  &__title {
+    font-size: .75rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .04em; color: var(--db-muted);
+    padding-bottom: .375rem;
+    border-bottom: 1px solid var(--db-line);
+    @include db-bp(xs) { font-size: .6875rem; padding-bottom: .25rem; }
+    @include db-bp(xxs) { font-size: .625rem; padding-bottom: .1875rem; }
+  }
+}
+
+.db-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .75rem;
+  @include db-bp(sm) { grid-template-columns: 1fr; }
+  @include db-bp(xs) { gap: .5rem; }
+  @include db-bp(xxs) { gap: .375rem; }
+
+  &--full { grid-column: 1 / -1; width: 100%; }
+}
+
+.db-field {
+  display: flex; flex-direction: column; gap: .3rem;
+  @include db-bp(xs) { gap: .2rem; }
+  @include db-bp(xxs) { gap: .15rem; }
+
+  &__label {
+    font-size: .75rem; font-weight: 500; color: var(--db-text);
+    @include db-bp(xs) { font-size: .6875rem; }
+    @include db-bp(xxs) { font-size: .625rem; }
+  }
+  &__req   { color: $db-danger; margin-left: .1875rem; }
+  &__hint  {
+    font-size: .6875rem; color: var(--db-muted); margin: 0;
+    @include db-bp(xs) { font-size: .625rem; }
+    @include db-bp(xxs) { font-size: .5625rem; }
+  }
+
+  &__input, &__select, &__textarea {
+    background: var(--db-input);
+    border: 1px solid var(--db-line);
+    border-radius: $db-radius-sm;
+    padding: .5rem .625rem;
+    font-size: .8125rem;
+    color: var(--db-text);
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+    width: 100%;
+    @include db-bp(xs) { padding: .4375rem .5rem; font-size: .75rem; }
+    @include db-bp(xxs) { padding: .375rem .4375rem; font-size: .6875rem; }
+    &:focus { border-color: $db-gold; box-shadow: 0 0 0 3px rgba($db-gold, .12); }
+    &::placeholder { color: var(--db-muted); }
+  }
+  &__textarea { resize: vertical; font-family: inherit; }
+  &__select   { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .625rem center; padding-right: 2rem; }
+}
+
+// ── Fee net payable ───────────────────────────────────────────────────────────
+.db-fee-net {
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba($db-gold, .07);
+  border: 1px solid rgba($db-gold, .2);
+  border-radius: $db-radius;
+  padding: .625rem .875rem;
+  @include db-bp(xs) { padding: .5rem .75rem; }
+  @include db-bp(xxs) { padding: .4375rem .625rem; }
+  &__lbl { font-size: .75rem; font-weight: 500; color: var(--db-muted); @include db-bp(xs) { font-size: .6875rem; } @include db-bp(xxs) { font-size: .625rem; } }
+  &__val { font-size: 1rem; font-weight: 700; color: $db-gold; @include db-bp(xs) { font-size: .875rem; } @include db-bp(xxs) { font-size: .75rem; } }
+}
+
+// ── Declaration checkbox ──────────────────────────────────────────────────────
+.db-declaration {
+  display: flex; align-items: flex-start; gap: .625rem;
+  padding: .75rem .875rem;
+  background: var(--db-bg);
+  border: 1px solid var(--db-line);
+  border-radius: $db-radius;
+  font-size: .8rem; color: var(--db-muted); line-height: 1.4;  @include db-bp(xs) { padding: .625rem .75rem; font-size: .75rem; }
+  @include db-bp(xxs) { padding: .5rem .625rem; font-size: .6875rem; }  input[type="checkbox"] { margin-top: .1875rem; flex-shrink: 0; accent-color: $db-gold; }
+}
+
+// ── Leave modal ───────────────────────────────────────────────────────────────
+.db-leave-list  { display: flex; flex-direction: column; gap: .5rem; @include db-bp(xs) { gap: .375rem; } @include db-bp(xxs) { gap: .25rem; } }
+.db-leave-row   {
+  display: flex; align-items: center; gap: .875rem; flex-wrap: wrap;
+  padding: .75rem .875rem;
+  border: 1px solid var(--db-line);
+  border-radius: $db-radius;
+  @include db-bp(xs) { gap: .625rem; padding: .625rem .75rem; }
+  @include db-bp(xxs) { gap: .5rem; padding: .5rem .625rem; }
+  transition: background .12s;
+  &:hover { background: var(--db-bg); }
+  @include db-bp(sm) { flex-direction: column; align-items: flex-start; }
+}
+.db-leave-row__info   { flex: 1; min-width: 0; }
+.db-leave-row__name   { font-size: .875rem; font-weight: 600; margin: 0 0 .125rem; }
+.db-leave-row__meta   { font-size: .75rem; color: var(--db-muted); margin: 0; }
+.db-leave-row__actions{ display: flex; gap: .375rem; flex-shrink: 0; }
+
+.db-leave-btn {
+  padding: .375rem .75rem; border-radius: $db-radius-sm;
+  font-size: .75rem; font-weight: 600; cursor: pointer;
+  border: 1px solid; transition: all .14s;
+
+  &--approve {
+    border-color: rgba($db-success, .3); background: rgba($db-success, .07); color: $db-success;
+    &:hover, &.db-leave-btn--active-approve { background: $db-success; color: #fff; border-color: $db-success; }
+  }
+  &--reject  {
+    border-color: rgba($db-danger, .3); background: rgba($db-danger, .07); color: $db-danger;
+    &:hover, &.db-leave-btn--active-reject  { background: $db-danger;  color: #fff; border-color: $db-danger;  }
+  }
+}
+
+// ── Buttons ───────────────────────────────────────────────────────────────────
+.db-btn {
+  display: inline-flex; align-items: center; gap: .375rem;
+  padding: .5625rem 1.25rem;
+  border-radius: $db-radius;
+  font-size: .875rem; font-weight: 600;
+  cursor: pointer; border: 1px solid transparent;
+  transition: all .15s; white-space: nowrap;
+  @include db-bp(xs) { padding: .5rem 1rem; font-size: .8125rem; }
+  @include db-bp(xxs) { padding: .4375rem 0.875rem; font-size: .75rem; }
+
+  &--primary {
+    background: $db-gold; color: #fff; border-color: $db-gold;
+    &:hover { background: $db-gold-dk; border-color: $db-gold-dk; }
+  }
+  &--ghost {
+    background: var(--db-surface); color: var(--db-text); border-color: var(--db-line);
+    &:hover { border-color: $db-gold; color: $db-gold; }
+  }
+
+  @include db-bp(sm) { flex: 1; justify-content: center; }
+}
+
+// ── Legacy class passthrough (kept for backward compat with existing tests) ───
+// These map old .dashboard__* names to new tokens so any snapshot tests still pass.
+.dashboard {
+  display: flex; flex-direction: column; gap: 2rem;
+  background: var(--db-bg);
+}

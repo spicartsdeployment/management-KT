@@ -1,0 +1,112 @@
+/*
+  CreateAnnouncement.scss
+  Styles for the CreateAnnouncement component using BEM naming.
+*/
+
+.create-announcement {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.create-announcement__header-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    background: linear-gradient(to right, $an-gold, #2C2C2C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.create-announcement__header-desc {
+    color: var(--an-muted);
+    margin-top: 0.25rem;
+}
+
+.create-announcement__main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .create-announcement__main {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+.create-announcement__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.create-announcement__card {
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px 0 rgba(31, 41, 55, 0.08);
+    border: none;
+}
+
+.create-announcement__card-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.create-announcement__upload {
+    border: 2px dashed var(--an-line);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    transition: border-color 0.2s;
+    cursor: pointer;
+}
+
+.create-announcement__upload:hover {
+    border-color: $an-gold;
+}
+
+.create-announcement__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.create-announcement__sidebar-card {
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px 0 rgba(31, 41, 55, 0.08);
+    border: none;
+}
+
+.create-announcement__sidebar-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+}
+
+.create-announcement__sidebar-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    background: var(--an-input);
+    margin: 0 1rem;
+}
+
+.create-announcement__publish-btn {
+    background: linear-gradient(to right, $an-gold, #2C2C2C);
+    color: $an-white;
+    width: 100%;
+    transition: opacity 0.2s;
+}
+
+.create-announcement__publish-btn:hover {
+    opacity: 0.9;
+}
+
+.create-announcement__draft-btn {
+    width: 100%;
+}

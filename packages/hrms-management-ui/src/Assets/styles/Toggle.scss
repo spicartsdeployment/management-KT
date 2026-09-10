@@ -1,0 +1,89 @@
+// src/Assets/styles/Toggle.scss
+
+.toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    border: none;
+    transition: color 0.15s ease, box-shadow 0.15s ease;
+    outline: none;
+
+    svg {
+        pointer-events: none;
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+    }
+
+    &:focus-visible {
+        border: 1px solid var(--color-ring, #3b82f6);
+        box-shadow: 0 0 0 3px var(--color-ring-muted, rgba(59, 130, 246, 0.3));
+    }
+
+    &:disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    &[data-state="on"] {
+        background-color: var(--color-accent, #f1f5f9);
+        color: var(--color-accent-foreground, #0f172a);
+    }
+
+    &[aria-invalid="true"] {
+        border-color: var(--color-destructive, #ef4444);
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+
+        @media (prefers-color-scheme: dark) {
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4);
+        }
+    }
+
+    // Variant: default
+    &--default {
+        background-color: transparent;
+
+        &:hover {
+            background-color: var(--color-muted, #f1f5f9);
+            color: var(--color-muted-foreground, #64748b);
+        }
+    }
+
+    // Variant: outline
+    &--outline {
+        border: 1px solid var(--color-input, #e2e8f0);
+        background-color: transparent;
+
+        &:hover {
+            background-color: var(--color-accent, #f1f5f9);
+            color: var(--color-accent-foreground, #0f172a);
+        }
+    }
+
+    // Size: default
+    &--size-default {
+        height: 36px;
+        padding: 0 8px;
+        min-width: 36px;
+    }
+
+    // Size: sm
+    &--size-sm {
+        height: 32px;
+        padding: 0 6px;
+        min-width: 32px;
+    }
+
+    // Size: lg
+    &--size-lg {
+        height: 40px;
+        padding: 0 10px;
+        min-width: 40px;
+    }
+}

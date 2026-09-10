@@ -1,0 +1,22 @@
+// Collapsible.scss
+
+.collapsible {
+    // Root element styles (if needed)
+}
+
+.collapsible-trigger {
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    font: inherit;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.collapsible-content {
+    overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}

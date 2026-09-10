@@ -1,0 +1,345 @@
+@import './mixins.scss';
+
+// Mobile backdrop overlay
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+  display: block;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.sidebar-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  // Override Card component's glass styles — sidebar is a panel, not a floating card
+  background: transparent !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+// Header section
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+
+  &-collapsed {
+    justify-content: center;
+  }
+}
+
+.sidebar-brand-logo {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(135deg, rgb(255, 179, 71) 0%, rgb(255, 154, 60) 100%);
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(255, 179, 71, 0.3);
+  flex-shrink: 0;
+}
+
+.sidebar-brand-logo-text {
+  color: white;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.sidebar-brand-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+  white-space: nowrap;
+}
+
+.sidebar-toggle-btn {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-secondary, #6b7280);
+
+  &:hover {
+    color: var(--text-primary, #111827);
+  }
+}
+
+.sidebar-toggle-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+// Menu section
+.sidebar-menu-header {
+  padding: 1rem 1rem 0.5rem;
+}
+
+.sidebar-menu-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary, #6b7280);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+// Navigation
+.sidebar-nav {
+  flex: 1;
+  overflow: auto;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  scrollbar-width: none; // Firefox
+
+  &::-webkit-scrollbar {
+    display: none; // Chrome, Safari, Edge
+  }
+}
+
+.sidebar-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  color: var(--text-secondary, #6b7280);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+
+  &:hover:not(&-disabled) {
+    background: rgba(255, 179, 71, 0.1);
+    color: rgb(255, 154, 60);
+  }
+
+  &--no-padding {
+    padding: 0;
+  }
+
+  &-active {
+    color: white !important;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(255, 179, 71, 0.3);
+
+    // &::before {
+    //   content: '';
+    //   position: absolute;
+    //   left: 0;
+    //   top: 0;
+    //   bottom: 0;
+    //   width: 4px;
+    //   background: white;
+    //   opacity: 0.5;
+    // }
+  }
+
+  &-inactive {
+    &:hover {
+      transform: translateX(4px);
+    }
+  }
+
+  &-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.sidebar-nav-link-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  &-collapsed {
+    justify-content: center;
+  }
+}
+
+.sidebar-nav-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+
+  &-expanded {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.sidebar-nav-emoji {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+
+  &-expanded {
+    font-size: 1.5rem;
+  }
+}
+
+.sidebar-nav-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.sidebar-nav-badge {
+  font-size: 0.625rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+
+  &-default {
+    background: rgba(59, 130, 246, 0.1);
+    color: rgb(59, 130, 246);
+  }
+}
+
+// Collapsed state adjustments
+.school-layout-sidebar-collapsed {
+
+  .sidebar-brand-name,
+  .sidebar-menu-label,
+  .sidebar-nav-text,
+  .sidebar-nav-badge {
+    display: none;
+  }
+
+  .sidebar-header {
+    padding: 1rem 0.5rem;
+    justify-content: right;
+  }
+
+  .sidebar-menu-header {
+    display: none;
+  }
+
+  .sidebar-nav-link {
+    justify-content: center;
+  }
+}
+
+// Dark mode
+[data-theme='dark'],
+.dark {
+  .sidebar-header {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .sidebar-brand-name {
+    color: #f9fafb;
+  }
+
+  .sidebar-menu-label {
+    color: #9ca3af;
+  }
+
+  .sidebar-nav-link {
+    color: #9ca3af;
+
+    &:hover:not(&-disabled) {
+      background: rgba(76, 201, 240, 0.1);
+      color: rgb(76, 201, 240);
+    }
+
+    &-active {
+      box-shadow: 0 4px 12px rgba(76, 201, 240, 0.3);
+    }
+  }
+
+  .sidebar-toggle-btn {
+    color: #9ca3af;
+
+    &:hover {
+      color: #f9fafb;
+    }
+  }
+}
+
+/* ========================================
+   RESPONSIVE SIDEBAR
+   ======================================== */
+
+
+
+
+/* Mobile (< 768px) - sidebar becomes drawer overlay, always show full labels */
+@media (max-width: 768px) {
+  .sidebar-backdrop {
+    display: block;
+  }
+
+  .sidebar-nav-link {
+    padding: 0.875rem 1rem;
+
+    &-active {
+      border-radius: 0.75rem;
+    }
+  }
+
+  /* Scope inside .school-layout-sidebar to beat .school-layout-sidebar-collapsed specificity */
+  .school-layout-sidebar {
+    .sidebar-header {
+      padding: 1rem;
+      // justify-content: space-between !important;
+      // display: none;
+    }
+
+    .sidebar-brand-name,
+    .sidebar-menu-label,
+    .sidebar-menu-header {
+      display: block !important;
+    }
+
+    .sidebar-nav-text,
+    .sidebar-nav-badge {
+      display: block !important;
+    }
+
+    .sidebar-nav-link {
+      justify-content: flex-start !important;
+    }
+  }
+}
+
+
+/* Tablet landscape (< 1024px) */
+@media (max-width: 1023px) {
+
+  .sidebar-nav-text,
+  .sidebar-nav-badge {
+    font-size: 0.8125rem;
+  }
+}

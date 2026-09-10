@@ -1,0 +1,2636 @@
+﻿@import './mixins.scss';
+
+/* THIRD CARD: MESS FEES STRUCTURE */
+.sch-fm-mess-fees-table .sch-fm-structure-table th {
+    background: rgb(245, 243, 255);
+    border-bottom: 1px solid rgb(221, 214, 254);
+    color: rgb(124, 58, 237);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* ===== MICRO DEVICES (max-width: 320px) ===== */
+@media (max-width: 320px) {
+    .sch-fm-structure-table {
+        padding: 0 !important;
+    }
+    .sch-fm-structure-table table {
+        min-width: 240px;
+        font-size: 0.5rem;
+    }
+    .sch-fm-structure-table th {
+        padding: 0.3rem 0.1rem;
+        font-size: 10px !important;
+    }
+    .sch-fm-structure-table td {
+        padding: 0.3rem 0.15rem;
+        font-size: 10px !important;
+    }
+    .sch-fm-structure-title {
+        font-size: 0.7rem;
+    }
+    .sch-fm-term-duration {
+        font-size: 0.5rem;
+    }
+    .sch-fm-table-status {
+        font-size: 0.5rem;
+        padding: 0.1rem 0.2rem;
+    }
+}
+/* Outer visible container for fee category cards */
+.sch-fm-fee-category-cards-parent {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    padding: 2rem 1.5rem;
+    // margin-bottom: 2rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+/* Fee Management Styles */
+/* Matches class names from FeeManagement.jsx */
+
+/* ===== Main Container ===== */
+.sch-fm-fee-management-container {
+    padding: 0.5rem;
+    background: transparent;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ===== Header Section ===== */
+.sch-fm-fee-management-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    // margin-bottom: 0.5rem;
+}
+
+.sch-fm-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.sch-fm-page-title {
+    font-size: clamp(0.9rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 0.25rem 0;
+    line-height: 1.3;
+    font-family: sans-serif;
+}
+
+.sch-fm-page-subtitle {
+    font-size: clamp(0.65rem, 1.5vw, 0.875rem);
+    color: #6b7280;
+    margin: 0;
+}
+
+/* ===== Fee Alerts Card ===== */
+.sch-fm-fee-alerts-card {
+    //   background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid #f59e0b;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15);
+}
+
+.sch-fm-alert-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.sch-fm-alert-icon {
+    font-size: 0.9rem;
+}
+
+.sch-fm-alert-title {
+    font-size: clamp(0.75rem, 1.3vw, 0.95rem);
+    font-weight: 400;
+    color: #92400e;
+    margin: 0;
+}
+
+.sch-fm-alert-content {
+    display: flex;
+    flex-direction: column;
+    //   gap: 0.75rem;
+}
+
+.sch-fm-alert-item {
+    display: flex;
+    align-items: center;
+    //   gap: 0.75rem;
+    //   padding: 0.5rem 0.75rem;
+    margin-left: 1.8rem;
+    margin-bottom: 0.75rem;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 0.5rem;
+}
+
+.sch-fm-alert-item-icon {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+.sch-fm-alert-text {
+    font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+    color: black;
+    line-height: 1.0;
+}
+
+.sch-fm-alert-text strong {
+    font-weight: 600;
+    color: black;
+}
+
+/* ===== Summary Cards Row ===== */
+.sch-fm-summary-cards-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+}
+
+.sch-fm-summary-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0.5rem 1rem  1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.sch-fm-summary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Card color variants */
+.sch-fm-blue-card {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.04) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    box-shadow: rgba(59, 130, 246, 0.08) 0px 2px 6px;
+}
+
+.sch-fm-green-card {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.04) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+    box-shadow: rgba(16, 185, 129, 0.08) 0px 2px 6px;
+
+}
+
+.sch-fm-red-card {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(239, 68, 68, 0.04) 100%);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    box-shadow: rgba(239, 68, 68, 0.08) 0px 2px 6px;
+}
+
+.sch-fm-purple-card {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(139, 92, 246, 0.04) 100%);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    box-shadow: rgba(139, 92, 246, 0.08) 0px 2px 6px;
+}
+
+/* Summary Icon */
+.sch-fm-summary-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 400;
+    flex-shrink: 0;
+
+    :root.dark & {
+        // background: rgba(255, 255, 255, 0.1);
+        // box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px;
+        border-radius: 1rem;
+    }   
+}
+
+.sch-fm-blue-icon {
+    background: rgba(59, 130, 246, 0.15);
+    box-shadow: rgba(59, 130, 246, 0.2) 0px 2px 8px;
+    color:blue;
+    }
+
+.sch-fm-green-icon {
+              background: rgba(16, 185, 129, 0.15);
+    box-shadow: rgba(16, 185, 129, 0.2) 0px 2px 8px;
+}
+.sch-fm-red-icon {
+    background: rgba(239, 68, 68, 0.15);
+    box-shadow: rgba(239, 68, 68, 0.2) 0px 2px 8px;
+}
+
+.sch-fm-purple-icon {
+    background: rgba(139, 92, 246, 0.15);
+    box-shadow: rgba(139, 92, 246, 0.2) 0px 2px 8px;
+}
+
+/* Summary Details */
+.sch-fm-summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+    padding-left: 2.8rem;
+}
+
+.sch-fm-summary-label-upper {
+    font-size: clamp(0.55rem, 1vw, 0.7rem);
+    font-weight: 500;
+    color: #6b7280;
+    // text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.sch-fm-summary-amount {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.sch-fm-summary-label {
+    font-size: clamp(0.6rem, 1vw, 0.75rem);
+    margin: 0;
+    font-weight: 600;
+}
+.sch-fm-blue-card .sch-fm-summary-label {
+    color: rgb(59, 130, 246);
+}
+.sch-fm-green-card .sch-fm-summary-label {
+    color: rgb(16, 185, 129);
+}
+.sch-fm-red-card .sch-fm-summary-label {
+    color: rgb(239, 68, 68);
+}
+.sch-fm-purple-card .sch-fm-summary-label {
+    color: rgb(139, 92, 246);
+}
+
+/* ===== Fee Category Cards Row ===== */
+.sch-fm-fee-category-cards-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    // margin: 1rem;
+}
+
+.sch-fm-fee-category-card {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sch-fm-fee-category-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Category Header */
+.sch-fm-category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    // background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    // border-bottom: 1px solid #e5e7eb;
+}
+
+.sch-fm-category-title-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sch-fm-category-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 2rem;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.sch-fm-green-bg {
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+}
+
+.sch-fm-orange-bg {
+    background: linear-gradient(135deg, #ffedd5, #fed7aa);
+}
+
+.sch-fm-purple-bg {
+    background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+}
+
+.sch-fm-category-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+}
+
+.sch-fm-category-subtitle {
+    font-size: 0.7rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Status Badges */
+.sch-fm-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.55rem;
+    font-weight: 600;
+    padding: 0.35rem 0.55rem;
+    border-radius: 1rem;
+}
+sch-fm-term-label{
+    font-size: 0.6rem;
+}
+
+.sch-fm-paid-badge {
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+    color: #15803d;
+
+    :root.dark & {
+        background: rgba(22, 163, 74, 0.15);
+        color: rgba(22, 163, 74, 0.8);
+    }
+}
+
+.sch-fm-pending-badge {
+    background: rgb(254, 226, 226);
+    color: rgb(153, 27, 27);
+
+    :root.dark & {
+        background: rgba(220, 34, 34, 0.15);
+        color: rgba(220, 34, 34, 0.8);
+    }
+
+
+}
+
+.sch-fm-purple-paid {
+    background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+    color: #7c3aed;
+}
+
+/* Category Body */
+.sch-fm-category-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1 1 auto;
+    justify-content: space-between;
+}
+
+.sch-fm-fee-info-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.sch-fm-fee-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.sch-fm-fee-info-label {
+    font-size: 00.65rem;
+    color: #6b7280;
+    // text-transform: uppercase;
+    // letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.sch-fm-fee-info-value {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #1f2937;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.sch-fm-green-text {
+    color: #16a34a !important;
+}
+
+.sch-fm-red-text {
+    color: #dc2626 !important;
+}
+
+.sch-fm-orange-text {
+    color: #ea580c !important;
+}
+
+.sch-fm-purple-text {
+    color: #7c3aed !important;
+}
+
+.sch-fm-due-date {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+/* Payment Progress Section */
+.sch-fm-payment-progress-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.5rem;
+    // border-top: 1px solid #f3f4f6;
+    margin-top: auto;
+}
+
+.sch-fm-progress-label {
+    font-size: 0.7rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.sch-fm-progress-percentage {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #16a34a;
+    margin: 0;
+}
+
+/* Terms Chips */
+.sch-fm-terms-chips {
+    display: flex;
+    gap: 0.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: auto;
+    width: 100%;
+}
+
+.sch-fm-term-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    // gap: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem;
+    border-radius: 1rem;
+    min-width: 76px;
+    min-height: 48px;
+}
+
+.sch-fm-term-tick {
+    display: block;
+    height: 13px;
+}
+
+.sch-fm-paid-chip {
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+    color: #15803d;
+}
+
+/* First card (green) specific styling */
+.sch-fm-fee-category-card:nth-child(1) .sch-fm-term-chip {
+    background: rgb(16, 185, 129);
+    border: 2px solid rgb(16, 185, 129);
+    box-shadow: rgba(16, 185, 129, 0.25) 0px 0px 10px;
+    color: white;
+}
+
+.sch-fm-fee-category-card:nth-child(1) .sch-fm-active-button {
+    background: rgb(16, 185, 129);
+    border: 2px solid rgb(16, 185, 129);
+    box-shadow: rgba(16, 185, 129, 0.25) 0px 0px 10px;
+    color: white;
+}
+
+/* Second card (orange) specific styling */
+.sch-fm-fee-category-card:nth-child(2) .sch-fm-term-chip {
+    background: rgb(255, 145, 77);
+    border: 2px solid rgb(255, 145, 77);
+    box-shadow: rgba(255, 145, 77, 0.25) 0px 0px 10px;
+    color: white;
+}
+
+.sch-fm-fee-category-card:nth-child(2) .sch-fm-active-button {
+    background: rgb(255, 145, 77);
+    border: 2px solid rgb(255, 145, 77);
+    box-shadow: rgba(255, 145, 77, 0.25) 0px 0px 10px;
+    color: white;
+}
+
+/* Third card (purple) specific styling */
+.sch-fm-fee-category-card:nth-child(3) .sch-fm-term-chip {
+    background: rgb(139, 92, 246);
+    border: 2px solid rgb(139, 92, 246);
+    box-shadow: rgba(139, 92, 246, 0.25) 0px 0px 10px;
+    color: white;
+}
+
+.sch-fm-fee-category-card:nth-child(3) .sch-fm-active-button {
+    background: rgb(139, 92, 246);
+    border: 2px solid rgb(139, 92, 246);
+    box-shadow: rgba(139, 92, 246, 0.25) 0px 0px 10px;
+    color: white;
+}
+
+.sch-fm-pending-chip {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+.sch-fm-orange-paid {
+    background: linear-gradient(135deg, #ffedd5, #fed7aa);
+    color: #c2410c;
+}
+
+.sch-fm-terms-info {
+    font-size: 0.7rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Pay Button */
+.sch-fm-pay-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.6rem 1.25rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    margin-bottom: 0;
+    align-self: stretch;
+}
+
+.sch-fm-active-button {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.sch-fm-active-button:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.sch-fm-disabled-button {
+    background: rgb(229, 231, 235);
+    color: rgb(156, 163, 175);
+    cursor: not-allowed;
+    border: none;
+    border-radius: 1rem;
+
+    :root.dark & {
+            background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.6;
+    }
+}
+
+/* ===== Fee Breakdown Card ===== */
+.sch-fm-fee-breakdown-card {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+}
+
+.sch-fm-breakdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    // background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    // border-bottom: 1px solid #e5e7eb;
+}
+
+.sch-fm-breakdown-title-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sch-fm-breakdown-icon {
+    font-size: 1.25rem;
+}
+
+.sch-fm-breakdown-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+}
+
+/* Custom Dropdown Component */
+.sch-fm-custom-dropdown {
+    position: relative;
+    min-width: 200px;
+
+}
+
+.sch-fm-custom-dropdown__button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.5rem;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    text-align: left;
+
+    @media (max-width: 479px) {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    @media(max-width: 768px) {
+        font-size: 0.775rem;
+        padding: 0.6rem 0.9rem;
+        margin-top: 0.5rem;
+    }
+
+    &:hover {
+        border-color: #3b82f6;
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+    }
+
+    &:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+}
+
+.sch-fm-custom-dropdown__value {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sch-fm-custom-dropdown__arrow {
+    width: 16px;
+    height: 16px;
+    stroke: #6b7280;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+    
+    &--open {
+        transform: rotate(180deg);
+    }
+}
+
+.sch-fm-custom-dropdown__menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    animation: dropdown-slide-in 0.15s ease-out;
+
+    @include custom-scrollbar(6px, #f1f5f9, #cbd5e1);
+}
+
+@keyframes dropdown-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sch-fm-custom-dropdown__option {
+    padding: 0.425rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border-bottom: 1px solid #f3f4f6;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:hover,
+    &--focused {
+        background: #f3f4f6;
+        color: #1f2937;
+    }
+
+    &--selected {
+        background: #e0e7ff;
+        color: #3b82f6;
+        font-weight: 600;
+
+        &:hover,
+        &.sch-fm-custom-dropdown__option--focused {
+            background: #c7d2fe;
+        }
+    }
+}
+
+/* Legacy category-filter for backward compatibility */
+.sch-fm-category-filter {
+    display: none;
+}
+
+/* Breakdown Content */
+.sch-fm-breakdown-content {
+    padding: 1rem 1.5rem;
+    height: 400px; /* fixed height for consistent scroll area */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    
+    gap: 0.75rem;
+    scrollbar-width: thin; /* Firefox: small width scrollbar */
+    scrollbar-color: #cbd5e1 #f1f5f9; /* thumb, track */
+}
+
+:root.dark .sch-fm-breakdown-content {
+    scrollbar-color: #4b5563 #1f2937; /* Dark theme: thumb, track */
+}
+
+.sch-fm-breakdown-content::-webkit-scrollbar {
+    width: 6px; /* Chrome, Safari, Edge */
+}
+
+.sch-fm-breakdown-content::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 6px;
+}
+
+[data-theme="dark"] .sch-fm-breakdown-content::-webkit-scrollbar-track {
+    background: #1f2937;
+}
+
+.sch-fm-breakdown-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 6px;
+}
+
+[data-theme="dark"] .sch-fm-breakdown-content::-webkit-scrollbar-thumb {
+    background: #4b5563;
+}
+
+.sch-fm-breakdown-content::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+[data-theme="dark"] .sch-fm-breakdown-content::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+.sch-fm-breakdown-empty {
+    text-align: center;
+    padding: 2rem;
+}
+
+.sch-fm-empty-message {
+    color: #9ca3af;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Breakdown Item */
+.sch-fm-breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    background: #fafafa;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
+}
+
+.sch-fm-breakdown-item:hover {
+    background: #f3f4f6;
+    // border-left-color: #3b82f6;
+}
+
+.sch-fm-breakdown-item-left {
+    flex: 1;
+    min-width: 0;
+}
+
+.sch-fm-breakdown-fee-type {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 0.35rem 0;
+}
+
+.sch-fm-breakdown-description {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.sch-fm-breakdown-amounts {
+    display: flex;
+    gap: 12rem;
+    flex-wrap: wrap;
+    // justify-content: space-evenly;
+}
+
+.sch-fm-amount-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.sch-fm-amount-label {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    // text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sch-fm-amount-value {
+    font-size: 0.85rem;
+    font-weight: 450;    
+    color: #374151;
+}
+
+/* Breakdown Status */
+.sch-fm-breakdown-status {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 450;
+    padding: 0.15rem 0.75rem;
+    border-radius: 1rem;
+    flex-shrink: 0;
+    margin-left: 1rem;
+}
+
+.sch-fm-paid-status {
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+    color: #15803d;
+}
+
+.sch-fm-pending-status {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    color: #dc2626;
+    // border: 1px solid #f87171;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.15);
+}
+
+.sch-fm-overdue-status {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    color: #b91c1c;
+}
+
+/* ===== Structure Tables Row ===== */
+/* Outer visible container for structure tables and quick actions */
+.sch-fm-structure-and-actions-parent {
+    
+    border-radius: 1rem;
+    padding: 2rem 1.5rem;
+    background: rgb(249, 250, 251);
+    border: 1px solid rgb(229, 231, 235);
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 8px;
+}
+
+.sch-fm-structure-tables-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.sch-fm-structure-table-card {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* FIRST CARD: Academic Year Fee Structure */
+.sch-fm-academic-year-table {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(219, 234, 254);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 4px;
+}
+
+/* SECOND CARD: Bus Fees Structure */
+.sch-fm-bus-fees-table {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(254, 215, 170);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 4px;
+}
+
+/* THIRD CARD: Mess Fees Structure */
+.sch-fm-mess-fees-table {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(221, 214, 254);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 4px;
+}
+
+/* Structure Header */
+.sch-fm-structure-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem 0;
+    // border-bottom: 1px solid #e5e7eb;
+}
+
+// .sch-fm-academic-header {
+//     background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+// }
+
+
+
+// .sch-fm-mess-header {
+//     background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+// }
+
+.sch-fm-structure-icon {
+    font-size: 1.45rem;
+    width: 23px;
+    height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Academic Year Icon - Blue */
+.sch-fm-academic-year-table .sch-fm-structure-icon {
+    filter: brightness(0) saturate(100%) invert(64%) sepia(75%) saturate(1934%) hue-rotate(199deg) brightness(103%) contrast(96%);
+}
+
+/* Bus Fees Icon - Orange */
+.sch-fm-bus-fees-table .sch-fm-structure-icon {
+    filter: brightness(0) saturate(100%) invert(74%) sepia(46%) saturate(1708%) hue-rotate(333deg) brightness(101%) contrast(101%);
+}
+
+/* Mess Fees Icon - Purple */
+.sch-fm-mess-fees-table .sch-fm-structure-icon {
+    filter: brightness(0) saturate(100%) invert(72%) sepia(57%) saturate(2137%) hue-rotate(221deg) brightness(101%) contrast(97%);
+}
+
+.sch-fm-structure-title {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #1f2937;
+    margin: 0;
+}
+
+/* Structure Table */
+.sch-fm-structure-table {
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+.sch-fm-structure-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.sch-fm-structure-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    background: #f8fafc;
+    color: #374151;
+    font-weight: 600;
+    font-size: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* FIRST CARD: FEE STRUCTURE */
+.sch-fm-academic-year-table .sch-fm-structure-table th {
+    background: rgb(239, 246, 255);
+    border-bottom: 1px solid rgb(219, 234, 254);
+    color: rgb(59, 130, 246);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.sch-fm-academic-year-table .sch-fm-structure-table thead {
+    color: rgb(96, 165, 250);
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(59, 130, 246, 0.1);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* SECOND CARD: BUS FEES STRUCTURE */
+.sch-fm-bus-fees-table .sch-fm-structure-table th {
+    background: rgb(255, 247, 237);
+    border-bottom: 1px solid rgb(254, 215, 170);
+    color: rgb(234, 88, 12);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* THIRD CARD: MESS FEES STRUCTURE */
+.sch-fm-structure-table-card:nth-child(3) .sch-fm-structure-table th {
+    background: rgb(245, 243, 255);
+    border-bottom: 1px solid rgb(221, 214, 254);
+    color: rgb(124, 58, 237);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.sch-fm-structure-table td {
+    padding: 0.75rem 1rem;
+    color: #4b5563;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: top;
+    font-size: 12px;
+}
+
+.sch-fm-structure-table td:not(:nth-child(4)) {
+    font-weight: 700;
+}
+
+.sch-fm-structure-table td strong {
+    font-size: 12px;
+
+    @media(min-width: 320px) and (max-width: 374px) {
+        font-size: 9px !important;
+    }
+}
+
+.sch-fm-structure-table tr:last-child td {
+    border-bottom: none;
+}
+
+.sch-fm-structure-table tr:hover td {
+    background: #fafafa;
+}
+
+.sch-fm-term-duration {
+    font-size: 11px;   
+    color: #9ca3af;
+    // margin: 0.25rem 0 0 0;
+}
+
+/* Table Status Badges */
+.sch-fm-table-status {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: 450;
+    padding: 0.25rem 0.6rem;
+    border-radius: 1rem;
+}
+
+.sch-fm-table-status.sch-fm-orange-paid {
+    background: linear-gradient(135deg, #ffedd5, #fed7aa);
+    color: #c2410c;
+}
+
+.sch-fm-table-status.orange-pending {
+    background: rgb(254, 226, 226);
+    color: rgb(239, 68, 68);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.sch-fm-table-status.sch-fm-purple-paid {
+    background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+    color: #7c3aed;
+}
+
+.sch-fm-table-status.purple-pending {
+    background: rgb(254, 226, 226);
+    color: rgb(239, 68, 68);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* ===== Bottom Row ===== */
+.sch-fm-bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+/* Quick Actions Card */
+.sch-fm-quick-actions-card {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(229, 231, 235);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 4px;
+    border-radius: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.sch-fm-quick-actions-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem 0;
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    // border-bottom: 1px solid #e5e7eb;
+}
+
+.sch-fm-quick-actions-icon {
+    font-size: 1.25rem;
+}
+
+.sch-fm-quick-actions-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+}
+
+.sch-fm-quick-actions-buttons {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.sch-fm-action-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.25rem;
+    border-radius: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 450;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sch-fm-make-payment-button {
+    background: rgb(239, 246, 255);
+    border: 1px solid rgb(221, 214, 254);
+    // box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 4px;
+    color: rgb(101, 157, 212);
+}
+
+.sch-fm-make-payment-button:hover {
+    // background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    transform: translateY(-2px);
+}
+
+.sch-fm-download-receipt-button {
+    background: linear-gradient(135deg, rgb(209, 250, 229) 0%, rgb(240, 253, 244) 100%);
+    border: 1px solid rgb(167, 243, 208);
+    color: rgb(6, 95, 70);
+}
+
+.sch-fm-download-receipt-button:hover {
+    // background: linear-gradient(135deg, #16a34a, #15803d);
+    transform: translateY(-2px);
+}
+
+.sch-fm-payment-history-button {
+   background: linear-gradient(135deg, rgb(221, 214, 254) 0%, rgb(245, 243, 255) 100%);
+    border: 1px solid rgb(196, 181, 253);
+    color: rgb(91, 33, 182);
+}
+
+.sch-fm-payment-history-button:hover {
+    // background: linear-gradient(135deg, #9333ea, #7c3aed);
+    transform: translateY(-2px);
+}
+
+/* ===== Dark Theme ===== */
+:root.dark {
+    .sch-fm-fee-management-container {
+        background: transparent;
+    }
+
+    .sch-fm-fee-category-cards-parent {
+         background: rgba(15, 17, 26, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 16px;
+    }
+
+    .sch-fm-structure-and-actions-parent {
+            background: rgba(15, 17, 26, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 16px;
+    }
+
+    .sch-fm-page-title {
+        color: white;
+    }
+
+    .sch-fm-page-subtitle {
+        color: #9ca3af;
+    }
+
+    /* Fee Alerts Dark */
+    .sch-fm-fee-alerts-card {
+        // background: linear-gradient(135deg, #422006, #713f12);
+        border-left-color: #f59e0b;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .sch-fm-alert-title {
+        color: #fcd34d;
+    }
+
+    .sch-fm-alert-item {
+        background: none;
+    }
+
+    .sch-fm-alert-text {
+        color: #fcfbfb;
+    }
+
+    .sch-fm-alert-text strong {
+        color: #ffffff;
+    }
+
+    /* Summary Cards Dark */
+    .sch-fm-blue-card {
+           background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.03) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    box-shadow: rgba(59, 130, 246, 0.1) 0px 2px 8px;
+    }
+
+    .sch-fm-green-card {
+       background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.03) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    box-shadow: rgba(16, 185, 129, 0.1) 0px 2px 8px;
+}
+    
+
+    .sch-fm-red-card {
+           background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(239, 68, 68, 0.03) 100%);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    box-shadow: rgba(239, 68, 68, 0.1) 0px 2px 8px;
+    }
+
+    .sch-fm-purple-card {
+         background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(139, 92, 246, 0.03) 100%);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    box-shadow: rgba(139, 92, 246, 0.1) 0px 2px 8px;
+    }
+
+    .sch-fm-summary-card {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .sch-fm-summary-label-upper {
+        color: #a4a7aa;
+    }
+
+    .sch-fm-summary-amount {
+        color: #f9fafb;
+    }
+
+    // .sch-fm-summary-label {
+    //     color: #9ca3af;
+    // }
+
+    /* Fee Category Cards Dark */
+    .sch-fm-fee-category-card {
+         background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 6px;
+    }
+
+    .sch-fm-category-header {
+            // background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: none;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 6px;
+    border-bottom-color: none;
+    }
+
+    .sch-fm-green-bg {
+        background: rgba(16, 185, 129, 0.125);
+
+    }
+
+    .sch-fm-orange-bg {
+        background:rgba(255, 145, 77, 0.125);
+    }
+
+    .sch-fm-purple-bg {
+        background: rgba(139, 92, 246, 0.125);
+    }
+
+    .sch-fm-category-title {
+        color: #f3f4f6;
+    }
+
+    .sch-fm-category-subtitle {
+        color: #9ca3af;
+    }
+
+    .sch-fm-category-body {
+        //   background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top:none;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 6px;
+    border-top-color: none;
+    }
+
+    .sch-fm-fee-info-label {
+        color: #9ca3af;
+    }
+
+    .sch-fm-fee-info-value {
+        color: #f3f4f6;
+    }
+
+    .sch-fm-payment-progress-section {
+        border-top-color: #374151;
+    }
+
+    .sch-fm-progress-label {
+        color: #9ca3af;
+    }
+
+    .sch-fm-pending-chip {
+        background: #374151;
+        color: #9ca3af;
+    }
+
+    .sch-fm-terms-chips {
+        display: flex;
+        gap: 0.15rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-end;
+
+  
+    }
+
+    .sch-fm-term-chip {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 76px;
+        min-height: 48px;
+    }
+
+    .sch-fm-terms-info {
+        color: #9ca3af;
+    }
+
+    /* Fee Breakdown Dark */
+    .sch-fm-fee-breakdown-card {
+      background: rgba(15, 17, 26, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 16px;
+    }
+
+    .sch-fm-breakdown-header {
+        background: rgb(15 17 26 / 70%);
+        border-bottom-color: #374151;
+    }
+
+    .sch-fm-breakdown-title {
+        color: #f3f4f6;
+    }
+
+    // Dark mode styles for custom dropdown
+    .sch-fm-custom-dropdown__button {
+        background-color: color-mix(in oklab, var(--input) 50%, transparent);
+        border-color: #2d343e;
+        color: #e5e7eb;
+        
+        // &:hover {
+        //     border-color: #60a5fa;
+        // }
+        
+        &:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+        }
+    }
+    
+    .sch-fm-custom-dropdown__arrow {
+        stroke: #9ca3af;
+    }
+
+    .sch-fm-custom-dropdown__menu {
+        background: #374151;
+        border-color: #4b5563;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+        &::-webkit-scrollbar-track {
+            background: #4b5563;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #6b7280;
+            
+            &:hover {
+                background: #9ca3af;
+            }
+        }
+    }
+
+    .sch-fm-custom-dropdown__option {
+        color: #e5e7eb;
+        border-bottom-color: #4b5563;
+
+        &:hover,
+        &--focused {
+            background: #4b5563;
+            color: #f9fafb;
+        }
+
+        &--selected {
+            background: rgba(96, 165, 250, 0.2);
+            color: #60a5fa;
+            font-weight: 600;
+
+            &:hover,
+            &.sch-fm-custom-dropdown__option--focused {
+                background: rgba(96, 165, 250, 0.3);
+            }
+        }
+    }
+
+    .sch-fm-category-filter {
+        background: #374151;
+        border-color: #4b5563;
+        color: #e5e7eb;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    }
+
+    .sch-fm-category-filter:hover,
+    .sch-fm-category-filter:focus {
+        border-color: #60a5fa;
+    }
+
+    .sch-fm-breakdown-content {
+        background: rgb(15 17 26 / 70%);
+    }
+        
+
+    .sch-fm-breakdown-item {
+        background: rgb(25 28 40);
+        border: 1px solid #4b5563;
+        // border-left-color: #4b5563;
+    }
+
+    .sch-fm-breakdown-item:hover {
+        background: rgb(30 32 45);
+        // border-left-color: #60a5fa;
+
+    }
+
+    .sch-fm-breakdown-fee-type {
+        color: #f3f4f6;
+    }
+
+    .sch-fm-breakdown-description {
+        color: #9ca3af;
+    }
+
+    .sch-fm-amount-label {
+        color: #6b7280;
+    }
+
+    .sch-fm-amount-value {
+        color: #d1d5db;
+    }
+
+    .sch-fm-empty-message {
+        color: #6b7280;
+    }
+
+    /* Structure Tables Dark Theme - Pixel-Perfect Dark UI */
+
+    // .sch-fm-structure-table{
+    //         background: rgba(15, 17, 26, 0.7);
+    // border: 1px solid rgba(255, 145, 77, 0.3);
+    // box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px;
+
+    // }
+    .sch-fm-structure-table-card {
+        background: rgba(15, 17, 26, 0.7);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px;
+}
+    
+
+    /* Academic Year Fee Structure - Blue Theme */
+    .sch-fm-academic-year-table {
+        background: rgba(15, 17, 26, 0.7);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px;
+    
+        
+        // .sch-fm-structure-header {
+        //     background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(30, 64, 175, 0.25) 100%);
+        // }
+        
+        .sch-fm-structure-table th {
+            background: rgb(17 26 46);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+            color: #93c5fd;
+        }
+
+        .sch-fm-structure-table thead {
+            color: #93c5fd;
+            font-size: 13px;
+            font-weight: 600;
+            background: rgb(17 26 46);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.35);
+        }
+        
+        .sch-fm-table-status.sch-fm-paid-status,
+        .sch-fm-table-status.sch-fm-paid-badge {
+            background: rgba(16, 185, 129, 0.2);
+            color: rgb(16, 185, 129);
+            font-size: 11px;
+            font-weight: 600;
+            border: none;
+            box-shadow: none;
+        }
+    }
+
+    /* Bus Fees Structure - Orange Theme */
+    .sch-fm-bus-fees-table {
+       background: rgba(15, 17, 26, 0.7);
+    border: 1px solid rgba(255, 145, 77, 0.3);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px;
+
+        
+        .sch-fm-structure-table th {
+            background: rgb(33 26 28);
+            border-bottom: 1px solid rgba(249, 115, 22, 0.3);
+            color: #fdba74;
+        }
+        
+        .sch-fm-table-status.sch-fm-orange-paid {
+            background: rgba(255, 145, 77, 0.2);
+            color: rgb(255, 145, 77);
+            font-size: 11px;
+            font-weight: 600;
+        }
+    }
+
+    /* Mess Fees Structure - Purple Theme */
+    .sch-fm-mess-fees-table {
+        background: rgba(15, 17, 26, 0.7);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px;
+
+  
+        .sch-fm-structure-table th {
+            background: rgba(139, 92, 246, 0.1);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+            color: #d8b4fe;
+        }
+        
+        .sch-fm-table-status.sch-fm-purple-paid {
+            background: rgba(139, 92, 246, 0.2);
+            color: rgb(139, 92, 246);
+            font-size: 11px;
+            font-weight: 600;
+        }
+    }
+
+    /* Pending Status Badges - Red Theme with Enhanced Glow */
+    .sch-fm-table-status.sch-fm-pending-status,
+    .sch-fm-table-status.orange-pending,
+    .sch-fm-table-status.purple-pending {
+        background: rgba(239, 68, 68, 0.2);
+        color: rgb(239, 68, 68);
+        font-size: 11px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+    
+    // .sch-fm-table-status.sch-fm-pending-status:hover,
+    // .sch-fm-table-status.orange-pending:hover,
+    // .sch-fm-table-status.purple-pending:hover {
+    //     background: linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(220, 38, 38, 0.4) 100%);
+    //     box-shadow: 0 0 20px rgba(239, 68, 68, 0.45), 
+    //                 0 0 12px rgba(239, 68, 68, 0.3);
+    // }
+
+    /* Table Styles */
+    .sch-fm-structure-title {
+        color: #f3f4f6;
+    }
+
+    .sch-fm-structure-table th {
+        background: rgba(55, 65, 81, 0.5);
+        color: #e5e7eb;
+        border-bottom-color: #4b5563;
+        font-weight: 600;
+    }
+
+    .sch-fm-structure-table td {
+        color: #d1d5db;
+        border-bottom-color: rgba(55, 65, 81, 0.3);
+        font-size: 12px;
+    }
+
+    .sch-fm-structure-table td:not(:nth-child(4)) {
+        font-weight: 700;
+    }
+
+    .sch-fm-structure-table tr:hover td {
+        background: rgba(55, 65, 81, 0.3);
+    }
+
+    .sch-fm-term-duration {
+        color: #9ca3af;
+        opacity: 0.8;
+    }
+
+    /* Quick Actions Dark - Premium Gradient Buttons */
+    .sch-fm-quick-actions-card {
+       background: rgba(15, 17, 26, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px;
+
+    }
+
+    .sch-fm-quick-actions-header {
+        background: none;
+        // border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+    }
+
+    .sch-fm-quick-actions-title {
+        color: #f3f4f6;
+    }
+
+    /* Make Payment Button - Blue Gradient */
+    .sch-fm-make-payment-button {
+        background: linear-gradient(135deg, #0f1d35 0%, #081533 100%);
+        border: 1px solid rgba(59, 130, 246, 0.5);
+        // box-shadow: 0 0 10px rgba(59, 130, 246, 0.35),
+        //             inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        
+        &:hover {
+            // background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+            box-shadow: 0 0 24px rgba(59, 130, 246, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px) scale(1.02);
+        }
+    }
+
+    /* Download Receipt Button - Green Gradient */
+    .sch-fm-download-receipt-button {
+            background: linear-gradient(135deg, #172d26 0%, #092f23 100%);
+        border: 1px solid rgba(16, 185, 129, 0.5);
+        // box-shadow: 0 0 16px rgba(16, 185, 129, 0.35),
+        //             inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        
+        &:hover {
+            // background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+            box-shadow: 0 0 24px rgba(16, 185, 129, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px) scale(1.02);
+        }
+    }
+
+    /* Payment History Button - Purple Gradient */
+    .sch-fm-payment-history-button {
+        background: linear-gradient(135deg, #1e0f3f 0%, #180932 100%);
+        border: 1px solid rgba(139, 92, 246, 0.5);
+        // box-shadow: 0 0 16px rgba(139, 92, 246, 0.35),
+        //             inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        
+        &:hover {
+            // background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+            box-shadow: 0 0 24px rgba(139, 92, 246, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px) scale(1.02);
+        }
+    }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 1023px) {
+    .sch-fm-summary-cards-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sch-fm-fee-category-cards-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sch-fm-structure-tables-row {
+        grid-template-columns: 1fr;
+    }
+
+    .sch-fm-bottom-row {
+        grid-template-columns: 1fr;
+    }
+
+    .sch-fm-fee-management-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    @include sidebar-state-collapsed {
+        .sch-fm-breakdown-amounts {
+            gap: 8rem;
+        }    
+    }
+
+    .school-layout-sidebar-expanded + .school-layout-main .sch-fm-breakdown-amounts {
+        gap: 4rem;
+    }
+
+    .sch-fm-summary-details {
+        padding-left: 6.8rem;
+    }
+
+    .sch-fm-breakdown-item-left {
+        width: 100%;   
+    }
+}
+
+@media (max-width: 1023px) {
+  @include sidebar-state-expanded {
+    .sch-fm-summary-details {
+      padding-left: 4.8rem;
+    }
+    .sch-fm-fee-category-cards-row {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+    .sch-fm-fee-management-container {
+        padding: 0.25rem;
+        gap: 1rem;
+    }
+
+    .sch-fm-fee-management-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .sch-fm-page-title {
+        font-size: 1.5rem;
+    }
+
+    .sch-fm-summary-cards-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .sch-fm-fee-category-cards-row {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .sch-fm-summary-card {
+        padding: 0.875rem 1rem;
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: center;
+    }
+
+    .sch-fm-summary-details {
+        padding-left: 2rem !important;
+    }
+
+    .sch-fm-summary-amount {
+        font-size: 1.25rem;
+    }
+
+    .sch-fm-breakdown-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* When sidebar is collapsed at 768px and above, put title and dropdown on same row */
+    @media (min-width: 768px) {
+        .school-layout-sidebar-collapsed + .school-layout-main .sch-fm-breakdown-header {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* When sidebar is collapsed at 768px and above, revert title-section width to auto */
+        .school-layout-sidebar-collapsed + .school-layout-main .sch-fm-breakdown-title-section {
+            width: auto;
+        }
+
+        /* When sidebar is collapsed at 768px and above, revert dropdown width to auto */
+        .school-layout-sidebar-collapsed + .school-layout-main .sch-fm-custom-dropdown {
+            min-width: auto;
+        }
+    }
+
+    .sch-fm-category-filter {
+        width: 100%;
+    }
+
+    .sch-fm-breakdown-amounts {
+        flex-direction: row;
+        gap: 0.75rem;
+        justify-content: space-between;
+        gap: 0 !important;
+    }
+
+    .sch-fm-breakdown-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .sch-fm-breakdown-status {
+        margin-left: 0;
+    }
+
+    .sch-fm-alert-item {
+        margin-left: 0.5rem;
+    }
+}
+
+@media (max-width: 479px) {
+    .sch-fm-fee-management-container {
+        padding: 0.75rem;
+    }
+
+    /* Fee Metric Cards → 2 per row */
+    .sch-fm-summary-cards-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .sch-fm-summary-card {
+        flex-direction: row;
+        text-align: center;
+        padding: 0.75rem 0.5rem;
+        gap: 0.5rem;
+    }
+
+    /* Total Amount & Amount Paid → single row with compact layout */
+    .sch-fm-summary-details {
+        padding-left: 1rem !important;
+        gap: 0.5rem;
+    }
+
+
+    .sch-fm-summary-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .sch-fm-summary-amount {
+        font-size: 0.9rem;
+        font-weight: 700;
+    }
+
+    .sch-fm-summary-label-upper {
+        font-size: 0.6rem;
+    }
+
+    .sch-fm-summary-label {
+        font-size: 0.65rem;
+    }
+
+    /* Breakdown Section → remove 4rem gap + align in one row */
+    .sch-fm-breakdown-amounts {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto);
+        gap: 0.5rem !important;
+    }
+
+    .sch-fm-breakdown-item {
+        width: 100%;
+        margin: 0;
+        padding: 0.5rem 0.25rem;
+        box-sizing: border-box;
+    }
+
+    .sch-fm-breakdown-item:nth-child(1),
+    .sch-fm-breakdown-item:nth-child(2) {
+        grid-row: 1;
+    }
+    .sch-fm-breakdown-item:nth-child(3),
+    .sch-fm-breakdown-item:nth-child(4) {
+        grid-row: 2;
+    }
+
+    .sch-fm-breakdown-item {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        width: 100%;
+    }
+
+    .sch-fm-breakdown-item-left {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .sch-fm-breakdown-fee-type {
+        font-size: 0.85rem;
+    }
+
+    .sch-fm-breakdown-description {
+        font-size: 0.7rem;
+        -webkit-line-clamp: 1;
+    }
+
+    /* Prevent text wrapping issues */
+    .sch-fm-breakdown-item span,
+    .sch-fm-summary-card span {
+        white-space: nowrap;
+        font-size: 0.75rem;
+    }
+
+    .sch-fm-amount-detail {
+        gap: 0.1rem;
+    }
+
+    .sch-fm-amount-label {
+        font-size: 0.65rem;
+    }
+
+    .sch-fm-amount-value {
+        font-size: 0.8rem;
+    }
+
+    .sch-fm-alert-item {
+        flex-direction: row !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        margin-left: 0;
+    }
+
+    /* Total Amount & Amount Paid → single row */
+    .sch-fm-fee-info-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .sch-fm-structure-table {
+        padding: 0.5rem;
+    }
+
+    .sch-fm-structure-table th,
+    .sch-fm-structure-table td {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .sch-fm-fee-category-card {
+        overflow-x: auto;
+    }
+
+    .sch-fm-breakdown-status {
+        font-size: 0.65rem;
+        padding: 0.1rem 0.5rem;
+        margin-left: 0.5rem;
+        flex-shrink: 0;
+    }
+}
+
+/* ===== EXTRA SMALL DEVICES (320px–375px) ===== */
+@media (min-width: 320px) and (max-width: 374px) {
+    /* Main Container */
+    .sch-fm-fee-management-container {
+        padding: 0.25rem;
+        gap: 0.75rem;
+    }
+
+    /* Header Section */
+    .sch-fm-fee-management-header {
+        padding: 0 0.25rem;
+    }
+
+    .sch-fm-page-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 0.1rem;
+    }
+
+    .sch-fm-page-subtitle {
+        font-size: 0.6rem;
+    }
+
+    /* Fee Alerts Card */
+    .sch-fm-fee-alerts-card {
+        padding: 0.75rem;
+        border-radius: 0.75rem;
+    }
+
+    .sch-fm-alert-header {
+        gap: 0.5rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .sch-fm-alert-title {
+        font-size: 0.75rem;
+    }
+
+    .sch-fm-alert-content {
+        gap: 0 rem;
+    }
+
+    .sch-fm-alert-item {
+        margin-left: 0;
+        margin-bottom: 0rem;
+        padding: 0.4rem 0.5rem !important;
+        border-radius: 0.35rem;
+        gap: 0 !important;
+    }
+
+    .sch-fm-alert-item-icon {
+        font-size: 0.85rem;
+        margin-right: 0.25rem;
+        flex-shrink: 0;
+    }
+
+    .sch-fm-alert-text {
+        font-size: 0.65rem;
+        line-height: 1.2;
+    }
+
+    /* Summary Cards Row */
+    .sch-fm-summary-cards-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .sch-fm-summary-card {
+        flex-direction: column;
+        padding: 0.5rem 0.4rem;
+        gap: 0.35rem;
+        text-align: center;
+        border-radius: 0.65rem;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    .sch-fm-summary-icon {
+        width: 38px;
+        height: 38px;
+        margin: 0 auto 0.1rem;
+        flex-shrink: 0;
+    }
+
+    .sch-fm-summary-details {
+        padding-left: 0;
+        gap: 0.15rem;
+        align-items: center;
+    }
+
+    .sch-fm-summary-label-upper {
+        font-size: 0.55rem;
+        margin: 0;
+        letter-spacing: 0.3px;
+    }
+
+    .sch-fm-summary-amount {
+        font-size: 0.95rem;
+        margin: 0;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+
+    .sch-fm-summary-label {
+        font-size: 0.6rem;
+        margin: 0;
+    }
+
+    /* Fee Category Cards Parent */
+    .sch-fm-fee-category-cards-parent {
+        padding: 0.75rem 0.5rem;
+        border-radius: 0.75rem;
+        gap: 0.5rem;
+    }
+
+    /* Fee Category Cards Row */
+    .sch-fm-fee-category-cards-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .sch-fm-fee-category-card {
+        border-radius: 0.75rem;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    .sch-fm-category-header {
+        padding: 0.75rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .sch-fm-category-title-section {
+        gap: 0.5rem;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .sch-fm-category-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+
+    .sch-fm-category-title {
+        font-size: 0.85rem;
+    }
+
+    .sch-fm-category-subtitle {
+        font-size: 0.65rem;
+    }
+
+    .sch-fm-status-badge {
+        font-size: 0.5rem;
+        padding: 0.2rem 0.35rem;
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.15rem;
+        font-weight: 600;
+        border-radius: 0.75rem;
+        line-height: 1;
+
+        svg {
+            width: 12px;
+            height: 12px;
+            flex-shrink: 0;
+        }
+    }
+
+    .sch-fm-category-body {
+        padding: 0.75rem;
+        gap: 0.5rem;
+    }
+
+    .sch-fm-fee-info-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .sch-fm-fee-info-label {
+        font-size: 0.6rem;
+    }
+
+    .sch-fm-fee-info-value {
+        font-size: 0.8rem;
+    }
+
+    .sch-fm-due-date {
+        font-size: 0.6rem;
+    }
+
+    .sch-fm-payment-progress-section {
+        padding-top: 0.35rem;
+    }
+
+    .sch-fm-progress-label {
+        font-size: 0.65rem;
+    }
+
+    .sch-fm-progress-percentage {
+        font-size: 0.75rem;
+    }
+
+    /* Terms Chips */
+    .sch-fm-terms-chips {
+        gap: 0.09rem !important;
+        justify-content: center;
+    }
+
+    .sch-fm-term-chip {
+        min-width: 60px;
+        min-height: 40px;
+        font-size: 0.65rem;
+        padding: 0.2rem;
+    }
+
+    .sch-fm-term-tick {
+        height: 10px;
+    }
+
+    .sch-fm-terms-info {
+        font-size: 0.65rem;
+    }
+
+    /* Pay Button */
+    .sch-fm-pay-button {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+        border-radius: 1.5rem;
+    }
+
+    /* Fee Breakdown Card */
+    .sch-fm-fee-breakdown-card {
+        border-radius: 0.75rem;
+    }
+
+    .sch-fm-breakdown-header {
+        padding: 0.75rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+
+    .sch-fm-breakdown-title-section {
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .sch-fm-breakdown-icon {
+        font-size: 1.1rem;
+    }
+
+    .sch-fm-breakdown-title {
+        font-size: 0.95rem;
+    }
+
+    /* Custom Dropdown */
+    .sch-fm-custom-dropdown {
+        min-width: 100%;
+        padding: 0.65rem 0.9rem;
+        font-size: 0.775rem;
+
+    }
+
+    .sch-fm-custom-dropdown__button {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    .sch-fm-custom-dropdown__menu {
+        max-height: 250px;
+    }
+
+    .sch-fm-custom-dropdown__option {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    /* Breakdown Content */
+    .sch-fm-breakdown-content {
+        padding: 0.75rem;
+        height: auto;
+        max-height: 400px;
+        overflow-y: auto;
+        gap: 0.5rem;
+    }
+
+    .sch-fm-breakdown-item {
+        padding: 0.6rem 0.5rem;
+        // flex-direction: column;
+        gap: 0.4rem;
+        border-radius: 0.5rem;
+        border: 1px solid #e5e7eb;
+    }
+
+    .sch-fm-breakdown-item-left {
+        width: 100%;
+    }
+
+    .sch-fm-breakdown-fee-type {
+        font-size: 0.8rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .sch-fm-breakdown-description {
+        font-size: 0.7rem;
+        margin-bottom: 0.4rem;
+        -webkit-line-clamp: 2;
+        line-height: 1.3;
+    }
+
+    .sch-fm-breakdown-amounts {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.4rem;
+        width: 100%;
+    }
+
+    .sch-fm-amount-detail {
+        gap: 0.1rem;
+    }
+
+    .sch-fm-amount-label {
+        font-size: 0.6rem;
+    }
+
+    .sch-fm-amount-value {
+        font-size: 0.75rem;
+    }
+
+    .sch-fm-breakdown-status {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.4rem;
+        margin-left: 0;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    /* Structure Tables & Actions Parent */
+    .sch-fm-structure-and-actions-parent {
+        padding: 0.75rem 0.5rem;
+        border-radius: 0.75rem;
+        gap: 0.75rem;
+    }
+
+    .sch-fm-structure-tables-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .sch-fm-structure-table-card {
+        border-radius: 0.75rem;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    .sch-fm-structure-header {
+        padding: 0.75rem;
+        gap: 0.5rem;
+    }
+
+    .sch-fm-structure-icon {
+        font-size: 1rem;
+        width: 20px;
+        height: 20px;
+    }
+
+    .sch-fm-structure-title {
+        font-size: 0.95rem;
+    }
+
+    /* Structure Table */
+    .sch-fm-structure-table {
+        padding: 0.5rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .sch-fm-structure-table table {
+        min-width: 280px;
+        font-size: 0.75rem;
+    }
+
+    .sch-fm-structure-table th {
+        padding: 0.5rem 0.4rem;
+        font-size: 0.65rem;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .sch-fm-structure-table td {
+        padding: 0.5rem 0.4rem;
+        font-size: 0.7rem;
+    }
+
+    .sch-fm-term-duration {
+        font-size: 0.6rem;
+        margin-top: 0.1rem;
+    }
+
+    .sch-fm-table-status {
+        font-size: 0.6rem;
+        padding: 0.15rem 0.35rem;
+    }
+
+    /* Bottom Row */
+    .sch-fm-bottom-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    /* Quick Actions Card */
+    .sch-fm-quick-actions-card {
+        border-radius: 0.75rem;
+    }
+
+    .sch-fm-quick-actions-header {
+        padding: 0.75rem;
+        gap: 0.5rem;
+    }
+
+    .sch-fm-quick-actions-icon {
+        font-size: 1rem;
+    }
+
+    .sch-fm-quick-actions-title {
+        font-size: 0.95rem;
+    }
+
+    .sch-fm-quick-actions-buttons {
+        padding: 0.75rem;
+        gap: 0.5rem;
+    }
+
+    .sch-fm-action-button {
+        padding: 0.6rem 0.75rem;
+        font-size: 0.8rem;
+        border-radius: 0.5rem;
+        gap: 0.4rem;
+    }
+
+    .sch-fm-action-button svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Dark Theme Adjustments for 320px–375px */
+    :root.dark {
+        .sch-fm-fee-management-container {
+            padding: 0.25rem;
+        }
+
+        .sch-fm-fee-category-cards-parent {
+            background: rgba(15, 17, 26, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sch-fm-structure-and-actions-parent {
+            background: rgba(15, 17, 26, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sch-fm-fee-category-card {
+            background: rgba(25, 28, 40, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sch-fm-breakdown-item {
+            background: rgba(25, 28, 40, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sch-fm-structure-table-card {
+            background: rgba(25, 28, 40, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sch-fm-quick-actions-card {
+            background: rgba(25, 28, 40, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sch-fm-summary-card {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .sch-fm-summary-amount {
+            color: #f3f4f6;
+        }
+
+        .sch-fm-fee-info-value {
+            color: #d1d5db;
+        }
+
+        .sch-fm-breakdown-fee-type {
+            color: #f3f4f6;
+        }
+
+        .sch-fm-breakdown-description {
+            color: #9ca3af;
+        }
+
+        .sch-fm-structure-title {
+            color: #f3f4f6;
+        }
+
+        .sch-fm-structure-table th {
+            background: rgba(30, 32, 45, 0.8);
+            color: #d1d5db;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .sch-fm-structure-table td {
+            color: #d1d5db;
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .sch-fm-quick-actions-title {
+            color: #f3f4f6;
+        }
+
+        .sch-fm-action-button {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .sch-fm-custom-dropdown__button {
+            background: rgba(55, 65, 81, 0.4);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #d1d5db;
+        }
+
+        .sch-fm-custom-dropdown__menu {
+            background: #374151;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .sch-fm-custom-dropdown__option {
+            color: #d1d5db;
+
+            &:hover {
+                background: rgba(55, 65, 81, 0.6);
+            }
+        }
+
+        /* Terms Chips Dark Theme 320px */
+        .sch-fm-terms-chips {
+            gap: 0.09rem !important;
+            justify-content: center;
+            flex-wrap: nowrap;
+            // overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sch-fm-term-chip {
+            min-width: 60px;
+            min-height: 40px;
+            font-size: 0.65rem;
+            padding: 0.2rem;
+            flex-shrink: 0;
+        }
+    }
+}

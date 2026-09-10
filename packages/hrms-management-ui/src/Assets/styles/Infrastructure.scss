@@ -1,0 +1,1909 @@
+﻿// â”€â”€â”€ Campus Infrastructure SCSS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Prefix: ci-*  |  Consistent with FeeOverview (fo-*) and DueManagement design language
+
+// â”€â”€â”€ Variables â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+$gold: #c9a962;
+$ink: #a8894a;
+$text: #1a1d23;
+$muted: #6b7280;
+$line: #e8ecf0;
+$bg: #f5f6fa;
+$white: #ffffff;
+$danger: #dc2626;
+$warning: #d97706;
+$success: #16a34a;
+$blue: #6366f1;
+$teal: #14b8a6;
+$cyan: #06b6d4;
+$violet: #8b5cf6;
+$indigo: #4f46e5;
+$amber: #f59e0b;
+$rose: #f43f5e;
+$sky: #38bdf8;
+$green: #22c55e;
+$orange: #f97316;
+$purple: #a21caf;
+$red: #dc2626;
+
+$radius-sm: 0.375rem;
+$radius: 0.625rem;
+$radius-lg: 1rem;
+$radius-xl: 1.25rem;
+
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, .08), 0 1px 2px rgba(0, 0, 0, .06);
+$shadow: 0 4px 12px rgba(0, 0, 0, .08);
+$shadow-lg: 0 8px 24px rgba(0, 0, 0, .10);
+
+// Tone color map for metric cards
+$tones: (
+  blue: (#eff6ff, #2563eb, #1d4ed8),
+  indigo: (#eef2ff, #4f46e5, #3730a3),
+  violet: (#f5f3ff, #7c3aed, #6d28d9),
+  amber: (#fffbeb, #d97706, #b45309),
+  teal: (#f0fdfa, #0d9488, #0f766e),
+  cyan: (#ecfeff, #0891b2, #0e7490),
+  green: (#f0fdf4, #16a34a, #15803d),
+  red: (#fef2f2, #dc2626, #b91c1c),
+  sky: (#f0f9ff, #0284c7, #0369a1),
+  rose: (#fff1f2, #e11d48, #be123c),
+  orange: (#fff7ed, #ea580c, #c2410c),
+  purple: (#fdf4ff, #9333ea, #7e22ce),
+  yellow: (#fefce8, #ca8a04, #a16207),
+  gold: (#fdf8ec, #b08a2e, #8a6820),
+);
+
+// â”€â”€ Dark-mode custom properties â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+:root {
+  --ci-bg: #{$bg};
+  --ci-surface: #{$white};
+  --ci-line: #{$line};
+  --ci-text: #{$text};
+  --ci-muted: #{$muted};
+  --ci-input: #f9fafb;
+  --ci-hover-bg: var(--ci-line);
+  --ci-hover-border: var(--ci-line);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ci-bg: #0f1117;
+    --ci-surface: #1a1d23;
+    --ci-line: #2a2d35;
+    --ci-text: #f0f2f5;
+    --ci-muted: #9ca3af;
+    --ci-input: #1f2229;
+    --ci-hover-bg: var(--ci-line);
+    --ci-hover-border: var(--ci-line);
+  }
+}
+
+// â”€â”€â”€ Mixins â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+@mixin card {
+  background: var(--ci-surface);
+  border: 1px solid var(--ci-line);
+  border-radius: $radius;
+  box-shadow: $shadow-sm;
+  transition: box-shadow .15s, transform .15s;
+}
+
+@mixin card-hover {
+  &:hover {
+    box-shadow: $shadow;
+    transform: translateY(-1px);
+  }
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid $gold;
+    outline-offset: 2px;
+  }
+}
+
+@mixin bp($size) {
+  @if $size ==xxs {
+    @media (max-width: 320px) {
+      @content;
+    }
+  }
+
+  @if $size ==xs {
+    @media (max-width: 375px) {
+      @content;
+    }
+  }
+
+  @if $size ==sm {
+    @media (max-width: 480px) {
+      @content;
+    }
+  }
+
+  @if $size ==md {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+
+  @if $size ==lg {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  }
+
+  @if $size ==xl {
+    @media (max-width: 1440px) {
+      @content;
+    }
+  }
+}
+
+@mixin hover-bg($prefix) {
+  &:hover {
+    background: var(--#{$prefix}-hover-bg);
+    color: var(--#{$prefix}-text);
+  }
+}
+
+@mixin button-outline-hover($prefix) {
+  &:hover:not(:disabled) {
+    background: var(--#{$prefix}-hover-bg);
+    border-color: var(--#{$prefix}-hover-border);
+    color: var(--#{$prefix}-text);
+  }
+}
+
+// â”€â”€â”€ Root â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-root {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.75rem;
+  background: var(--ci-bg);
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--ci-text);
+
+  @include bp(md) {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  @include bp(sm) {
+    padding: .875rem;
+    gap: 1rem;
+  }
+
+  @include bp(xxs) {
+    padding: .625rem;
+  }
+}
+
+// â”€â”€â”€ Page Header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-page-header {
+  margin-bottom: 1.5rem;
+
+  &__row {
+    @include flex-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+}
+
+.ci-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--ci-muted);
+  margin-bottom: 0.5rem;
+
+  &__sep {
+    color: var(--ci-muted);
+  }
+
+  &__current {
+    color: var(--ci-text);
+    font-weight: 600;
+  }
+}
+
+.ci-page-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, $gold, $ink);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  margin: 0;
+
+  @include bp(sm) {
+    font-size: 1.25rem;
+  }
+}
+
+.ci-page-desc {
+  font-size: .8125rem;
+  color: var(--ci-muted);
+  margin: 0.25rem 0 0;
+}
+
+// â”€â”€â”€ Tabs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-tabs-wrap {
+  // margin-bottom: 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--ci-bg);
+  padding: 0.5rem 0;
+}
+
+.ci-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.875rem 1rem;
+  background: var(--ci-surface);
+  border: 1px solid var(--ci-line);
+  border-radius: $radius-lg;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .06), 0 1px 2px rgba(0, 0, 0, .04);
+  scrollbar-width: thin;
+  scrollbar-color: rgba($gold, .3) transparent;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba($gold, .3);
+    border-radius: 2px;
+  }
+}
+
+.ci-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--ci-line);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  background: var(--ci-input);
+  color: var(--ci-muted);
+  transition: all .15s;
+  flex-shrink: 0;
+  @include focus-ring;
+
+  &:hover {
+    border-color: $gold;
+    color: $gold;
+    background: rgba($gold, .06);
+  }
+
+  &--active {
+    background: $gold;
+    border-color: $gold;
+    color: $white;
+    box-shadow: 0 2px 8px rgba($gold, .25);
+  }
+}
+
+// â”€â”€â”€ Content â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-content {
+  min-height: 400px;
+}
+
+.ci-tab-content {
+  animation: ci-fade-in .2s ease;
+
+  &__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+}
+
+@keyframes ci-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// â”€â”€â”€ Metric Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  &--sm {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width:1025px) and (max-width:1440px) {
+    grid-template-columns: repeat(3, 1fr);
+
+    &--sm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @include bp(lg) {
+    grid-template-columns: repeat(3, 1fr);
+
+    &--sm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @include bp(md) {
+    grid-template-columns: repeat(2, 1fr);
+
+    &--sm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @include bp(xs) {
+    grid-template-columns: 1fr;
+
+    &--sm {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.ci-metric-card {
+  @include card;
+  @include card-hover;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: default;
+  min-height: 100px;
+
+
+  @include bp(lg) {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  @include bp(md) {
+    padding: 1rem;
+    flex-direction: column;
+  }
+
+  @include bp(sm) {
+    padding: 1rem;
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+
+  &__icon {
+    font-size: 1.6rem;
+    line-height: 1;
+    flex-shrink: 0;
+    padding: 0.5rem;
+    border-radius: $radius;
+    background: rgba(0, 0, 0, .04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+
+    @include bp(lg) {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+
+    @include bp(md) {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    @include bp(sm) {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+  }
+
+  &__body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    align-items: center;
+  }
+
+  &__value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ci-text);
+    line-height: 1.1;
+
+    @include bp(lg) {
+      font-size: 1rem;
+    }
+
+    @include bp(md) {
+      font-size: 1rem;
+    }
+
+    @include bp(sm) {
+      font-size: 1rem;
+    }
+
+    @include bp(xs) {
+      font-size: 1rem;
+    }
+
+    @include bp(xxs) {
+      font-size: 0.9rem;
+    }
+  }
+
+  &__total {
+    font-size: 0.9rem;
+    color: var(--ci-muted);
+    font-weight: 400;
+
+    @include bp(lg) {
+      font-size: 0.75rem;
+    }
+  }
+
+  &__label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ci-muted);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+
+    @include bp(lg) {
+      font-size: 0.65rem;
+    }
+  }
+
+  &__sub {
+    font-size: 0.7rem;
+    color: var(--ci-muted);
+    line-height: 1.3;
+
+    @include bp(lg) {
+      font-size: 0.65rem;
+    }
+  }
+
+  // Tone backgrounds
+  @each $name, $colors in $tones {
+    $bg-color: nth($colors, 1);
+    $val-color: nth($colors, 2);
+    $label-color: nth($colors, 3);
+
+    &--#{$name} {
+      background: $bg-color;
+      border-color: rgba($val-color, .2);
+
+      .ci-metric-card__value {
+        color: $val-color;
+      }
+    }
+  }
+
+  &--flat {
+    background: var(--ci-surface);
+    border: 1px solid var(--ci-line);
+    padding: 1rem;
+  }
+}
+
+// â”€â”€â”€ Overview Grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+
+  @media(min-width:1025px) and (max-width:1440px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include bp(lg) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @include bp(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// â”€â”€â”€ Analytics Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-analytics-card {
+  @include card;
+  padding: 1.25rem;
+
+  &--full {
+    grid-column: 1 / -1;
+    overflow-x: auto;
+  }
+
+  &__title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ci-text);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--ci-line);
+  }
+
+  &__desc {
+    font-size: 0.8rem;
+    color: var(--ci-muted);
+    margin-top: 0.75rem;
+  }
+}
+
+.ci-analytics-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.ci-analytics-row {
+  @include flex-between;
+  gap: 0.75rem;
+  font-size: 0.82rem;
+
+  &__label {
+    color: var(--ci-muted);
+    min-width: 9rem;
+    flex-shrink: 0;
+
+    @include bp(xs) {
+      min-width: 6rem;
+      font-size: 0.75rem;
+    }
+  }
+
+  &__val {
+    color: var(--ci-text);
+    font-weight: 600;
+  }
+}
+
+// â”€â”€â”€ Health Score â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-health-score {
+  @include flex-center;
+  flex-direction: column;
+  padding: 1rem 0 0.75rem;
+
+  &__ring {
+    @include flex-center;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    border: 4px solid $gold;
+    gap: 0.15rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__val {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--ci-text);
+  }
+
+  &__unit {
+    font-size: 0.7rem;
+    color: var(--ci-muted);
+    align-self: flex-end;
+    padding-bottom: 0.25rem;
+  }
+
+  &__desc {
+    font-size: 0.8rem;
+    color: var(--ci-muted);
+    text-align: center;
+    max-width: 18rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+// â”€â”€â”€ Quick Actions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+// â”€â”€â”€ Filters Bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-filters {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.ci-search {
+  flex: 1;
+  min-width: 12rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--ci-line);
+  border-radius: $radius;
+  font-size: 0.875rem;
+  background: var(--ci-surface);
+  color: var(--ci-text);
+  transition: border-color .15s, box-shadow .15s;
+
+  &::placeholder {
+    color: var(--ci-muted);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $gold;
+    box-shadow: 0 0 0 3px rgba($gold, .15);
+  }
+}
+
+.ci-select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--ci-line);
+  border-radius: $radius;
+  font-size: 0.875rem;
+  background: var(--ci-surface);
+  color: var(--ci-text);
+  cursor: pointer;
+  @include focus-ring;
+}
+
+.ci-view-toggle {
+  display: flex;
+  border: 1px solid var(--ci-line);
+  border-radius: $radius;
+  overflow: hidden;
+
+  .ci-btn {
+    border-radius: 0;
+    border: none;
+    margin: 0;
+  }
+}
+
+// â”€â”€â”€ Card Grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  &--sm {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width:1025px) and (max-width:1440px) {
+    grid-template-columns: repeat(2, 1fr);
+
+    &--sm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @include bp(lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include bp(md) {
+    grid-template-columns: 1fr;
+  }
+
+  @include bp(sm) {
+    grid-template-columns: 1fr;
+  }
+
+  @include bp(xs) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// â”€â”€â”€ Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-card {
+  @include card;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  @include bp(lg) {
+    padding: 0.85rem;
+    gap: 0.5rem;
+  }
+
+  &--clickable {
+    cursor: pointer;
+    @include card-hover;
+    @include focus-ring;
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+
+    @include bp(lg) {
+      gap: 0.5rem;
+    }
+  }
+
+  &__icon {
+    font-size: 1.75rem;
+    line-height: 1;
+    flex-shrink: 0;
+
+    @include bp(lg) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ci-text);
+
+    @include bp(lg) {
+      font-size: 0.85rem;
+    }
+  }
+
+  &__sub {
+    font-size: 0.78rem;
+    color: var(--ci-muted);
+
+    @include bp(lg) {
+      font-size: 0.75rem;
+    }
+  }
+
+  &__depts {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  &__mess {
+    font-size: 0.8rem;
+    color: var(--ci-muted);
+
+    @include bp(lg) {
+      font-size: 0.75rem;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+
+    &-label {
+      font-size: 0.75rem;
+      color: var(--ci-muted);
+
+      @include bp(lg) {
+        font-size: 0.7rem;
+      }
+    }
+  }
+
+  &__safety {
+    font-size: 0.78rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 1rem;
+    font-weight: 500;
+    width: fit-content;
+
+    @include bp(lg) {
+      font-size: 0.7rem;
+    }
+
+    &--ok {
+      background: #f0fdf4;
+      color: #15803d;
+    }
+
+    &--warn {
+      background: #fffbeb;
+      color: #b45309;
+    }
+  }
+}
+
+// â”€â”€â”€ KV Grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-kv-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 1rem;
+
+  &--wide {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.ci-kv-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+
+  span {
+    font-size: 0.72rem;
+    color: var(--ci-muted);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+
+  strong {
+    font-size: 0.875rem;
+    color: var(--ci-text);
+    font-weight: 600;
+  }
+}
+
+// â”€â”€â”€ Tags / Badges â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: #f1f5f9;
+  color: var(--ci-muted);
+
+  &--boys {
+    background: #eff6ff;
+    color: #1d4ed8;
+  }
+
+  &--girls {
+    background: #fdf4ff;
+    color: #7e22ce;
+  }
+
+  &--mixed {
+    background: #f0fdf4;
+    color: #15803d;
+  }
+}
+
+.ci-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  width: fit-content;
+
+  &--active {
+    background: #f0fdf4;
+    color: #15803d;
+  }
+
+  &--maintenance {
+    background: #fffbeb;
+    color: #b45309;
+  }
+
+  &--restricted {
+    background: #fef2f2;
+    color: #b91c1c;
+  }
+
+  &--available {
+    background: #f0fdf4;
+    color: #15803d;
+  }
+
+  &--booked {
+    background: #eff6ff;
+    color: #1d4ed8;
+  }
+
+  &--under-maintenance {
+    background: #fffbeb;
+    color: #b45309;
+  }
+
+  &--in-workshop {
+    background: #fef2f2;
+    color: #b91c1c;
+  }
+
+  &--resolved {
+    background: #f0fdf4;
+    color: #15803d;
+  }
+
+  &--open {
+    background: #fef2f2;
+    color: #b91c1c;
+  }
+
+  &--closed {
+    background: #f1f5f9;
+    color: var(--ci-muted);
+  }
+
+  // Asset conditions
+  &--excellent {
+    background: #f0fdf4;
+    color: #15803d;
+  }
+
+  &--good {
+    background: #eff6ff;
+    color: #1d4ed8;
+  }
+
+  &--fair {
+    background: #fffbeb;
+    color: #b45309;
+  }
+
+  &--needs-repair {
+    background: #fef2f2;
+    color: #b91c1c;
+  }
+}
+
+.ci-severity {
+  display: inline-flex;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+
+  &--low {
+    background: #f0fdf4;
+    color: #15803d;
+  }
+
+  &--medium {
+    background: #fffbeb;
+    color: #b45309;
+  }
+
+  &--high {
+    background: #fff7ed;
+    color: #c2410c;
+  }
+
+  &--critical {
+    background: #fef2f2;
+    color: #b91c1c;
+  }
+}
+
+.ci-fuel {
+  display: inline-flex;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  &--full {
+    background: #f0fdf4;
+    color: #15803d;
+  }
+
+  &--good {
+    background: #eff6ff;
+    color: #1d4ed8;
+  }
+
+  &--low {
+    background: #fef2f2;
+    color: #b91c1c;
+  }
+}
+
+// â”€â”€â”€ Progress Bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &__track {
+    flex: 1;
+    height: 6px;
+    background: $line;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  &__fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width .4s ease;
+  }
+
+  &__label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--ci-muted);
+    min-width: 2.2rem;
+    text-align: right;
+  }
+}
+
+// â”€â”€â”€ Table â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-table-wrap {
+  overflow-x: auto;
+  border-radius: $radius-lg;
+  border: 1px solid var(--ci-line);
+  background: var(--ci-surface);
+  margin-bottom: 1.25rem;
+}
+
+.ci-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+
+  th,
+  td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  &__head {
+    background: #f8fafc;
+
+    th {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--ci-muted);
+      border-bottom: 1px solid var(--ci-line);
+    }
+  }
+
+  &__row {
+    border-bottom: 1px solid var(--ci-line);
+    transition: background .15s;
+
+    &:hover {
+      background: var(--ci-hover-bg);
+      color: var(--ci-text);
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__cell--bold {
+    font-weight: 700;
+    color: var(--ci-text);
+  }
+}
+
+// Hide table on mobile, show cards
+.ci-mobile-cards {
+  display: none;
+}
+
+@include bp(md) {
+  .ci-table-wrap {
+    display: none;
+  }
+
+  .ci-mobile-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+// â”€â”€â”€ Mobile Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-mobile-card {
+  @include card;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  &__header {
+    @include flex-between;
+    gap: 0.5rem;
+  }
+
+  &__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ci-text);
+  }
+}
+
+// â”€â”€â”€ Pagination â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-pagination {
+  @include flex-between;
+  padding: 0.75rem 0;
+  gap: 1rem;
+
+  &__info {
+    font-size: 0.82rem;
+    color: var(--ci-muted);
+  }
+}
+
+.ci-page-btn {
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--ci-line);
+  border-radius: $radius;
+  background: var(--ci-surface);
+  font-size: 0.82rem;
+  color: var(--ci-text);
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+  @include focus-ring;
+
+  &:hover:not(:disabled) {
+    background: var(--ci-hover-bg);
+    border-color: $gold;
+  }
+
+  &:disabled {
+    color: var(--ci-muted);
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+// â”€â”€â”€ Buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: $radius;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, box-shadow .15s, transform .1s;
+  white-space: nowrap;
+  @include focus-ring;
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &--primary {
+    background: linear-gradient(135deg, $gold 0%, darken($gold, 12%) 100%);
+    color: $white;
+    border-color: $gold;
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba($gold, .4);
+    }
+  }
+
+  &--ghost {
+    background: var(--ci-surface);
+    color: var(--ci-text);
+    border-color: var(--ci-line);
+
+    &:hover {
+      background: var(--ci-hover-bg);
+      border-color: var(--ci-hover-border);
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    color: $gold;
+    border-color: $gold;
+
+    &:hover {
+      background: rgba($gold, .06);
+    }
+  }
+
+  &--danger {
+    background: $danger;
+    color: $white;
+    border-color: $danger;
+
+    &:hover {
+      background: #a91c1c;
+    }
+  }
+
+  &--sm {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.82rem;
+
+
+    @include bp(lg) {
+      padding: 0.4rem 0.85rem;
+      font-size: 0.8rem;
+      justify-content: center;
+
+    }
+
+    @include bp(md) {
+      padding: 0.4rem 0.85rem;
+      font-size: 0.8rem;
+      justify-content: center;
+
+    }
+
+    @include bp(sm) {
+      padding: 0.4rem 0.85rem;
+      font-size: 0.8rem;
+      justify-content: center;
+
+    }
+
+    @include bp(xs) {
+      padding: 0.35rem 0.8rem;
+      font-size: 0.78rem;
+      justify-content: center;
+    }
+  }
+
+  &--xs {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.75rem;
+  }
+}
+
+// â”€â”€â”€ Section helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ci-text);
+  margin: 0 0 1rem;
+}
+
+.ci-section-row {
+  @include flex-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.ci-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  background: transparent;
+  border: 1px solid var(--ci-line);
+  border-radius: $radius;
+  font-size: 0.82rem;
+  color: var(--ci-muted);
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background .15s, color .15s;
+  @include focus-ring;
+
+  &:hover {
+    background: var(--ci-surface);
+    color: var(--ci-text);
+    border-color: $gold;
+  }
+}
+
+.ci-empty {
+  grid-column: 1 / -1;
+  padding: 3rem;
+  text-align: center;
+  color: var(--ci-muted);
+  font-size: 0.9rem;
+}
+
+// â”€â”€â”€ Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  padding: 1.5rem;
+  animation: ci-fade-in .2s ease;
+  backdrop-filter: blur(2px);
+
+  @include bp(sm) {
+    padding: .75rem;
+    align-items: flex-end;
+  }
+}
+
+.ci-modal {
+  background: var(--ci-surface);
+  border-radius: $radius;
+  box-shadow: $shadow-lg;
+  width: 100%;
+  max-width: 520px;
+  max-height: 92vh;
+  overflow-y: auto;
+  animation: ci-slide-up .22s ease;
+  display: flex;
+  flex-direction: column;
+
+  @include bp(sm) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    max-height: 94vh;
+  }
+
+  &__header {
+    @include flex-between;
+    padding: 1.125rem 1.375rem;
+    border-bottom: 1px solid var(--ci-line);
+    position: sticky;
+    top: 0;
+    background: var(--ci-surface);
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, $gold, $ink);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    color: var(--ci-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: $radius-sm;
+    line-height: 1;
+    transition: color .15s;
+    @include focus-ring;
+
+    &:hover {
+      color: var(--ci-text);
+    }
+  }
+
+  &__body {
+    padding: 1.375rem;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: .875rem 1.375rem;
+    border-top: 1px solid var(--ci-line);
+  }
+}
+
+@keyframes ci-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// â”€â”€â”€ Form Elements â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ci-text);
+  margin-bottom: 0.35rem;
+}
+
+.ci-input,
+.ci-textarea {
+  width: 100%;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--ci-line);
+  border-radius: $radius;
+  font-size: 0.875rem;
+  color: var(--ci-text);
+  background: var(--ci-surface);
+  box-sizing: border-box;
+  transition: border-color .15s, box-shadow .15s;
+
+  &::placeholder {
+    color: var(--ci-muted);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $gold;
+    box-shadow: 0 0 0 3px rgba($gold, .15);
+  }
+}
+
+.ci-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.ci-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+
+  &--checks {
+    grid-template-columns: repeat(2, auto);
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+
+.ci-form-col {
+  display: flex;
+  flex-direction: column;
+
+  &--full {
+    grid-column: 1 / -1;
+  }
+}
+
+.ci-check-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  color: var(--ci-text);
+  cursor: pointer;
+
+  input[type='checkbox'] {
+    accent-color: $gold;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+  }
+}
+
+// â”€â”€â”€ Kanban â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-kanban {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: start;
+
+  @include bp(lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include bp(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include bp(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ci-kanban-col {
+  border-radius: $radius-lg;
+  border: 1px solid var(--ci-line);
+  overflow: hidden;
+
+  &__header {
+    @include flex-between;
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+
+  &__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--in-text);
+  }
+
+  &__count {
+    background: rgba(0, 0, 0, .08);
+    border-radius: 999px;
+    padding: 0.1rem 0.5rem;
+    font-size: 0.72rem;
+  }
+
+  &--pending {
+    .ci-kanban-col__header {
+      background: #fef9c3;
+      color: #854d0e;
+    }
+  }
+
+  &--in-progress {
+    .ci-kanban-col__header {
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+  }
+
+  &--resolved {
+    .ci-kanban-col__header {
+      background: #f0fdf4;
+      color: #15803d;
+    }
+  }
+
+  &--escalated {
+    .ci-kanban-col__header {
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+  }
+}
+
+.ci-kanban-item {
+  background: var(--ci-surface);
+  border-top: 1px solid var(--ci-line);
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+
+  &__id {
+    font-size: 0.7rem;
+    color: var(--ci-muted);
+    font-weight: 600;
+  }
+
+  &__title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--ci-text);
+  }
+
+  &__sub {
+    font-size: 0.75rem;
+    color: var(--ci-muted);
+  }
+
+  &__footer {
+    @include flex-between;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+  }
+
+  &__tech {
+    font-size: 0.72rem;
+    color: var(--ci-muted);
+  }
+
+  &--empty {
+    color: var(--ci-muted);
+    font-size: 0.8rem;
+    font-style: italic;
+    padding: 1.25rem 1rem;
+  }
+}
+
+// â”€â”€â”€ Utilities Chart â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-util-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  height: 8rem;
+  padding: 0.75rem 0;
+  border-bottom: 2px solid var(--ci-line);
+  margin-bottom: 0.5rem;
+}
+
+.ci-util-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+  gap: 0.35rem;
+  justify-content: flex-end;
+}
+
+.ci-util-bar {
+  width: 100%;
+  max-width: 2.5rem;
+  background: linear-gradient(to top, $gold, rgba($gold, .5));
+  border-radius: $radius-sm $radius-sm 0 0;
+  min-height: 4px;
+  transition: height .4s ease;
+}
+
+.ci-util-bar-label {
+  font-size: 0.7rem;
+  color: var(--ci-muted);
+  white-space: nowrap;
+}
+
+// â”€â”€â”€ Campus Map â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+.ci-map-header {
+  margin-bottom: 1rem;
+
+  &__desc {
+    font-size: 0.85rem;
+    color: var(--ci-muted);
+  }
+}
+
+.ci-map-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  // background: #f1f5f9;
+  border-radius: $radius-lg;
+  // padding: 1.5rem;
+  min-height: 20rem;
+  // border: 2px dashed $line;
+
+  @include bp(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include bp(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include bp(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include bp(xs) {
+    grid-template-columns: 1fr;
+  }
+
+  @include bp(xxs) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ci-map-building {
+  @include card;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  cursor: pointer;
+  transition: box-shadow .2s, transform .15s;
+
+  @include bp(md) {
+    padding: 0.75rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &:hover {
+    box-shadow: $shadow;
+    transform: translateY(-3px);
+  }
+
+  &--active {
+    border-left: 3px solid $success;
+  }
+
+  &--maintenance {
+    border-left: 3px solid $warning;
+  }
+
+  &--restricted {
+    border-left: 3px solid $danger;
+  }
+
+  &__name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ci-text);
+  }
+
+  &__meta {
+    font-size: 0.72rem;
+    color: var(--ci-muted);
+  }
+}
+
+.ci-map-legend {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  padding: 0.5rem 0;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--ci-muted);
+
+    &--active {
+      color: $success;
+    }
+
+    &--maintenance {
+      color: $warning;
+    }
+
+    &--restricted {
+      color: $danger;
+    }
+
+    &--exit {
+      color: var(--ci-text);
+    }
+  }
+}
+
+// â”€â”€â”€ Responsive overrides â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+@include bp(sm) {
+  .ci-filters {
+    gap: 0.5rem;
+  }
+
+  .ci-search {
+    min-width: 100%;
+  }
+
+  .ci-select {
+    width: 100%;
+  }
+
+  .ci-form-row {
+    grid-template-columns: 1fr;
+
+    &--checks {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .ci-page-header__actions {
+    gap: 0.4rem;
+  }
+
+  .ci-overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@include bp(xs) {
+  .ci-card-grid {
+    gap: 0.75rem;
+  }
+
+  .ci-kanban {
+    gap: 0.75rem;
+  }
+
+  .ci-modal {
+    max-width: 100%;
+    margin: 0;
+    border-radius: $radius-lg $radius-lg 0 0;
+    align-self: flex-end;
+    max-height: 85vh;
+  }
+
+  .ci-modal-backdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .ci-tab {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  .ci-analytics-card {
+    padding: 1rem;
+  }
+
+  .ci-metric-card {
+    padding: 1rem;
+  }
+}
+
+// ── Dark-mode: neutralise tone-card pastel backgrounds ──────────────────────
+@media (prefers-color-scheme: dark) {
+  @each $name, $colors in $tones {
+    $val-color: nth($colors, 2);
+
+    .ci-metric-card--#{$name} {
+      background: var(--ci-surface);
+      border-color: rgba($val-color, .15);
+      border-left: 3px solid $val-color;
+    }
+  }
+}

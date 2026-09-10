@@ -1,0 +1,76 @@
+﻿@import './mixins.scss';
+
+/* ===== Weekly Grid Base Container ===== */
+.sch-ds-weekly-grid-container {
+  display: grid;
+  width: 100%;
+  
+  /* Dual-axis scrolling support */
+  overflow-x: auto;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  
+  /* Ensure container has minimum viable width */
+  /* This prevents grid collapse on very small screens */
+  min-width: 0;
+  
+  /* Scrollbar styling for webkit browsers */
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 4px;
+    
+    &:hover {
+      background: #9ca3af;
+    }
+  }
+}
+
+/* Header and Data Row Base */
+.sch-ds-weekly-grid-header-row,
+.sch-ds-weekly-grid-row {
+  display: grid;
+  /* Base: 130px time column + 6 flexible day columns (min 150px each) */
+  /* Using minmax() to allow natural column expansion while preventing compression */
+  grid-template-columns: 130px repeat(6, minmax(150px, 1fr));
+  gap: 12px;
+  
+  /* Ensure rows respect their grid layout and expand naturally */
+  width: 100%;
+  min-width: fit-content;
+}
+
+/* Cell Base Sizing */
+.sch-ds-weekly-grid-time-cell,
+.sch-ds-weekly-grid-cell,
+.sch-ds-weekly-grid-cell .sch-ds-weekly-cell-content {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Dark Mode Scrollbar */
+:root.dark {
+  .sch-ds-weekly-grid-container {
+    &::-webkit-scrollbar-track {
+      background: #374151;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: #4b5563;
+      
+      &:hover {
+        background: #6b7280;
+      }
+    }
+  }
+}

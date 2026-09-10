@@ -1,0 +1,89 @@
+// AlertDialog.scss
+
+.alert-dialog {
+    &__overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background: rgba(0, 0, 0, 0.5);
+        animation: fade-in 0.2s;
+
+        &[data-state="closed"] {
+            animation: fade-out 0.2s;
+        }
+    }
+
+    &__content {
+        background: var(--background, #fff);
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        z-index: 50;
+        display: grid;
+        width: 100%;
+        max-width: calc(100% - 2rem);
+        transform: translate(-50%, -50%);
+        gap: 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--border-color, #e5e7eb);
+        padding: 1.5rem;
+        box-shadow: 0 10px 32px rgba(0, 0, 0, 0.12);
+        transition: all 0.2s;
+
+        @media (min-width: 640px) {
+            max-width: 32rem;
+        }
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+
+        @media (min-width: 640px) {
+            text-align: left;
+        }
+    }
+
+    &__footer {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 0.5rem;
+
+        @media (min-width: 640px) {
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+    }
+
+    &__title {
+        font-size: 1.125rem;
+        font-weight: 600;
+    }
+
+    &__description {
+        color: var(--muted-foreground, #6B7280);
+        font-size: 0.95rem;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}

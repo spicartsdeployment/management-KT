@@ -1,0 +1,237 @@
+/*
+  TeacherEnrollment.scss
+  Styles for the TeacherEnrollment component using BEM naming.
+*/
+
+.teacher-enrollment {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.teacher-enrollment__header {
+    position: relative;
+}
+
+.teacher-enrollment__header-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(34, 197, 94, 0.1), transparent, rgba(79, 70, 229, 0.1));
+    border-radius: 1.5rem;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.teacher-enrollment__header-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1;
+}
+
+.teacher-enrollment__header-title {
+    font-size: 2.25rem;
+    background: linear-gradient(to right, #22C55E, #4F46E5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.teacher-enrollment__header-desc {
+    color: var(--muted-foreground, #6B7280);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.teacher-enrollment__add-btn {
+    background: #22C55E;
+    color: #fff;
+    gap: 0.5rem;
+    box-shadow: 0 4px 16px 0 rgba(34, 197, 94, 0.15);
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.teacher-enrollment__add-btn:hover {
+    box-shadow: 0 8px 24px 0 rgba(34, 197, 94, 0.25);
+    transform: scale(1.05);
+}
+
+.teacher-enrollment__stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .teacher-enrollment__stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.teacher-enrollment__stats-card {
+    border-radius: 1rem;
+    border: none;
+    box-shadow: 0 2px 8px 0 rgba(31, 41, 55, 0.08);
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
+    transition: box-shadow 0.2s;
+}
+
+.teacher-enrollment__stats-card--active {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(79, 70, 229, 0.05));
+}
+
+.teacher-enrollment__stats-card--departments {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
+}
+
+.teacher-enrollment__stats-card:hover {
+    box-shadow: 0 4px 16px 0 rgba(31, 41, 55, 0.12);
+}
+
+.teacher-enrollment__stats-content {
+    padding: 1.5rem;
+}
+
+.teacher-enrollment__stats-label {
+    font-size: 0.875rem;
+    color: var(--muted-foreground, #6B7280);
+    margin-bottom: 0.25rem;
+}
+
+.teacher-enrollment__stats-value {
+    font-size: 1.875rem;
+    font-weight: 600;
+}
+
+.teacher-enrollment__stats-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.teacher-enrollment__stats-icon--main {
+    background: rgba(34, 197, 94, 0.125);
+}
+
+.teacher-enrollment__stats-icon--active {
+    background: rgba(79, 70, 229, 0.125);
+}
+
+.teacher-enrollment__stats-icon--departments {
+    background: rgba(245, 158, 11, 0.125);
+}
+
+.teacher-enrollment__filters-card {
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px 0 rgba(31, 41, 55, 0.08);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+}
+
+.teacher-enrollment__filters-content {
+    padding: 1.5rem;
+}
+
+.teacher-enrollment__filters-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.teacher-enrollment__search-wrapper {
+    position: relative;
+    flex: 1;
+    min-width: 300px;
+}
+
+.teacher-enrollment__search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    color: var(--muted-foreground, #6B7280);
+}
+
+.teacher-enrollment__search-input {
+    padding-left: 2.25rem;
+    border-width: 2px;
+    transition: border-color 0.2s;
+}
+
+.teacher-enrollment__search-input:focus {
+    border-color: #22C55E;
+}
+
+.teacher-enrollment__select-trigger {
+    width: 180px;
+    border-width: 2px;
+}
+
+.teacher-enrollment__table-card {
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px 0 rgba(31, 41, 55, 0.08);
+    border: none;
+    overflow: hidden;
+}
+
+.teacher-enrollment__table-content {
+    padding: 0;
+}
+
+.teacher-enrollment__table-scroll {
+    overflow-x: auto;
+}
+
+.teacher-enrollment__table-header-row {
+    background: linear-gradient(to right, rgba(34, 197, 94, 0.1), rgba(79, 70, 229, 0.1));
+}
+
+.teacher-enrollment__table-header-row:hover {
+    background: linear-gradient(to right, rgba(34, 197, 94, 0.15), rgba(79, 70, 229, 0.15));
+}
+
+.teacher-enrollment__table-header-cell {
+    font-weight: 600;
+}
+
+.teacher-enrollment__badge--id {
+    border: 1px solid rgba(34, 197, 94, 0.3) !important;
+    background: rgba(34, 197, 94, 0.05) !important;
+}
+
+.teacher-enrollment__badge--active {
+    background: #22C55E !important;
+    color: #fff !important;
+}
+
+.teacher-enrollment__actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.teacher-enrollment__results-count {
+    font-size: 0.875rem;
+    color: var(--muted-foreground, #6B7280);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.teacher-enrollment__results-count-number {
+    font-weight: 600;
+    color: #22C55E;
+}

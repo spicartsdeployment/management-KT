@@ -1,0 +1,140 @@
+// StaffDirectory.scss
+
+.staff-directory {
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+
+        &-title {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #C9A962, #2C2C2C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        &-desc {
+            color: var(--muted-foreground, #6B7280);
+            margin-top: 0.25rem;
+        }
+    }
+
+    &__add-btn {
+        background: linear-gradient(90deg, #C9A962, #2C2C2C);
+        color: #fff;
+
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+
+    &__filters-card {
+        border-radius: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        border: none;
+    }
+
+    &__filters-content {
+        padding-top: 1.5rem;
+    }
+
+    &__filters-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    &__search {
+        position: relative;
+
+        .staff-directory__search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1rem;
+            height: 1rem;
+            color: var(--muted-foreground, #6B7280);
+        }
+
+        input {
+            padding-left: 2.5rem;
+        }
+    }
+
+    &__table-card {
+        border-radius: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        border: none;
+    }
+
+    &__table-row {
+        &:hover {
+            background: rgba(16, 185, 129, 0.05); // accent/50
+        }
+    }
+
+    &__shift-badge {
+        background: rgba(79, 70, 229, 0.1);
+        color: #4F46E5;
+    }
+
+    &__status-badge {
+        background: rgba(34, 197, 94, 0.1);
+        color: #22C55E;
+    }
+
+    &__contact {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+
+        a {
+            color: #22C55E;
+            font-size: 0.95rem;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .staff-directory__phone-icon {
+            color: #22C55E;
+            width: 0.85rem;
+            height: 0.85rem;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    &__view-btn {
+        background: transparent;
+        color: #4F46E5;
+
+        &:hover {
+            background: rgba(79, 70, 229, 0.1);
+            color: #4F46E5;
+        }
+    }
+
+    &__edit-btn {
+        background: transparent;
+        color: #C9A962;
+
+        &:hover {
+            background: rgba(201, 169, 98, 0.1);
+            color: #C9A962;
+        }
+    }
+}

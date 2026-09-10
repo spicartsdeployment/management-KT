@@ -1,0 +1,3633 @@
+﻿@import './mixins.scss';
+
+/* ========== EVENTS TAB ========== */
+.sch-alu-events-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 0.5rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 300px);
+
+  @include custom-scrollbar();
+}
+
+@media (min-width: 1024px) {
+  .sch-alu-events-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.sch-alu-event-card {
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+  border: 1px solid #eeeeee;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  position: relative;
+  font-size: 0.92rem;
+}
+
+// .sch-alu-event-card * {
+//   font-size: 0.92rem !important;
+// }
+
+.sch-alu-event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.sch-alu-event-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #111827;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.sch-alu-event-date {
+  font-size: 0.85rem;
+  color: #6b7280;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.sch-alu-event-location,
+.sch-alu-event-attendees {
+  display: flex;
+  align-items: center;
+  color: #9ca3af;
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.sch-alu-event-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.25rem;
+}
+
+.sch-alu-event-tag {
+  padding: 0.05rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  position: absolute;
+  right: 0;
+  top: 0;
+  min-width: 8rem;
+  height: 1.8rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sch-alu-event-actions {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  // margin-top: 1.5rem;
+}
+
+.sch-alu-event-btn-register {
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.8rem;
+  width: 100%;
+  border-radius: 1rem;
+  // width: 15rem;
+  margin-right: 1rem;
+  height: 2.5rem;
+  background: linear-gradient(90deg, #FDBD6F 0%, #448AFF 100%);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sch-alu-event-btn-register:hover {
+  background: linear-gradient(90deg, #448AFF 0%, #FDBD6F 100%);
+}
+
+.sch-alu-event-btn-learnmore {
+  background: #f3f4f6;
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.8rem;
+  border-radius: 1rem;
+  // min-width: 10rem;
+  height: 2.5rem;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+  border: none;
+  width: 30%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sch-alu-event-btn-learnmore:hover {
+  background: #e5e7eb;
+}
+
+/* Alumni Mentorship Tab */
+.sch-alu-mentorship-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+  margin-top: 0.5rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 300px);
+
+  @include custom-scrollbar();
+}
+
+@media (max-width: 1024px) {
+  .sch-alu-mentorship-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sch-alu-mentorship-card {
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+  border: 1px solid #eeeeee;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  min-height: 220px;
+  align-items: flex-start;
+}
+
+.sch-alu-mentorship-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.sch-alu-mentorship-subtitle {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.1rem;
+}
+
+.sch-alu-mentorship-desc {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.sch-alu-mentorship-btn {
+  width: 100%;
+  padding: 0.55rem 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #fb7d1c 0%, #fbbf24 100%);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 2px 8px 0 rgba(251, 125, 28, 0.08);
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sch-alu-mentorship-btn:hover {
+  background: linear-gradient(90deg, #fbbf24 0%, #fb7d1c 100%);
+}
+
+.sch-alu-mentorship-btn-secondary {
+  width: 100%;
+  padding: 0.65rem 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #f3f4f6;
+  color: #374151;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+  margin-top: 5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sch-alu-mentorship-btn-secondary:hover {
+  background: #e5e7eb;
+}
+
+/* Alumni Filters */
+.sch-alu-filters-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  @media(max-width: 479px) {
+    margin-bottom: 0 !important;
+    gap: 0.5rem;
+  }
+}
+
+/* Legacy dropdown (hidden, replaced by custom dropdown) */
+.sch-alu-filters-dropdown {
+  display: none;
+}
+
+/* Custom Dropdown Styles for Alumni */
+.sch-alu-custom-dropdown {
+  position: relative;
+  width: 15rem;
+  margin-top: 1rem;
+}
+
+.sch-alu-custom-dropdown__button {
+  width: 100%;
+  height: 2.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 35px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  outline: none;
+
+
+   @media(min-width: 320px) and (max-width: 479px) {
+    width: 100%;
+    height: 2rem;
+    font-size: 0.75rem;
+   }
+  &:hover {
+    border-color: #fb7d1c;
+  }
+
+  &:focus {
+    border: 2px solid #fb7d1c;
+    box-shadow: 0 0 0 2px #fde68a;
+  }
+}
+
+.sch-alu-custom-dropdown__value {
+  flex: 1;
+  text-align: left;
+}
+
+.sch-alu-custom-dropdown__arrow {
+  width: 16px;
+  height: 16px;
+  color: #6b7280;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+
+  &--open {
+    transform: rotate(180deg);
+  }
+}
+
+.sch-alu-custom-dropdown__menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  list-style: none;
+  padding: 0.5rem;
+  margin: 0;
+  animation: dropdown-slide-in 0.2s ease-out;
+
+  @include custom-scrollbar();
+}
+
+.sch-alu-custom-dropdown__option {
+  padding: 0.425rem 0.875rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.15s;
+
+  &:hover,
+  &--focused {
+    background: #f3f4f6;
+  }
+
+  &--selected {
+    background: #e0e7ff;
+    color: #3b82f6;
+    font-weight: 600;
+  }
+}
+
+@keyframes dropdown-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Alumni Tabs */
+.sch-alu-tabs-row {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+  background-color: #F9DDB5;
+  border-radius: 2em;
+}
+
+.sch-alu-tab-btn {
+  width: 50%;
+  min-height: 30px;
+  padding: 0.2rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.sch-alu-tab-active {
+  background: #fff;
+  color: gray;
+  border-radius: 2rem;
+  margin: 0.3rem;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+}
+
+.sch-alu-tab-inactive {
+  background: transparent;
+  color: #6b7280;
+}
+
+/* Alumni Tab Content */
+.sch-alu-tab-content {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* Alumni Stats Cards */
+.sch-alu-stats-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+  /* Fixed: Changed from 97% to 100% for proper alignment */
+  // margin: 1.5rem 1rem 1.5rem 1rem;
+  // margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.sch-alu-stats-card {
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+  border: 1px solid #eeeeee;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  min-height: 120px;
+  flex: 1 1 200px;
+  max-width: 25%;
+  transition: all 0.3s ease;
+}
+
+.sch-alu-stats-card:last-child {
+  margin-right: 0;
+}
+
+.sch-alu-stats-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+}
+
+.sch-alu-stats-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.sch-alu-stats-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+
+  @media(max-width: 479px) {
+    font-size: 0.75rem;
+  }
+
+  @media(min-width: 320px) and (max-width: 479px) {
+    font-size: 0.6rem;
+  }
+}
+
+.sch-alu-stats-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #111827;
+
+  @media(max-width: 479px) {
+    font-size: 1rem;
+  }
+}
+
+.sch-alu-stats-icon-bg {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  margin-left: 1rem;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+
+  @media(max-width: 479px) {
+      width: 2rem;
+  height: 2rem;
+  }
+
+  @media(min-width: 320px) and (max-width: 479px) {
+    width: 1.8rem;
+  height: 1.8rem;
+  }
+}
+
+// .sch-alu-stats-icon-bg.bg-green-100 {
+//   background: none !important;
+// }
+
+.sch-alu-stats-card:nth-child(2) .sch-alu-stats-icon-bg {
+  background: rgb(34 197 94);
+  color: white;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.sch-alu-stats-card:nth-child(1) .sch-alu-stats-icon-bg {
+  background: rgb(42 113 209);
+  box-shadow: 0 4px 12px rgba(42, 113, 209, 0.3);
+}
+
+.sch-alu-stats-card:nth-child(3) .sch-alu-stats-icon-bg {
+  background: rgb(146 92 204);
+  box-shadow: 0 4px 12px rgba(146, 92, 204, 0.3);
+}
+
+.sch-alu-stats-card:nth-child(4) .sch-alu-stats-icon-bg {
+  background: rgb(225 23 23);
+  box-shadow: 0 4px 12px rgba(225, 23, 23, 0.3);
+}
+
+.sch-alu-stats-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+
+  @media(max-width: 479px) {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  @media(min-width: 320px) and (max-width: 479px) {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+}
+
+/* Alumni Network Page Styles (for custom tweaks beyond Tailwind) */
+
+/* ========== PAGE CONTAINER ========== */
+.sch-alu-page-container {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  font-size: 13px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  padding: 0.5rem;
+  // background: linear-gradient(160deg, #f5f3ff 0%, #eff6ff 50%, #f0fdf4 100%);
+}
+
+.sch-alu-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.sch-alu-page-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #1f2937;
+  margin: 0 0 0.25rem 0;
+  display: inline-block;
+  line-height: 1.2;
+  font-family: sans-serif;
+}
+
+.sch-alu-page-subtitle {
+  color: #6b7280;
+  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  margin-top: clamp(0.25rem, 0.5vw, 0.5rem);
+  line-height: 1.5;
+}
+
+.sch-alu-page-btn-join {
+  padding: clamp(0.625rem, 1.2vw, 0.75rem) clamp(1.5rem, 2.5vw, 2rem);
+  font-size: clamp(0.775rem, 1.1vw, 0.85rem);
+  color: white;
+  font-weight: 700;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 60%, #ec4899 100%);
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+  transition: transform 0.25s, box-shadow 0.25s;
+
+  &:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.45);
+  }
+  &:active { transform: translateY(-1px); }
+}
+
+/* ========== FILTERS ========== */
+.sch-alu-filters-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 0.4rem;
+  width: 100%;
+  gap: clamp(0.4rem, 1.2vw, 0.8rem);
+
+
+  @media(max-width: 479px) {
+   margin-bottom: 0 !important;
+   gap: 0 !important;
+  }
+}
+
+.sch-alu-search-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.sch-alu-search-icon {
+  position: absolute;
+  left: clamp(0.8rem, 1.6vw, 1.2rem);
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+.sch-alu-icon-search {
+  width: clamp(0.85rem, 1.2vw, 1rem);
+  height: clamp(0.85rem, 1.2vw, 1rem);
+}
+
+.sch-alu-search-input {
+  width: 100%;
+  padding: clamp(0.5rem, 0.95vw, 0.6rem) 0.8rem;
+  padding-left: clamp(2rem, 3.2vw, 3.2rem);
+  border-radius: 9999px;
+  border: 1px solid #e5e7eb;
+  font-size: clamp(0.75rem, 0.95vw, 0.85rem);
+  box-shadow: inset 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+  transition: all 0.2s;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #fed7aa;
+    border-color: #fb923c;
+  }
+}
+
+.sch-alu-filter-wrapper {
+  flex-shrink: 0;
+  min-width: fit-content;
+}
+
+/* ========== BUTTONS ========== */
+.sch-alu-gradient-btn {
+  background: linear-gradient(to right, #FDBD6F, #FB7D1C);
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 9999px;
+}
+
+.sch-alu-card-gradient {
+  background: linear-gradient(135deg, #F6D365 0%, #FDA085 100%);
+}
+
+.sch-alu-avatar-gradient {
+  --tw-gradient-position: to bottom right in oklab;
+  background-image: linear-gradient(var(--tw-gradient-stops));
+  --tw-gradient-stops: #FDBD6F, #FB7D1C;
+}
+
+// .sch-alu-tab-active {
+//   @apply bg-[#ffefd7] font-bold underline underline-offset-8 decoration-2 decoration-[#FB7D1C];
+// }
+
+.sch-alu-tab-inactive {
+  background: transparent;
+  color: #6b7280;
+}
+
+.sch-alu-shadow {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.06);
+}
+
+.sch-alu-inner-shadow {
+  box-shadow: inset 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+}
+
+/* ========== RESPONSIVE GRID ========== */
+.sch-alu-directory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(0.75rem, 1.2vw, 1.25rem);
+  width: 100%;
+  max-width: 100%;
+  margin-top: 0.5rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+  max-height: calc(100vh - 300px);
+
+  @include custom-scrollbar();
+}
+
+/* ========== RESPONSIVE CARD ========== */
+.sch-alu-card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: clamp(0.65rem, 1vw, 1rem);
+  gap: clamp(0.65rem, 1vw, 1rem);
+  width: 100%;
+  max-width: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border: 1px solid #e5e7eb;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+  }
+}
+
+.sch-alu-card-avatar {
+  width: clamp(2.75rem, 4.2vw, 3.75rem);
+  height: clamp(2.75rem, 4.2vw, 3.75rem);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: clamp(0.72rem, 1.15vw, 1rem);
+  font-weight: bold;
+  border-radius: 9999px;
+  --tw-gradient-position: to bottom right in oklab;
+  background-image: linear-gradient(90deg, #FB7D1C 0%, #2196F3 100%);
+  overflow: hidden;
+}
+
+.sch-alu-card-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sch-alu-card-avatar-initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: white;
+}
+
+.sch-alu-card-avatar-blue {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: #dbeafe;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.06);
+  margin-left: 1rem;
+  --tw-gradient-position: to bottom right in oklab;
+  background-image: linear-gradient(var(--tw-gradient-stops));
+  --tw-gradient-stops: #60a5fa, #dbeafe;
+}
+
+.sch-alu-card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  gap: clamp(0.15rem, 0.3vw, 0.3rem);
+  overflow: hidden;
+}
+
+.sch-alu-card-name {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #1f2937;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.sch-alu-card-year {
+  font-size: 0.75rem;
+  color: #6b7280;
+  line-height: 1.3;
+}
+
+.sch-alu-card-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #374151;
+  line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.sch-alu-card-location {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  color: #9ca3af;
+  font-size: 0.7rem;
+  margin-bottom: clamp(0.15rem, 0.3vw, 0.3rem);
+}
+
+.sch-alu-card-icon {
+  width: clamp(0.68rem, 0.8vw, 0.76rem);
+  height: clamp(0.68rem, 0.8vw, 0.76rem);
+  flex-shrink: 0;
+}
+
+/* ========== TAGS ========== */
+.sch-alu-card-tags-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: clamp(0.2rem, 0.4vw, 0.3rem);
+  margin-top: clamp(0.25rem, 0.5vw, 0.4rem);
+  margin-bottom: 0;
+  width: 100%;
+  flex-basis: 100%;
+  padding-left: 0;
+}
+
+.sch-alu-card-tags {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: clamp(0.2rem, 0.4vw, 0.3rem);
+  align-items: center;
+  padding-left: 0;
+}
+
+.sch-alu-card-mentor-wrapper {
+  display: flex;
+  flex-shrink: 0;
+  padding-left: 0;
+}
+
+.sch-alu-card-tag {
+  padding: clamp(0.13rem, 0.27vw, 0.22rem) clamp(0.36rem, 0.63vw, 0.45rem);
+  border-radius: 9999px;
+  font-size: clamp(0.5rem, 0.63vw, 0.58rem);
+  font-weight: 600;
+  white-space: nowrap;
+  line-height: 1.3;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0;
+}
+
+.sch-alu-tag-blue {
+  background-color: #dbeafe;
+  color: #1e40af;
+  font-size: 0.65rem;
+}
+
+.sch-alu-tag-green {
+  background-color: #22c55e;
+  color: white;
+  font-size: 0.65rem;
+
+}
+
+/* ========== ACTIONS ========== */
+.sch-alu-card-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.3rem, 0.5vw, 0.4rem);
+  margin-top: clamp(0.3rem, 0.5vw, 0.4rem);
+  padding-top: 0;
+  width: 100%;
+  flex-basis: 100%;
+  padding-left: 0;
+}
+
+.sch-alu-card-btn-connect {
+  padding: clamp(0.31rem, 0.54vw, 0.4rem) clamp(0.54rem, 0.81vw, 0.67rem);
+  font-size: 0.75rem;
+  border-radius: 25px;
+  flex: 1;
+  min-width: 0;
+  max-width: 100%;
+  white-space: nowrap;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  justify-content: center;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: 0;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  }
+}
+
+.sch-alu-icon-linkedin {
+  width: clamp(0.68rem, 0.8vw, 0.76rem);
+  height: clamp(0.68rem, 0.8vw, 0.76rem);
+  color: white;
+}
+
+.sch-alu-card-btn-icon {
+  padding: clamp(0.31rem, 0.54vw, 0.4rem);
+  background-color: #f3f4f6;
+  border-radius: 9999px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  width: clamp(1.8rem, 2.4vw, 2rem);
+  height: clamp(1.8rem, 2.4vw, 2rem);
+
+  &:hover {
+    background-color: #e5e7eb;
+    transform: scale(1.05);
+  }
+}
+
+.sch-alu-icon-sm {
+  width: clamp(1rem, 1.3vw, 1.15rem);
+  height: clamp(1rem, 1.3vw, 1.15rem);
+  color: #6b7280;
+}
+
+.sch-alu-icon-green {
+  color: #22c55e;
+}
+
+/* ========== NO RESULTS MESSAGE ========== */
+.sch-alu-no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  min-height: 350px;
+  width: 100%;
+  background: #f9fafb;
+  border-radius: 1rem;
+  margin: 1rem 0;
+}
+
+.sch-alu-no-results__icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  color: #fb923c;
+  margin-bottom: 1rem;
+  stroke-width: 1.5;
+  opacity: 0.7;
+}
+
+.sch-alu-no-results__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.025em;
+}
+
+.sch-alu-no-results__message {
+  font-size: 0.9rem;
+  color: #6b7280;
+  max-width: 450px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* ========== MEDIA QUERIES FOR SPECIFIC BREAKPOINTS ========== */
+
+/* Large desktops */
+@media (min-width: 1920px) {
+  .sch-alu-directory-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Standard desktops */
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .sch-alu-directory-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+/* Laptops */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .sch-alu-directory-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* Small laptops / tablets landscape */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .sch-alu-directory-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .sch-alu-card {
+    flex-direction: row;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+  .sch-alu-page-container {
+    padding: 1rem;
+  }
+
+  .sch-alu-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .sch-alu-page-btn-join {
+    width: 100%;
+  }
+
+  .sch-alu-filters-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+.sch-alu-custom-dropdown__button {
+      width: 80% !important;
+    height: 2.2rem !important;
+    font-size: 0.8rem !important;
+}
+
+  .sch-alu-directory-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .sch-alu-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .sch-alu-card-avatar {
+    width: 5rem;
+    height: 5rem;
+    font-size: 1.5rem;
+  }
+
+  .sch-alu-card-content {
+    align-items: center;
+  }
+
+  .sch-alu-card-location {
+    justify-content: center;
+  }
+
+  .sch-alu-card-tags {
+    justify-content: center;
+  }
+
+  .sch-alu-card-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .sch-alu-card-btn-connect {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .sch-alu-card-btn-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+/* Mobile devices (480px and below) — card rules consolidated in the later block below */
+
+/* ========== ZOOM SUPPORT ========== */
+/* These styles help maintain layout integrity at different zoom levels */
+
+@media (min-resolution: 90dpi) and (max-resolution: 110dpi) {
+  .sch-alu-directory-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (min-resolution: 111dpi) and (max-resolution: 125dpi) {
+  .sch-alu-directory-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.875rem;
+  }
+
+  .sch-alu-card {
+    padding: 0.875rem;
+    gap: 0.875rem;
+  }
+}
+
+@media (min-resolution: 126dpi) {
+  .sch-alu-directory-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .sch-alu-card {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+}
+
+/* ========================================
+   DARK MODE STYLES
+   ======================================== */
+:root.dark {
+
+  /* Page Container */
+  .sch-alu-page-container {
+    // background: #090f24;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 8px 32px;
+
+  }
+
+  /* Page Title - Keep gradient but adjust for dark */
+  .sch-alu-page-title {
+    // background-image: linear-gradient(90deg, #FDBD6F 0%, #90CAF9 100%);
+    color: white;
+  }
+
+  .sch-alu-page-subtitle {
+    color: #94a3b8;
+    font-size: 0.875rem;
+  }
+
+  /* Tab Content - Dark Mode */
+  // .sch-alu-tab-content {
+  //   background: #090f24;
+  //   box-shadow: rgba(0, 0, 0, 0.4) 0px 8px 32px;
+  // }
+
+  /* Custom Dropdown - Dark Mode */
+  .sch-alu-custom-dropdown__button {
+    background: rgb(9 15 36);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+
+    &:hover {
+      border-color: #60a5fa;
+    }
+
+    &:focus {
+      border: 2px solid #60a5fa;
+      box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
+    }
+  }
+
+  .sch-alu-custom-dropdown__arrow {
+    color: #94a3b8;
+  }
+
+  .sch-alu-custom-dropdown__menu {
+    background: #374151;
+    border-color: #4b5563;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+
+    scrollbar-color: #60a5fa #4b5563;
+
+    &::-webkit-scrollbar-track {
+      background: #4b5563;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #60a5fa;
+
+      &:hover {
+        background: #3b82f6;
+      }
+    }
+  }
+
+  .sch-alu-custom-dropdown__option {
+    color: #e2e8f0;
+
+    &:hover,
+    &--focused {
+      background: #4b5563;
+    }
+
+    &--selected {
+      background: rgba(96, 165, 250, 0.2);
+      color: #60a5fa;
+    }
+  }
+
+  /* Search and Filters */
+  .sch-alu-search-input {
+    background: rgb(9 15 36);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+
+    // &::placeholder {
+    //   color: #64748b;
+    // }
+
+    &:focus {
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
+
+    }
+  }
+
+  .sch-alu-search-icon {
+    color: #64748b;
+  }
+
+  /* Alumni Cards */
+  .sch-alu-card {
+    background: #0d1428;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: rgba(59, 169, 216, 0.3);
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+    }
+  }
+
+  .sch-alu-stats-value {
+    color: white;
+  }
+
+  .sch-alu-stats-card:nth-child(2) .sch-alu-stats-icon-bg {
+    background: rgb(7 40 19) !important;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+  }
+
+  .sch-alu-card-name {
+    color: #e2e8f0;
+  }
+
+  .sch-alu-card-year {
+    color: #94a3b8;
+  }
+
+  .sch-alu-card-title {
+    color: #cbd5e1;
+  }
+
+  .sch-alu-card-location {
+    color: #64748b;
+  }
+
+  /* Tags */
+  .sch-alu-tag-blue {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+  }
+
+  .sch-alu-tag-green {
+    background-color: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+  }
+
+  /* Buttons */
+  .sch-alu-card-btn-connect {
+    background: rgb(9 15 36);
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.6);
+    }
+  }
+
+  .sch-alu-card-btn-icon {
+    background-color: rgb(9 15 36);
+
+    &:hover {
+      background-color: rgba(30, 41, 59, 0.8);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.6);
+    }
+  }
+
+  .sch-alu-icon-sm {
+    color: #94a3b8;
+  }
+
+  /* Scrollbars - Dark Mode */
+  .sch-alu-events-grid,
+  .sch-alu-mentorship-grid,
+  .sch-alu-directory-grid {
+    scrollbar-color: #60a5fa #1e293b;
+    padding: 1.1em;
+
+    &::-webkit-scrollbar-track {
+      background: #1e293b;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #60a5fa;
+
+      &:hover {
+        background: #3b82f6;
+      }
+    }
+  }
+
+  /* Tabs */
+  .sch-alu-tabs-row {
+    background-color: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(96, 165, 250, 0.2);
+  }
+
+  .sch-alu-tab-btn {
+    color: #94a3b8;
+
+    &:hover:not(.sch-alu-tab-active) {
+      background-color: rgba(96, 165, 250, 0.1);
+      color: #60a5fa;
+    }
+  }
+
+  .sch-alu-tab-active {
+    background: #0d1428 !important;
+    color: #60a5fa !important;
+    box-shadow: 0 4px 12px 0 rgba(59, 130, 246, 0.4);
+    border: 1px solid rgba(96, 165, 250, 0.4);
+  }
+
+  .sch-alu-tab-inactive {
+    color: #94a3b8;
+
+    &:hover {
+      background-color: rgba(96, 165, 250, 0.1);
+      color: #60a5fa;
+    }
+  }
+
+  /* No Results Message - Dark Mode */
+  .sch-alu-no-results {
+    background: rgb(13 24 41 / 40%);
+    border: 1px solid #1f2937;
+  }
+
+  .sch-alu-no-results__icon {
+    color: #6b7280;
+    opacity: 0.8;
+  }
+
+  .sch-alu-no-results__title {
+    color: #e2e8f0;
+  }
+
+  .sch-alu-no-results__message {
+    color: #94a3b8;
+  }
+
+  /* ========== EVENTS TAB - DARK MODE ========== */
+  .sch-alu-event-card {
+    background: #0d1428;
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      border-color: rgba(96, 165, 250, 0.3);
+      box-shadow: 0 4px 16px 0 rgba(59, 130, 246, 0.4);
+    }
+  }
+
+  .sch-alu-event-title {
+    color: #e2e8f0;
+  }
+
+  .sch-alu-event-date {
+    color: #94a3b8;
+  }
+
+  .sch-alu-event-location,
+  .sch-alu-event-attendees {
+    color: #64748b;
+  }
+
+  .sch-alu-event-icon {
+    color: #64748b;
+  }
+
+  .sch-alu-event-tag {
+    /* Tag colors already handled in .bg-* classes */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .sch-alu-event-btn-register {
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      box-shadow: 0 4px 12px 0 rgba(59, 130, 246, 0.4);
+    }
+  }
+
+  .sch-alu-event-btn-learnmore {
+    background: rgb(9 15 36);
+    color: #e2e8f0;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background: rgba(30, 41, 59, 0.8);
+    }
+  }
+
+  /* ========== MENTORSHIP TAB - DARK MODE ========== */
+  .sch-alu-mentorship-card {
+    background: #0d1428;
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      border-color: rgba(96, 165, 250, 0.3);
+      box-shadow: 0 4px 16px 0 rgba(59, 130, 246, 0.4);
+    }
+  }
+
+  .sch-alu-mentorship-title {
+    color: #e2e8f0;
+  }
+
+  .sch-alu-mentorship-subtitle {
+    color: #cbd5e1;
+  }
+
+  .sch-alu-mentorship-desc {
+    color: #94a3b8;
+  }
+
+  .sch-alu-mentorship-btn {
+    background: linear-gradient(90deg, #2563eb 0%, #60a5fa 100%);
+    box-shadow: 0 2px 8px 0 rgba(59, 130, 246, 0.3);
+
+    &:hover {
+      background: linear-gradient(90deg, #60a5fa 0%, #2563eb 100%);
+      box-shadow: 0 4px 12px 0 rgba(59, 130, 246, 0.5);
+      transform: translateY(-2px);
+    }
+  }
+
+  .sch-alu-mentorship-btn-secondary {
+    background: rgb(9 15 36);
+    color: #e2e8f0;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background: rgba(30, 41, 59, 0.8);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+  }
+
+  /* Avatar */
+  .sch-alu-card-avatar {
+    /* Gradient colors already set, just ensure visibility in dark mode */
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .sch-alu-card-avatar-blue {
+    background-color: rgba(59, 130, 246, 0.3);
+    --tw-gradient-stops: #60a5fa, rgba(59, 130, 246, 0.4);
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  /* Stats Cards - Dark Mode */
+  .sch-alu-stats-card {
+    background: #0d1428;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: rgba(59, 169, 216, 0.3);
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+    }
+  }
+
+  /* Shadow adjustments for dark mode */
+  .sch-alu-shadow {
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .sch-alu-inner-shadow {
+    box-shadow: inset 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  /* Join Button */
+  .sch-alu-page-btn-join {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  /* ========================================
+     CARD COLOR VARIANTS - DARK THEME
+     ======================================== */
+
+  /* Stats Cards with Icon Backgrounds */
+  .bg-blue-100 {
+    background: rgb(5 27 56) !important;
+    border-color: rgba(80, 120, 200, 0.4) !important;
+    color: #60a5fa !important;
+  }
+
+  .bg-green-100 {
+    background: rgb(10 77 35) !important;
+    border-color: rgba(91, 169, 118, 0.4) !important;
+    color: #4ade80 !important;
+  }
+
+  .bg-green-200 {
+    background: rgba(30, 45, 35, 0.6) !important;
+    border-color: rgba(91, 169, 118, 0.5) !important;
+    color: #4ade80 !important;
+  }
+
+  .bg-red-100 {
+    background: rgba(60, 30, 30, 0.6) !important;
+    border-color: rgba(200, 80, 80, 0.4) !important;
+    color: #f87171 !important;
+  }
+
+  .bg-yellow-100 {
+    background: rgba(60, 60, 30, 0.6) !important;
+    border-color: rgba(200, 200, 120, 0.4) !important;
+    color: #fef08a !important;
+  }
+
+  .bg-orange-100 {
+    background: rgba(60, 40, 30, 0.6) !important;
+    border-color: rgba(234, 179, 8, 0.4) !important;
+    color: #fbbf24 !important;
+  }
+
+  .bg-purple-100 {
+    background: rgb(32 9 56) !important;
+    border-color: rgba(146, 92, 204, 0.4) !important;
+    color: #c084fc !important;
+  }
+
+  /* Text color overrides for dark mode */
+  .text-blue-700,
+  .text-blue-600 {
+    color: #60a5fa !important;
+  }
+
+  .text-green-700,
+  .text-green-800,
+  .text-green-600 {
+    color: #4ade80 !important;
+  }
+
+  .text-red-700,
+  .text-red-600 {
+    color: #f87171 !important;
+  }
+
+  .text-yellow-700,
+  .text-yellow-600 {
+    color: #fef08a !important;
+  }
+
+  .text-orange-700,
+  .text-orange-600 {
+    color: #fbbf24 !important;
+  }
+
+  /* Icon containers in stats cards */
+  .stats-card-icon,
+  [class*="iconBg"] {
+    &.bg-blue-100 {
+      background: rgba(30, 30, 60, 0.8) !important;
+      box-shadow: 0 2px 8px rgba(96, 165, 250, 0.2);
+    }
+
+    &.bg-green-100 {
+      background: rgba(30, 45, 35, 0.8) !important;
+      box-shadow: 0 2px 8px rgba(74, 222, 128, 0.2);
+    }
+
+    &.bg-red-100 {
+      background: rgba(60, 30, 30, 0.8) !important;
+      box-shadow: 0 2px 8px rgba(248, 113, 113, 0.2);
+    }
+  }
+
+  /* Event tags */
+  .event-tag {
+    &.bg-orange-100 {
+      background: rgba(60, 40, 30, 0.6) !important;
+      border: 1px solid rgba(234, 179, 8, 0.4);
+    }
+
+    &.bg-blue-100 {
+      background: rgba(30, 30, 60, 0.6) !important;
+      border: 1px solid rgba(80, 120, 200, 0.4);
+    }
+
+    &.bg-green-100 {
+      background: rgba(30, 45, 35, 0.6) !important;
+      border: 1px solid rgba(91, 169, 118, 0.4);
+    }
+  }
+}
+
+/* ========== ALUMNI NETWORK PAGE ========== */
+.sch-alu-network-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .sch-alu-network-btn-add {
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 1rem;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+  }
+
+  .sch-alu-network-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--light-text);
+
+    @media (min-width: 1024px) {
+      font-size: 1.875rem;
+    }
+  }
+
+  .sch-alu-network-card {
+    height: 24rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sch-alu-network-content {
+    text-align: center;
+
+    .sch-alu-network-icon {
+      font-size: 3.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .sch-alu-network-heading {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--light-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .sch-alu-network-description {
+      color: var(--light-text-secondary);
+    }
+  }
+}
+
+// Dark mode support
+[data-theme="dark"] {
+  .sch-alu-network-container {
+    .sch-alu-network-title {
+      color: var(--dark-text);
+    }
+
+    .sch-alu-network-content {
+      .sch-alu-network-heading {
+        color: var(--dark-text);
+      }
+
+      .sch-alu-network-description {
+        color: var(--dark-text-secondary);
+      }
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Alumni Enrollment Modal
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ── Inline Enrollment Panel ─────────────────────────────────────────────────
+.sch-alu-enroll-panel {
+  // background: var(--card-background, #fff);
+  // border-radius: 1rem;
+  // border: 1px solid var(--border-color, #e5e7eb);
+  // box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  // margin-top: 1.25rem;
+  overflow: hidden;
+  animation: sch-enroll-slide-in 0.25s ease;
+}
+
+// ── Overlay ──────────────────────────────────────────────────────────────────
+.sch-alu-enroll-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow-y: auto;
+}
+
+// ── Modal Panel ───────────────────────────────────────────────────────────────
+.sch-alu-enroll-modal {
+  background: var(--card-background, #fff);
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 780px;
+  height: 35rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+  animation: sch-enroll-slide-in 0.25s ease;
+}
+
+.sch-alu-enroll-modal-scroll {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color, #d1d5db) transparent;
+
+  &::-webkit-scrollbar { width: 5px; }
+  &::-webkit-scrollbar-thumb { background: var(--border-color, #d1d5db); border-radius: 3px; }
+  &::-webkit-scrollbar-track { background: transparent; }
+}
+
+@keyframes sch-enroll-slide-in {
+  from { opacity: 0; transform: translateY(-24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ── Modal Header ─────────────────────────────────────────────────────────────
+.sch-alu-enroll-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.sch-alu-enroll-modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+  margin: 0 0 0.25rem;
+}
+
+.sch-alu-enroll-modal-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-secondary, #6b7280);
+  margin: 0;
+}
+
+.sch-alu-enroll-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  color: var(--text-secondary, #6b7280);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+
+  &:hover {
+    background: var(--hover-bg, #f3f4f6);
+    color: var(--text-primary, #111827);
+  }
+}
+
+// ── Stepper Wrapper ───────────────────────────────────────────────────────────
+@keyframes sch-alu-stepper-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.0), 0 4px 12px rgba(99, 102, 241, 0.35); }
+  50%       { box-shadow: 0 0 0 9px rgba(99, 102, 241, 0.18), 0 4px 18px rgba(99, 102, 241, 0.4); }
+}
+
+.sch-alu-enroll-stepper-wrapper {
+  padding: 1.5rem 1rem 1.35rem;
+  border-bottom: 1.5px solid rgba(99, 102, 241, 0.18);
+  border-radius: 0 0 1.25rem 1.25rem;
+  position: relative;
+  overflow: visible;
+
+  &::before {
+    content: '✨ 🌟 💫 ⭐ ✨';
+    position: absolute;
+    top: 0.4rem;
+    right: 1.5rem;
+    font-size: 0.85rem;
+    opacity: 0.35;
+    letter-spacing: 0.35em;
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+// ── Stepper ───────────────────────────────────────────────────────────────────
+.sch-alu-enroll-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+
+  // Per-step pastel colors for inactive circles
+  > :nth-child(1) .sch-alu-enroll-stepper-circle:not(.sch-alu-enroll-stepper-circle--active):not(.sch-alu-enroll-stepper-circle--done) {
+    background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+    border-color: #a78bfa;
+    color: #6d28d9;
+  }
+  > :nth-child(3) .sch-alu-enroll-stepper-circle:not(.sch-alu-enroll-stepper-circle--active):not(.sch-alu-enroll-stepper-circle--done) {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    border-color: #34d399;
+    color: #065f46;
+  }
+  > :nth-child(5) .sch-alu-enroll-stepper-circle:not(.sch-alu-enroll-stepper-circle--active):not(.sch-alu-enroll-stepper-circle--done) {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-color: #fbbf24;
+    color: #92400e;
+  }
+}
+
+.sch-alu-enroll-stepper-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  transition: background 0.3s;
+
+  &--done {
+    background: rgba(16, 185, 129, 0.08);
+  }
+
+  &--active {
+    background: rgba(99, 102, 241, 0.07);
+  }
+}
+
+.sch-alu-enroll-stepper-circle {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  border: 2.5px solid var(--border-color, #d1d5db);
+  background: var(--card-background, #fff);
+  color: var(--text-secondary, #9ca3af);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  &--done {
+    background: linear-gradient(135deg, #10b981, #059669);
+    border-color: #10b981;
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(16, 185, 129, 0.35);
+  }
+
+  &--active {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    border-color: transparent;
+    color: #fff;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.35rem;
+    animation: sch-alu-stepper-pulse 2.2s ease-in-out infinite;
+  }
+}
+
+.sch-alu-enroll-stepper-emoji {
+  line-height: 1;
+  display: block;
+
+  &--active  { font-size: 1.3rem; }
+  &--pending { font-size: 1.1rem; opacity: 0.8; }
+}
+
+.sch-alu-enroll-stepper-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary, #9ca3af);
+  white-space: nowrap;
+  text-align: center;
+
+  &--active {
+    font-weight: 800;
+    font-size: 0.74rem;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  &--done {
+    color: #059669;
+    font-weight: 700;
+  }
+}
+
+.sch-alu-enroll-stepper-connector {
+  flex: 1;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    #c4b5fd 0px, #c4b5fd 7px,
+    transparent 7px, transparent 14px
+  );
+  margin-bottom: 1.2rem;
+  min-width: 4rem;
+  border-radius: 2px;
+  transition: background 0.35s;
+
+  &--done {
+    background: linear-gradient(90deg, #10b981, #059669);
+  }
+}
+
+// ── Modal Body ────────────────────────────────────────────────────────────────
+.sch-alu-enroll-modal-body {
+  padding: 1.75rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────────
+.sch-alu-enroll-toast {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  animation: sch-toast-in 0.2s ease;
+
+  &--success {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+  }
+
+  &--error {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+  }
+
+  span { flex: 1; }
+}
+
+.sch-alu-enroll-toast-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  opacity: 0.7;
+  padding: 0 0.2rem;
+  color: inherit;
+
+  &:hover { opacity: 1; }
+}
+
+@keyframes sch-toast-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ── Step Containers ───────────────────────────────────────────────────────────
+.sch-alu-enroll-step {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.sch-alu-enroll-step-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 55%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 0.1rem;
+  letter-spacing: -0.02em;
+}
+
+.sch-alu-enroll-step-subtitle {
+  font-size: 0.84rem;
+  color: var(--text-secondary, #6b7280);
+  margin: 0;
+}
+
+// ── Enrollment Type Cards ─────────────────────────────────────────────────────
+.sch-alu-enroll-type-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 0.25rem 1rem 0;
+
+  @media (max-width: 479px) { grid-template-columns: 1fr; }
+}
+
+@keyframes sch-enroll-icon-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(5deg); }
+}
+
+.sch-alu-enroll-type-card {
+  padding: 1.75rem 1.25rem 1.5rem;
+  border: 2.5px solid transparent;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s, border-color 0.25s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    top: -55px;
+    right: -55px;
+    opacity: 0.08;
+    transition: opacity 0.3s, transform 0.3s;
+    transform: scale(1);
+  }
+
+  &:hover:not(:disabled) {
+    transform: translateY(-7px) scale(1.02);
+
+    &::before { opacity: 0.16; transform: scale(1.18); }
+
+    .sch-alu-enroll-type-icon {
+      animation: sch-enroll-icon-float 1.3s ease-in-out infinite;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // ── Self card — indigo / violet ─────────────────────────────────────
+  &--self {
+    background: linear-gradient(155deg, #f5f0ff 0%, #ede9fe 100%);
+    border-color: #c4b5fd;
+
+    &::before { background: #6366f1; }
+
+    &:hover:not(:disabled) {
+      border-color: #7c3aed;
+      box-shadow: 0 14px 36px rgba(99, 102, 241, 0.22);
+      background: linear-gradient(155deg, #ede9fe 0%, #ddd6fe 100%);
+    }
+
+    &.sch-alu-enroll-type-card--selected {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      border-color: transparent;
+      box-shadow: 0 14px 40px rgba(99, 102, 241, 0.4);
+
+      .sch-alu-enroll-type-name,
+      .sch-alu-enroll-type-desc,
+      .sch-alu-enroll-type-tagline { color: rgba(255, 255, 255, 0.9); }
+      .sch-alu-enroll-type-check { background: rgba(255, 255, 255, 0.25); color: #fff; }
+    }
+  }
+
+  // ── Other card — amber / warm ───────────────────────────────────────
+  &--other {
+    background: linear-gradient(155deg, #fffbeb 0%, #fef3c7 100%);
+    border-color: #fcd34d;
+
+    &::before { background: #f59e0b; }
+
+    &:hover:not(:disabled) {
+      border-color: #d97706;
+      box-shadow: 0 14px 36px rgba(245, 158, 11, 0.22);
+      background: linear-gradient(155deg, #fef3c7 0%, #fde68a 100%);
+    }
+
+    &.sch-alu-enroll-type-card--selected {
+      background: linear-gradient(135deg, #f59e0b 0%, #ef4444 60%, #ec4899 100%);
+      border-color: transparent;
+      box-shadow: 0 14px 40px rgba(245, 158, 11, 0.38);
+
+      .sch-alu-enroll-type-name,
+      .sch-alu-enroll-type-desc,
+      .sch-alu-enroll-type-tagline { color: rgba(255, 255, 255, 0.9); }
+      .sch-alu-enroll-type-check { background: rgba(255, 255, 255, 0.25); color: #fff; }
+    }
+  }
+}
+
+.sch-alu-enroll-type-icon {
+  font-size: 3rem;
+  line-height: 1;
+  display: block;
+  transition: transform 0.3s;
+  margin-bottom: 0.1rem;
+}
+
+.sch-alu-enroll-type-tagline {
+  font-size: 0.67rem;
+  font-weight: 700;
+  color: var(--text-secondary, #9ca3af);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sch-alu-enroll-type-name,
+.sch-alu-enroll-type-label {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--text-primary, #111827);
+  letter-spacing: -0.01em;
+}
+
+.sch-alu-enroll-type-desc {
+  font-size: 0.79rem;
+  color: var(--text-secondary, #6b7280);
+  line-height: 1.45;
+}
+
+.sch-alu-enroll-type-check {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6366f1;
+}
+
+.sch-alu-enroll-type-disabled-msg {
+  font-size: 0.72rem;
+  color: #ef4444;
+  margin-top: 0.25rem;
+}
+
+// ── Eligibility Box ───────────────────────────────────────────────────────────
+@keyframes sch-alu-alert-pop {
+  0%   { transform: scale(0.85) translateY(6px); opacity: 0; }
+  70%  { transform: scale(1.03) translateY(-2px); }
+  100% { transform: scale(1) translateY(0);  opacity: 1; }
+}
+
+.sch-alu-enroll-eligibility,
+.sch-alu-enroll-eligibility-box {
+  background: linear-gradient(130deg, #f5f0ff 0%, #eff6ff 100%);
+  border: 1.5px solid #c4b5fd;
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sch-alu-enroll-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.sch-alu-enroll-label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-primary, #374151);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.sch-alu-enroll-input {
+  padding: 0.65rem 0.875rem;
+  border: 1.5px solid var(--border-color, #d1d5db);
+  border-radius: 0.625rem;
+  font-size: 0.9rem;
+  color: var(--text-primary, #111827);
+  background: var(--card-background, #fff);
+  transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+  width: 100%;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14);
+    background: #fafaff;
+  }
+
+  &--error { border-color: #ef4444; }
+
+  &--year {
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: 0.1em;
+    color: #6366f1;
+    border-color: #a5b4fc;
+
+    &:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18);
+    }
+  }
+}
+
+.sch-alu-enroll-error-text,
+.sch-alu-enroll-error {
+  font-size: 0.72rem;
+  color: #ef4444;
+  margin-top: 0.15rem;
+  font-weight: 500;
+}
+
+.sch-alu-enroll-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: 1rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  animation: sch-alu-alert-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+
+  &--success {
+    background: linear-gradient(130deg, #ecfdf5 0%, #d1fae5 100%);
+    border: 1.5px solid #6ee7b7;
+    color: #065f46;
+  }
+
+  &--warning {
+    background: linear-gradient(130deg, #fffbeb 0%, #fef3c7 100%);
+    border: 1.5px solid #fcd34d;
+    color: #78350f;
+  }
+
+  strong { display: block; font-size: 0.95rem; margin-bottom: 0.2rem; }
+}
+
+.sch-alu-enroll-alert-emoji {
+  font-size: 2rem;
+  line-height: 1.1;
+  flex-shrink: 0;
+}
+
+// ── Registration Form ─────────────────────────────────────────────────────────
+.sch-alu-enroll-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sch-alu-enroll-form-section {
+  background: var(--bg-subtle, #f9fafb);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sch-alu-enroll-form-section-title,
+.sch-alu-enroll-section-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #6366f1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin: 0 0 0.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.sch-alu-enroll-form-grid-2,
+.sch-alu-enroll-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1rem;
+
+  @media (max-width: 520px) { grid-template-columns: 1fr; }
+}
+
+.sch-alu-enroll-form-select,
+.sch-alu-enroll-select {
+  width: 100%;
+  padding: 0.65rem 0.875rem;
+  border: 1.5px solid var(--border-color, #d1d5db);
+  border-radius: 0.625rem;
+  font-size: 0.9rem;
+  color: var(--text-primary, #111827);
+  background: var(--card-background, #fff);
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14);
+  }
+}
+
+// ── Phone row (country code + number) ────────────────────────────────
+.sch-alu-enroll-phone-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+.sch-alu-enroll-phone-code {
+  flex: 0 0 auto;
+  width: 7.5rem;
+  padding: 0.65rem 0.5rem;
+  border: 1.5px solid var(--border-color, #d1d5db);
+  border-radius: 0.625rem;
+  font-size: 0.85rem;
+  color: var(--text-primary, #111827);
+  background: var(--card-background, #fff);
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: border-color 0.18s, box-shadow 0.18s;
+
+  &:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14);
+  }
+}
+
+.sch-alu-enroll-checkbox-row,
+.sch-alu-enroll-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-primary, #374151);
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    accent-color: #6366f1;
+    cursor: pointer;
+  }
+}
+
+// ── Photo Upload ──────────────────────────────────────────────────────────────
+.sch-alu-enroll-photo-area,
+.sch-alu-enroll-photo-upload {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  input[type="file"] { display: none; }
+}
+
+.sch-alu-enroll-photo-preview {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: 2px solid #a5b4fc;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.sch-alu-enroll-photo-placeholder {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: #e0e7ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6366f1;
+  font-size: 1.4rem;
+}
+
+.sch-alu-enroll-photo-upload-btn,
+.sch-alu-enroll-photo-btn {
+  padding: 0.45rem 0.9rem;
+  border: 1.5px dashed #a5b4fc;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #6366f1;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover { background: #f5f3ff; }
+}
+
+.sch-alu-enroll-photo-hint {
+  font-size: 0.72rem;
+  color: var(--text-secondary, #9ca3af);
+  margin-top: 0.25rem;
+}
+
+// ── Industry Dropdown ─────────────────────────────────────────────────────────
+.sch-alu-enroll-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.sch-alu-enroll-dropdown-btn {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 1.5px solid var(--border-color, #d1d5db);
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-primary, #111827);
+  background: var(--card-background, #fff);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-sizing: border-box;
+
+  &:focus, &--open {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+  }
+
+  &--error { border-color: #ef4444; }
+}
+
+.sch-alu-enroll-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--card-background, #fff);
+  border: 1.5px solid #a5b4fc;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 200;
+  max-height: 14rem;
+  overflow-y: auto;
+}
+
+.sch-alu-enroll-dropdown-option {
+  padding: 0.5rem 0.85rem;
+  font-size: 0.88rem;
+  cursor: pointer;
+  color: var(--text-primary, #374151);
+  transition: background 0.12s;
+
+  &:hover { background: #f5f3ff; }
+  &--selected { background: #ede9fe; color: #4f46e5; font-weight: 600; }
+}
+
+// ── Skills Multi-Select ───────────────────────────────────────────────────────
+.sch-alu-enroll-skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sch-alu-enroll-skill-tag {
+  padding: 0.3rem 0.75rem;
+  border: 1.5px solid var(--border-color, #d1d5db);
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary, #6b7280);
+  background: var(--card-background, #fff);
+  cursor: pointer;
+  transition: all 0.15s;
+
+  &:hover { border-color: #a5b4fc; color: #4f46e5; background: #f5f3ff; }
+
+  &--selected {
+    border-color: #6366f1;
+    background: #6366f1;
+    color: #fff;
+  }
+}
+
+// ── Buttons ───────────────────────────────────────────────────────────────────
+.sch-alu-enroll-btn-primary {
+  padding: 0.6rem 1.5rem;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+
+  &:hover { background: #4f46e5; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3); }
+}
+
+.sch-alu-enroll-eligibility-btn {
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 55%, #ec4899 100%);
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.35);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s, opacity 0.2s;
+  margin-top: 0.5rem;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 28px rgba(99, 102, 241, 0.45);
+  }
+  &:active:not(:disabled) { transform: translateY(-1px); }
+  &:disabled {
+    background: linear-gradient(135deg, #c4b5fd 0%, #e0abef 100%);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+}
+
+.sch-alu-enroll-btn-secondary {
+  padding: 0.55rem 1.2rem;
+  background: transparent;
+  color: var(--text-secondary, #6b7280);
+  border: 1.5px solid var(--border-color, #d1d5db);
+  border-radius: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+
+  &:hover { border-color: #6366f1; color: #6366f1; }
+}
+
+.sch-alu-enroll-btn-submit {
+  align-self: center;
+  padding: clamp(0.625rem, 1.2vw, 0.75rem) clamp(1.75rem, 3vw, 2.5rem);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 60%, #ec4899 100%);
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s, opacity 0.2s;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 28px rgba(99, 102, 241, 0.45);
+  }
+  &:active:not(:disabled) { transform: translateY(-1px); }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+.sch-alu-enroll-form-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0 0.25rem;
+}
+
+.sch-alu-enroll-form-actions-hint {
+  font-size: 0.8rem;
+  color: var(--text-secondary, #6b7280);
+  margin: 0;
+  font-weight: 500;
+}
+
+.sch-alu-enroll-nav-back,
+.sch-alu-enroll-nav-next {
+  display: flex;
+  margin-top: 0.5rem;
+}
+
+.sch-alu-enroll-nav-next { justify-content: flex-end; }
+
+// ── Delete Confirmation Modal ─────────────────────────────────────────────────
+.sch-alu-delete-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: sch-fade-in 0.15s ease;
+}
+
+@keyframes sch-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.sch-alu-delete-modal {
+  background: var(--card-background, #fff);
+  border-radius: 0.875rem;
+  padding: 2rem 1.75rem 1.5rem;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  animation: sch-scale-in 0.18s ease;
+}
+
+@keyframes sch-scale-in {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.sch-alu-delete-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: #fee2e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+}
+
+.sch-alu-delete-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+  margin: 0;
+  text-align: center;
+}
+
+.sch-alu-delete-body {
+  font-size: 0.85rem;
+  color: var(--text-secondary, #6b7280);
+  text-align: center;
+  line-height: 1.55;
+  margin: 0;
+
+  strong { color: var(--text-primary, #111827); }
+}
+
+.sch-alu-delete-actions {
+  display: flex;
+  gap: 0.65rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.sch-alu-delete-btn-cancel {
+  flex: 1;
+  padding: 0.6rem;
+  border: 1.5px solid var(--border-color, #d1d5db);
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--text-secondary, #374151);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+
+  &:hover { background: var(--bg-subtle, #f3f4f6); border-color: #9ca3af; }
+}
+
+.sch-alu-delete-btn-confirm {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+
+  &:hover { background: #dc2626; box-shadow: 0 4px 12px rgba(239,68,68,0.35); }
+}
+
+// ── Form helper classes (used by AlumniRegistrationForm sub-components) ────────
+.sch-alu-enroll-photo-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.sch-alu-enroll-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.25rem;
+}
+
+.sch-alu-enroll-checkbox-desc {
+  font-size: 0.75rem;
+  color: var(--text-secondary, #6b7280);
+  margin: 0 0 0 1.5rem;
+}
+
+// ── Divider ───────────────────────────────────────────────────────────────────
+.sch-alu-enroll-modal-divider {
+  height: 1px;
+  background: var(--border-color, #e5e7eb);
+  margin: 0;
+}
+
+// ── Dashboard (enrolled list) ─────────────────────────────────────────────────
+.sch-alu-enroll-modal-dashboard {
+  padding: 1.25rem 0;
+}
+
+.sch-alu-enroll-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.sch-alu-enroll-list-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+}
+
+.sch-alu-enroll-count-badges {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.sch-alu-enroll-count-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 2rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+
+  &--total    { background: #e0e7ff; color: #4338ca; }
+  &--pending  { background: #fef9c3; color: #a16207; }
+  &--approved { background: #dcfce7; color: #166534; }
+  &--rejected { background: #fee2e2; color: #991b1b; }
+}
+
+// ── Empty State ───────────────────────────────────────────────────────────────
+.sch-alu-enroll-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.sch-alu-enroll-empty-icon {
+  font-size: 2.5rem;
+  opacity: 0.5;
+}
+
+.sch-alu-enroll-empty-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary, #374151);
+}
+
+.sch-alu-enroll-empty-desc {
+  font-size: 0.78rem;
+  color: var(--text-secondary, #9ca3af);
+}
+
+// ── Enrolled Cards Grid ────────────────────────────────────────────────────────
+.sch-alu-enroll-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.sch-alu-enroll-card {
+  background: var(--card-background, #fff);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  transition: box-shadow 0.25s, transform 0.25s;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+    border-radius: 1.25rem 1.25rem 0 0;
+  }
+
+  &:hover {
+    box-shadow: 0 12px 32px rgba(99, 102, 241, 0.12), 0 2px 8px rgba(0,0,0,0.06);
+    transform: translateY(-4px);
+  }
+}
+
+// ── Card inner structure ──────────────────────────────────────────────────────
+.sch-alu-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.sch-alu-card-avatar {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.03em;
+  overflow: hidden;
+  box-shadow: 0 0 0 3px #fff, 0 0 0 5px rgba(99, 102, 241, 0.25);
+}
+
+.sch-alu-card-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.sch-alu-card-info { flex: 1; min-width: 0; }
+
+.sch-alu-card-name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-primary, #111827);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.sch-alu-card-class {
+  font-size: 0.75rem;
+  color: var(--text-secondary, #9ca3af);
+  margin: 0.1rem 0 0;
+  font-weight: 500;
+}
+
+.sch-alu-card-job {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #6366f1;
+  margin: 0.25rem 0 0;
+}
+
+.sch-alu-card-edu {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  color: var(--text-secondary, #6b7280);
+  margin: 0.2rem 0 0;
+  svg { flex-shrink: 0; color: #6366f1; }
+}
+
+.sch-alu-card-location {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  color: var(--text-secondary, #6b7280);
+  margin: 0.2rem 0 0;
+  svg { flex-shrink: 0; }
+}
+
+.sch-alu-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.sch-alu-card-chip {
+  padding: 0.28rem 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: #ede9fe;
+  color: #4f46e5;
+  border: none;
+  transition: background 0.2s, transform 0.2s;
+  cursor: default;
+
+  &:hover { background: #ddd6fe; transform: scale(1.04); }
+
+  &--mentor {
+    background: #d1fae5;
+    color: #065f46;
+    font-weight: 700;
+    &:hover { background: #a7f3d0; }
+  }
+}
+
+.sch-alu-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sch-alu-card-connect-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.22s, box-shadow 0.22s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+    color: #fff;
+  }
+  &:active { transform: translateY(0); }
+}
+
+.sch-alu-card-icon-btn {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 0.45rem;
+  background: var(--bg-subtle, #f3f4f6);
+  border: 1px solid var(--border-color, #e5e7eb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+  cursor: pointer;
+
+  &:hover { background: #e0e7ff; color: #4f46e5; }
+  &--whatsapp:hover { background: #dcfce7; color: #16a34a; }
+}
+
+.sch-alu-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-color, #f3f4f6);
+}
+
+.sch-alu-card-footer-btns {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.sch-alu-card-btn-edit {
+  padding: 0.3rem 0.65rem;
+  border: 1.5px solid #fbbf24;
+  border-radius: 0.35rem;
+  background: #fffbeb;
+  color: #92400e;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover { background: #fef3c7; }
+}
+
+.sch-alu-card-btn-delete {
+  padding: 0.3rem 0.65rem;
+  border: 1.5px solid #fca5a5;
+  border-radius: 0.35rem;
+  background: #fff1f2;
+  color: #be123c;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover { background: #fee2e2; }
+}
+
+// StatusBadge
+.sch-alu-enroll-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   ALUMNI NETWORK - 480px RESPONSIVE
+   ======================================== */
+@media (max-width: 479px) {
+  /* Metric cards: 2 per row */
+  .sch-alu-stats-row {
+    flex-wrap: wrap;
+  }
+
+  .sch-alu-stats-card {
+    flex: 1 1 calc(50% - 0.5rem);
+    max-width: calc(50% - 0.5rem);
+    min-height: 100px;
+    padding: 0.75rem 1rem;
+  }
+
+  /* Stats grid: 2 per row */
+  .sch-alu-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  /* Events grid: 1 per row */
+  .sch-alu-events-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 0 !important;
+  }
+
+  /* Directory grid: 1 per row */
+  .sch-alu-directory-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .sch-alu-card {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 0.85rem;
+    row-gap: 0.6rem;
+    align-items: start;
+    text-align: left;
+    padding: 1rem;
+    height: auto;
+    min-height: unset;
+    overflow: visible;
+    box-sizing: border-box;
+  }
+
+  .sch-alu-card-avatar {
+    grid-column: 1;
+    grid-row: 1;
+    width: 3rem;
+    height: 3rem;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    align-self: start;
+  }
+
+  .sch-alu-card-content {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.12rem;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .sch-alu-card-name {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #1f2937;
+    white-space: normal;
+    overflow: visible;
+    max-width: 100%;
+    word-break: break-word;
+  }
+
+  .sch-alu-card-year {
+    font-size: 0.68rem;
+    display: block;
+    color: #6b7280;
+  }
+
+  .sch-alu-card-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: block;
+    white-space: normal;
+    overflow: visible;
+    word-break: break-word;
+  }
+
+  .sch-alu-card-location {
+    font-size: 0.68rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .sch-alu-card-tags-wrapper {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .sch-alu-card-tags {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    justify-content: flex-start;
+  }
+
+  .sch-alu-card-tag {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.4rem;
+  }
+
+  .sch-alu-card-actions {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    width: 100%;
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-top: 0;
+  }
+
+  .sch-alu-card-btn-connect {
+    flex: 1;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.7rem;
+  }
+
+  .sch-alu-card-btn-icon {
+    width: 2.1rem;
+    height: 2.1rem;
+    flex-shrink: 0;
+  }
+}
+
+/* ========================================
+   ALUMNI NETWORK - 768px, SIDEBAR COLLAPSED
+   ======================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  @include sidebar-state-collapsed {
+    /* Metric cards: 2 per row */
+    .sch-alu-stats-row {
+      flex-wrap: wrap;
+    }
+
+    .sch-alu-stats-card {
+      flex: 1 1 calc(50% - 0.5rem);
+      max-width: calc(50% - 0.5rem);
+      min-height: 80px;
+      padding: 0.75rem 1rem;
+    }
+    .sch-alu-stats-value {
+      font-size: 1.125rem;
+    }
+    .sch-alu-stats-label {
+      font-size: 0.75rem;
+    }
+
+    /* Stats grid: 2 per row */
+    .sch-alu-stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    /* Events grid: 1 per row */
+    .sch-alu-events-grid {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    /* Directory grid: 1 per row */
+    .sch-alu-directory-grid {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .sch-alu-card {
+      flex-direction: row;
+    }
+  }
+}
+
+/* ========================================
+   ALUMNI NETWORK - 768px, SIDEBAR EXPANDED
+   ======================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  @include sidebar-state-expanded {
+    /* Metric cards: 2 per row */
+    .sch-alu-stats-row {
+      flex-wrap: wrap;
+    }
+
+     .sch-alu-stats-value {
+      font-size: 1.125rem;
+    }
+    .sch-alu-stats-label {
+      font-size: 0.75rem;
+    }
+
+
+    .sch-alu-stats-card {
+      flex: 1 1 calc(50% - 0.5rem);
+      max-width: calc(50% - 0.5rem);
+      min-height: 80px;
+      padding: 0.75rem 1rem;
+    }
+
+    /* Stats grid: 2 per row */
+    .sch-alu-stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    /* Events grid: 1 per row */
+    .sch-alu-events-grid {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    /* Directory grid: 1 per row */
+    .sch-alu-directory-grid {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .sch-alu-card {
+      flex-direction: row;
+    }
+  }
+}
+
+/* ========================================
+   EXTRA SMALL DEVICES (320px–375px)
+   ======================================== */
+@media (min-width: 320px) and (max-width: 374px) {
+  /* Event Card - Fix tag overlap */
+  .sch-alu-event-card {
+    padding: 1rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .sch-alu-event-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .sch-alu-event-title {
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+    padding-right: 0;
+  }
+
+  .sch-alu-event-date {
+    font-size: 0.8rem;
+  }
+
+  .sch-alu-event-location,
+  .sch-alu-event-attendees {
+    font-size: 0.7rem;
+  }
+
+  /* Tag and Actions Row */
+  .sch-alu-event-tag {
+    position: static;
+    min-width: auto;
+    width: auto;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.65rem;
+    height: auto;
+    align-self: flex-start;
+    margin: 0.25rem 0 0 0;
+    order: 2;
+  }
+
+  .sch-alu-event-actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+    align-items: center;
+    order: 3;
+  }
+
+  .sch-alu-event-btn-register {
+    flex: 1;
+    height: 2.2rem;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    width: 100%;
+    min-width: auto;
+  }
+
+  .sch-alu-event-btn-learnmore {
+    height: 2.2rem;
+    font-size: 0.75rem;
+    width: auto;
+    padding: 0.5rem 0.6rem;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* Dropdown Button */
+  .sch-alu-custom-dropdown__button {
+    height: 2.3rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+    border-radius: 30px;
+  }
+
+  .sch-alu-custom-dropdown__arrow {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Directory Grid */
+  .sch-alu-directory-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1rem 0 !important;
+  }
+}
+
+// ── Dark Mode ─────────────────────────────────────────────────────────────────
+.dark-mode {
+  .sch-alu-enroll-panel {
+    background: var(--dark-card-bg, #1e1e2e);
+    border-color: var(--dark-border, #2d2d3f);
+  }
+
+  .sch-alu-enroll-modal {
+    background: var(--dark-card-bg, #1e1e2e);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+  }
+
+  .sch-alu-enroll-modal-header {
+    border-color: var(--dark-border, #2d2d3f);
+  }
+
+  .sch-alu-enroll-modal-title { color: var(--dark-text, #f1f5f9); }
+  .sch-alu-enroll-modal-subtitle { color: var(--dark-text-secondary, #94a3b8); }
+
+  .sch-alu-enroll-modal-close {
+    color: var(--dark-text-secondary, #94a3b8);
+    &:hover { background: var(--dark-hover-bg, #2d2d3f); color: var(--dark-text, #f1f5f9); }
+  }
+
+  .sch-alu-enroll-stepper-wrapper {
+    background: linear-gradient(135deg, #1a1635 0%, #16213e 38%, #0e2318 70%, #231a08 100%);
+    border-color: rgba(99, 102, 241, 0.2);
+
+    &::before { opacity: 0.2; }
+  }
+
+  .sch-alu-enroll-stepper-circle {
+    background: var(--dark-card-bg, #1e1e2e);
+    border-color: var(--dark-border, #3d3d55);
+    color: var(--dark-text-secondary, #64748b);
+  }
+
+  .sch-alu-enroll-stepper {
+    > :nth-child(1) .sch-alu-enroll-stepper-circle:not(.sch-alu-enroll-stepper-circle--active):not(.sch-alu-enroll-stepper-circle--done) {
+      background: linear-gradient(135deg, #2e1f5e 0%, #3b1f7a 100%);
+      border-color: #7c3aed;
+      color: #c4b5fd;
+    }
+    > :nth-child(3) .sch-alu-enroll-stepper-circle:not(.sch-alu-enroll-stepper-circle--active):not(.sch-alu-enroll-stepper-circle--done) {
+      background: linear-gradient(135deg, #052e16 0%, #064e3b 100%);
+      border-color: #059669;
+      color: #6ee7b7;
+    }
+    > :nth-child(5) .sch-alu-enroll-stepper-circle:not(.sch-alu-enroll-stepper-circle--active):not(.sch-alu-enroll-stepper-circle--done) {
+      background: linear-gradient(135deg, #2d1a02 0%, #451a03 100%);
+      border-color: #d97706;
+      color: #fde68a;
+    }
+  }
+
+  .sch-alu-enroll-stepper-connector {
+    background: repeating-linear-gradient(
+      90deg,
+      #4c3fa0 0px, #4c3fa0 7px,
+      transparent 7px, transparent 14px
+    );
+  }
+
+  .sch-alu-enroll-step-title { color: var(--dark-text, #f1f5f9); }
+  .sch-alu-enroll-step-subtitle { color: var(--dark-text-secondary, #94a3b8); }
+
+  .sch-alu-enroll-type-card {
+    &--self {
+      background: linear-gradient(155deg, #1e1b3a 0%, #231a42 100%);
+      border-color: #4c4580;
+      &:hover:not(:disabled) { background: linear-gradient(155deg, #221e40 0%, #2a1f4a 100%); border-color: #6366f1; }
+      &.sch-alu-enroll-type-card--selected { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); border-color: transparent; }
+    }
+    &--other {
+      background: linear-gradient(155deg, #231e10 0%, #2e2510 100%);
+      border-color: #5a4a14;
+      &:hover:not(:disabled) { background: linear-gradient(155deg, #2e2510 0%, #3a2e10 100%); border-color: #d97706; }
+      &.sch-alu-enroll-type-card--selected { background: linear-gradient(135deg, #f59e0b 0%, #ef4444 60%, #ec4899 100%); border-color: transparent; }
+    }
+  }
+
+  .sch-alu-enroll-type-name,
+  .sch-alu-enroll-type-label { color: var(--dark-text, #f1f5f9); }
+  .sch-alu-enroll-type-tagline { color: var(--dark-text-secondary, #64748b); }
+  .sch-alu-enroll-type-desc  { color: var(--dark-text-secondary, #94a3b8); }
+
+  .sch-alu-enroll-eligibility,
+  .sch-alu-enroll-eligibility-box {
+    background: linear-gradient(130deg, #1e1a36 0%, #0f1a35 100%);
+    border-color: #4c3fa0;
+  }
+
+  .sch-alu-enroll-input,
+  .sch-alu-enroll-form-select,
+  .sch-alu-enroll-dropdown-btn,
+  .sch-alu-enroll-phone-code {
+    background: var(--dark-input-bg, #13131e);
+    border-color: var(--dark-border, #3d3d55);
+    color: var(--dark-text, #f1f5f9);
+  }
+
+  .sch-alu-enroll-label { color: var(--dark-text-secondary, #94a3b8); }
+
+  .sch-alu-enroll-form-section {
+    border-color: var(--dark-border, #2d2d3f);
+    &:nth-child(1) { background: linear-gradient(105deg, #1e1b3a 0%, #13131e 60%); border-left-color: #6366f1; }
+    &:nth-child(2) { background: linear-gradient(105deg, #0d2318 0%, #13131e 60%); border-left-color: #10b981; }
+    &:nth-child(3) { background: linear-gradient(105deg, #231a08 0%, #13131e 60%); border-left-color: #f59e0b; }
+    &:nth-child(4) { background: linear-gradient(105deg, #0d1f3a 0%, #13131e 60%); border-left-color: #3b82f6; }
+    &:nth-child(5) { background: linear-gradient(105deg, #2a0d1a 0%, #13131e 60%); border-left-color: #ec4899; }
+    &:nth-child(6) { background: linear-gradient(105deg, #1a0d2e 0%, #13131e 60%); border-left-color: #8b5cf6; }
+  }
+
+  .sch-alu-enroll-dropdown-menu {
+    background: var(--dark-card-bg, #1e1e2e);
+    border-color: #4f46e5;
+  }
+
+  .sch-alu-enroll-dropdown-option {
+    color: var(--dark-text, #f1f5f9);
+    &:hover    { background: #1e1b3a; }
+    &--selected { background: #1e1b3a; color: #a5b4fc; }
+  }
+
+  .sch-alu-enroll-skill-tag {
+    background: var(--dark-card-bg, #1e1e2e);
+    border-color: var(--dark-border, #3d3d55);
+    color: var(--dark-text, #f1f5f9);
+    &:hover    { background: #1e1b3a; border-color: #6366f1; }
+    &--selected { background: #6366f1; border-color: #6366f1; color: #fff; }
+  }
+
+  .sch-alu-enroll-card {
+    background: var(--dark-card-bg, #1e1e2e);
+    border-color: var(--dark-border, #2d2d3f);
+  }
+
+  .sch-alu-card-name  { color: var(--dark-text, #f1f5f9); }
+  .sch-alu-card-class { color: var(--dark-text-secondary, #94a3b8); }
+  .sch-alu-card-job   { color: var(--dark-text, #f1f5f9); }
+  .sch-alu-card-edu      { color: var(--dark-text-secondary, #94a3b8); svg { color: #a5b4fc; } }
+  .sch-alu-card-location { color: var(--dark-text-secondary, #94a3b8); }
+
+  .sch-alu-card-chip {
+    background: #1e1b3a;
+    color: #a5b4fc;
+    border-color: #4338ca;
+
+    &--mentor {
+      background: #052e16;
+      color: #86efac;
+      border-color: #166534;
+    }
+  }
+
+  .sch-alu-enroll-modal-divider { background: var(--dark-border, #2d2d3f); }
+
+  .sch-alu-enroll-list-title { color: var(--dark-text, #f1f5f9); }
+
+  .sch-alu-enroll-btn-secondary {
+    border-color: var(--dark-border, #3d3d55);
+    color: var(--dark-text-secondary, #94a3b8);
+    &:hover { border-color: #6366f1; color: #a5b4fc; }
+  }
+
+  .sch-alu-enroll-toast {
+    &--success { background: #064e3b; color: #a7f3d0; border-color: #065f46; }
+    &--error   { background: #7f1d1d; color: #fca5a5; border-color: #991b1b; }
+  }
+
+  .sch-alu-enroll-empty-title { color: var(--dark-text, #e2e8f0); }
+  .sch-alu-enroll-empty-desc  { color: var(--dark-text-secondary, #64748b); }
+
+  .sch-alu-card-icon-btn {
+    background: var(--dark-bg-subtle, #13131e);
+    border-color: var(--dark-border, #3d3d55);
+    color: var(--dark-text-secondary, #94a3b8);
+    &:hover { background: #1e1b3a; color: #a5b4fc; }
+    &--whatsapp:hover { background: #052e16; color: #86efac; }
+  }
+
+  .sch-alu-card-footer {
+    border-top-color: var(--dark-border, #2d2d3f);
+  }
+
+  .sch-alu-card-btn-edit {
+    background: #1c1a06;
+    border-color: #78350f;
+    color: #fcd34d;
+    &:hover { background: #27200a; }
+  }
+
+  .sch-alu-card-btn-delete {
+    background: #1c0508;
+    border-color: #9f1239;
+    color: #fca5a5;
+    &:hover { background: #2d090e; }
+  }
+}

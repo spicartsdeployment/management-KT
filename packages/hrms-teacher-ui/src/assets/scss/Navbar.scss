@@ -1,0 +1,60 @@
+@import './mixins.scss';
+
+.hsu-teach-navbar {
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  padding: $spacing-md $spacing-lg;
+
+  &__container {
+    @include flex-between;
+    gap: $spacing-md;
+
+    @media (max-width: $breakpoint-md) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &__actions {
+    @include flex-start;
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+  }
+
+  &__action-btn {
+    @include button-base;
+    @include flex-start;
+    gap: $spacing-xs;
+    padding: $spacing-xs $spacing-md;
+    background: var(--bg-secondary);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    font-size: $font-size-xs;
+
+    &:hover {
+      background: var(--primary);
+      color: $white;
+      border-color: var(--primary);
+      transform: translateY(-1px);
+      box-shadow: $shadow-md;
+    }
+  }
+
+  &__action-icon {
+    font-size: $font-size-base;
+  }
+
+  &__action-text {
+    @media (max-width: $breakpoint-sm) {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,469 @@
+.learning-streak {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px 0 rgba(31, 41, 55, 0.07);
+//   padding: 24px 24px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  .dark & {
+    background: rgba(30, 41, 59, 0.8);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 2px;
+  }
+  &__icon {
+    font-size: 1.25rem;
+    margin-right: 2px;
+  }
+  &__title {
+    font-size: 1.13rem;
+    font-weight: 600;
+    color: #222;
+    letter-spacing: -0.5px;
+
+
+    .dark & {
+      color: #E5E7EB;
+    }
+  }
+
+
+  &__main {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 32px;
+    width: 100%;
+  }
+
+  &__circle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    svg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 120px;
+      height: 120px;
+      z-index: 1;
+    }
+  }
+  &__circle-text {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @media(max-width: 479px) {
+      left: -6%;
+    }
+  }
+  &__circle-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #222;
+    line-height: 1.1;
+    margin-bottom: -2px;
+    .dark & {
+      color: #E5E7EB;
+    }
+  }
+  &__circle-label {
+    font-size: 1.08rem;
+    color: #B0B7C3;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+    .dark & {
+      color: #6B7280;
+  }
+  }
+
+  &__right {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  &__stats-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 32px;
+    width: 100%;
+  }
+
+  &__stats {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 90px;
+    margin: 0 18px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  &__stats-label {
+    font-size: 1.01rem;
+    color: #6B7280;
+    font-weight: 500;
+    margin-bottom: 2px;
+    .dark & {
+      color: #B0B7C3;
+    }
+  }
+  &__stats-value {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #222;
+    .dark & {
+      color: #E5E7EB;
+    }
+    span {
+      font-size: 1.01rem;
+      font-weight: 500;
+      color: #B0B7C3;
+      margin-left: 2px;
+      .dark & {
+        color: #6B7280;
+      }
+    }
+  }
+
+  &__banner {
+    display: flex;
+    align-items: center;
+    background: #FFF6F0;
+    border-radius: 22px;
+    padding: 7px 18px 7px 13px;
+    margin: 2px 0 0 0;
+    font-size: 0.75rem;
+    color: #F2994A;
+    font-weight: 500;
+    border-left: 4px solid #F2994A;
+    gap: 8px;
+    box-sizing: border-box;
+
+    .dark & {
+      background: rgba(242, 153, 74, 0.1);
+      color: #F2994A;
+      border-left-color: #F2994A;
+    }
+  }
+  &__banner-icon {
+    font-size: 1.13rem;
+    margin-right: 2px;
+  }
+  &__banner-text {
+    flex: 1;
+  }
+
+  &__week {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  &__week-label {
+    font-size: 1.01rem;
+    color: #6B7280;
+    font-weight: 500;
+    margin-bottom: 2px;
+
+    .dark & {
+      color: #B0B7C3;
+    }
+  }
+  &__week-bars {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 2px;
+  }
+  &__week-bar {
+    flex: 1 1 0;
+    height: 8px;
+    border-radius: 6px;
+    background: #E5E7EB;
+    &--teal {
+      background: #4CAF9A !important;
+
+        .dark & {
+            background: #4CAF9A !important;
+        }
+    }
+    &--orange {
+      background: #F2994A !important;
+
+        .dark & {
+            background: #F2994A !important;
+        }
+    }
+    &--gray {
+      background: #E5E7EB !important;
+
+        .dark & {
+            background: #6B7280 !important;
+        }
+    }
+  }
+  &__week-days {
+    display: flex;
+    gap: 7px;
+    justify-content: space-between;
+  }
+  &__week-day {
+    flex: 1 1 0;
+    text-align: center;
+    font-size: 0.97rem;
+    color: #B0B7C3;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+
+    .dark & {
+      color: #6B7280;
+    }
+  }
+}
+
+/* ================================================
+   LEARNING STREAK - RESPONSIVE (480px - 375px)
+   ================================================ */
+
+@media (max-width: 479px) {
+  .learning-streak {
+    gap: 12px;
+
+    &__main {
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    &__circle {
+      width: 120px;
+      height: 120px;
+      svg {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    &__circle-value {
+      font-size: 2rem;
+    }
+
+    &__circle-label {
+      font-size: 0.95rem;
+    }
+
+    &__right {
+      width: 100%;
+      gap: 10px;
+    }
+
+    &__stats-row {
+      gap: 16px;
+      width: 100%;
+    }
+
+    &__stats {
+      margin: 0;
+    }
+
+    &__stats-label {
+      font-size: 0.9rem;
+    }
+
+    &__stats-value {
+      font-size: 1.1rem;
+      span {
+        font-size: 0.9rem;
+      }
+    }
+
+    &__banner {
+      padding: 6px 12px;
+      font-size: 0.7rem;
+      gap: 6px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    &__banner-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    &__week {
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    &__week-label {
+      font-size: 0.9rem;
+    }
+
+    &__week-bars {
+      width: 100%;
+    }
+
+    &__week-bar {
+      height: 7px;
+      border-radius: 5px;
+    }
+
+    &__week-days {
+      gap: 5px;
+    }
+
+    &__week-day {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+/* ================================================
+   LEARNING STREAK - EXTRA SMALL (320px - 375px)
+   ================================================ */
+
+@media (min-width: 320px) and (max-width: 374px) {
+  .learning-streak {
+    gap: 8px;
+    padding: 0.75rem;
+    overflow-x: hidden;
+    box-sizing: border-box;
+
+    &__header {
+      gap: 6px;
+      margin-bottom: 0;
+    }
+
+    &__icon {
+      font-size: 1rem;
+    }
+
+    &__title {
+      font-size: 0.95rem;
+    }
+
+    &__main {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    &__circle {
+      width: 120px;
+      height: 120px;
+      flex-shrink: 0;
+      svg {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    &__circle-value {
+      font-size: 1.5rem;
+    }
+
+    &__circle-label {
+      font-size: 0.75rem;
+    }
+
+    &__right {
+      width: 100%;
+      gap: 8px;
+    }
+
+    &__stats-row {
+      gap: 12px;
+      width: 100%;
+      margin: 0;
+    }
+
+    &__stats {
+      flex: 1;
+      margin: 0;
+      min-width: auto;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    &__stats-label {
+      font-size: 0.8rem;
+      margin-bottom: 1px;
+    }
+
+    &__stats-value {
+      font-size: 1rem;
+      span {
+        font-size: 0.8rem;
+        margin-left: 1px;
+      }
+    }
+
+    &__banner {
+      padding: 5px 10px;
+      font-size: 0.65rem;
+      gap: 5px;
+      width: 100%;
+      border-radius: 16px;
+      border-left-width: 3px;
+      margin: 0;
+    }
+
+    &__banner-icon {
+      font-size: 0.95rem;
+      margin-right: 1px;
+    }
+
+    &__banner-text {
+      line-height: 1.3;
+    }
+
+    &__week {
+      width: 100%;
+      margin-top: 2px;
+      gap: 5px;
+    }
+
+    &__week-label {
+      font-size: 0.8rem;
+      margin-bottom: 1px;
+    }
+
+    &__week-bars {
+      width: 100%;
+      gap: 5px;
+    }
+
+    &__week-bar {
+      height: 6px;
+      border-radius: 4px;
+    }
+
+    &__week-days {
+      gap: 4px;
+    }
+
+    &__week-day {
+      font-size: 0.8rem;
+    }
+  }
+}

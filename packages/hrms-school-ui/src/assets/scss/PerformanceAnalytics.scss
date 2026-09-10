@@ -1,0 +1,6611 @@
+﻿@import './mixins.scss';
+
+/* Performance Analytics - Complete Rebuild */
+
+.performance-analytics-container {
+  padding: 0.5rem;
+  max-width: 1600px;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+
+/* Page Header */
+.performance-header {
+  margin-bottom: 1.5rem;
+}
+
+.performance-title {
+  font-size: clamp(0.9rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.25rem 0;
+}
+
+@media (max-width: 1023px) {
+  .performance-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .performance-title {
+    font-size: 1.125rem;
+  }
+}
+
+.performance-subtitle {
+  font-size: clamp(0.65rem, 1.5vw, 0.875rem);
+  color: #666;
+  margin: 0;
+}
+
+/* ROW 1 - MACP Indicator & Achievements */
+.row-1 {
+  display: grid;
+  grid-template-columns: 69% 29%;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+@media (max-width: 1023px) {
+  .row-1 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* MACP Indicator Card */
+.macp-card {
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 1rem;
+  border-radius: 1rem;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.macp-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+
+  .year-dropdown {
+    margin-left: auto;
+  }
+}
+
+.macp-title-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.macp-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  stroke: rgb(249, 182, 111);
+
+  path {
+    transition: fill 0.3s ease;
+  }
+
+  :root.dark & path {
+    stroke: white;
+  }
+}
+
+.macp-indicator-title {
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  font-weight: 700;
+  color: rgb(249, 182, 111);
+  margin: 0;
+
+  :root.dark & {
+    color: #ffffff;
+  }
+}
+
+.macp-title-group h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ea580c;
+  margin: 0;
+}
+
+.macp-subtitle {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0.15rem 0 0 0;
+}
+
+.macp-overall-badge {
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 15px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  display: flex;
+  height: 4.5rem;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, rgb(249, 182, 111) 0%, rgb(255, 214, 165) 100%);
+  box-shadow: rgba(249, 182, 111, 0.3) 0px 8px 32px;
+
+  span {
+    line-height: 1.1;
+  }
+
+  :root.dark & {
+    background: linear-gradient(135deg, rgb(76, 201, 240) 0%, rgb(66, 165, 245) 100%);
+    box-shadow: rgba(76, 201, 240, 0.3) 0px 8px 32px;
+  }
+}
+
+.macp-overall-score {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.overall-label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.year-dropdown .custom-dropdown__button {
+  padding: 0.5rem 1rem;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  background: rgba(249, 182, 111, 0.1);
+  border: 1px solid rgba(249, 182, 111, 0.3);
+  color: rgb(46, 46, 46);
+  cursor: pointer;
+}
+
+.chart-container {
+  background: white;
+  border-radius: 16px;
+  position: relative;
+
+  .macp-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.chart-wrapper {
+  height: 300px;
+  position: relative;
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 25%;
+}
+
+.legend-dot.excellent {
+  background: #22c55e;
+}
+
+.legend-dot.good {
+  background: #3b82f6;
+}
+
+.legend-dot.average {
+  background: #fbbf24;
+}
+
+.legend-dot.needs-work {
+  background: #ef4444;
+}
+
+/* Achievements Card */
+.achievements-card {
+  border-radius: 24px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 1rem;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.achievements-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.achievements-trophy-wrapper {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  // background: linear-gradient(135deg, rgb(249, 182, 111) 0%, rgb(255, 160, 55) 100%);
+  // box-shadow: 0 2px 8px rgba(249, 182, 111, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+  flex-shrink: 0;
+}
+
+.achievements-header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.achievements-icon {
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+  transform: translateY(-10px);
+
+  #trophyGradient {
+    stop:first-child {
+      stop-color: rgb(249, 182, 111);
+    }
+
+    stop:last-child {
+      stop-color: rgb(255, 214, 165);
+    }
+  }
+
+
+
+  :root.dark & {
+    #trophyGradient {
+      stop:first-child {
+        stop-color: rgb(76, 201, 240);
+      }
+
+      stop:last-child {
+        stop-color: rgb(66, 165, 245);
+      }
+    }
+  }
+}
+
+.achievements-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.achievements-count {
+  font-size: 0.75rem;
+  color: #666;
+  margin: 0.15rem 0 0 0;
+}
+
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  max-height: 415px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.achievements-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.achievements-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.achievement-item {
+  background: #fdf8f3;
+  border: 1px solid rgba(249, 182, 111, 0.25);
+  border-radius: 20px;
+  padding: 0.45rem 1.25rem;
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(249, 182, 111, 0.05);
+  margin-bottom: 0.25rem;
+}
+
+.achievement-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(249, 182, 111, 0.12);
+  border-color: rgba(249, 182, 111, 0.4);
+}
+
+.achievement-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.achievement-icon.cultural {
+  background: linear-gradient(135deg, #fff5f9, #fce7f3);
+  border: 1px solid rgba(216, 100, 150, 0.2);
+}
+
+.achievement-icon.academic {
+  background: linear-gradient(135deg, #f0f7ff, #dbeafe);
+  border: 1px solid rgba(30, 64, 175, 0.15);
+}
+
+.achievement-icon.sports {
+  background: linear-gradient(135deg, #f0fdf4, #d1fae5);
+  border: 1px solid rgba(21, 128, 61, 0.15);
+}
+
+.achievement-icon.art {
+  background: linear-gradient(135deg, #f5f0ff, #e9d5ff);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+}
+
+.achievement-details {
+  flex: 1;
+}
+
+.achievement-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.3rem 0;
+}
+
+.achievement-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.achievement-tag {
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+.tag-cultural:first-child {
+  background: #fce7f3;
+  color: #be185d;
+}
+
+.tag-cultural:not(:first-child) {
+  color: #be185d;
+}
+
+.tag-academic:first-child {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.tag-academic:not(:first-child) {
+  color: #1e40af;
+}
+
+.tag-sports:first-child {
+  background: #d1fae5;
+  color: #15803d;
+}
+
+.tag-sports:not(:first-child) {
+  color: #15803d;
+}
+
+.tag-art:first-child {
+  background: #e9d5ff;
+  color: #7c3aed;
+}
+
+.tag-art:not(:first-child) {
+  color: #7c3aed;
+}
+
+.achievement-place {
+  font-size: 0.65rem;
+  color: #666;
+}
+
+.achievement-month {
+  font-size: 0.7rem;
+  color: #999;
+  font-weight:400;
+}
+
+/* ROW 2 - Four Circular Metrics */
+.row-2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+.metric-card {
+  /* Inline styles handle layout - keep minimal base styles */
+  transition: all 0.3s;
+  background: rgb(255, 255, 255);
+  box-shadow: none;
+  transform: none;
+  z-index: 1;
+}
+
+.metric-card:hover {
+  transform: translateY(-4px);
+}
+
+.metric-card.active {
+  transform: translateY(-2px);
+}
+
+/* Performance Tab Metric Cards - Row 2 */
+.school-per-metric-card {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 2rem;
+  padding: 0.8rem 1.75rem 0.5rem;
+  min-width: 0;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: visible;
+
+  &:hover {
+    transform: translateY(-6px) scale(1.02);
+  }
+
+  &.active {
+    transform: translateY(-4px) scale(1.03);
+    border-radius: 2rem;
+  }
+}
+
+/* Chat Bubble Pointer */
+.school-per-metric-pointer {
+  position: absolute;
+  bottom: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0px;
+  height: 0px;
+  border-left: 56px solid transparent;
+  border-right: 56px solid transparent;
+  border-top: 35px solid;
+  z-index: 10;
+  opacity: 0.2;
+  animation: pointerBounce 0.5s ease-out;
+}
+
+@keyframes pointerBounce {
+  0% {
+    bottom: -25px;
+    opacity: 0;
+  }
+
+  50% {
+    bottom: -30px;
+    opacity: 0.1;
+  }
+
+  100% {
+    bottom: -36px;
+    opacity: 0.2;
+  }
+}
+
+.school-per-metric-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.school-per-metric-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:root.dark .school-per-metric-icon-wrapper {
+  &.academic {
+    background: rgb(46 73 108 / 50%);
+  }
+
+  &.sports {
+    background: rgb(38 100 59 / 50%);
+  }
+
+  &.behavior {
+    background: rgb(40 29 85 / 50%);
+  }
+
+  &.cultural {
+    background: rgb(94 81 31 / 50%);
+
+}
+}
+
+.school-per-metric-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1f2937;
+  line-height: 1.2;
+}
+
+.school-per-progress-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  top: 5%;
+  align-items: center;
+  justify-content: center;
+}
+
+.school-per-progress-svg {
+  transform: rotate(135deg);
+}
+
+.school-per-progress-value {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.metric-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.metric-circle.academic {
+  background: conic-gradient(#3b82f6 0% 95%, #e5e7eb 95% 100%);
+}
+
+.metric-circle.sports {
+  background: conic-gradient(#22c55e 0% 93%, #e5e7eb 93% 100%);
+}
+
+.metric-circle.behavior {
+  background: conic-gradient(#8b5cf6 0% 96%, #e5e7eb 96% 100%);
+}
+
+.metric-circle.cultural {
+  background: conic-gradient(#f59e0b 0% 91%, #e5e7eb 91% 100%);
+}
+
+.metric-inner {
+  width: 100px;
+  height: 100px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.metric-icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.metric-percentage {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.metric-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+/* ROW 3 - Academic Performance */
+.row-3 {
+  border-radius: 24px;
+  // padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(rgba(100, 149, 237, 0.08) 0%, rgb(255, 255, 255) 15%, rgb(255, 255, 255) 100%);
+  border: 2px solid rgba(100, 149, 237, 0.4);
+  box-shadow: rgba(100, 149, 237, 0.2) 0px 4px 16px, rgba(100, 149, 237, 0.05) 0px 0px 0px 4px;
+}
+
+.row-3-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  background: rgba(100, 149, 237, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+}
+
+.row-3-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.row-3-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgb(100, 149, 237);
+  margin: 0;
+}
+
+.row-3-subtitle {
+  font-size: 0.8rem;
+  color: #4d4f51;
+  margin: 0.15rem 0 0 0;
+}
+
+.row-3-badge {
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  margin-left: auto;
+
+  background: linear-gradient(135deg, rgb(100, 149, 237) 0%, rgb(90, 127, 217) 100%);
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* OT Badge Style */
+.ot-badge {
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  margin-left: auto;
+  background: linear-gradient(135deg, rgb(100, 149, 237) 0%, rgb(90, 127, 217) 100%);
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Academic Metrics Cards */
+.academic-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.academic-metric-card {
+  border-radius: 18px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // gap: 0.75rem;
+  transition: all 0.3s;
+
+  &:has(.attendance) {
+    background: rgba(100, 149, 237, 0.05);
+    border: 1px solid rgba(100, 149, 237, 0.15);
+  }
+
+  &:has(.assignments) {
+    background: rgba(94, 223, 183, 0.05);
+    border: 1px solid rgba(94, 223, 183, 0.15);
+  }
+
+  &:has(.exams) {
+    background: rgba(162, 155, 254, 0.05);
+    border: 1px solid rgba(162, 155, 254, 0.15);
+  }
+
+  &:has(.projects) {
+    background: rgba(162, 155, 254, 0.05);
+    border: 1px solid rgba(162, 155, 254, 0.15);
+  }
+}
+
+.academic-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.academic-circle.attendance {
+  background: conic-gradient(rgb(100, 149, 237) 0% 95%, #e5e7eb 95% 100%);
+  filter: drop-shadow(rgba(100, 149, 237, 0.25) 0px 2px 4px);
+  box-shadow: 0 4px 12px rgba(100, 149, 237, 0.25);
+}
+
+.academic-circle.assignments {
+  background: conic-gradient(rgb(94, 223, 183) 0% 88%, #e5e7eb 88% 100%);
+  filter: drop-shadow(rgba(94, 223, 183, 0.25) 0px 2px 4px);
+  box-shadow: 0 4px 12px rgba(94, 223, 183, 0.25);
+}
+
+.academic-circle.exams {
+  background: conic-gradient(rgb(162, 155, 254) 0% 92%, #e5e7eb 92% 100%);
+  filter: drop-shadow(rgba(162, 155, 254, 0.25) 0px 2px 4px);
+  box-shadow: 0 4px 12px rgba(162, 155, 254, 0.25);
+}
+
+.academic-circle.projects {
+  background: conic-gradient(rgb(249, 182, 111) 0% 78%, #e5e7eb 78% 100%);
+  filter: drop-shadow(rgba(249, 182, 111, 0.25) 0px 2px 4px);
+  box-shadow: 0 4px 12px rgba(249, 182, 111, 0.25);
+}
+
+.academic-inner {
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.academic-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.academic-sublabel {
+  font-size: 0.7rem;
+  color: #666;
+  text-align: center;
+}
+
+/* Quick Stats & Report Card */
+.stats-report-section {
+  display: grid;
+  grid-template-columns: 38% 62%;
+  gap: 1.5rem;
+  margin: 0 1rem 1rem;
+}
+
+/* Quick Stats */
+.quick-stats-card {
+  border-radius: 18px;
+  padding: 1.25rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  margin-left: 0.6rem;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgba(100, 149, 237, 0.15);
+}
+
+.quick-stats-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.quick-stats-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.quick-stats-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.quick-stats-card {
+  .stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stat-item {
+    background: rgba(100, 149, 237, 0.08);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .stat-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: rgb(102, 102, 102);
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .stat-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #6495ed;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .stat-description {
+    font-size: 0.75rem;
+    color: #6495ed;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .stat-item.top-subject {
+    background: rgba(94, 223, 183, 0.1);
+
+    .stat-value {
+      color: #5edf77;
+    }
+
+    .stat-description {
+      color: #5edf77;
+    }
+  }
+
+  .stat-item.class-rank {
+    background: rgba(162, 155, 254, 0.08);
+
+    .stat-value {
+      color: #a29bfe;
+    }
+
+    .stat-description {
+      color: #a29bfe;
+    }
+  }
+}
+
+/* Report Card */
+.report-card {
+  background: white;
+  border-radius: 18px;
+  width: 95%;
+  padding: 1.25rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.report-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.report-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.term-dropdown .custom-dropdown__button {
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  background: white;
+  cursor: pointer;
+}
+
+.report-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 1.25rem;
+  border-color: rgba(100, 149, 237, 0.15);
+}
+
+.summary-item {
+  text-align: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  border-radius: 12px;
+}
+
+.summary-label {
+  font-size: 0.7rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 0.5rem 0;
+}
+
+.summary-value {
+  font-weight: 700;
+  color: rgb(100, 149, 237);
+  font-size: 22px;
+  margin: 0;
+}
+
+.summary-value.grade {
+  color: rgb(100, 149, 237);
+  font-size: 22px;
+}
+
+.report-table {
+  width: 100%;
+  border-radius: 1rem;
+  border-collapse: collapse;
+}
+
+.report-table thead {
+  background: linear-gradient(135deg, rgba(100, 149, 237, 0.1) 0%, rgba(100, 149, 237, 0.05) 100%);
+  border-bottom: 2px solid rgba(100, 149, 237, 0.2);
+}
+
+.report-table th {
+  padding: 0.85rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgb(100, 149, 237);
+
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.report-table td {
+  padding: 0.5rem 0.85rem;
+  font-size: 0.85rem;
+  color: #333;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.report-table tbody tr td:nth-child(2) {
+  color: rgb(100, 149, 237);
+  font-weight: 600;
+}
+
+.report-table tbody tr:not(:last-child):hover {
+  background: rgba(59, 130, 246, 0.08);
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+}
+
+.report-table tbody tr:last-child {
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  font-weight: 700;
+}
+
+.report-table tbody tr:last-child td {
+  color: rgb(100, 149, 237);
+
+  font-size: 0.95rem;
+  border-bottom: none;
+}
+
+.grade-badge {
+  display: inline-block;
+  border-radius: 18px;
+  padding: 4px 10px;
+  font-weight: 600;
+  font-size: 11px;
+  border: none;
+
+
+}
+
+.grade-a {
+  background: rgb(94, 223, 183);
+  color: rgb(255, 255, 255);
+
+
+}
+
+.grade-b {
+  background: rgb(100, 149, 237);
+  color: rgb(255, 255, 255);
+}
+
+/* ROW 4 - Performance Analytics */
+.row-4 {
+  background: white;
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.row-4-header {
+  margin-bottom: 1.5rem;
+}
+
+.row-4-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.35rem 0;
+}
+
+.row-4-subtitle {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Analysis & Feedback */
+.analysis-feedback-section {
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  border-radius: 18px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.analysis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.analysis-title-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.analysis-icon {
+  font-size: 1.25rem;
+}
+
+.analysis-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.subject-dropdown .custom-dropdown__button {
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  font-size: 0.85rem;
+  background: white;
+  cursor: pointer;
+}
+
+.analysis-content {
+  display: grid;
+  grid-template-columns: 27% 73%;
+  gap: 1.5rem;
+}
+
+.subject-score-card {
+  background: transparent;
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: flex-start;
+  box-shadow: none;
+  border: 1px solid rgba(100, 149, 237, 0.2);
+  flex: 0 0 25%;
+  gap: 1.25rem;
+}
+
+.subject-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.subject-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.35rem 0;
+}
+
+.subject-percentage {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #f59e0b;
+  margin: 0;
+}
+
+.subject-label {
+  font-size: 0.75rem;
+  color: #666;
+  margin: 0.25rem 0 0 0;
+}
+
+.teacher-feedback-card {
+  border-radius: 14px;
+  padding: 1.25rem;
+  width: 97%;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  background: rgba(100, 149, 237, 0.08);
+  border: 1px solid rgba(100, 149, 237, 0.2);
+  flex: 0 0 calc(75% - 12px);
+}
+
+.feedback-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.feedback-title {
+  font-size: 0.75rem;
+  color: #f59e0b;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin: 0 0 0.5rem 0;
+}
+
+.teacher-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.teacher-avatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+
+.teacher-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.teacher-role {
+  font-size: 0.7rem;
+  color: #666;
+  margin: 0.15rem 0 0 0;
+}
+
+.star-rating {
+  display: flex;
+  gap: 0.25rem;
+  font-size: 1rem;
+  color: #fbbf24;
+}
+
+.feedback-text {
+  font-size: 0.8rem;
+  color: #333;
+  line-height: 1.6;
+  font-style: italic;
+  margin: 0 0 0.75rem 0;
+}
+
+.feedback-date {
+  font-size: 0.7rem;
+  color: #999;
+  margin: 0;
+}
+
+/* Topics Performance */
+.topics-performance-section {
+  margin-top: 1.5rem;
+}
+
+.topics-header {
+  font-size: 0.85rem;
+  color: #f59e0b;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin: 0 0 1rem 0;
+}
+
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.topic-card {
+
+  border-radius: 14px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+
+  transition: all 0.3s;
+}
+
+.topic-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.topic-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.topic-circle.algebra {
+  background: conic-gradient(#f59e0b 0% 85%, #e5e7eb 85% 100%);
+}
+
+.topic-circle.geometry {
+  background: conic-gradient(#22c55e 0% 92%, #e5e7eb 92% 100%);
+}
+
+.topic-circle.calculus {
+  background: conic-gradient(#ef4444 0% 78%, #e5e7eb 78% 100%);
+}
+
+.topic-circle.statistics {
+  background: conic-gradient(#3b82f6 0% 88%, #e5e7eb 88% 100%);
+}
+
+.topic-inner {
+  width: 82px;
+  height: 82px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.topic-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+/* Dark Theme */
+:root.dark .performance-analytics-container {
+  background: transparent;
+}
+
+:root.dark .performance-title {
+  color: #fff;
+}
+
+:root.dark .macp-card,
+:root.dark .achievements-card,
+:root.dark .metric-card,
+:root.dark .row-3,
+:root.dark .academic-metric-card,
+:root.dark .quick-stats-card,
+:root.dark .report-card,
+:root.dark .row-4,
+:root.dark .analysis-feedback-section,
+:root.dark .subject-score-card,
+:root.dark .teacher-feedback-card,
+:root.dark .topic-card,
+:root.dark .achievement-item {
+  background: rgba(76, 201, 240, 0.08);
+  border: 1px solid rgba(76, 201, 240, 0.15);
+
+}
+
+:root.dark .school-per-metric-card {
+  /* background, border, box-shadow handled inline per active/inactive state */
+  z-index: 10;
+}
+
+:root.dark .macp-title-group h3,
+:root.dark .achievements-title,
+:root.dark .metric-label,
+:root.dark .school-per-metric-label,
+:root.dark .row-3-title,
+:root.dark .academic-label,
+:root.dark .quick-stats-title,
+:root.dark .report-card-title,
+:root.dark .row-4-title,
+:root.dark .analysis-title,
+:root.dark .subject-name,
+:root.dark .teacher-name,
+:root.dark .topic-name,
+:root.dark .achievement-name {
+  color: #fff !important;
+}
+
+:root.dark .chart-container,
+:root.dark .metric-inner,
+:root.dark .academic-inner,
+:root.dark .topic-inner {
+  background: rgba(30, 41, 59, 0.9);
+  color: #fff;
+}
+
+/* ========================================
+   COMPREHENSIVE DARK MODE COLOR VARIANTS
+   ======================================== */
+
+/* Performance subtitle and secondary text */
+:root.dark .performance-subtitle,
+:root.dark .macp-subtitle,
+:root.dark .row-3-subtitle,
+:root.dark .row-4-subtitle,
+:root.dark .achievements-count,
+:root.dark .achievement-place,
+:root.dark .achievement-month,
+:root.dark .academic-sublabel,
+:root.dark .summary-label,
+:root.dark .stat-label,
+:root.dark .stat-description,
+:root.dark .subject-label,
+:root.dark .feedback-date,
+:root.dark .teacher-role {
+  color: #94a3b8;
+}
+
+/* Metric percentage colors */
+:root.dark .metric-percentage,
+:root.dark .subject-percentage {
+  color: #e2e8f0;
+}
+
+/* ROW 2 - Metric Cards Dark Mode */
+:root.dark .row-2 .metric-card {
+  background: transparent !important;
+  border: 1px solid !important;
+
+  &:nth-child(1) {
+    border-color: #3b82f6 !important;
+  }
+
+  &:nth-child(2) {
+    border-color: #22c55e !important;
+  }
+
+  &:nth-child(3) {
+    border-color: #8b5cf6 !important;
+  }
+
+  &:nth-child(4) {
+    border-color: #f59e0b !important;
+  }
+
+  &.active {
+    border-width: 2.5px !important;
+
+    &:nth-child(1) {
+      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4) !important;
+    }
+
+    &:nth-child(2) {
+      box-shadow: 0 4px 16px rgba(34, 197, 94, 0.4) !important;
+    }
+
+    &:nth-child(3) {
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.4) !important;
+    }
+
+    &:nth-child(4) {
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4) !important;
+    }
+  }
+}
+
+/* Gradient cards - Academic Blue theme */
+:root.dark .row-3 {
+  background: linear-gradient(135deg, rgba(30, 30, 60, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%);
+}
+
+:root.dark .row-3-badge {
+  background: rgba(80, 120, 200, 0.6);
+  color: #60a5fa;
+}
+
+:root.dark .ot-badge {
+  background: rgba(80, 120, 200, 0.6);
+  color: #60a5fa;
+}
+
+/* Student Overall Performance heading in dark mode */
+:root.dark .row-3 h2,
+:root.dark .row-3 h2[style*="color: #1a1a1a"],
+:root.dark .row-3 h3,
+:root.dark .row-3 h3[style*="color: #666"],
+:root.dark .row-3 h3[style*="color: #1a1a1a"] {
+  color: #ffffff !important;
+}
+
+:root.dark .row-3 p[style*="color: #666"] {
+  color: #94a3b8 !important;
+}
+
+/* Academic Metrics Container */
+.academic-metrics-container {
+  background: white;
+  margin: 0 1.5rem;
+
+  :root.dark & {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  h3 {
+    :root.dark & {
+      color: #f1f5f9 !important;
+    }
+  }
+}
+
+/* Analysis section - Yellow/Orange theme */
+:root.dark .analysis-feedback-section {
+  background: linear-gradient(135deg, rgba(60, 50, 30, 0.8) 0%, rgba(50, 40, 25, 0.8) 100%);
+  border-color: rgba(234, 179, 8, 0.4);
+}
+
+:root.dark .feedback-title,
+:root.dark .topics-header {
+  color: #fbbf24;
+}
+
+/* Achievement tags - Color variants */
+:root.dark .tag-cultural:first-child {
+  background: rgba(50, 30, 45, 0.6);
+  color: #f472b6;
+  border: 1px solid rgba(200, 100, 150, 0.4);
+}
+
+:root.dark .tag-cultural:not(:first-child) {
+  color: #f472b6;
+}
+
+:root.dark .tag-academic:first-child {
+  background: rgba(30, 30, 60, 0.6);
+  color: #60a5fa;
+  border: 1px solid rgba(80, 120, 200, 0.4);
+}
+
+:root.dark .tag-academic:not(:first-child) {
+  color: #60a5fa;
+}
+
+:root.dark .tag-sports:first-child {
+  background: rgba(30, 45, 35, 0.6);
+  color: #4ade80;
+  border: 1px solid rgba(91, 169, 118, 0.4);
+}
+
+:root.dark .tag-sports:not(:first-child) {
+  color: #4ade80;
+}
+
+:root.dark .tag-art:first-child {
+  background: rgba(45, 30, 55, 0.6);
+  color: #c084fc;
+  border: 1px solid rgba(160, 100, 200, 0.4);
+}
+
+:root.dark .tag-art:not(:first-child) {
+  color: #c084fc;
+}
+
+/* Achievement icon backgrounds */
+:root.dark .achievement-icon.cultural {
+  background: linear-gradient(135deg, rgba(50, 30, 45, 0.8), rgba(60, 35, 50, 0.8));
+  border-color: rgba(200, 100, 150, 0.4);
+}
+
+:root.dark .achievement-icon.academic {
+  background: linear-gradient(135deg, rgba(30, 30, 60, 0.8), rgba(35, 35, 70, 0.8));
+  border-color: rgba(80, 120, 200, 0.4);
+}
+
+:root.dark .achievement-icon.sports {
+  background: linear-gradient(135deg, rgba(30, 45, 35, 0.8), rgba(35, 50, 40, 0.8));
+    border-color: rgba(91, 169, 118, 0.4);
+}
+
+:root.dark .achievement-icon.art {
+  background: linear-gradient(135deg, rgba(45, 30, 55, 0.8), rgba(50, 35, 60, 0.8));
+  border-color: rgba(160, 100, 200, 0.4);
+}
+
+/* Grade badges */
+:root.dark .grade-a {
+  background: rgba(30, 45, 35, 0.6);
+  color: #4ade80;
+  border: 1px solid rgba(91, 169, 118, 0.4);
+}
+
+:root.dark .grade-b {
+  background: rgba(30, 30, 60, 0.6);
+  color: #60a5fa;
+  border: 1px solid rgba(80, 120, 200, 0.4);
+}
+
+/* Legend colors */
+:root.dark .legend-item {
+  color: #94a3b8;
+}
+
+/* Stat items */
+:root.dark .quick-stats-card .stat-item {
+  background: linear-gradient(135deg, rgba(30, 30, 60, 0.6), rgba(30, 41, 59, 0.6));
+  border-color: rgba(80, 120, 200, 0.4);
+}
+
+:root.dark .quick-stats-card .stat-value {
+  color: #60a5fa;
+}
+
+:root.dark .quick-stats-card .stat-trend {
+  color: #4ade80;
+}
+
+:root.dark .quick-stats-card .stat-item.top-subject .stat-value {
+  color: #4ade80;
+}
+
+:root.dark .quick-stats-card .stat-item.class-rank .stat-value {
+  color: #c084fc;
+}
+
+:root.dark .quick-stats-card .stat-item.top-subject .stat-detail,
+:root.dark .quick-stats-card .stat-item.class-rank .stat-detail {
+  color: #94a3b8;
+}
+
+/* Summary items */
+:root.dark .summary-item {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(30, 30, 45, 0.6));
+}
+
+:root.dark .summary-value {
+  color: #60a5fa;
+}
+
+:root.dark .summary-value.grade {
+  color: #4ade80;
+}
+
+/* Report table */
+:root.dark .report-table thead {
+  background: linear-gradient(135deg, rgba(30, 30, 60, 0.8), rgba(30, 41, 59, 0.8));
+}
+
+:root.dark .report-table th {
+  color: #60a5fa;
+}
+
+:root.dark .report-table td {
+  color: #e2e8f0;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+:root.dark .report-table tbody tr:hover {
+  background: rgba(80, 120, 200, 0.1);
+}
+
+:root.dark .report-table tbody tr:last-child {
+  background: linear-gradient(135deg, rgba(30, 30, 60, 0.6), rgba(30, 41, 59, 0.6));
+}
+
+:root.dark .report-table tbody tr:last-child td {
+  color: #60a5fa;
+}
+
+/* Feedback text */
+:root.dark .feedback-text {
+  color: #cbd5e1;
+}
+
+/* Dropdowns */
+:root.dark .year-dropdown .custom-dropdown__button,
+:root.dark .term-dropdown .custom-dropdown__button,
+:root.dark .subject-dropdown .custom-dropdown__button {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+}
+
+/* Teacher avatar */
+:root.dark .teacher-avatar {
+  background: linear-gradient(135deg, rgba(30, 30, 60, 0.8), rgba(35, 35, 70, 0.8));
+}
+
+/* MACP card gradient */
+:root.dark .macp-card {
+
+  padding: 1.5rem;
+  background: #0d1428b3 !important;
+  border: 1px solid #4cc9f033 !important;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px #0009, inset 0 1px #4cc9f033, 0 0 30px #4cc9f026, inset 0 0 60px #4cc9f00d !important;
+
+}
+
+/* Achievements card gradient */
+:root.dark .achievements-card {
+
+  background: #0d1428b3 !important;
+  border: 1px solid #4cc9f033 !important;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px #0009, inset 0 1px #4cc9f033, 0 0 30px #4cc9f026, inset 0 0 60px #4cc9f00d !important;
+
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .row-1 {
+    grid-template-columns: 65% 35%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .row-1 {
+    grid-template-columns: 1fr;
+  }
+
+  .achievements-card {
+    max-height: 400px;
+  }
+
+  .stats-report-section {
+    grid-template-columns: 1fr;
+  }
+
+  .topics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .performance-analytics-container {
+    padding: 0.75rem;
+  }
+
+  .row-2,
+  .academic-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .custom-dropdown__button {
+    width: fit-content !important;
+  }
+  .analysis-content {
+    grid-template-columns: 1fr;
+  }
+  .report-table td {
+    padding: 0.25rem 0.25rem;
+    
+  }
+
+  .report-table tbody tr:last-child td {
+    font-size: 0.85rem;
+  }
+  .sch-per-academic-subject-analysis-wrapper {
+    padding: 0.75rem !important;
+  }
+ 
+  .report-card{
+    width: 100%;
+  }
+
+  .quick-stats-card{
+    margin-left: 0 !important;
+  }
+
+
+
+  .summary-item {
+    margin: 0 0.5rem;
+  }
+}
+
+/* Hide Scrollbars */
+*::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Tab Content Sections */
+.sports-tab-content,
+.behavior-tab-content,
+.cultural-tab-content {
+  // margin-top: 1.5rem;
+  animation: fadeIn 0.3s ease-in;
+
+  :root.dark & {
+    background: rgba(30, 41, 59, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5 {
+    :root.dark & {
+      color: #f1f5f9 !important;
+    }
+  }
+
+  p,
+  span {
+    :root.dark & {
+
+      &[style*="color: #1a1a1a"],
+      &[style*="color: #333"],
+      &[style*="color: #1e293b"] {
+        color: #e2e8f0 !important;
+      }
+
+      &[style*="color: #6b7280"],
+      &[style*="color: #64748b"],
+      &[style*="color: #666"],
+      &[style*="color: #9ca3af"] {
+        color: #94a3b8 !important;
+      }
+    }
+  }
+
+  div[style*="background: white"],
+  div[style*="background: 'white'"] {
+    background: transparent !important;
+
+    :root.dark & {
+      background: transparent !important;
+    }
+  }
+
+  div[style*="background: #f8fafc"],
+  div[style*="background: #f9fafb"] {
+    background: rgba(248, 250, 252, 0.5) !important;
+    border-color: rgba(226, 232, 240, 0.5) !important;
+
+    :root.dark & {
+      background: rgba(30, 41, 59, 0.5) !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+
+      // All headings in these containers
+      h4,
+      h5 {
+        color: #f1f5f9 !important;
+      }
+
+      // Paragraphs and spans
+      p,
+      span {
+        &[style*="color: #1a1a1a"] {
+          color: #e2e8f0 !important;
+        }
+
+        &[style*="color: #64748b"] {
+          color: #94a3b8 !important;
+        }
+      }
+
+      // Icon circles in skills assessment
+      div[style*="background: #dbeafe"][style*="borderRadius: '50%'"] {
+        background: rgba(59, 130, 246, 0.3) !important;
+      }
+
+      // Overall Performance gradient
+      div[style*="linear-gradient(135deg, #d1fae5"] {
+        background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0.15) 100%) !important;
+
+        span {
+          color: #4ade80 !important;
+        }
+      }
+
+      // Blue House gradient circle
+      div[style*="linear-gradient(135deg, #3b82f6"][style*="borderRadius: '50%'"] {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+      }
+
+      // Dress code circle border
+      div[style*="border: 2px solid white"][style*="borderRadius: '50%'"] {
+        border-color: rgba(255, 255, 255, 0.2) !important;
+        background: #60a5fa !important;
+      }
+    }
+  }
+
+  div[style*="border: 1px solid #e5e7eb"],
+  div[style*="border: 1px solid #e2e8f0"] {
+    :root.dark & {
+      border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+  }
+
+  // Badge backgrounds in dark mode
+  span[style*="background: #dbeafe"] {
+    :root.dark & {
+      background: rgba(30, 30, 60, 0.6) !important;
+      color: #60a5fa !important;
+    }
+  }
+
+  span[style*="background: #d1fae5"] {
+    :root.dark & {
+      background: rgba(30, 45, 35, 0.6) !important;
+      color: #4ade80 !important;
+    }
+  }
+
+  span[style*="background: #fef3c7"],
+  span[style*="background: #ffedd5"] {
+    :root.dark & {
+      background: rgba(60, 50, 30, 0.6) !important;
+      color: #fbbf24 !important;
+    }
+  }
+
+  span[style*="background: #f3e8ff"] {
+    :root.dark & {
+      background: rgba(45, 30, 55, 0.6) !important;
+      color: #c084fc !important;
+    }
+  }
+
+  span[style*="background: #fee2e2"] {
+    :root.dark & {
+      background: rgba(50, 20, 20, 0.6) !important;
+      color: #fca5a5 !important;
+    }
+  }
+
+  span[style*="background: #cffafe"] {
+    :root.dark & {
+      background: rgba(20, 40, 50, 0.6) !important;
+      color: #67e8f9 !important;
+    }
+  }
+
+  // Card backgrounds with colored borders
+  div[style*="background: transparent"] {
+    :root.dark & {
+      background: rgba(30, 41, 59, 0.3) !important;
+    }
+  }
+
+  // Remove margin-bottom from "Upcoming Sports Events" title
+  h3[style*="Upcoming Sports Events"],
+  h3:has(+ div) {
+    margin-bottom: 0 !important;
+  }
+
+  // Reduce padding in event info cards (date, time, venue, contact)
+  div[style*="background: #dbeafe"][style*="padding: '0.65rem'"],
+  div[style*="background: #d1fae5"][style*="padding: '0.65rem'"],
+  div[style*="background: #fef3c7"][style*="padding: '0.65rem'"],
+  div[style*="background: #e0e7ff"][style*="padding: '0.65rem'"] {
+    padding: 0.4rem !important;
+  }
+
+  // Darken background colors and enhance borders for event info cards
+  div[style*="background: #dbeafe"][style*="borderRadius: '10px'"] {
+    background: #bfdbfe !important;
+    border: 1.5px solid #93c5fd !important;
+  }
+
+  div[style*="background: #d1fae5"][style*="borderRadius: '10px'"] {
+    background: #a7f3d0 !important;
+    border: 1.5px solid #6ee7b7 !important;
+  }
+
+  div[style*="background: #fef3c7"][style*="borderRadius: '10px'"] {
+    background: #fde68a !important;
+    border: 1.5px solid #fcd34d !important;
+  }
+
+  div[style*="background: #e0e7ff"][style*="borderRadius: '10px'"] {
+    background: #c7d2fe !important;
+    border: 1.5px solid #a5b4fc !important;
+  }
+
+  // Upcoming Sports Events & Sports Participation - reduced padding
+  div[style*="padding: '1rem'"],
+  div[style*="padding: 1rem"] {
+    :root.dark & {
+      padding: 0.75rem !important;
+    }
+  }
+
+  div[style*="padding: '0.75rem'"],
+  div[style*="padding: 0.75rem"] {
+    :root.dark & {
+      padding: 0.5rem !important;
+    }
+  }
+
+  div[style*="padding: '0.65rem'"],
+  div[style*="padding: 0.65rem"] {
+    :root.dark & {
+      padding: 0.5rem !important;
+    }
+  }
+
+  // Info cards within events (date, time, venue, contact)
+  div[style*="background: #dbeafe"],
+  div[style*="background: #d1fae5"],
+  div[style*="background: #fef3c7"],
+  div[style*="background: #e0e7ff"] {
+    :root.dark & {
+
+      &[style*="padding: '0.65rem'"],
+      &[style*="padding: 0.65rem"] {
+        padding: 0.4rem !important;
+      }
+
+      &[style*="borderRadius: '10px'"] {
+        background: rgba(30, 41, 59, 0.6) !important;
+      }
+    }
+  }
+
+  // Dark mode specific border colors for event info cards
+  div[style*="background: #dbeafe"][style*="borderRadius: '10px'"] {
+    :root.dark & {
+      border-color: rgba(59, 130, 246, 0.4) !important;
+    }
+  }
+
+  div[style*="background: #d1fae5"][style*="borderRadius: '10px'"] {
+    :root.dark & {
+      border-color: rgba(34, 197, 94, 0.4) !important;
+    }
+  }
+
+  div[style*="background: #fef3c7"][style*="borderRadius: '10px'"] {
+    :root.dark & {
+      border-color: rgba(245, 158, 11, 0.4) !important;
+    }
+  }
+
+  div[style*="background: #e0e7ff"][style*="borderRadius: '10px'"] {
+    :root.dark & {
+      border-color: rgba(139, 92, 246, 0.4) !important;
+    }
+  }
+
+  // Role/Profile cards with custom background colors
+  div[style*="background: #fff7ed"] {
+    :root.dark & {
+      background: rgba(60, 50, 30, 0.6) !important;
+      border-color: rgba(234, 179, 8, 0.4) !important;
+    }
+  }
+
+  div[style*="background: #eff6ff"] {
+    :root.dark & {
+      background: rgba(30, 30, 60, 0.6) !important;
+      border-color: rgba(80, 120, 200, 0.4) !important;
+    }
+  }
+
+  div[style*="background: #f0fdf4"] {
+    :root.dark & {
+      background: rgba(30, 45, 35, 0.6) !important;
+      border-color: rgba(91, 169, 118, 0.4) !important;
+    }
+  }
+
+  // Dropdown selects
+  select {
+    :root.dark & {
+      background: rgba(30, 41, 59, 0.8) !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+      color: #e2e8f0 !important;
+    }
+  }
+
+  // Additional color overrides for specific sports elements
+  div[style*="color: #1e40af"] {
+    :root.dark & {
+      color: #60a5fa !important;
+    }
+  }
+
+  div[style*="color: #065f46"] {
+    :root.dark & {
+      color: #4ade80 !important;
+    }
+  }
+
+  div[style*="color: #92400e"] {
+    :root.dark & {
+      color: #fbbf24 !important;
+    }
+  }
+
+  div[style*="color: #4338ca"] {
+    :root.dark & {
+      color: #a78bfa !important;
+    }
+  }
+
+  div[style*="color: #15803d"] {
+    :root.dark & {
+      color: #4ade80 !important;
+    }
+  }
+
+  // Gradient backgrounds for special cards
+  div[style*="linear-gradient(135deg, #d1fae5"] {
+    :root.dark & {
+      background: linear-gradient(135deg, rgba(30, 45, 35, 0.7) 0%, rgba(30, 45, 35, 0.5) 100%) !important;
+
+      span {
+        color: #4ade80 !important;
+      }
+    }
+  }
+
+  div[style*="linear-gradient(135deg, #f59e0b"] {
+    :root.dark & {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.3) 0%, rgba(217, 119, 6, 0.3) 100%) !important;
+    }
+  }
+
+  // Border colors for colored left borders
+  div[style*="borderLeft:"][style*="4px solid"],
+  div[style*="border-left:"][style*="4px solid"] {
+    :root.dark & {
+      border-right-color: rgba(255, 255, 255, 0.05) !important;
+      border-top-color: rgba(255, 255, 255, 0.05) !important;
+      border-bottom-color: rgba(255, 255, 255, 0.05) !important;
+    }
+  }
+
+  // Avatar/Icon circles with gradients
+  div[style*="linear-gradient(135deg, #3b82f6"][style*="borderRadius: '50%'"],
+  div[style*="linear-gradient(135deg, #3b82f6"][style*="border-radius: 50%"] {
+    :root.dark & {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+    }
+  }
+
+  // Skills assessment colored background with borders
+  div[style*="border: 1px solid #e5e7eb"][style*="boxShadow:"] {
+    :root.dark & {
+      background: rgba(30, 41, 59, 0.4) !important;
+      border-color: rgba(255, 255, 255, 0.08) !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+    }
+  }
+
+  // Star ratings and colored text
+  div[style*="color: #3b82f6"] {
+    :root.dark & {
+      color: #60a5fa !important;
+    }
+  }
+
+  div[style*="color: #f59e0b"] {
+    :root.dark & {
+      color: #fbbf24 !important;
+    }
+  }
+
+  div[style*="color: #22c55e"] {
+    :root.dark & {
+      color: #4ade80 !important;
+    }
+  }
+
+  // Subtle background colors for participation history items
+  div[style*="background: #ffedd5"] {
+    :root.dark & {
+      background: rgba(60, 50, 30, 0.4) !important;
+      border-color: rgba(234, 88, 12, 0.3) !important;
+    }
+  }
+
+  div[style*="background: #dcfce7"] {
+    :root.dark & {
+      background: rgba(30, 45, 35, 0.4) !important;
+      border-color: rgba(34, 197, 94, 0.3) !important;
+    }
+  }
+
+  // Status badge borders
+  span[style*="border: 1px solid #fde68a"] {
+    :root.dark & {
+      border-color: rgba(234, 179, 8, 0.4) !important;
+    }
+  }
+
+  span[style*="border: 1px solid #bfdbfe"] {
+    :root.dark & {
+      border-color: rgba(59, 130, 246, 0.4) !important;
+    }
+  }
+
+  // House card dress code circle
+  div[style*="background: #3b82f6"][style*="border: 2px solid white"] {
+    :root.dark & {
+      border-color: rgba(255, 255, 255, 0.2) !important;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   EXTRA SMALL DEVICES (320px–375px)
+   ======================================== */
+@media (min-width: 320px) and (max-width: 374px) {
+  /* Page Container */
+  .performance-analytics-container {
+    padding: 0.4rem;
+  }
+
+  /* Page Header */
+  .performance-header {
+    margin-bottom: 1rem;
+  }
+
+  .performance-title {
+    font-size: 1rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .performance-subtitle {
+    font-size: 0.7rem;
+  }
+
+  /* ROW 1 - Stack MACP & Achievements */
+  .row-1 {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* MACP Card */
+  .macp-card {
+    padding: 1rem 0.75rem;
+  }
+
+  .macp-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+
+    .year-dropdown {
+      margin-left: 0;
+      width: 100%;
+
+      .custom-dropdown__button {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.65rem;
+        width: 100%;
+      }
+    }
+  }
+
+  .macp-title-section {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .macp-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .macp-title {
+    font-size: 0.85rem;
+  }
+
+  .macp-indicator-title {
+    font-size: 0.9rem;
+  }
+
+  .macp-overall-badge {
+    height: 3.5rem;
+    width: auto;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.7rem;
+  }
+
+  /* Achievements Card */
+  .achievements-card {
+    padding: 1rem 0.75rem;
+    max-height: 250px;
+  }
+
+  .achievements-list {
+    gap: 0.5rem;
+  }
+
+  .achievement-item {
+    padding: 0.5rem;
+    font-size: 0.65rem;
+  }
+
+  /* ROW 2 - Metric Cards (4 → 2x2 or 1 column) */
+  .row-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Metric Cards */
+  .metric-card {
+    padding: 0.75rem;
+  }
+
+  .metric-circle {
+    width: 80px;
+    height: 80px;
+  }
+
+  .metric-inner {
+    width: 70px;
+    height: 70px;
+  }
+
+  .metric-label {
+    font-size: 0.65rem;
+    margin-top: 0.4rem;
+  }
+
+  .metric-percentage {
+    font-size: 1rem;
+  }
+
+  /* ROW 3 - Academic Performance */
+  .row-3 {
+    padding: 1rem 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .row-3-heading {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .row-3-badge {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.65rem;
+  }
+
+  /* Academic Metrics - Stack 2x2 */
+  .academic-metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .academic-metric-card {
+    padding: 0.75rem;
+  }
+
+  .academic-circle {
+    width: 70px;
+    height: 70px;
+  }
+
+  .academic-inner {
+    width: 55px;
+    height: 55px;
+  }
+
+  .academic-label {
+    font-size: 0.65rem;
+    margin-top: 0.35rem;
+  }
+
+  .academic-percentage {
+    font-size: 0.9rem;
+  }
+
+  /* Quick Stats + Report Section - Stack vertically */
+  .stats-report-section {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Quick Stats Card */
+  .quick-stats-card {
+    padding: 1rem 0.75rem;
+  }
+
+  .quick-stats-title {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .stats-items {
+    gap: 0.5rem;
+  }
+
+  .stat-item {
+    padding: 0.5rem;
+    font-size: 0.65rem;
+  }
+
+  .stat-number {
+    font-size: 1rem;
+  }
+
+  /* Report Card - Horizontal scroll for table */
+  .report-card {
+    padding: 1rem 0.75rem;
+    overflow-x: auto;
+
+    table {
+      font-size: 0.7rem;
+
+      th, td {
+        padding: 0.4rem 0.5rem;
+      }
+    }
+  }
+
+  .report-card-heading {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Report Summary - Stack 3 columns to single */
+  .report-summary {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .summary-item {
+    padding: 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .summary-value {
+    font-size: 1rem;
+  }
+
+  /* Row 4 - Analysis Section */
+  .row-4 {
+    padding: 1rem 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .row-4-heading {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Analysis Content - Stack vertically */
+  .analysis-content {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  /* Subject Score Card */
+  .subject-score-card {
+    padding: 1rem 0.75rem;
+  }
+
+  .subject-score-item {
+    padding: 0.5rem;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+  }
+
+  .subject-name {
+    font-size: 0.75rem;
+  }
+
+  .subject-score {
+    font-size: 0.85rem;
+  }
+
+  /* Teacher Feedback Card */
+  .teacher-feedback-card {
+    padding: 1rem 0.75rem;
+  }
+
+  .teacher-feedback-title {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .feedback-item {
+    padding: 0.5rem;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+  }
+
+  .feedback-rating {
+    font-size: 0.65rem;
+  }
+
+  .feedback-badge {
+    padding: 0.15rem 0.4rem;
+    font-size: 0.6rem;
+  }
+
+  /* Topics Grid - 2x2 instead of 4 */
+  .topics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .topic-circle {
+    width: 70px;
+    height: 70px;
+  }
+
+  .topic-inner {
+    width: 55px;
+    height: 55px;
+  }
+
+  .topic-label {
+    font-size: 0.6rem;
+    margin-top: 0.35rem;
+  }
+
+  .topic-percentage {
+    font-size: 0.85rem;
+  }
+
+  /* School Performance Tabs */
+  .school-per-tabs {
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .school-per-tab-btn {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.65rem;
+  }
+
+  /* School Performance Tab Content */
+  .school-per-tab-content {
+    padding: 1rem 0.75rem;
+  }
+
+  .school-per-metric-card {
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .school-per-progress-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+
+  .school-per-label {
+    font-size: 0.65rem;
+  }
+
+  .school-per-percentage {
+    font-size: 0.9rem;
+  }
+
+  /* Chart Containers */
+  .chart-container {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .chart-title {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .chart-wrapper {
+    height: 200px;
+  }
+
+  /* Sports Tab */
+  .sports-tab-content {
+    padding: 1rem 0.75rem;
+  }
+
+  .perf-sports-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .sports-tab-events,
+  .sports-tab-participation {
+    padding: 0.75rem;
+  }
+
+  .sports-event-item,
+  .sports-participation-item {
+    padding: 0.5rem;
+    gap: 0.35rem;
+    font-size: 0.7rem;
+  }
+
+  .sports-event-title {
+    font-size: 0.75rem;
+  }
+
+  .sports-participation-name {
+    font-size: 0.75rem;
+  }
+
+  /* Behavior Metrics */
+  .behavior-tab-metrics-list {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .behavior-metric-item {
+    padding: 0.75rem;
+    font-size: 0.7rem;
+  }
+
+  .behavior-metric-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Tab Navigation */
+  .tab-navigation {
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .tab-btn {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.65rem;
+  }
+
+  /* Custom Dropdown */
+  .custom-dropdown__button {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .custom-dropdown__arrow {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* School Per Dropdown */
+  .school-per-dropdown-row {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .school-per-term-dropdown {
+    width: 100%;
+  }
+
+  /* Ensure all cards have consistent spacing */
+  .macp-card,
+  .achievements-card,
+  .quick-stats-card,
+  .report-card,
+  .subject-score-card,
+  .teacher-feedback-card {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Dark theme adjustments */
+  :root.dark {
+    .performance-analytics-container {
+      background-color: #0f1428;
+    }
+
+    .chart-container,
+    .macp-card,
+    .achievements-card,
+    .quick-stats-card,
+    .report-card {
+      background-color: #0d1428;
+    }
+  }
+}
+
+@media (max-width: 479px) {
+
+  .row-2,
+  .academic-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  /* 4 metric cards: reduce width */
+  .row-2 {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  /* Sports tab: stack events and participation vertically */
+  .perf-sports-grid {
+    grid-template-columns: 1fr !important;
+    flex-direction: column;
+  }
+
+  /* Behavior metrics: 2 per row */
+  .behavior-tab-metrics-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* MACP: badge on left, star+heading+dropdown on same line, subheading below */
+  .macp-header {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+
+    .year-dropdown {
+      margin-left: auto;
+      flex-shrink: 0;
+      
+      .custom-dropdown__button {
+        padding: 0.35rem 0.65rem;
+        font-size: 0.7rem;
+        width: auto;
+        min-width: 4.5rem;
+        max-width: 5rem;
+      }
+    }
+  }
+
+  .macp-title-section {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  .macp-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .macp-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex: 1;
+  }
+
+  .macp-indicator-title,
+  .macp-title-group h3 {
+    font-size: 0.875rem !important;
+    line-height: 1.2;
+  }
+
+  .macp-subtitle {
+    font-size: 0.7rem !important;
+    line-height: 1.3;
+  }
+
+  .macp-overall-badge {
+    flex-shrink: 0;
+    align-self: flex-start;
+    height: 3.5rem;
+    padding: 0.4rem 0.9rem;
+  }
+
+  .macp-overall-score {
+    font-size: 1.5rem;
+  }
+}
+
+/* Sports Grid */
+.perf-sports-grid {
+  display: flex;
+  gap: 1rem;
+}
+
+/* ========================================
+   GLOBAL DARK MODE - ALL WHITE BACKGROUNDS
+   ======================================== */
+:root.dark .performance-analytics-container {
+
+  div[style*="background: 'white'"],
+  div[style*="background: white"],
+  div[style*='background: "white"'] {
+    background: rgba(30, 41, 59, 0.8) !important;
+  }
+
+  // Icon containers and small white elements
+  div[style*="background: 'white'"][style*="width: '32px'"],
+  div[style*="background: white"][style*="width: 32"],
+  div[style*="background: 'white'"][style*="borderRadius: '8px'"],
+  div[style*="background: white"][style*="borderRadius: 8"] {
+    background: rgba(255, 255, 255, 0.1) !important;
+  }
+}
+
+/* ========================================
+   CUSTOM DROPDOWN COMPONENT STYLES
+   ======================================== */
+.custom-dropdown {
+  position: relative;
+  min-width: 150px;
+}
+
+.custom-dropdown__button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 9rem;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 450;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: none;
+  text-align: left;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:focus {
+    outline: none;
+    opacity: 0.7;
+  }
+}
+
+.custom-dropdown__value {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-dropdown__arrow {
+  width: 16px;
+  height: 16px;
+  stroke: #6b7280;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+
+  &--open {
+    transform: rotate(180deg);
+  }
+}
+
+.custom-dropdown__menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  animation: dropdown-slide-in 0.15s ease-out;
+
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+
+    &:hover {
+      background: #94a3b8;
+    }
+  }
+}
+
+@keyframes dropdown-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-dropdown__option {
+  padding: 0.425rem 1.1rem;
+  font-size: 0.8rem;
+  font-weight: 450;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-bottom: 1px solid #f3f4f6;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover,
+  &--focused {
+    background: #f3f4f6;
+    color: #1f2937;
+  }
+
+  &--selected {
+    background: #e0e7ff;
+    color: #3b82f6;
+    font-weight: 600;
+
+    &:hover,
+    &.custom-dropdown__option--focused {
+      background: #c7d2fe;
+    }
+  }
+}
+
+/* ========================================
+   CUSTOM DROPDOWN - DARK MODE STYLES
+   ======================================== */
+:root.dark {
+  .custom-dropdown__button {
+    background: transparent;
+    border: none;
+    color: #e5e7eb;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:focus {
+      opacity: 0.7;
+    }
+  }
+
+  .custom-dropdown__arrow {
+    stroke: #9ca3af;
+  }
+
+  .custom-dropdown__menu {
+    background: #1f2937;
+    border-color: #374151;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+    &::-webkit-scrollbar-track {
+      background: #374151;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #4b5563;
+
+      &:hover {
+        background: #6b7280;
+      }
+    }
+  }
+
+  .custom-dropdown__option {
+    color: #d1d5db;
+    border-bottom-color: #374151;
+
+    &:hover,
+    &--focused {
+      background: #374151;
+      color: #f3f4f6;
+    }
+
+    &--selected {
+      background: #1e3a8a;
+      color: #93c5fd;
+
+      &:hover,
+      &.custom-dropdown__option--focused {
+        background: #1e40af;
+      }
+    }
+  }
+}
+
+/* ========================================
+   SPORTS TAB SEMANTIC CLASSES
+   ======================================== */
+
+.sports-tab-content {
+  border-radius: 24px;
+  background: linear-gradient(rgba(94, 223, 119, 0.08) 0%, rgb(255, 255, 255) 15%, rgb(255, 255, 255) 100%);
+  border: 2px solid rgba(94, 223, 119, 0.4);
+  box-shadow: rgba(94, 223, 119, 0.2) 0px 4px 16px, rgba(94, 223, 119, 0.05) 0px 0px 0px 4px;
+
+  :root.dark & {
+    background: linear-gradient(rgba(94, 223, 119, 0.15) 0%, rgba(30, 41, 59, 0.8) 15%, rgba(30, 41, 59, 0.8) 100%) !important;
+    border-color: rgba(94, 223, 119, 0.2) !important;
+    box-shadow: rgba(94, 223, 119, 0.1) 0px 4px 16px, rgba(94, 223, 119, 0.02) 0px 0px 0px 4px !important;
+  }
+
+}
+
+.sports-tab-main-heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgb(94, 223, 119);
+  margin: 0 0 2rem 0;
+
+  :root.dark & {
+    color: rgb(134, 239, 172);
+  }
+}
+
+.perf-sports-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 0 1.5rem 1rem;
+}
+
+.sports-tab-upcoming-events-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  // background: rgb(255, 255, 255);
+  border: 1px solid rgba(249, 182, 111, 0.15);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.sports-tab-events-wrapper {
+  max-height: 1020px;
+  overflow-y: auto;
+
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(249, 182, 111, 0.4);
+    border-radius: 3px;
+
+    &:hover {
+      background: rgba(249, 182, 111, 0.6);
+    }
+  }
+}
+
+.sports-tab-participation-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 1rem;
+  gap: 1rem;
+
+  background: rgb(255, 255, 255);
+  border: 1px solid rgba(249, 182, 111, 0.15);
+  height: fit-content;
+  max-height: 1200px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  :root.dark & {
+    background: rgba(30, 41, 59, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.sports-tab-skills-assessment {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+// Combined group card: Blue House + Skills Assessment in one container
+.sports-tab-participation-group {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+    :root.dark & {
+      background: rgba(30, 41, 59, 0.4) !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05) !important;
+    }
+
+  // House card loses its own card shell — transparent inside the group
+  .sports-tab-house-card {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  // Skills assessment loses its own card shell — transparent inside the group
+  .sports-tab-skills-assessment {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+  }
+}
+
+.sports-tab-group-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 0.85rem 0;
+}
+
+.sports-tab-participation-history {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.sports-tab-school-events-section {
+  padding: 1rem 1.5rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.sports-tab-outside-events-section {
+  padding: 1rem 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.sports-tab-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 240px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+}
+
+.sports-tab-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: white;
+  border-bottom: 1px solid rgba(249, 182, 111, 0.1);
+
+  :root.dark & {
+    background: rgba(30, 41, 59, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+
+    svg {
+      background: none !important;
+    }
+  }
+}
+
+.sports-tab-section-icon {
+  font-size: 1.25rem;
+  color: #3b82f6;
+}
+
+.sports-tab-section-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.sports-tab-subsection-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.sports-tab-school-events-section .sports-tab-subsection-header {
+  border-bottom: 3px solid #93c5fd;
+  padding-bottom: 0.75rem;
+}
+
+.sports-tab-outside-events-section .sports-tab-subsection-header {
+  border-bottom: 3px solid #fed7aa;
+  padding-bottom: 0.75rem;
+}
+
+.sports-tab-subsection-icon {
+  font-size: 1rem;
+  color: #3b82f6;
+  background: #ebf1f8;
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  border: 1px solid #3b82f6;
+  align-items: center;
+  justify-content: center;
+
+  .sports-tab-outside-events-section & {
+    background: #fff4e5;
+    color: #f59e0b;
+    border: 1px solid #f59e0b;
+
+    :root.dark & {
+      background: rgba(60, 50, 30, 0.4) !important;
+      border-color: rgba(245, 158, 11, 0.4) !important;
+    }
+  }
+}
+
+.sports-tab-subsection-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.sports-tab-skills-header,
+.sports-tab-history-header {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.sports-tab-skills-icon {
+  font-size: 0.9rem;
+  color: #3b82f6;
+}
+
+.sports-tab-history-icon-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+
+}
+
+.sports-tab-skills-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.sports-tab-history-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.sports-tab-event-count-badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  &.badge-blue {
+    background: #dbeafe;
+    color: #1e40af;
+    border: 1px solid #bfdbfe;
+  }
+
+  &.badge-green {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+  }
+
+  &.badge-yellow {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+  }
+
+  &.badge-purple {
+    background: #f3e8ff;
+    color: #6b21a8;
+    border: 1px solid #e9d5ff;
+  }
+}
+
+.sports-tab-events-list,
+.sports-tab-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sports-tab-event-card {
+  border-radius: 14px;
+  padding: 1rem 1rem 0.75rem;
+  border: 1px solid #e5e7eb;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  margin-bottom: 0.25rem;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.sports-tab-event-card-green {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.sports-tab-event-card-blue {
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.sports-tab-event-card-orange {
+  border-color: rgba(249, 115, 22, 0.3);
+}
+
+.sports-tab-event-header {
+  display: flex;
+  gap: 0.5rem;
+  align-items: start;
+  margin-bottom: 0.5rem;
+}
+
+.sports-tab-event-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.sports-tab-event-badge {
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  &.badge-blue {
+    background: #dbeafe;
+    color: #1e40af;
+    border: 1px solid #bfdbfe;
+  }
+
+  &.badge-green {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+  }
+
+  &.badge-yellow {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+  }
+
+  &.badge-purple {
+    background: #f3e8ff;
+    color: #6b21a8;
+    border: 1px solid #e9d5ff;
+  }
+}
+
+.sports-tab-event-description {
+  font-size: 0.78rem;
+  color: #6b7280;
+  margin: 0 0 0.6rem 0;
+  line-height: 1.5;
+}
+
+// Combined date + time pill
+.sports-tab-datetime-combined {
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  border-width: 1px;
+  border-style: solid;
+  padding: 0.55rem 0.9rem;
+  gap: 0;
+  margin-bottom: 0.5rem;
+
+    :root.dark & {
+      background: rgba(30, 41, 59, 0.8) !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+}
+
+// Tint variants — applied to datetime combined + info tiles
+.event-tint-blue {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+
+    :root.dark & {
+      background: rgba(30, 45, 35, 0.6) !important;
+      border-color: rgba(59, 130, 246, 0.4) !important;
+    }
+}
+
+.event-tint-green {
+  background: #f0fdf4;
+  border-color: #a7f3d0;
+
+    :root.dark & {
+      background: rgba(30, 45, 35, 0.6) !important;
+      border-color: rgba(91, 169, 118, 0.4) !important;
+    }
+}
+
+.event-tint-orange {
+  background: #fff7ed;
+  border-color: #fed7aa;
+
+    :root.dark & {
+      background: rgba(60, 50, 30, 0.6) !important;
+      border-color: rgba(234, 179, 8, 0.4) !important;
+    }
+}
+
+.sports-tab-datetime-section {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex: 1;
+}
+
+// Icon wrappers inside combined datetime — rounded rectangle
+.sports-tab-dt-icon-wrap {
+  width: 33px;
+  height: 33px;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sports-tab-dt-icon-blue {
+  background: #dbeafe;
+}
+
+.sports-tab-dt-icon-teal {
+  background: #ccfbf1;
+}
+
+// Venue/contact row
+.sports-tab-flat-info-row {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 0.25rem;
+}
+
+// Bordered tile for venue and contact (bg/border from tint class)
+.sports-tab-info-tile {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex: 1;
+  padding: 0.5rem 0.65rem;
+  border-radius: 0.75rem;
+  border-width: 1px;
+  border-style: solid;
+}
+
+// Bare icon holder — no background, just alignment
+.sports-tab-icon-bare {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sports-tab-info-content {
+  flex: 1;
+}
+
+.sports-tab-info-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #9ca3af;
+  margin-bottom: 0.1rem;
+}
+
+.sports-tab-info-value {
+  font-size: 0.8rem;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.sports-tab-info-role {
+  font-size: 0.68rem;
+  color: #6b7280;
+}
+
+// House Card Styles
+.sports-tab-house-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.sports-tab-house-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.sports-tab-house-badge {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%);
+  color: rgb(255, 255, 255);
+  box-shadow: rgba(59, 130, 246, 0.4) 0px 4px 12px;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.sports-tab-house-info {
+  flex: 1;
+}
+
+.sports-tab-house-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.25rem 0;
+}
+
+.sports-tab-house-subtitle {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.sports-tab-dress-code {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  margin-left: auto;
+}
+
+.sports-tab-dress-code-label {
+  font-size: 0.7rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.sports-tab-dress-code-color {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, rgb(59, 130, 246) 0%, rgb(37, 99, 235) 100%);
+  box-shadow: rgba(59, 130, 246, 0.4) 0px 4px 12px;
+  border-radius: 2rem;
+  border: 2px solid white;
+
+}
+
+.sports-tab-period-schedule {
+  background: white;
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.sports-tab-schedule-header {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.sports-tab-schedule-icon {
+  font-size: 0.9rem;
+}
+
+.sports-tab-schedule-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.sports-tab-schedule-days {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.sports-tab-day-badge {
+  padding: 0.05rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  background: #e6eef9;
+  color: #1e40af;
+}
+
+// Special Interest Styles
+.sports-tab-special-interest-section {
+  margin-top: 0.75rem;
+}
+
+.sports-tab-special-interest-content {
+  background: white;
+  border-radius: 8px;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+    :root.dark & {
+      background: rgba(30, 41, 59, 0.8) !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+}
+
+.sports-tab-special-interest-emoji {
+  width: 48px;
+  height: 48px;
+  background: #fef3c7;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: 1px solid #fde68a;
+  flex-shrink: 0;
+
+    :root.dark & {
+      background: rgba(254, 243, 199, 0.8) !important;
+      border-color: rgba(253, 230, 138, 0.4) !important;
+    }
+}
+
+.sports-tab-special-interest-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.sports-tab-special-interest-header {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.sports-tab-special-interest-icon {
+  font-size: 0.9rem;
+  color: #f59e0b;
+}
+
+.sports-tab-special-interest-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.sports-tab-special-interest-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+
+    :root.dark & {
+      color: #e5e7eb;
+    }
+}
+
+.sports-tab-special-interest-desc {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin: 0;
+}
+
+// Skills Assessment Styles
+.sports-tab-skills-content {
+  background: linear-gradient(135deg, rgba(100, 149, 237, 0.1) 0%, rgba(100, 149, 237, 0.05) 100%);
+  border: 1px solid rgba(100, 149, 237, 0.2);
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.sports-tab-coach-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.sports-tab-coach-avatar {
+  width: 36px;
+  height: 36px;
+  background: #dbeafe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+}
+
+.sports-tab-coach-details {
+  flex: 1;
+}
+
+.sports-tab-coach-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.sports-tab-coach-role {
+  font-size: 0.7rem;
+  color: #64748b;
+}
+
+.sports-tab-coach-comment {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-style: italic;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.5;
+}
+
+.sports-tab-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.sports-tab-stat-item {
+  text-align: center;
+  padding: 0.75rem 0.5rem;
+  border-radius: 8px;
+}
+
+.sports-tab-stat-technique {
+  background: #eff6ff;
+  border: 1.5px solid #bfdbfe;
+}
+
+.sports-tab-stat-teamwork {
+  background: #fef3c7;
+  border: 1.5px solid #fde68a;
+}
+
+.sports-tab-stat-endurance {
+  background: #dcfce7;
+  border: 1.5px solid #bbf7d0;
+}
+
+.sports-tab-stat-label {
+  font-size: 0.65rem;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.sports-tab-stat-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.sports-tab-stat-dots {
+  font-size: 0.75rem;
+  letter-spacing: 0.1rem;
+  margin-top: 0.25rem;
+}
+
+.sports-tab-overall-performance {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  border-radius: 8px;
+  padding: 0.5rem 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sports-tab-performance-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #15803d;
+}
+
+.sports-tab-performance-value {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #15803d;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 0.2rem 0.65rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.sports-tab-perf-emoji {
+  font-size: 0.85rem;
+}
+
+// Participation History Styles
+.sports-tab-history-item {
+  background: white;
+  border-radius: 14px;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+}
+
+// Top row: icon + event info side by side
+.sports-tab-history-top-row {
+  display: flex;
+  gap: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.sports-tab-history-activity-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.sports-tab-history-details {
+  flex: 1;
+}
+
+.sports-tab-history-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 0.3rem;
+}
+
+.sports-tab-history-event-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  line-height: 1.3;
+
+    :root.dark & {
+      color: #ffffff;
+    }
+}
+
+.sports-tab-history-activity-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #64748b;
+  margin: 0 0 0.35rem 0;
+  line-height: 1.3;
+}
+
+.sports-tab-history-status-badge {
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+
+  &.badge-completed {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+  }
+}
+
+.sports-tab-history-badge-prefix {
+  font-size: 0.8rem;
+}
+
+.sports-tab-history-date-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.sports-tab-history-date-value {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.sports-tab-history-review-container {
+  background: #eef3fb;
+  border: 1px solid #dbeafe;
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
+
+    :root.dark & {
+        background: rgb(1 8 19 / 80%);
+        border-color: rgba(219, 234, 254, 0.4) !important;
+      }
+
+
+}
+
+.sports-tab-history-review-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.sports-tab-history-review-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6366f1;
+  text-transform: capitalize;
+}
+
+.sports-tab-history-review-text {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* ========================================
+   BEHAVIOR TAB SEMANTIC CLASSES
+   ======================================== */
+
+.behavior-tab-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(162, 155, 254, 0.05);
+  border-bottom: 1px solid rgba(162, 155, 254, 0.15);
+  padding: 1rem;
+
+  :root.dark & {
+    background: rgba(162, 155, 254, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.behavior-tab-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 2rem;
+  background: rgba(162, 155, 254, 0.12);
+  border: 1px solid rgba(162, 155, 254, 0.22);
+  box-shadow: 0 2px 8px rgba(162, 155, 254, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  :root.dark & {
+    background: rgba(162, 155, 254, 0.2);
+    border-color: rgba(162, 155, 254, 0.35);
+  }
+}
+
+.behavior-tab-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #a29bfe;
+  margin: 0;
+
+  :root.dark & {
+    color: #c4b5fd;
+  }
+}
+
+.behavior-tab-subtitle {
+  font-size: 0.8rem;
+  color: #4d4f51;
+  margin: 0.15rem 0 0 0;
+
+  :root.dark & {
+    color: #9ca3af;
+  }
+}
+
+.behavior-tab-badge {
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  margin-left: auto;
+  background: linear-gradient(135deg, #a29bfe 0%, #8b80f9 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  flex-shrink: 0;
+
+  :root.dark & {
+    background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 100%);
+  }
+}
+
+.behavior-tab-wrapper {
+  background: transparent;
+  border-radius: 24px;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.behavior-tab-assessment-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.25rem 0;
+  padding: 0;
+}
+
+.behavior-tab-container {
+  overflow: hidden;
+  border-radius: 24px;
+  background: linear-gradient(rgba(162, 155, 254, 0.08) 0%, rgb(255, 255, 255) 15%, rgb(255, 255, 255) 100%);
+  border: 2px solid rgba(162, 155, 254, 0.4);
+  box-shadow: rgba(162, 155, 254, 0.2) 0px 4px 16px, rgba(162, 155, 254, 0.05) 0px 0px 0px 4px;
+  margin-bottom: 2rem;
+}
+
+.behavior-tab-main-heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgb(150, 143, 235);
+  text-align: left;
+  letter-spacing: -0.5px;
+}
+
+.behavior-tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem 2rem;
+  align-items: stretch;
+}
+
+.behavior-tab-metrics-section,
+.behavior-tab-feedback-section {
+  width: 100%;
+}
+
+.behavior-tab-metrics-container {
+  background: white;
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.behavior-tab-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.behavior-tab-section-icon {
+  font-size: 1.25rem;
+  color: #3b82f6;
+}
+
+.behavior-tab-section-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.behavior-tab-metrics-list {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.75rem;
+}
+
+.behavior-tab-metric-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.25rem 0.75rem 1rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.behavior-tab-circle-wrapper {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+  margin-bottom: 0.25rem;
+}
+
+.behavior-tab-circle-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.behavior-tab-circle-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.behavior-tab-circle-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.behavior-tab-metric-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.behavior-tab-metric-description {
+  font-size: 0.7rem;
+  color: #6b7280;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.behavior-tab-metric-badge {
+  padding: 0.2rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-top: 0.1rem;
+}
+
+.behavior-tab-reviews-container {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+
+    :root.dark & {
+      background: rgb(14, 22, 43);
+      border: 1px solid rgba(76, 201, 240, 0.25);
+    }
+}
+
+.behavior-tab-feedback-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.behavior-tab-feedback-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.behavior-tab-feedback-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.behavior-tab-overall-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #d1fae5;
+  color: #065f46;
+  padding: 0.3rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid #a7f3d0;
+}
+
+.behavior-tab-reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem;
+}
+
+.behavior-tab-review-card {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  border: 1px solid #e2e8f0;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.behavior-tab-review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.behavior-tab-teacher-info {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+
+.behavior-tab-teacher-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.behavior-tab-teacher-details {
+  flex: 1;
+}
+
+.behavior-tab-teacher-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.15rem 0;
+}
+
+.behavior-tab-teacher-role {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0 0 0.2rem 0;
+}
+
+.behavior-tab-review-date-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  color: #94a3b8;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.behavior-tab-rating-stars {
+  display: flex;
+  gap: 0.2rem;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.behavior-tab-review-text {
+  font-size: 0.875rem;
+  color: #374151;
+  margin: 0;
+  line-height: 1.6;
+  padding-left: calc(50px + 0.85rem);
+}
+
+/* ========================================
+   CULTURAL TAB SEMANTIC CLASSES
+   ======================================== */
+
+.cultural-tab-wrapper {
+  border-radius: 24px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(rgba(249, 182, 111, 0.08) 0%, rgb(255, 255, 255) 15%, rgb(255, 255, 255) 100%);
+  border: 2px solid rgba(249, 182, 111, 0.4);
+  box-shadow: rgba(249, 182, 111, 0.2) 0px 4px 16px, rgba(249, 182, 111, 0.05) 0px 0px 0px 4px;
+
+  :root.dark & {
+    background: linear-gradient(rgba(249, 182, 111, 0.06) 0%, rgb(14, 22, 43) 15%, rgb(14, 22, 43) 100%);
+    border-color: rgba(249, 182, 111, 0.25);
+    box-shadow: rgba(249, 182, 111, 0.12) 0px 4px 16px, rgba(249, 182, 111, 0.04) 0px 0px 0px 4px;
+  }
+}
+
+.cultural-tab-container {
+  background: linear-gradient(rgba(249, 182, 111, 0.08) 0%, rgb(255, 255, 255) 15%, rgb(255, 255, 255) 100%);
+  border: 2px solid rgba(249, 182, 111, 0.4);
+  box-shadow: rgba(249, 182, 111, 0.2) 0px 4px 16px, rgba(249, 182, 111, 0.05) 0px 0px 0px 4px;
+  border-radius: 24px;
+
+
+}
+
+.cultural-tab-main-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f97316;
+  margin: 0;
+
+  :root.dark & {
+    color: #fcd34d;
+  }
+}
+
+.cultural-tab-profile-section {
+  margin: 0 1.5rem 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid #e8ecf0;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+
+  :root.dark & {
+    background: rgb(14, 22, 43);
+    border: 1px solid rgba(76, 201, 240, 0.25);
+  }
+}
+
+.cultural-tab-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid #f1f5f9;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  :root.dark & svg {
+    background: none !important;
+  }
+}
+
+.cultural-tab-section-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+}
+
+.cultural-tab-roles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+
+  @media (max-width: 1023px) {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+.cultural-tab-role-card {
+  background: #fff;
+  border: 1px solid #e8ecf0;
+  border-radius: 14px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  }
+
+  // Accent left border per role index
+  &:nth-child(1) { border-top: 3px solid #f97316; }
+  &:nth-child(2) { border-top: 3px solid #3b82f6; }
+  &:nth-child(3) { border-top: 3px solid #22c55e; }
+}
+
+.cultural-tab-role-content {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  padding: 0.25rem 0 0.85rem;
+  flex: 1;
+}
+
+.cultural-tab-role-icon-badge {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+.cultural-tab-role-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.cultural-tab-role-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.cultural-tab-role-subtitle {
+  font-size: 0.78rem;
+  color: #6b7280;
+  margin: 0;
+  font-weight: 500;
+}
+
+.cultural-tab-role-description {
+  font-size: 0.78rem;
+  color: #9ca3af;
+  margin: 0.3rem 0 0;
+  line-height: 1.4;
+}
+
+.cultural-tab-role-rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.75rem;
+  margin: 0 -1rem -1rem;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+}
+
+.cultural-tab-rating-label {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.cultural-tab-rating-value {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.cultural-tab-rating-number {
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.cultural-tab-events-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem;
+  border-radius: 1rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+
+  :root.dark & {
+    background: rgb(14, 22, 43);
+    border: 1px solid rgba(76, 201, 240, 0.25);
+  }
+
+  @media (max-width: 1023px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cultural-tab-subsection-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.cultural-tab-subsection-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.cultural-tab-events-list-container,
+.cultural-tab-participation-list-container {
+  border-radius: 16px;
+  padding: 1.25rem 1rem 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  max-height: 660px;
+  overflow: hidden;
+}
+
+.cultural-tab-events-list,
+.cultural-tab-participation-list {
+  max-height: 540px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cultural-tab-event-card {
+  border: 1px solid #e8ecf0;
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 0.75rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.cultural-tab-event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 0.75rem;
+  gap: 0.5rem;
+}
+
+.cultural-tab-event-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.cultural-tab-event-badge {
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cultural-tab-event-description {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin: 0 0 0.85rem 0;
+  line-height: 1.55;
+}
+
+.cultural-tab-event-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.cultural-tab-info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.cultural-tab-info-icon-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cultural-tab-info-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.cultural-tab-info-label {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.15rem;
+}
+
+.cultural-tab-info-value {
+  font-size: 0.8rem;
+  color: #1a1a1a;
+  font-weight: 600;
+  line-height: 1.3;
+  word-wrap: break-word;
+}
+
+.cultural-tab-participation-card {
+  background: white;
+  border: 1px solid #e8ecf0;
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 0.75rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Participation card layout — new cpc-* classes
+.cpc-top-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 0.65rem;
+}
+
+.cpc-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.cpc-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cpc-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 0.15rem;
+  line-height: 1.3;
+
+    :root.dark & {
+        color: #e5e7eb;
+      }
+}
+
+.cpc-subtitle {
+  font-size: 0.78rem;
+  color: #6b7280;
+  margin: 0 0 0.45rem;
+  line-height: 1.4;
+
+    :root.dark & {
+          color: #9ca3af;
+        }
+}
+
+.cpc-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cpc-role-badge {
+  padding: 0.2rem 0.55rem;
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cpc-date {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  font-weight: 500;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.cpc-rating-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  border: 1.5px solid;
+  background: #fff;
+  flex-shrink: 0;
+  white-space: nowrap;
+  align-self: flex-start;
+}
+
+.cpc-rating-score {
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.cpc-rating-max {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.cpc-achievement-row {
+  padding-top: 0.55rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.cpc-achievement-badge {
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border: 1px solid;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cultural-tab-participation-icon-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.cultural-tab-participation-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.cultural-tab-participation-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.35rem 0;
+  line-height: 1.3;
+}
+
+.cultural-tab-participation-subtitle {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.4;
+}
+
+.cultural-tab-participation-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.cultural-tab-role-badge,
+.cultural-tab-achievement-badge {
+  padding: 0.3rem 0.7rem;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cultural-tab-date-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.7rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #6b7280;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.cultural-tab-participation-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.75rem;
+  border-radius: 12px;
+  flex-shrink: 0;
+  min-width: 64px;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.cultural-tab-rating-number {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ========================================
+   DARK MODE FOR SEMANTIC CLASSES
+   ======================================== */
+:root.dark {
+
+  // Sports Tab Dark Mode
+  .sports-tab-event-card,
+  .sports-tab-history-item {
+    background: rgba(30, 41, 59, 0.5) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .sports-tab-event-name,
+  .sports-tab-house-name,
+  .sports-tab-coach-name,
+  .sports-tab-history-activity-name,
+  .sports-tab-section-title,
+  .sports-tab-subsection-title,
+  .sports-tab-skills-title,
+  .sports-tab-history-title,
+  .sports-tab-schedule-title {
+    color: #ffffff !important;
+  }
+
+  .sports-tab-event-description,
+  .sports-tab-house-subtitle,
+  .sports-tab-coach-role,
+  .sports-tab-coach-comment,
+  .sports-tab-history-review {
+    color: #cbd5e1 !important;
+  }
+
+  .sports-tab-info-card {
+    background: rgba(30, 41, 59, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .sports-tab-info-icon-wrapper {
+    background: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .sports-tab-info-value {
+    color: #f1f5f9 !important;
+  }
+
+  .sports-tab-house-card,
+  .sports-tab-skills-assessment,
+  .sports-tab-participation-history {
+    background: rgba(30, 41, 59, 0.4) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .sports-tab-skills-content,
+  .sports-tab-period-schedule,
+  .sports-tab-dress-code {
+    background: rgba(30, 41, 59, 0.5) !important;
+  }
+
+  .sports-tab-content {
+    background: rgba(30, 41, 59, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  // Behavior Tab Dark Mode
+  .behavior-tab-container {
+    background: rgba(30, 41, 59, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 16px !important;
+  }
+
+  .behavior-tab-assessment-heading,
+  .behavior-tab-main-heading,
+  .behavior-tab-section-title,
+  .behavior-tab-feedback-title,
+  .behavior-tab-metric-label,
+  .behavior-tab-teacher-name,
+  .behavior-tab-metric-percentage {
+    color: #ffffff !important;
+  }
+
+  .behavior-tab-metrics-container {
+    background: rgba(30, 41, 59, 0.5) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .behavior-tab-metric-card,
+  .behavior-tab-review-card {
+    background: rgba(30, 41, 59, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .behavior-tab-progress-inner {
+    background: rgba(30, 41, 59, 0.8) !important;
+  }
+
+  .behavior-tab-metric-description,
+  .behavior-tab-teacher-role,
+  .behavior-tab-review-text,
+  .behavior-tab-review-date {
+    color: #cbd5e1 !important;
+  }
+
+  .behavior-tab-teacher-avatar {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
+
+  // Cultural Tab Dark Mode
+  .cultural-tab-container {
+    background: rgba(30, 41, 59, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .cultural-tab-main-heading,
+  .cultural-tab-section-title,
+  .cultural-tab-subsection-title,
+  .cultural-tab-role-title,
+  .cultural-tab-event-name,
+  .cultural-tab-participation-title,
+  .cultural-tab-info-value {
+    color: #ffffff !important;
+  }
+
+  .cultural-tab-role-card {
+    background: rgba(30, 41, 59, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3) {
+      background: rgba(30, 41, 59, 0.6) !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .cultural-tab-role-rating {
+      background: rgba(255, 255, 255, 0.04) !important;
+      border-top-color: rgba(255, 255, 255, 0.08) !important;
+    }
+  }
+
+  .cultural-tab-events-list-container,
+  .cultural-tab-participation-list-container {
+    background: rgba(30, 41, 59, 0.5) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .cultural-tab-event-card,
+  .cultural-tab-participation-card {
+    background: rgba(30, 41, 59, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .cultural-tab-role-icon-badge,
+  .cultural-tab-participation-icon-avatar {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .cultural-tab-role-subtitle,
+  .cultural-tab-role-description,
+  .cultural-tab-event-description,
+  .cultural-tab-participation-subtitle,
+  .cultural-tab-info-label {
+    color: #cbd5e1 !important;
+  }
+
+  .cultural-tab-role-rating {
+    border-top-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .cultural-tab-rating-label,
+  .cultural-tab-rating-number {
+    color: #f1f5f9 !important;
+  }
+
+  .cultural-tab-date-badge {
+    background: rgba(30, 41, 59, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    color: #cbd5e1 !important;
+  }
+}
+
+/* ========================================
+   ADDITIONAL UTILITY CLASSES
+   ======================================== */
+
+/* Flex row layout
+   Converted from Tailwind: flex items-center gap-2 */
+.sch-perf-flex-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Flex space-between layout
+   Converted from Tailwind: flex justify-between items-center */
+.sch-perf-flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Badge color variants
+.badge-blue {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.badge-green {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badge-yellow {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge-purple {
+  background: #e0e7ff;
+  color: #4338ca;
+}
+
+// Scrollbar styles
+.custom-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* ========================================
+   SCH-PER PREFIX - INLINE STYLES TO CLASSES
+   ======================================== */
+
+// MACP Card specific styles
+.sch-per-macp-overall-score {
+  font-size: xx-large;
+}
+
+.sch-per-macp-title-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.sch-per-macp-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sch-per-macp-subtitle-text {
+  margin: 0;
+}
+
+// Row 3 Academic section
+.sch-per-academic-section-wrapper {
+  margin-bottom: 1.5rem;
+  padding: 0 1rem;
+}
+
+.sch-per-academic-main-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1a1a1a;
+
+  :root.dark & {
+    color: #ffffff;
+  }
+}
+
+.sch-per-academic-main-subtitle {
+  font-size: 0.875rem;
+  color: #666;
+
+  :root.dark & {
+    color: #9ca3af;
+  }
+}
+
+.sch-per-academic-metrics-heading {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #666;
+  margin: 0 0 1rem 0;
+
+  :root.dark & {
+    color: #9ca3af;
+  }
+}
+
+// Sports Tab styles
+.sch-per-sports-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(94, 223, 119, 0.05);
+  border-radius: 16px 16px 0 0;
+  border-bottom: 1px solid rgba(94, 223, 119, 0.15);
+  margin-bottom: 1.5rem;
+
+  :root.dark & {
+    background: rgba(94, 223, 119, 0.1);
+  }
+}
+
+.sch-per-sports-header-section {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.sch-per-sports-heading-text {
+  margin: 0;
+}
+
+.sch-per-sports-badge-achievement {
+  background: linear-gradient(135deg, #5edf77 0%, #36b854 100%);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+
+  :root.dark & {
+    background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+    color: #fff;
+  }
+}
+
+.sch-per-sports-subsection-icon-rounded {
+  border-radius: 2rem;
+}
+
+.sch-per-sports-event-left-border {
+  border-left-width: 4px;
+  border-left-style: solid;
+}
+
+.sch-per-sports-event-border-green {
+  border-left-color: #10b981;
+}
+
+.sch-per-sports-event-border-blue {
+  border-left-color: #3b82f6;
+}
+
+.sch-per-sports-event-border-orange {
+  border-left-color: #f59e0b;
+}
+
+.sch-per-sports-datetime-bg-green {
+  background: #d1fae5;
+  border: 1.5px solid #a7f3d0;
+}
+
+.sch-per-sports-datetime-bg-blue {
+  background: #dbeafe;
+  border: 1.5px solid #bfdbfe;
+}
+
+.sch-per-sports-datetime-bg-orange {
+  background: #fed7aa;
+  border: 1.5px solid #fdba74;
+}
+
+.sch-per-sports-stat-blue {
+  color: #3b82f6;
+}
+
+.sch-per-sports-stat-orange {
+  color: #f59e0b;
+}
+
+.sch-per-sports-stat-green {
+  color: #22c55e;
+}
+
+.sch-per-sports-history-icon-bg {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border-radius: 12px;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sch-per-sports-history-status-champion {
+  color: #b45309;
+  background: #fef3c7;
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid #fde68a;
+}
+
+.sch-per-sports-history-status-runner {
+  color: #1e40af;
+  background: #dbeafe;
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid #bfdbfe;
+}
+
+// Behavior Tab styles
+.sch-per-behavior-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  min-height: 400px;
+}
+
+.sch-per-behavior-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(to right, rgba(139, 92, 246, 0.05), rgba(255, 255, 255, 0));
+  border-radius: 12px;
+
+  :root.dark & {
+    background: linear-gradient(to right, rgba(139, 92, 246, 0.1), rgba(30, 41, 59, 0));
+  }
+}
+
+.sch-per-behavior-heading-text {
+  margin: 0;
+}
+
+.sch-per-behavior-badge-rating {
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  background: rgba(139, 92, 246, 0.15);
+  color: rgb(91, 33, 182);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  margin-left: auto;
+  flex-shrink: 0;
+
+  :root.dark & {
+    background: rgba(139, 92, 246, 0.2);
+    color: rgb(196, 181, 253);
+    border-color: rgba(139, 92, 246, 0.4);
+  }
+}
+
+.sch-per-behavior-metric-badge-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.sch-per-behavior-metric-ring-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sch-per-behavior-feedback-container {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+  :root.dark & {
+    background: rgba(76, 201, 240, 0.08);
+    border-color: rgba(76, 201, 240, 0.15);
+  }
+}
+
+.sch-per-behavior-feedback-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.sch-per-behavior-feedback-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sch-per-behavior-feedback-title-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+
+  :root.dark & {
+    color: #ffffff;
+  }
+}
+
+.sch-per-behavior-overall-badge-style {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.sch-per-behavior-reviews-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.sch-per-behavior-review-card-style {
+  background: rgba(139, 92, 246, 0.04);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.1);
+  }
+}
+
+.sch-per-behavior-review-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 0.5rem;
+}
+
+.sch-per-behavior-teacher-info-flex {
+  display: flex;
+  gap: 1rem;
+}
+
+.sch-per-behavior-teacher-avatar-style {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+}
+
+.sch-per-behavior-teacher-name-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.25rem 0;
+
+  :root.dark & {
+    color: #ffffff;
+  }
+}
+
+.sch-per-behavior-teacher-role-text {
+  font-size: 0.8125rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.sch-per-behavior-rating-stars-flex {
+  display: flex;
+  gap: 0.125rem;
+}
+
+.sch-per-behavior-star-icon {
+  font-size: 1rem;
+}
+
+.sch-per-behavior-review-text-style {
+  font-size: 0.875rem;
+  color: #374151;
+  margin: 0 0 0.2rem 4.5rem;
+  line-height: 1.5;
+
+  :root.dark & {
+    color: #d1d5db;
+  }
+}
+
+.sch-per-behavior-review-date-style {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin: 0 0 0 4.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+// Cultural Tab styles
+.sch-per-cultural-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  min-height: 400px;
+}
+
+.sch-per-cultural-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(to right, rgba(245, 158, 11, 0.05), rgba(255, 255, 255, 0));
+  border-radius: 12px;
+
+  :root.dark & {
+    background: linear-gradient(to right, rgba(245, 158, 11, 0.1), rgba(30, 41, 59, 0));
+  }
+}
+
+.sch-per-cultural-heading-text {
+  margin: 0;
+}
+
+.sch-per-cultural-badge-participation {
+  background: linear-gradient(135deg, #f9b66f 0%, #f59e0b 100%);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+
+  :root.dark & {
+    background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+    color: #fff;
+  }
+}
+
+.sch-per-cultural-event-card-animated {
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.sch-per-cultural-event-badge-style {
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(245, 158, 11, 0.15);
+  color: rgb(146, 64, 14);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.sch-per-cultural-subsection-header-flex {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.sch-per-cultural-subsection-icon-emoji {
+  font-size: 1rem;
+  color: #fbbf24;
+}
+
+.sch-per-cultural-subsection-title-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+
+  :root.dark & {
+    color: #ffffff;
+  }
+}
+
+.sch-per-cultural-participation-card-animated {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(251, 191, 36, 0.04) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 16px;
+  padding: 1.25rem;
+  transition: all 0.3s;
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(245, 158, 11, 0.15);
+  }
+}
+
+.sch-per-cultural-participation-header-flex {
+  display: flex;
+  align-items: start;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.sch-per-cultural-participation-icon-style {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  border: 2px solid rgba(245, 158, 11, 0.3);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+}
+
+.sch-per-cultural-participation-info-flex {
+  flex: 1;
+}
+
+.sch-per-cultural-participation-title-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.25rem 0;
+
+  :root.dark & {
+    color: #ffffff;
+  }
+}
+
+.sch-per-cultural-participation-subtitle-text {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.sch-per-cultural-participation-badges-flex {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.sch-per-cultural-role-badge-style {
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(59, 130, 246, 0.15);
+  color: rgb(29, 78, 216);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.sch-per-cultural-achievement-badge-style {
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(34, 197, 94, 0.15);
+  color: rgb(21, 128, 61);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.sch-per-cultural-date-badge-style {
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  background: rgba(107, 114, 128, 0.1);
+  color: rgb(75, 85, 99);
+  border: 1px solid rgba(107, 114, 128, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.sch-per-cultural-rating-wrapper-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+
+  :root.dark & {
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.sch-per-cultural-rating-label-text {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.sch-per-cultural-rating-value-flex {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sch-per-cultural-rating-score-text {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f97316;
+}
+
+.sch-per-cultural-rating-max-text {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+// Analysis Section styles
+.sch-per-analysis-wrapper {
+  display: flex;
+  gap: 1.5rem;
+  border-radius: 24px;
+  padding: 1.5rem;
+  background: linear-gradient(rgba(251, 191, 36, 0.08) 0%, rgb(255, 255, 255) 15%, rgb(255, 255, 255) 100%);
+  border: 2px solid rgba(251, 191, 36, 0.4);
+  box-shadow: rgba(251, 191, 36, 0.2) 0px 4px 16px, rgba(251, 191, 36, 0.05) 0px 0px 0px 4px;
+
+  :root.dark & {
+    background: linear-gradient(rgba(251, 191, 36, 0.15) 0%, rgba(30, 41, 59, 0.8) 15%, rgba(30, 41, 59, 0.8) 100%);
+    border-color: rgba(251, 191, 36, 0.2);
+    box-shadow: rgba(251, 191, 36, 0.1) 0px 4px 16px, rgba(251, 191, 36, 0.02) 0px 0px 0px 4px;
+  }
+}
+
+.sch-per-subject-score-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  font-size: 2rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.sch-per-subject-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.sch-per-subject-name-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+
+  :root.dark & {
+    color: #ffffff;
+  }
+}
+
+.sch-per-subject-percentage-wrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.sch-per-subject-percentage-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1;
+}
+
+.sch-per-subject-tag-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sch-per-topics-section-wrapper {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+
+  :root.dark & {
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+// ===== BEHAVIOR TAB HEADER & WRAPPERS =====
+.sch-per-behavior-header-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(219, 234, 254, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+  :root.dark & {
+    background: rgba(59, 130, 246, 0.05);
+    border-bottom-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.sch-per-behavior-header-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(219, 234, 254, 0.5);
+  border: 1px solid rgba(59, 130, 246, 0.13);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  :root.dark & {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+  }
+}
+
+.sch-per-behavior-feedback-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.sch-per-behavior-feedback-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sch-per-behavior-feedback-title-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+
+  :root.dark & {
+    color: #f3f4f6;
+  }
+}
+
+.sch-per-behavior-overall-rating-badge {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  :root.dark & {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fbbf24;
+  }
+}
+
+.sch-per-behavior-review-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 0.5rem;
+}
+
+.sch-per-behavior-teacher-info-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.sch-per-behavior-teacher-avatar-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+
+  :root.dark & {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  }
+}
+
+.sch-per-behavior-teacher-name-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.25rem 0;
+
+  :root.dark & {
+    color: #f3f4f6;
+  }
+}
+
+.sch-per-behavior-teacher-role-text {
+  font-size: 0.8125rem;
+  color: #6b7280;
+  margin: 0;
+
+  :root.dark & {
+    color: #9ca3af;
+  }
+}
+
+.sch-per-behavior-rating-stars-wrapper {
+  display: flex;
+  gap: 0.125rem;
+}
+
+.sch-per-behavior-star-icon {
+  font-size: 1rem;
+}
+
+// ===== CULTURAL TAB HEADER & WRAPPERS =====
+.sch-per-cultural-header-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(249, 182, 111, 0.05);
+  border-bottom: 1px solid rgba(249, 182, 111, 0.15);
+
+  :root.dark & {
+    background: rgba(251, 191, 36, 0.05);
+    border-bottom-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.sch-per-cultural-header-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(254, 243, 199, 0.5);
+  border: 1px solid rgba(249, 182, 111, 0.13);
+  box-shadow: 0 2px 8px rgba(249, 182, 111, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  :root.dark & {
+    background: rgba(251, 191, 36, 0.15);
+    border-color: rgba(251, 191, 36, 0.3);
+    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.2);
+  }
+}
+
+.sch-per-cultural-main-heading-text {
+  margin: 0;
+}
+
+.sch-per-cultural-participation-subsection-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sch-per-cultural-participation-icon-emoji {
+  font-size: 1rem;
+  color: #fbbf24;
+}
+
+.sch-per-cultural-participation-subsection-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+
+  :root.dark & {
+    color: #f3f4f6;
+  }
+}
+
+.sch-per-cultural-participation-badges-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.sch-per-cultural-participation-badge-role {
+  padding: 0.375rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background: rgba(59, 130, 246, 0.1);
+  color: #1e40af;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+
+  :root.dark & {
+    background: rgba(59, 130, 246, 0.2);
+    color: #93c5fd;
+    border-color: rgba(59, 130, 246, 0.4);
+  }
+}
+
+.sch-per-cultural-participation-badge-type {
+  padding: 0.375rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background: rgba(239, 68, 68, 0.1);
+  color: #991b1b;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+
+  :root.dark & {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    border-color: rgba(239, 68, 68, 0.4);
+  }
+}
+
+.sch-per-cultural-participation-badge-award {
+  padding: 0.375rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background: rgba(34, 197, 94, 0.1);
+  color: #166534;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+
+  :root.dark & {
+    background: rgba(34, 197, 94, 0.2);
+    color: #86efac;
+    border-color: rgba(34, 197, 94, 0.4);
+  }
+}
+
+.sch-per-cultural-participation-rating-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+
+  :root.dark & {
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.sch-per-cultural-rating-label-text {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 500;
+
+  :root.dark & {
+    color: #9ca3af;
+  }
+}
+
+.sch-per-cultural-rating-value-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sch-per-cultural-rating-score-text {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f97316;
+
+  :root.dark & {
+    color: #fb923c;
+  }
+}
+
+.sch-per-cultural-rating-max-text {
+  font-size: 0.75rem;
+  color: #9ca3af;
+
+  :root.dark & {
+    color: #6b7280;
+  }
+}
+
+// ===== ACADEMIC SECTION WRAPPERS =====
+.sch-per-academic-metrics-wrapper {
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  margin-bottom: 1.5rem;
+
+  :root.dark & {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.sch-per-academic-metrics-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #666;
+  margin: 0 0 1rem 0;
+
+  :root.dark & {
+    color: #9ca3af;
+  }
+}
+
+.sch-per-academic-subject-analysis-wrapper {
+  background: white;
+  border-radius: 18px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+  :root.dark & {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.subject-score-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  :root.dark & {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.sch-per-academic-subject-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.sch-per-academic-subject-name-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+
+  :root.dark & {
+    color: #f3f4f6;
+  }
+}
+
+.sch-per-academic-subject-score-group {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.sch-per-academic-subject-percentage-text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1;
+}
+
+.sch-per-academic-subject-grade-badge {
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.375rem 0.75rem;
+  border-radius: 8px;
+  background: #dcfce7;
+  color: #166534;
+  line-height: 1;
+
+  :root.dark & {
+    background: rgba(34, 197, 94, 0.2);
+    color: #86efac;
+  }
+}
+
+.sch-per-academic-teacher-avatar-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+// ===== ADDITIONAL UTILITY CLASSES =====
+.sch-per-behavior-feedback-section {
+  width: 100%;
+}
+
+.sch-per-cultural-participation-badge-date {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: white;
+  padding: 0.25rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #6b7280;
+
+  :root.dark & {
+    background: rgba(255, 255, 255, 0.05);
+    color: #9ca3af;
+  }
+}
+
+.sch-per-cultural-participation-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+
+  :root.dark & {
+    background: rgba(248, 250, 252, 0.05);
+    border-color: rgba(226, 232, 240, 0.1);
+  }
+}
+
+.sch-per-cultural-participation-rating-wrapper {
+  background: white;
+  padding: 0.5rem;
+  border-radius: 8px;
+
+  :root.dark & {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+/* ========================================
+   RESPONSIVE PERFORMANCE ANALYTICS
+   ======================================== */
+
+/* Large desktop (< 1440px) */
+@media (max-width: 1439px) {
+  .row-1 {
+    grid-template-columns: 65% 33%;
+    gap: 1.25rem;
+  }
+}
+
+/* Tablet landscape (< 1280px) */
+@media (max-width: 1280px) {
+  .row-1 {
+    grid-template-columns: 60% 38%;
+  }
+}
+
+/* Tablet (< 1024px) */
+@media (max-width: 1023px) {
+  .row-1 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .performance-analytics-container {
+    padding: 0.5rem;
+  }
+}
+
+/* Tablet portrait (< 768px) */
+@media (max-width: 768px) {
+  .performance-analytics-container {
+    padding: 0.25rem;
+  }
+
+  .row-1 {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .performance-title {
+    font-size: 1.25rem;
+  }
+
+  .macp-header {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .macp-overall-badge {
+    height: auto;
+    padding: 0.5rem 1rem;
+  }
+
+  .chart-wrapper {
+    height: 240px;
+  }
+
+  .chart-legend {
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .macp-card {
+    padding: 1rem;
+    margin-top: 0.5rem;
+  }
+}
+
+/* Mobile (< 640px) */
+@media (max-width: 639px) {
+  .chart-wrapper {
+    height: 200px;
+  }
+
+  .macp-title-section {
+    flex-wrap: wrap;
+  }
+}
+
+/* Very small screens (< 480px) */
+@media (max-width: 479px) {
+  .row-1 {
+    gap: 0.5rem;
+  }
+
+  .chart-wrapper {
+    height: 180px;
+  }
+}
+
+/* ========================================
+   PERFORMANCE ANALYTICS — 1024px, SIDEBAR COLLAPSED
+   ======================================== */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  @include sidebar-state-collapsed {
+    .subject-score-card {
+      display: flex !important;
+      flex-direction: column !important;
+      flex-wrap: nowrap !important;
+      align-content: center !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 1rem !important;
+    }
+  }
+}
+
+/* ========================================
+   PERFORMANCE ANALYTICS — 768px, SIDEBAR COLLAPSED
+   ======================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  @include sidebar-state-collapsed {
+
+    /* 4 metric tab cards: 2 per row */
+    .row-2 {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Academic tab: metrics 2 per row */
+    .academic-metrics {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Academic tab: analysis-feedback section - vertical stack */
+    .analysis-content {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Sports tab: stack upcoming events above participation */
+    .perf-sports-grid {
+      grid-template-columns: 1fr !important;
+      flex-direction: column;
+    }
+
+    /* Behavior tab: behavior metrics 3 per row */
+    .behavior-tab-metrics-list {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    /* Cultural tab: events grid visible background */
+    .cultural-tab-events-grid {
+      border: 1px solid #e5e7eb;
+    }
+  }
+}
+
+/* ========================================
+   PERFORMANCE ANALYTICS — 768px, SIDEBAR EXPANDED
+   ======================================== */
+@media (min-width: 768px) and (max-width: 1200px) {
+  @include sidebar-state-expanded {
+
+    /* MACP: badge to the left, title+subtitle to the right, dropdown below */
+    .macp-header {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 1rem;
+
+      .year-dropdown {
+        margin-left: 0;
+        align-self: flex-end;
+        margin-top: 0.5rem;
+      }
+    }
+
+    .macp-title-section {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: nowrap;
+    }
+
+    .macp-overall-badge {
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+
+    /* MACP: chart legends 2 per row, centered */
+    .chart-legend {
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      justify-content: center;
+      gap: 0.75rem 1.5rem;
+    }
+
+    /* 4 metric tab cards: 2 per row */
+    .row-2 {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Academic tab: metrics 2 per row */
+    .academic-metrics {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Academic tab: analysis-feedback section - vertical stack */
+    .analysis-content {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Sports tab: stack upcoming events above participation */
+    .perf-sports-grid {
+      grid-template-columns: 1fr !important;
+      flex-direction: column;
+    }
+
+    /* Behavior tab: behavior metrics 2 per row */
+    .behavior-tab-metrics-list {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Cultural tab: events grid visible background */
+    .cultural-tab-events-grid {
+      border: 1px solid #e5e7eb;
+    }
+  }
+}
+
+/* ========================================
+   FINAL OVERRIDE: Subject Score Card + Behavior Metrics - 1024px Sidebar Collapsed
+   ======================================== */
+@media (min-width: 1025px) and (max-width: 1199px) {
+  @include sidebar-state-collapsed {
+    /* Behavior tab: 3 per row → 2 rows of 3 */
+    .behavior-tab-metrics-list {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    .analysis-content .subject-score-card,
+    .analysis-content .subject-score-card[class*="subject-score-card"] {
+      display: flex !important;
+      flex-direction: column !important;
+      flex-wrap: nowrap !important;
+      align-content: center !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 1rem !important;
+      flex: auto !important;
+    }
+  }
+}
+
+/* ========================================
+   BEHAVIOR METRICS - 1024px Sidebar Expanded
+   ======================================== */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  @include sidebar-state-expanded {
+    /* Behavior tab: 3 per row → 2 rows of 3 */
+    .behavior-tab-metrics-list {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+  }
+}

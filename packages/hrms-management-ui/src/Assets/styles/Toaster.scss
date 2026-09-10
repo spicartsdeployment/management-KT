@@ -1,0 +1,31 @@
+// src/Assets/styles/Toaster.scss
+
+.toaster {
+    // Sonner exposes CSS custom properties for theming.
+    // Override them here to match your design system.
+
+    --normal-bg: var(--color-background, #ffffff);
+    --normal-text: var(--color-foreground, #0f172a);
+    --normal-border: var(--color-border, #e2e8f0);
+
+    --success-bg: var(--color-success-background, #f0fdf4);
+    --success-text: var(--color-success-foreground, #166534);
+    --success-border: var(--color-success-border, #bbf7d0);
+
+    --error-bg: var(--color-error-background, #fef2f2);
+    --error-text: var(--color-error-foreground, #991b1b);
+    --error-border: var(--color-error-border, #fecaca);
+
+    --warning-bg: var(--color-warning-background, #fffbeb);
+    --warning-text: var(--color-warning-foreground, #92400e);
+    --warning-border: var(--color-warning-border, #fde68a);
+
+    --info-bg: var(--color-info-background, #eff6ff);
+    --info-text: var(--color-info-foreground, #1e40af);
+    --info-border: var(--color-info-border, #bfdbfe);
+
+    --border-radius: 8px;
+    --font-size: 0.875rem;
+
+    font-family: inherit;
+}

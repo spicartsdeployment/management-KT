@@ -1,0 +1,126 @@
+// src/Assets/styles/Tooltip.scss
+
+.tooltip {
+    &__content {
+        z-index: 50;
+        width: fit-content;
+        border-radius: 6px;
+        padding: 6px 12px;
+        font-size: 0.75rem;
+        text-wrap: balance;
+        background-color: var(--color-primary, #0f172a);
+        color: var(--color-primary-foreground, #f8fafc);
+        transform-origin: var(--radix-tooltip-content-transform-origin);
+
+        // Enter animations
+        &[data-state="delayed-open"],
+        &[data-state="instant-open"] {
+            animation: tooltip-in 0.15s ease;
+        }
+
+        // Exit animations
+        &[data-state="closed"] {
+            animation: tooltip-out 0.1s ease;
+        }
+
+        // Slide-in direction variants
+        &[data-side="bottom"] {
+            animation-name: tooltip-slide-from-top;
+        }
+
+        &[data-side="top"] {
+            animation-name: tooltip-slide-from-bottom;
+        }
+
+        &[data-side="left"] {
+            animation-name: tooltip-slide-from-right;
+        }
+
+        &[data-side="right"] {
+            animation-name: tooltip-slide-from-left;
+        }
+    }
+
+    &__arrow {
+        z-index: 50;
+        width: 10px;
+        height: 10px;
+        background-color: var(--color-primary, #0f172a);
+        fill: var(--color-primary, #0f172a);
+        transform: translateY(calc(-50% - 2px)) rotate(45deg);
+        border-radius: 2px;
+    }
+}
+
+// Animations
+@keyframes tooltip-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes tooltip-out {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+@keyframes tooltip-slide-from-top {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes tooltip-slide-from-bottom {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes tooltip-slide-from-left {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateX(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateX(0);
+    }
+}
+
+@keyframes tooltip-slide-from-right {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateX(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateX(0);
+    }
+}

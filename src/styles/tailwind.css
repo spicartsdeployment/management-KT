@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import 'tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    @apply bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Glassmorphism utilities */
+  .glass-card {
+    @apply backdrop-blur-glass bg-white/80 dark:bg-dark-card/80 border border-white/20 dark:border-white/10 shadow-glass dark:shadow-glass-dark rounded-glass;
+  }
+  
+  .glass-button {
+    @apply backdrop-blur-glass bg-white/20 hover:bg-white/30 dark:bg-white/10 dark:hover:bg-white/20 border border-white/20 rounded-glass transition-all duration-200;
+  }
+  
+  /* Scrollbar styling */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.gray.400') transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 dark:bg-gray-600 rounded-full;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500 dark:bg-gray-500;
+  }
+  
+  /* Focus styles */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-light-accent focus:ring-offset-2 dark:focus:ring-offset-dark-bg;
+  }
+  
+  /* Animation utilities */
+  .fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .slide-in-left {
+    animation: slideInLeft 0.3s ease-out;
+  }
+  
+  .slide-in-right {
+    animation: slideInRight 0.3s ease-out;
+  }
+}
+
+@layer utilities {
+  /* Dark mode starfield background */
+  .dark-starfield {
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+      radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+      radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+      radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+      radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.9), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+  }
+  
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-light-accent to-light-accent-hover bg-clip-text text-transparent;
+  }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ========================================
+   DARK MODE CARD COLOR VARIANTS
+   Global dark theme overrides for bg-{color}-100 classes
+   ======================================== */
+:root.dark {
+  /* Green variants */
+  .bg-green-100 {
+    background: rgba(30, 41, 59, 0.6) !important;
+    border-color: rgba(91, 169, 118, 0.4) !important;
+  }
+  
+  .bg-green-200 {
+    background: rgba(30, 45, 35, 0.6) !important;
+    border-color: rgba(91, 169, 118, 0.5) !important;
+  }
+
+  .text-green-800, .text-green-700, .text-green-600 {
+    color: #4ade80 !important;
+  }
+
+  /* Red variants */
+  .bg-red-100 {
+    background: rgba(60, 30, 30, 0.6) !important;
+    border-color: rgba(200, 80, 80, 0.4) !important;
+  }
+  
+  .text-red-800, .text-red-700, .text-red-600 {
+    color: #f87171 !important;
+  }
+
+  /* Blue variants */
+  .bg-blue-100 {
+    background: rgba(30, 30, 60, 0.6) !important;
+    border-color: rgba(80, 120, 200, 0.4) !important;
+  }
+  
+  .bg-blue-200 {
+    background: rgba(30, 35, 65, 0.6) !important;
+    border-color: rgba(80, 120, 200, 0.5) !important;
+  }
+
+  .text-blue-800, .text-blue-700, .text-blue-600 {
+    color: #60a5fa !important;
+  }
+
+  /* Yellow variants */
+  .bg-yellow-100 {
+    background: rgba(60, 60, 30, 0.6) !important;
+    border-color: rgba(200, 200, 120, 0.4) !important;
+  }
+  
+  .text-yellow-800, .text-yellow-700, .text-yellow-600 {
+    color: #fef08a !important;
+  }
+
+  /* Orange variants */
+  .bg-orange-100 {
+    background: rgba(60, 40, 30, 0.6) !important;
+    border-color: rgba(234, 179, 8, 0.4) !important;
+  }
+  
+  .text-orange-800, .text-orange-700, .text-orange-600 {
+    color: #fbbf24 !important;
+  }
+
+  /* Pink variants */
+  .bg-pink-100 {
+    background: rgba(50, 30, 45, 0.6) !important;
+    border-color: rgba(200, 100, 150, 0.4) !important;
+  }
+  
+  .text-pink-800, .text-pink-700, .text-pink-600 {
+    color: #f472b6 !important;
+  }
+
+  /* Purple variants */
+  .bg-purple-100 {
+    background: rgba(45, 30, 55, 0.6) !important;
+    border-color: rgba(160, 100, 200, 0.4) !important;
+  }
+  
+  .bg-purple-200 {
+    background: rgba(50, 35, 60, 0.6) !important;
+    border-color: rgba(160, 100, 200, 0.5) !important;
+  }
+
+  .text-purple-800, .text-purple-700, .text-purple-600 {
+    color: #c084fc !important;
+  }
+
+  /* Gray variants */
+  .bg-gray-100 {
+    background: rgba(30, 41, 59, 0.6) !important;
+    border-color: rgba(100, 116, 139, 0.4) !important;
+  }
+  
+  .text-gray-800, .text-gray-700, .text-gray-600 {
+    color: #94a3b8 !important;
+  }
+
+  /* Gradient cards */
+  .bg-gradient-to-br.from-purple-200.to-blue-200 {
+    background: linear-gradient(to bottom right, rgba(45, 30, 55, 0.6), rgba(30, 30, 60, 0.6)) !important;
+  }
+
+  .bg-gradient-to-r.from-green-200.to-blue-200 {
+    background: linear-gradient(to right, rgba(30, 45, 35, 0.6), rgba(30, 30, 60, 0.6)) !important;
+  }
+}

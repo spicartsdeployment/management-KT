@@ -1,0 +1,145 @@
+// Command.scss
+
+.command {
+    background: var(--color-popover, #fff);
+    color: var(--color-popover-foreground, #111827);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0.375rem;
+}
+
+.command-dialog__header {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.command-dialog__content {
+    overflow: hidden;
+    padding: 0;
+}
+
+.command-input-wrapper {
+    display: flex;
+    height: 2.25rem;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--color-border, #e5e7eb);
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.command-input-icon {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    opacity: 0.5;
+}
+
+.command-input {
+    flex: 1;
+    height: 2.5rem;
+    width: 100%;
+    border-radius: 0.375rem;
+    background: transparent;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-size: 0.875rem;
+    outline: none;
+    color: inherit;
+
+    &::placeholder {
+        color: var(--color-muted-foreground, #6b7280);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+}
+
+.command-list {
+    max-height: 300px;
+    scroll-padding-top: 0.25rem;
+    scroll-padding-bottom: 0.25rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.command-empty {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.command-group {
+    color: var(--color-foreground, #111827);
+    overflow: hidden;
+    padding: 0.25rem;
+}
+
+.command-group__heading {
+    color: var(--color-muted-foreground, #6b7280);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.command-separator {
+    background: var(--color-border, #e5e7eb);
+    margin-left: -0.25rem;
+    margin-right: -0.25rem;
+    height: 1px;
+}
+
+.command-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
+    font-size: 0.875rem;
+    outline: none;
+    cursor: default;
+    user-select: none;
+    transition: background 0.2s, color 0.2s;
+
+    &[data-selected="true"] {
+        background: var(--color-accent, #f3f4f6);
+        color: var(--color-accent-foreground, #111827);
+    }
+
+    &[data-disabled="true"] {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    svg:not([class*='text-']) {
+        color: var(--color-muted-foreground, #6b7280);
+        width: 1rem;
+        height: 1rem;
+        pointer-events: none;
+        flex-shrink: 0;
+    }
+}
+
+.command-shortcut {
+    color: var(--color-muted-foreground, #6b7280);
+    margin-left: auto;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+}

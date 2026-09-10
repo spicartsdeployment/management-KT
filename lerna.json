@@ -1,0 +1,26 @@
+{
+  "version": "independent",
+  "npmClient": "yarn",
+  "packages": [
+    "packages/*"
+  ],
+  "command": {
+    "version": {
+      "conventionalCommits": true,
+      "message": "chore(release): publish %s",
+      "ignoreChanges": [
+        "**/*.md",
+        "**/*.test.js",
+        "**/*.test.jsx"
+      ]
+    },
+    "publish": {
+      "ignoreChanges": [
+        "**/*.md",
+        "**/*.test.js",
+        "**/*.test.jsx"
+      ],
+      "registry": "https://registry.npmjs.org/"
+    }
+  }
+}

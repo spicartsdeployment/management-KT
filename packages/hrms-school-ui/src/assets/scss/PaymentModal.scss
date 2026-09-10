@@ -1,0 +1,615 @@
+﻿@import './mixins.scss';
+
+/* Payment Modal Styles */
+.school-payment-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.school-payment-modal-content {
+  background: white;
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 500px;
+  max-height: 98vh;
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.school-payment-modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #6b7280;
+  transition: all 0.2s ease;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.school-payment-modal-close:hover {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.school-payment-modal-header {
+  padding: 2rem 2rem 0;
+  flex-shrink: 0;
+//   border-bottom: 1px solid #e5e7eb;
+}
+
+.school-payment-modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+//   margin: 0 0 0.5rem 0;
+}
+
+.school-payment-modal-subtitle {
+  font-size: 0.8125rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.school-payment-modal-body {
+  padding: 1.5rem 2rem;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.school-payment-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.school-payment-modal-body::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.school-payment-modal-body::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.school-payment-modal-body::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Fee Summary */
+.school-payment-fee-summary {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 1px solid #bfdbfe;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.school-payment-fee-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+//   margin-bottom: 0.5rem;
+}
+
+.school-payment-fee-row:last-child {
+  margin-bottom: 0;
+}
+
+.school-payment-fee-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.school-payment-fee-value {
+  font-size: 0.875rem;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.school-payment-fee-amount {
+  font-size: 1.125rem;
+  color: #2563eb;
+  font-weight: 700;
+}
+
+/* Payment Method Section */
+.school-payment-method-section {
+  margin-bottom: 1.5rem;
+}
+
+.school-payment-section-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 0.75rem 0;
+}
+
+.school-payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.school-payment-method-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background: #f9fafb;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.school-payment-method-option:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.school-payment-method-option.active {
+  background: white;
+  border-color: #3b82f6;
+  color: #1f2937;
+}
+
+.school-payment-method-option svg {
+  flex-shrink: 0;
+  color: #6b7280;
+}
+
+.school-payment-method-option.active svg {
+  color: #3b82f6;
+}
+
+/* Card Details Form */
+.school-payment-card-details {
+  margin-bottom: 1rem;
+}
+
+/* Payment Warning */
+.school-payment-warning {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 1px solid #f59e0b;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  color: #92400e;
+  font-weight: 500;
+}
+
+.school-payment-warning svg {
+  flex-shrink: 0;
+  color: #d97706;
+}
+
+.school-payment-form-group {
+  margin-bottom: 0.5rem;
+}
+
+.school-payment-form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.1rem;
+}
+
+.school-payment-form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  font-size: 0.8rem;
+  color: #1f2937;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.school-payment-form-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.school-payment-form-input::placeholder {
+  color: #9ca3af;
+}
+
+.school-payment-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Security Message */
+.school-payment-security-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.6rem 1.25rem;
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  border: 1px solid #6ee7b7;
+  border-radius: 0.75rem;
+//   margin-bottom: 1.5rem;
+}
+
+.school-payment-security-message svg {
+  flex-shrink: 0;
+  color: #059669;
+  margin-top: 0.125rem;
+}
+
+.school-payment-security-message p {
+  font-size: 0.75rem;
+  color: #047857;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Modal Footer */
+.school-payment-modal-footer {
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.school-payment-button {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.school-payment-button-cancel {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.school-payment-button-cancel:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.school-payment-button-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.school-payment-button-primary:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.school-payment-button-primary svg {
+  flex-shrink: 0;
+}
+
+/* Dark Theme */
+:root.dark {
+  .school-payment-modal-overlay {
+    background: rgba(0, 0, 0, 0.75);
+  }
+
+  .school-payment-modal-content {
+       background: rgb(15, 17, 26);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: auto;
+  }
+
+  .school-payment-modal-body {
+    scrollbar-color: #4b5563 #1f2937;
+  }
+
+  .school-payment-modal-body::-webkit-scrollbar-track {
+    background: #1f2937;
+  }
+
+  .school-payment-modal-body::-webkit-scrollbar-thumb {
+    background: #4b5563;
+  }
+
+  .school-payment-modal-body::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+  }
+
+  .school-payment-modal-close {
+    color: #9ca3af;
+  }
+
+  .school-payment-modal-close:hover {
+    background: #374151;
+    color: #e5e7eb;
+  }
+
+//   .school-payment-modal-header {
+//     // border-bottom-color: #374151;
+//   }
+
+  .school-payment-modal-title {
+    color: #f9fafb;
+  }
+
+  .school-payment-modal-subtitle {
+    color: #9ca3af;
+  }
+
+  /* Fee Summary Dark */
+  .school-payment-fee-summary {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.1) 100%);
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+
+  .school-payment-fee-label {
+    color: #9ca3af;
+  }
+
+  .school-payment-fee-value {
+    color: #e5e7eb;
+  }
+
+  .school-payment-fee-amount {
+    color: #60a5fa;
+  }
+
+  /* Payment Method Dark */
+  .school-payment-section-title {
+    color: #f3f4f6;
+  }
+
+  .school-payment-method-option {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #d1d5db;
+  }
+
+  .school-payment-method-option:hover {
+    background: #4b5563;
+    border-color: #6b7280;
+  }
+
+  .school-payment-method-option.active {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: #3b82f6;
+    color: #e5e7eb;
+  }
+
+  .school-payment-method-option svg {
+    color: #9ca3af;
+  }
+
+  .school-payment-method-option.active svg {
+    color: #60a5fa;
+  }
+
+  /* Form Dark */
+  .school-payment-form-label {
+    color: #e5e7eb;
+  }
+
+  .school-payment-form-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f3f4f6;
+  }
+
+  .school-payment-form-input:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+  }
+
+  .school-payment-form-input::placeholder {
+    color: #6b7280;
+  }
+
+  /* Warning Dark */
+  .school-payment-warning {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.1) 100%);
+    border-color: rgba(245, 158, 11, 0.4);
+    color: #fbbf24;
+  }
+
+  .school-payment-warning svg {
+    color: #f59e0b;
+  }
+
+  /* Security Message Dark */
+  .school-payment-security-message {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.1) 100%);
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+
+  .school-payment-security-message svg {
+    color: #34d399;
+  }
+
+  .school-payment-security-message p {
+    color: #6ee7b7;
+  }
+
+  /* Buttons Dark */
+  .school-payment-button-cancel {
+    background: #374151;
+    color: #9ca3af;
+  }
+
+  .school-payment-button-cancel:hover {
+    background: #4b5563;
+    color: #d1d5db;
+  }
+
+  .school-payment-button-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  }
+
+  .school-payment-button-primary:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+  }
+}
+
+/* Responsive */
+@media (max-width: 479px) {
+  .school-payment-modal-content {
+    font-size: 0.85rem !important;
+    width: 90vw;
+    max-width: 370px !important;
+    max-height: 80vh !important;
+    min-width: unset;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .school-payment-modal-title {
+    font-size: 1.05rem !important;
+  }
+  .school-payment-modal-subtitle {
+    font-size: 0.7rem !important;
+  }
+  .school-payment-modal-body {
+    font-size: 0.85rem !important ;
+  }
+  .school-payment-fee-label {
+    font-size: 0.65rem !important ;
+  }
+  .school-payment-fee-value {
+    font-size: 0.75rem !important ;
+  }
+  .school-payment-fee-amount {
+    font-size: 0.95rem !important ;
+  }
+  .school-payment-form-label {
+    font-size: 0.75rem !important ;
+  }
+  .school-payment-form-input {
+    font-size: 0.7rem !important ;
+  }
+  .school-payment-button {
+    font-size: 0.7rem !important ;
+    padding: 0.5rem 1rem !important ;
+  }
+  .school-payment-method-option {
+    font-size: 0.75rem !important ;
+    padding: 0.5rem 1rem !important ;
+  }
+}
+@media (max-width: 640px) {
+  .school-payment-modal-content {
+    width: 95%;
+    max-height: 95vh;
+  }
+
+  .school-payment-modal-header {
+    padding: 1.5rem 1.5rem 1rem;
+  }
+
+  .school-payment-modal-title {
+    font-size: 1.25rem;
+  }
+
+  .school-payment-modal-body {
+    padding: 1rem 1.5rem;
+  }
+
+  .school-payment-modal-footer {
+    padding: 0.75rem 1.5rem 1.5rem;
+    flex-direction: column;
+  }
+
+  .school-payment-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1023px) {
+  .school-payment-modal-content {
+    max-width: 95vw;
+    max-height: 70vh;
+    padding: 0.5rem 0.5rem 1rem 0.5rem;
+  }
+  .school-payment-modal-header {
+    padding: 1rem 1rem 0.5rem 1rem;
+  }
+  .school-payment-modal-title {
+    font-size: 1rem;
+  }
+  .school-payment-modal-subtitle {
+    font-size: 0.7rem;
+  }
+  .school-payment-modal-body {
+    padding: 1rem 1rem;
+  }
+  .school-payment-fee-summary {
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .school-payment-fee-label {
+    font-size: 0.7rem;
+  }
+  .school-payment-fee-value {
+    font-size: 0.8rem;
+  }
+  .school-payment-fee-amount {
+    font-size: 1rem;
+  }
+}

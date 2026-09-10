@@ -1,0 +1,773 @@
+// ─── System Preferences — SCSS (prefix: sp-*) ────────────────────────────────
+
+// ── Variables ─────────────────────────────────────────────────────────────────
+$sp-gold-start: #c9a962;
+$sp-gold-end:   #a8894a;
+$sp-white:      #ffffff;
+$sp-bg:         #f5f6fa;
+$sp-surface:    #ffffff;
+$sp-line:       #e8ecf0;
+$sp-line-light: #f0f2f5;
+$sp-text:       #1a1d23;
+$sp-muted:      #6b7280;
+$sp-label:      #374151;
+$sp-input-bg:   #f9fafb;
+$sp-primary:    #c9a962;
+$sp-primary-dk: #a8894a;
+$sp-danger:     #dc2626;
+$sp-success:    #16a34a;
+$sp-warning:    #d97706;
+$sp-info:       #2563eb;
+$sp-secondary:  #7c3aed;
+$sp-neutral:    #4b5563;
+$sp-shadow-sm:  0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+$sp-shadow-md:  0 4px 12px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.05);
+$sp-shadow-lg:  0 12px 32px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.07);
+$sp-radius:     0.625rem;
+$sp-radius-sm:  0.375rem;
+$sp-sidebar-w:  260px;
+// ── Dark-mode tokens ──────────────────────────────────────────────────────────
+:root {
+  --sp-bg:      #{$sp-bg};
+  --sp-surface: #{$sp-surface};
+  --sp-line:    #{$sp-line};
+  --sp-text:    #{$sp-text};
+  --sp-muted:   #{$sp-muted};
+  --sp-label:   #{$sp-label};
+  --sp-input:   #{$sp-input-bg};
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sp-bg:      #0f1117;
+    --sp-surface: #1a1d23;
+    --sp-line:    #2a2d35;
+    --sp-text:    #f0f2f5;
+    --sp-muted:   #9ca3af;
+    --sp-label:   #e5e7eb;
+    --sp-input:   #1f2229;
+  }
+}
+// ── Breakpoints ───────────────────────────────────────────────────────────────
+@mixin sp-bp($size) {
+  @if $size == xxs { @media (max-width: 320px)  { @content; } }
+  @if $size == xs  { @media (max-width: 375px)  { @content; } }
+  @if $size == sm  { @media (max-width: 480px)  { @content; } }
+  @if $size == md  { @media (max-width: 768px)  { @content; } }
+  @if $size == lg  { @media (max-width: 1024px) { @content; } }
+  @if $size == xl  { @media (min-width: 1440px) { @content; } }
+}
+
+// ── Root & Layout ─────────────────────────────────────────────────────────────
+.sp-root {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem 1.5rem 0;
+  background: var(--sp-bg);
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--sp-text);
+
+  @include sp-bp(xs) { padding: 1rem; }
+}
+
+// ── Page Header ───────────────────────────────────────────────────────────────
+.sp-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1.75rem 1.75rem 1.25rem;
+  background: var(--sp-surface);
+  border-bottom: 1px solid var(--sp-line);
+
+  @include sp-bp(md) { flex-direction: column; gap: .875rem; padding: 1.25rem; }
+  @include sp-bp(sm) { padding: .875rem; }
+}
+
+.sp-header__left    { display: flex; flex-direction: column; gap: .35rem; flex: 1; }
+.sp-header__actions { display: flex; align-items: center; gap: .625rem; flex-wrap: wrap; }
+
+.sp-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, $sp-gold-start, $sp-gold-end);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  @include sp-bp(sm) { font-size: 1.25rem; }
+}
+
+.sp-subtitle { font-size: .8125rem; color: $sp-muted; margin: 0; }
+
+// ── Horizontal Category Tabs ──────────────────────────────────────────────────
+.sp-cat-bar {
+  display: flex;
+  align-items: center;
+  gap: .375rem;
+  overflow-x: auto;
+  padding: .875rem 1.75rem;
+  background: var(--sp-surface);
+  border-bottom: 1px solid var(--sp-line);
+  box-shadow: $sp-shadow-sm;
+  scrollbar-width: thin;
+  scrollbar-color: rgba($sp-primary, .3) transparent;
+
+  &::-webkit-scrollbar       { height: 4px; }
+  &::-webkit-scrollbar-thumb { background: rgba($sp-primary, .3); border-radius: 2px; }
+
+  @include sp-bp(md) { padding: .75rem 1.25rem; }
+  @include sp-bp(sm) { padding: .625rem .875rem; }
+}
+
+.sp-cat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .4rem .875rem;
+  border-radius: 999px;
+  border: 1px solid var(--sp-line);
+  font-size: .75rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  background: var(--sp-input);
+  color: $sp-muted;
+  transition: all .15s;
+  flex-shrink: 0;
+  outline: none;
+
+  &:hover        { border-color: $sp-primary; color: $sp-primary; background: rgba($sp-primary, .06); }
+  &:focus-visible { outline: 2px solid $sp-primary; outline-offset: 2px; }
+
+  &--active {
+    background: $sp-primary;
+    border-color: $sp-primary;
+    color: $sp-white;
+    box-shadow: 0 2px 8px rgba($sp-primary, .25);
+  }
+}
+
+// ── Content Body ──────────────────────────────────────────────────────────────
+.sp-body {
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1;
+
+  @include sp-bp(lg) { padding: 0.15rem; }
+  @include sp-bp(md) { padding: 0.15rem; }
+  @include sp-bp(sm) { padding: .15rem; }
+  @include sp-bp(xs) { padding: .15rem; }
+}
+
+// ── Preserved animations & breadcrumb ────────────────────────────────────────
+.sp-saved-toast {
+  padding: .3rem .75rem;
+  background: rgba($sp-success, .1);
+  color: $sp-success;
+  border-radius: $sp-radius-sm;
+  font-size: .75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  animation: sp-pop-in .2s ease;
+}
+
+@keyframes sp-pop-in { from { transform: scale(.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.sp-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .8125rem;
+  color: $sp-muted;
+  flex-shrink: 0;
+  &__sep    { opacity: .5; }
+  &__active { color: $sp-text; font-weight: 600; }
+}
+
+// ── Sticky Save Bar ───────────────────────────────────────────────────────────
+.sp-save-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .75rem 1.5rem;
+  background: var(--sp-surface);
+  border-top: 1px solid var(--sp-line);
+  box-shadow: 0 -4px 12px rgba(0,0,0,.06);
+  border-radius: $sp-radius  $sp-radius 0 0;
+
+  @include sp-bp(md) { padding: .75rem; flex-direction: column; align-items: stretch; }
+  @include sp-bp(sm) { padding: .625rem .875rem; flex-wrap: wrap; }
+
+  &__info {
+    font-size: .8125rem;
+    color: $sp-muted;
+    @include sp-bp(sm) { display: none; }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    @include sp-bp(xs) { flex-direction: column; align-items: stretch; }
+     
+  }
+}
+
+// ── Section Header ────────────────────────────────────────────────────────────
+.sp-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: .875rem;
+  padding-bottom: .75rem;
+
+  &__icon {
+    font-size: 1.875rem;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: .125rem;
+  }
+
+  &__title {
+    font-size: 1.1875rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, $sp-gold-start, $sp-gold-end);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 .2rem;
+  }
+
+  &__desc { font-size: .8125rem; color: $sp-muted; margin: 0; }
+}
+
+// ── Preference Card ───────────────────────────────────────────────────────────
+.sp-card {
+  background: var(--sp-surface);
+  border: 1px solid var(--sp-line);
+  border-radius: $sp-radius;
+  box-shadow: $sp-shadow-sm;
+  overflow: hidden;
+  transition: box-shadow .15s;
+
+  &:hover { box-shadow: $sp-shadow-md; }
+
+  &__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .875rem 1.25rem;
+    border-bottom: 1px solid var(--sp-line);
+    background: var(--sp-surface);
+  }
+
+  &__meta   { display: flex; flex-direction: column; gap: .2rem; flex: 1; }
+  &__icon   { font-size: 1.25rem; margin-right: .375rem; }
+  &__title  { font-size: .875rem; font-weight: 700; color: var(--sp-text); }
+  &__desc   { font-size: .75rem; color: var(--sp-muted); }
+  &__action { flex-shrink: 0; }
+  &__body   { padding: 1rem 1.25rem; }
+}
+
+// ── Metrics Grid ──────────────────────────────────────────────────────────────
+.sp-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+
+  @include sp-bp(lg) { grid-template-columns: repeat(2, 1fr); }
+  @include sp-bp(md) { grid-template-columns: repeat(2, 1fr); }
+  @include sp-bp(sm) { grid-template-columns: 1fr; }
+  @include sp-bp(xs) { grid-template-columns: 1fr; }
+  @include sp-bp(xxs){ grid-template-columns: 1fr; }
+}
+
+.sp-metric-card {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: 1.125rem 1.25rem;
+  // background: $sp-surface;
+  border: 1px solid $sp-line;
+  border-top: 3px solid transparent;
+  border-radius: $sp-radius;
+  box-shadow: $sp-shadow-sm;
+  transition: box-shadow .15s;
+
+  &:hover { box-shadow: $sp-shadow-md; }
+
+  &--primary   { border-top-color: $sp-primary; }
+  &--info      { border-top-color: $sp-info; }
+  &--success   { border-top-color: $sp-success; }
+  &--warning   { border-top-color: $sp-warning; }
+  &--secondary { border-top-color: $sp-secondary; }
+  &--neutral   { border-top-color: $sp-neutral; }
+
+  &__icon  { font-size: 1.5rem; line-height: 1; flex-shrink: 0; margin-top: .1rem; }
+  &__body  { display: flex; flex-direction: column; gap: .15rem; flex: 1; min-width: 0; }
+  &__value { font-size: 1.4375rem; font-weight: 800; color: whitesmoke; }
+  &__label { font-size: .75rem; color: $sp-muted; font-weight: 500; }
+  &__trend { font-size: .7rem; color: $sp-muted; font-style: italic; margin-top: .1rem; }
+}
+
+// ── Toggle ────────────────────────────────────────────────────────────────────
+.sp-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 42px;
+  height: 24px;
+  border-radius: 12px;
+  background: var(--sp-line);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background .2s;
+
+  &--on { background: $sp-primary; }
+
+  &__thumb {
+    position: absolute;
+    left: 3px; top: 3px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: $sp-white;
+    box-shadow: 0 1px 3px rgba(0,0,0,.15);
+    transition: transform .2s cubic-bezier(.4,0,.2,1);
+    .sp-toggle--on & { transform: translateX(18px); }
+  }
+}
+
+.sp-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .75rem 0;
+  border-bottom: 1px solid $sp-line-light;
+  &:last-child { border-bottom: none; }
+
+  &__text  { display: flex; flex-direction: column; gap: .2rem; flex: 1; }
+  &__label { font-size: .875rem; font-weight: 600; color: $sp-text; color:#c2c5ce}
+  &__desc  { font-size: .75rem; color: $sp-muted; }
+}
+
+// ── Form ──────────────────────────────────────────────────────────────────────
+.sp-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  &__full { grid-column: 1 / -1; }
+  @include sp-bp(md) { grid-template-columns: 1fr; .sp-form-grid__full { grid-column: 1; } }
+}
+
+.sp-form { display: flex; flex-direction: column; gap: 1rem; }
+
+.sp-field {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+
+  &__label { font-size: .75rem; font-weight: 600; color: var(--sp-label); }
+  &__hint  { font-size: .7rem; color: $sp-muted; margin-top: -.1rem; }
+
+  &__input,
+  &__select {
+    height: 2.25rem;
+    padding: 0 .75rem;
+    border: 1px solid $sp-line;
+    border-radius: $sp-radius-sm;
+    font-size: .8125rem;
+    color: #d5d9e2;
+    background: #232527;
+    outline: none;
+    width: 100%;
+    transition: border-color .15s, box-shadow .15s;
+    &::placeholder { color: $sp-muted; }
+    &:focus { border-color: $sp-primary; box-shadow: 0 0 0 3px rgba($sp-primary, .1); }
+  }
+
+  &__select { cursor: pointer; }
+}
+
+.sp-divider { background: $sp-line-light; margin: .875rem 0; }
+
+// ── Buttons ───────────────────────────────────────────────────────────────────
+.sp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .375rem;
+  border-radius: $sp-radius-sm;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all .15s;
+  white-space: nowrap;
+  outline: none;
+
+  &--primary {
+    background: linear-gradient(135deg, $sp-gold-start, $sp-primary-dk);
+    color: $sp-white;
+    border-color: $sp-primary-dk;
+    &:hover { filter: brightness(1.05); }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: $sp-muted;
+    border-color: $sp-line;
+    &:hover { background: $sp-line-light; color: $sp-text; }
+  }
+
+  &--outline {
+    background: transparent;
+    color: $sp-primary;
+    border-color: $sp-primary;
+    &:hover { background: rgba($sp-primary, .08); }
+  }
+
+  &--danger {
+    background: transparent;
+    color: $sp-danger;
+    border-color: rgba($sp-danger, .35);
+    &:hover { background: rgba($sp-danger, .06); border-color: $sp-danger; }
+  }
+
+  &--sm  { height: 2rem;     padding: 0 .875rem; font-size: .8125rem; }
+  &--xs  { height: 1.75rem;  padding: 0 .625rem; font-size: .75rem; }
+  &--lg  { height: 2.5rem;   padding: 0 1.25rem; font-size: .9375rem; }
+}
+
+// ── Radio Group ───────────────────────────────────────────────────────────────
+.sp-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.sp-radio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .375rem;
+  padding: .4375rem .875rem;
+  border: 1.5px solid $sp-line;
+  border-radius: $sp-radius-sm;
+  cursor: pointer;
+  font-size: .8125rem;
+  font-weight: 500;
+  color: var(--sp-label);
+  // background: $sp-bg;
+  transition: all .15s;
+  user-select: none;
+
+  &:hover { border-color: $sp-primary; color: $sp-primary; }
+
+  &--active {
+    border-color: $sp-primary;
+    background: rgba($sp-primary, .1);
+    color: $sp-primary-dk;
+    font-weight: 600;
+  }
+}
+
+// ── Color Presets ─────────────────────────────────────────────────────────────
+.sp-color-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  align-items: center;
+}
+
+.sp-color-swatch {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .375rem .75rem .375rem .375rem;
+  border: 1.5px solid $sp-line;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--sp-label);
+  // background: $sp-bg;
+  transition: all .15s;
+  white-space: nowrap;
+
+  &__dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  &:hover { border-color: $sp-primary; box-shadow: $sp-shadow-sm; }
+
+  &--active {
+    border-color: $sp-primary;
+    background: rgba($sp-primary, .06);
+    font-weight: 700;
+    box-shadow: 0 0 0 2px rgba($sp-primary, .25);
+  }
+}
+
+// ── Widget Grid ───────────────────────────────────────────────────────────────
+.sp-widget-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .5rem;
+
+  @include sp-bp(lg) { grid-template-columns: repeat(1, 1fr); }
+  @include sp-bp(md) { grid-template-columns: 1fr; }
+  @include sp-bp(sm) { grid-template-columns: 1fr; }
+}
+
+.sp-widget-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .5rem .875rem;
+  border: 1px solid $sp-line;
+  border-radius: $sp-radius-sm;
+  // background: $sp-bg;
+  transition: border-color .15s;
+
+  &:hover { border-color: $sp-primary; }
+  &--pinned { border-color: rgba($sp-primary, .35); background: rgba($sp-primary, .04); }
+
+  &__label { flex: 1; font-size: .8125rem; font-weight: 500; color: $sp-text; color:#c2c5ce }
+  &__pin   { font-size: .75rem; color: $sp-muted; cursor: pointer; padding: .2rem .5rem;
+             border: 1px solid $sp-line; border-radius: $sp-radius-sm; color:$sp-bg;
+             transition: all .15s; white-space: nowrap; background-color: #273209;
+             &:hover { border-color: $sp-primary; color: $sp-primary; } }
+  &__pin--active { border-color: $sp-primary; color: $sp-primary-dk; background: rgba($sp-primary, .1); font-weight: 600; }
+}
+
+// ── Range Slider ──────────────────────────────────────────────────────────────
+.sp-range-wrap {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+
+  input[type="range"] {
+    flex: 1;
+    accent-color: $sp-primary;
+    height: 4px;
+    cursor: pointer;
+  }
+
+  &__val {
+    min-width: 42px;
+    text-align: right;
+    font-size: .8125rem;
+    font-weight: 700;
+    color: $sp-primary-dk;
+  }
+}
+
+// ── Preview Strip ─────────────────────────────────────────────────────────────
+.sp-preview-strip {
+  margin-top: .875rem;
+  padding: .875rem 1rem;
+  background: var(--sp-bg);
+  border: 1px solid var(--sp-line);
+  border-radius: $sp-radius;
+
+  &__label {
+    font-size: .75rem;
+    font-weight: 600;
+    color: $sp-muted;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin-bottom: .625rem;
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+  }
+}
+
+.sp-preview-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .375rem;
+  padding: .3rem .75rem;
+  background: rgba($sp-primary, .1);
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 600;
+  color: $sp-primary-dk;
+  border: 1px solid rgba($sp-primary, .2);
+}
+
+// ── Badge ─────────────────────────────────────────────────────────────────────
+.sp-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: .2rem .625rem;
+  border-radius: 999px;
+  font-size: .6875rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  &--on      { background: rgba($sp-success, .1);    color: $sp-success; }
+  &--off     { background: rgba($sp-danger, .08);    color: $sp-danger; }
+  &--default { background: $sp-line-light;           color: $sp-muted; }
+  &--info    { background: rgba($sp-info, .1);       color: $sp-info; }
+}
+
+// ── Section Divider ───────────────────────────────────────────────────────────
+.sp-section-title {
+  font-size: .75rem;
+  font-weight: 700;
+  color: $sp-muted;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: .5rem 0 .375rem;
+  border-bottom: 1px solid $sp-line-light;
+  margin-bottom: .75rem;
+}
+
+// ── Reset Modal ───────────────────────────────────────────────────────────────
+.sp-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: sp-fade-in .2s ease;
+  backdrop-filter: blur(2px);
+  @include sp-bp(sm) { padding: .75rem; align-items: flex-end; }
+}
+
+.sp-modal {
+  background: var(--sp-surface);
+  border-radius: $sp-radius;
+  box-shadow: $sp-shadow-lg;
+  width: 100%;
+  max-width: 420px;
+  max-height: 92vh;
+  overflow-y: auto;
+  animation: sp-slide-up .22s ease;
+  display: flex;
+  flex-direction: column;
+
+  @include sp-bp(sm) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    max-height: 94vh;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.125rem 1.375rem;
+    border-bottom: 1px solid var(--sp-line);
+    position: sticky;
+    top: 0;
+    background: var(--sp-surface);
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, $sp-gold-start, $sp-gold-end);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  &__close {
+    background: none; border: none; cursor: pointer;
+    color: $sp-muted; font-size: .9375rem; padding: .25rem;
+    border-radius: $sp-radius-sm;
+    &:hover { color: var(--sp-text); background: var(--sp-line); }
+  }
+
+  &__body {
+    padding: 1.375rem;
+    font-size: .875rem;
+    color: var(--sp-label);
+    line-height: 1.6;
+    flex: 1;
+    p { margin: 0 0 .75rem; &:last-child { margin-bottom: 0; } }
+    strong { color: $sp-danger; }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: .5rem;
+    padding: .875rem 1.375rem;
+    border-top: 1px solid var(--sp-line);
+    flex-shrink: 0;
+    background: var(--sp-surface);
+  }
+}
+
+@keyframes sp-slide-up {
+  from { transform: translateY(12px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+// ── Misc ──────────────────────────────────────────────────────────────────────
+.sp-info-box {
+  padding: .75rem 1rem;
+  background: rgba($sp-info, .06);
+  border: 1px solid rgba($sp-info, .2);
+  border-radius: $sp-radius-sm;
+  font-size: .8125rem;
+  color: darken($sp-info, 10%);
+  line-height: 1.5;
+}
+
+.sp-warn-box {
+  padding: .75rem 1rem;
+  background: rgba($sp-warning, .08);
+  border: 1px solid rgba($sp-warning, .25);
+  border-radius: $sp-radius-sm;
+  font-size: .8125rem;
+  color: darken($sp-warning, 15%);
+  line-height: 1.5;
+}
+
+// ── Section Container & Field Spacing ──────────────────────────────────────────
+.sp-section-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sp-section-container--lg {
+  gap: 1.25rem;
+}
+
+.sp-field--spaced {
+  margin-bottom: 1rem;
+}
+
+.sp-field--wide {
+  max-width: 320px;
+}
+
+.sp-field--constraint {
+  max-width: 300px;
+}

@@ -1,0 +1,145 @@
+.scholarship-management {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.scholarship-management__header-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.scholarship-management__header-desc {
+    color: var(--muted-foreground, #6B7280);
+}
+
+.scholarship-management__summary {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .scholarship-management__summary {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.scholarship-management__summary-card {
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 4px 0 rgba(31, 41, 55, 0.08);
+}
+
+.scholarship-management__summary-content {
+    padding: 1.5rem;
+}
+
+.scholarship-management__summary-label {
+    font-size: 0.875rem;
+    color: var(--muted-foreground, #6B7280);
+    margin-bottom: 0.25rem;
+}
+
+.scholarship-management__summary-value {
+    font-size: 1.875rem;
+    font-weight: 600;
+}
+
+.scholarship-management__summary-value--pending {
+    color: #F59E0B;
+}
+
+.scholarship-management__summary-value--approved {
+    color: #22C55E;
+}
+
+.scholarship-management__filters-card {
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 4px 0 rgba(31, 41, 55, 0.08);
+}
+
+.scholarship-management__filters-content {
+    padding: 1.5rem;
+}
+
+.scholarship-management__filters-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.scholarship-management__search-wrapper {
+    position: relative;
+    flex: 1;
+    min-width: 300px;
+}
+
+.scholarship-management__search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    color: var(--muted-foreground, #6B7280);
+}
+
+.scholarship-management__search-input {
+    padding-left: 2.25rem;
+}
+
+.scholarship-management__select-trigger {
+    width: 180px;
+}
+
+.scholarship-management__table-card {
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 4px 0 rgba(31, 41, 55, 0.08);
+}
+
+.scholarship-management__table-content {
+    padding: 0;
+}
+
+.scholarship-management__table-scroll {
+    overflow-x: auto;
+}
+
+.scholarship-management__table-header-row {
+    background: var(--muted, #F3F4F6);
+}
+
+.scholarship-management__badge--eligible {
+    border-color: #22C55E !important;
+    color: #22C55E !important;
+}
+
+.scholarship-management__badge--pending {
+    background: rgba(245, 158, 11, 0.125) !important;
+    color: #F59E0B !important;
+}
+
+.scholarship-management__badge--approved {
+    background: rgba(34, 197, 94, 0.125) !important;
+    color: #22C55E !important;
+}
+
+.scholarship-management__badge--rejected {
+    background: rgba(239, 68, 68, 0.125) !important;
+    color: #EF4444 !important;
+}
+
+.scholarship-management__actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.scholarship-management__view-btn {
+    color: #4F46E5;
+}
+
+.scholarship-management__approve-btn {
+    background: #22C55E;
+    color: #fff;
+}

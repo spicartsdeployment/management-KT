@@ -1,0 +1,134 @@
+// DropdownMenu.scss
+
+.dropdown-menu-content,
+.dropdown-menu-sub-content {
+    background: var(--color-popover, #fff);
+    color: var(--color-popover-foreground, #111827);
+    border-radius: 0.375rem;
+    border: 1px solid var(--color-border, #e5e7eb);
+    min-width: 8rem;
+    overflow: hidden;
+    padding: 0.25rem;
+    box-shadow: 0 10px 32px 0 rgba(0, 0, 0, 0.12);
+    z-index: 50;
+}
+
+.dropdown-menu-content {
+    max-height: var(--radix-dropdown-menu-content-available-height, 400px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.dropdown-menu-item,
+.dropdown-menu-checkbox-item,
+.dropdown-menu-radio-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.5rem;
+    font-size: 0.875rem;
+    outline: none;
+    cursor: default;
+    user-select: none;
+    transition: background 0.2s, color 0.2s;
+
+    &[data-selected="true"],
+    &:focus {
+        background: var(--color-accent, #f3f4f6);
+        color: var(--color-accent-foreground, #111827);
+    }
+
+    &[data-variant="destructive"] {
+        color: var(--color-destructive, #ef4444);
+    }
+
+    &[data-variant="destructive"]:focus {
+        background: rgba(239, 68, 68, 0.1);
+        color: var(--color-destructive, #ef4444);
+    }
+
+    &[data-disabled],
+    &:disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    &[data-inset] {
+        padding-left: 2rem;
+    }
+
+    svg:not([class*='text-']) {
+        color: var(--color-muted-foreground, #6b7280);
+        width: 1rem;
+        height: 1rem;
+        pointer-events: none;
+        flex-shrink: 0;
+    }
+}
+
+.dropdown-menu-sub-trigger {
+    display: flex;
+    align-items: center;
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.5rem;
+    font-size: 0.875rem;
+    cursor: default;
+    user-select: none;
+    transition: background 0.2s, color 0.2s;
+
+    &[data-inset] {
+        padding-left: 2rem;
+    }
+
+    .ml-auto {
+        margin-left: auto;
+    }
+
+    .size-4 {
+        width: 1rem;
+        height: 1rem;
+    }
+}
+
+.dropdown-menu-label {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+
+    &[data-inset] {
+        padding-left: 2rem;
+    }
+}
+
+.dropdown-menu-separator {
+    background: var(--color-border, #e5e7eb);
+    margin: 0.25rem 0;
+    height: 1px;
+}
+
+.dropdown-menu-shortcut {
+    color: var(--color-muted-foreground, #6b7280);
+    margin-left: auto;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+}
+
+.dropdown-menu-checkbox-item .dropdown-menu-checkbox-indicator,
+.dropdown-menu-radio-item .dropdown-menu-radio-indicator {
+    position: absolute;
+    left: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.375rem;
+    height: 1.375rem;
+    pointer-events: none;
+}
+
+.dropdown-menu-checkbox-indicator svg,
+.dropdown-menu-radio-indicator svg {
+    width: 1rem;
+    height: 1rem;
+}

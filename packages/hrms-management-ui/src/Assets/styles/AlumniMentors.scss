@@ -1,0 +1,191 @@
+.alumni-mentors {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.alumni-mentors__header {
+    /* Page header */
+}
+
+.alumni-mentors__title {
+    font-size: 1.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.alumni-mentors__subtitle {
+    color: var(--muted-foreground, #6b7280);
+}
+
+.alumni-mentors__summary {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .alumni-mentors__summary {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.alumni-mentors__summary-card {
+    border-radius: 1rem;
+    box-shadow: 0 1px 4px rgba(44, 44, 44, 0.06);
+}
+
+.alumni-mentors__summary-content {
+    padding: 1.5rem;
+}
+
+.alumni-mentors__summary-label {
+    font-size: 0.95rem;
+    color: var(--muted-foreground, #6b7280);
+    margin-bottom: 0.25rem;
+}
+
+.alumni-mentors__summary-value {
+    font-size: 1.875rem;
+    font-weight: 600;
+}
+
+.alumni-mentors__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .alumni-mentors__cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.alumni-mentors__card {
+    border-radius: 1rem;
+    box-shadow: 0 1px 4px rgba(44, 44, 44, 0.06);
+    transition: box-shadow 0.2s;
+}
+
+.alumni-mentors__card:hover {
+    box-shadow: 0 4px 16px rgba(44, 44, 44, 0.10);
+}
+
+.alumni-mentors__card-header {
+    padding-bottom: 1rem;
+}
+
+.alumni-mentors__card-header-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.alumni-mentors__avatar {
+    width: 4rem;
+    height: 4rem;
+}
+
+.alumni-mentors__avatar-fallback {
+    background: #4F46E5 !important;
+    color: #fff !important;
+    font-size: 1.125rem;
+}
+
+.alumni-mentors__card-header-main {
+    flex: 1;
+}
+
+.alumni-mentors__card-header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.alumni-mentors__card-header-title {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+.alumni-mentors__card-header-industry {
+    font-size: 0.95rem;
+    color: var(--muted-foreground, #6b7280);
+}
+
+.alumni-mentors__badge {
+    background: var(--badge-bg, #eee);
+    color: var(--badge-color, #333);
+    font-size: 0.95rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+}
+
+.alumni-mentors__card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.alumni-mentors__info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.alumni-mentors__info-label {
+    font-size: 0.95rem;
+    color: var(--muted-foreground, #6b7280);
+    margin-bottom: 0.15rem;
+}
+
+.alumni-mentors__info-value {
+    font-size: 0.95rem;
+}
+
+.alumni-mentors__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border, #e5e7eb);
+}
+
+.alumni-mentors__action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.alumni-mentors__approve-actions {
+    display: flex;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.alumni-mentors__approve-btn {
+    background: #22C55E !important;
+    color: #fff !important;
+    flex: 1;
+}
+
+.alumni-mentors__reject-btn {
+    border-color: #EF4444 !important;
+    color: #EF4444 !important;
+    flex: 1;
+}
+
+.alumni-mentors__assign-btn {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .alumni-mentors__summary {
+        gap: 1rem;
+    }
+
+    .alumni-mentors__cards {
+        gap: 1rem;
+    }
+}

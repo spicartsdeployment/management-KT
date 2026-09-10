@@ -1,0 +1,93 @@
+:root {
+  /* Light theme colors */
+  --color-light-bg: #FFF9F3;
+  --color-light-card: #FFFFFF;
+  --color-light-accent: #F9B66F;
+  --color-light-accent-hover: #F7A855;
+  --color-light-text: #1F2937;
+  --color-light-text-secondary: #6B7280;
+  --color-light-border: #E5E7EB;
+  
+  /* Dark theme colors */
+  --color-dark-bg: #0A1128;
+  --color-dark-card: #1E293B;
+  --color-dark-accent: #F9B66F;
+  --color-dark-accent-hover: #F7A855;
+  --color-dark-text: #F9FAFB;
+  --color-dark-text-secondary: #D1D5DB;
+  --color-dark-border: #374151;
+  
+  /* Spacing tokens */
+  --spacing-xs: 0.25rem;  /* 4px */
+  --spacing-sm: 0.5rem;   /* 8px */
+  --spacing-md: 1rem;     /* 16px */
+  --spacing-lg: 1.5rem;   /* 24px */
+  --spacing-xl: 2rem;     /* 32px */
+  --spacing-2xl: 3rem;    /* 48px */
+  
+  /* Border radius tokens */
+  --radius-sm: 0.375rem;  /* 6px */
+  --radius-md: 0.5rem;    /* 8px */
+  --radius-lg: 0.75rem;   /* 12px */
+  --radius-xl: 1rem;      /* 16px - glass effect */
+  --radius-full: 9999px;
+  
+  /* Shadow tokens */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  --shadow-glass-dark: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  
+  /* Typography tokens */
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  
+  /* Font weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Z-index tokens */
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1020;
+  --z-index-fixed: 1030;
+  --z-index-modal-backdrop: 1040;
+  --z-index-modal: 1050;
+  --z-index-popover: 1060;
+  --z-index-tooltip: 1070;
+  
+  /* Transition tokens */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+}
+
+/* Design System CSS Variables */
+.theme-light {
+  --bg-primary: var(--color-light-bg);
+  --bg-secondary: var(--color-light-card);
+  --text-primary: var(--color-light-text);
+  --text-secondary: var(--color-light-text-secondary);
+  --border-color: var(--color-light-border);
+  --accent-color: var(--color-light-accent);
+  --accent-hover: var(--color-light-accent-hover);
+}
+
+.theme-dark {
+  --bg-primary: var(--color-dark-bg);
+  --bg-secondary: var(--color-dark-card);
+  --text-primary: var(--color-dark-text);
+  --text-secondary: var(--color-dark-text-secondary);
+  --border-color: var(--color-dark-border);
+  --accent-color: var(--color-dark-accent);
+  --accent-hover: var(--color-dark-accent-hover);
+}

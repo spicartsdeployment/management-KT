@@ -1,0 +1,1247 @@
+@import './mixins.scss';
+
+// =============================================================================
+// BASE STYLES
+// =============================================================================
+
+.ds-hsu-teach-dayschedules {
+  min-height: 100vh;
+}
+
+.ds-hsu-teach-dayschedules__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.ds-hsu-teach-dayschedules__title {
+  font-size: clamp(0.85rem, 2vw, 1.2rem);
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 0.3rem 0;
+
+  [data-theme='dark'] & {
+    color: #ccd1da;
+  }
+}
+
+.ds-hsu-teach-dayschedules__subtitle {
+  font-size: clamp(0.6rem, 1vw, 0.775rem);
+  color: #64748b;
+  margin: 0;
+}
+
+.ds-hsu-teach-dayschedules__assign-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.425rem 1.25rem;
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+  margin-bottom: 1.5rem;
+
+  [data-theme='dark'] & {
+    background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
+  }
+}
+
+.ds-hsu-teach-dayschedules__assign-btn-icon {
+  font-size: 1rem;
+}
+
+// Main Container
+.ds-hsu-teach-dayschedules__container {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  gap: 1.25rem;
+}
+
+// Left Section (70%)
+.ds-hsu-teach-dayschedules__left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.ds-hsu-teach-dayschedules__schedule-section {
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  [data-theme='dark'] & {
+    box-shadow: 0 4px 12px rgba(20, 22, 34, 0.6);
+    border: 1px solid #334155;
+  }
+}
+
+.ds-hsu-teach-dayschedules__section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e2e8f0;
+
+  [data-theme='dark'] & {
+    color: #ccd1da;
+  }
+}
+
+.ds-hsu-teach-dayschedules__section-icon {
+  font-size: 1.75rem;
+}
+
+// Class Cards
+.ds-hsu-teach-dayschedules__classes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.ds-hsu-teach-dayschedules__class-card {
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.875rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1rem;
+  min-height: 120px;
+
+  &--completed {
+    background: #f8f9fa;
+
+    [data-theme='dark'] & {
+      color: #d1fae5;
+      background: #022c20;
+    }
+  }
+
+  &:hover {
+    border-color: #4f46e5;
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.15);
+    transform: translateY(-2px);
+  }
+
+  [data-theme='dark'] & {
+    border: 1px solid rgb(143, 142, 142);
+  }
+}
+
+.ds-hsu-teach-dayschedules__class-content {
+  flex: 1;
+  display: flex;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.ds-hsu-teach-dayschedules__class-icon {
+  width: 36px;
+  height: 36px;
+  background: #4f46e5;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  svg {
+    display: block;
+
+    path {
+      stroke: white;
+    }
+  }
+}
+
+.ds-hsu-teach-dayschedules__class-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.ds-hsu-teach-dayschedules__class-subject {
+  font-size: clamp(0.65rem, 1vw, 0.75rem);
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 0.375rem 0;
+
+  [data-theme='dark'] & {
+    color: #e5e7eb;
+  }
+}
+
+.ds-hsu-teach-dayschedules__class-meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.375rem;
+}
+
+.ds-hsu-teach-dayschedules__class-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: clamp(0.6rem, 0.9vw, 0.7rem);
+  color: #64748b;
+}
+
+.ds-hsu-teach-dayschedules__class-meta-icon {
+  display: block;
+  flex-shrink: 0;
+}
+
+.ds-hsu-teach-dayschedules__class-time {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: clamp(0.6rem, 0.9vw, 0.7rem);
+  color: #475569;
+  margin-bottom: 0.5rem;
+}
+
+.ds-hsu-teach-dayschedules__time-icon {
+  display: block;
+  flex-shrink: 0;
+}
+
+.ds-hsu-teach-dayschedules__class-topic {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.375rem;
+  font-size: clamp(0.6rem, 0.9vw, 0.7rem);
+  color: #334155;
+  border-radius: 6px;
+  line-height: 1.4;
+
+  [data-theme='dark'] & {
+    color: #bdc5d1;
+  }
+}
+
+.ds-hsu-teach-dayschedules__topic-icon {
+  display: block;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.ds-hsu-teach-dayschedules__class-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  align-items: flex-end;
+  min-width: fit-content;
+}
+
+.ds-hsu-teach-dayschedules__status-badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 2rem;
+  font-size: 0.5rem;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+
+  &--completed {
+    background: #10b981;
+    color: white;
+    border: none;
+
+    [data-theme='dark'] & {
+      color: #d1fae5;
+      background: #022c20;
+    }
+  }
+
+  &--ongoing {
+    background: #f59e0b;
+    color: white;
+    border: none;
+
+    [data-theme='dark'] & {
+      background: #854d0e;
+    }
+  }
+
+  &--upcoming {
+    background: #3b82f6;
+    color: white;
+    border: none;
+
+    [data-theme='dark'] & {
+      background: #1e40af;
+    }
+  }
+}
+
+.ds-hsu-teach-dayschedules__action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.625rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+
+  &--primary {
+    background: transparent;
+    color: inherit;
+    border: none;
+    padding: 0;
+
+    [data-theme='dark'] & {
+      color: #c7cdd6;
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &--secondary {
+    background: transparent;
+    color: inherit;
+    border: none;
+    padding: 0;
+
+    [data-theme='dark'] & {
+      color: #c7cdd6;
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &--attendance {
+    background: #4f46e5;
+    color: white;
+    border: 2px solid #4f46e5;
+
+    [data-theme='dark'] & {
+      background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+      border-color: #26384d;
+    }
+
+    &:hover {
+      background: #4338ca;
+      border-color: #4338ca;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+
+      [data-theme='dark'] & {
+        background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+      }
+    }
+  }
+}
+
+.ds-hsu-teach-dayschedules__action-btn-icon {
+  display: block;
+  flex-shrink: 0;
+}
+
+// Right Section (30%)
+.ds-hsu-teach-dayschedules__right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+// Calendar Widget
+.ds-hsu-teach-dayschedules__calendar-widget {
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  [data-theme='dark'] & {
+    box-shadow: 0 4px 12px rgba(20, 22, 34, 0.6);
+    border: 1px solid #334155;
+  }
+}
+
+.ds-hsu-teach-dayschedules__calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.ds-hsu-teach-dayschedules__calendar-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0;
+
+  [data-theme='dark'] & {
+    color: #ccd1da;
+  }
+}
+
+.ds-hsu-teach-dayschedules__calendar-nav {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  color: #4f46e5;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  [data-theme='dark'] & {
+    color: #c7cdd6;
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+    color: white;
+    transform: scale(1.05);
+
+    [data-theme='dark'] & {
+      background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+    }
+  }
+}
+
+.ds-hsu-teach-dayschedules__calendar-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ds-hsu-teach-dayschedules__calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.ds-hsu-teach-dayschedules__calendar-day-name {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  padding: 0.5rem 0;
+
+  [data-theme='dark'] & {
+    color: #94a3b8;
+  }
+}
+
+.ds-hsu-teach-dayschedules__calendar-dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+}
+
+.ds-hsu-teach-dayschedules__calendar-date {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  color: #334155;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(.ds-hsu-teach-dayschedules__calendar-date--empty) {
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+    color: #4f46e5;
+  }
+
+  &--today {
+    border: 2px solid #4f46e5;
+    border-radius: 2rem;
+    font-weight: 700;
+    color: #4f46e5;
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+
+    [data-theme='dark'] & {
+      border-color: #26384d;
+      background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+      color: #c7cdd6;
+    }
+
+    &:hover {
+      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+
+      [data-theme='dark'] & {
+        background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+      }
+    }
+  }
+
+  &--selected {
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+    color: white;
+    font-weight: 700;
+    border-radius: 2rem;
+
+    [data-theme='dark'] & {
+      background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+      color: #c7cdd6;
+    }
+
+    &:hover {
+      background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
+
+      [data-theme='dark'] & {
+        background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+      }
+    }
+  }
+
+  &--clickable {
+    cursor: pointer;
+
+    &:hover {
+      background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+      transform: scale(1.05);
+      border-radius: 2rem;
+
+      [data-theme='dark'] & {
+        background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+        color: #c7cdd6;
+      }
+    }
+  }
+
+  &--empty {
+    cursor: default;
+    color: transparent;
+  }
+}
+
+// No Classes Message
+.ds-hsu-teach-dayschedules__no-classes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 16px;
+  margin: 1rem 0;
+
+  [data-theme='dark'] & {
+    background: none;
+  }
+}
+
+.ds-hsu-teach-dayschedules__no-classes-icon {
+  margin-bottom: 1.5rem;
+  opacity: 0.6;
+}
+
+.ds-hsu-teach-dayschedules__no-classes-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #475569;
+  margin: 0 0 0.5rem 0;
+
+  [data-theme='dark'] & {
+    color: #cbd5e1;
+  }
+}
+
+.ds-hsu-teach-dayschedules__no-classes-subtitle {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin: 0;
+
+  [data-theme='dark'] & {
+    color: #94a3b8;
+  }
+}
+
+// Notes Widget
+.ds-hsu-teach-dayschedules__notes-widget {
+  background: white;
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  [data-theme='dark'] & {
+    background: #1b1433;
+    box-shadow: 0 4px 12px rgba(20, 22, 34, 0.6);
+    border: 1px solid #334155;
+  }
+}
+
+.ds-hsu-teach-dayschedules__widget-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 0.75rem 0;
+  position: relative;
+
+  [data-theme='dark'] & {
+    color: #ccd1da;
+  }
+}
+
+.ds-hsu-teach-dayschedules__widget-icon {
+  font-size: 1.25rem;
+}
+
+.ds-hsu-teach-dayschedules__edit-icon {
+  margin-left: auto;
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+  border: none;
+  padding: 0.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  [data-theme='dark'] & {
+    background: #11122d;
+    color: #c7cdd6;
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+    transform: scale(1.1);
+
+    [data-theme='dark'] & {
+      background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+      color: #c7cdd6;
+    }
+  }
+}
+
+.ds-hsu-teach-dayschedules__notes-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  color: #334155;
+  resize: vertical;
+  font-family: inherit;
+  transition: all 0.3s ease;
+
+  [data-theme='dark'] & {
+    background: #11122d;
+    color: #bdc5d1;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+
+    [data-theme='dark'] & {
+      border-color: #4f46e5;
+    }
+  }
+
+  &::placeholder {
+    color: #94a3b8;
+  }
+}
+
+// Reminders Widget
+.ds-hsu-teach-dayschedules__reminders-widget {
+  background: white;
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  [data-theme='dark'] & {
+    background: #1b1433;
+    box-shadow: 0 4px 12px rgba(20, 22, 34, 0.6);
+    border: 1px solid #334155;
+  }
+}
+
+.ds-hsu-teach-dayschedules__reminders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ds-hsu-teach-dayschedules__reminder-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.3rem 0.625rem;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+
+  [data-theme='dark'] & {
+    background: #11122d;
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    transform: translateX(4px);
+
+    [data-theme='dark'] & {
+      background: #22243a;
+    }
+  }
+}
+
+.ds-hsu-teach-dayschedules__reminder-dot {
+  color: #3b82f6;
+  font-size: 1.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+
+  [data-theme='dark'] & {
+    color: #60a5fa;
+  }
+}
+
+.ds-hsu-teach-dayschedules__reminder-text {
+  font-size: 0.675rem;
+  color: #475569;
+  line-height: 1.5;
+
+  [data-theme='dark'] & {
+    color: #cbd5e1;
+  }
+}
+
+// Holidays Widget
+.ds-hsu-teach-dayschedules__holidays-widget {
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  [data-theme='dark'] & {
+    box-shadow: 0 4px 12px rgba(20, 22, 34, 0.6);
+    border: 1px solid #334155;
+  }
+}
+
+.ds-hsu-teach-dayschedules__holidays-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ds-hsu-teach-dayschedules__holiday-item {
+  padding: 0.2rem 0.75rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+
+  [data-theme='dark'] & {
+    background: #11122d;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    transform: translateX(4px);
+
+    [data-theme='dark'] & {
+      box-shadow: 0 4px 8px rgba(20, 22, 34, 0.6);
+    }
+  }
+}
+
+.ds-hsu-teach-dayschedules__holiday-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1a1a2e;
+
+  [data-theme='dark'] & {
+    color: #e5e7eb;
+  }
+}
+
+.ds-hsu-teach-dayschedules__holiday-date {
+  font-size: 0.75rem;
+  color: #64748b;
+
+  [data-theme='dark'] & {
+    color: #94a3b8;
+  }
+}
+
+// Modal Styles
+.ds-hsu-teach-dayschedules__modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+
+  [data-theme='dark'] & {
+    background: rgba(20, 22, 34, 0.85);
+  }
+}
+
+.ds-hsu-teach-dayschedules__modal {
+  background: white;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 450px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  [data-theme='dark'] & {
+    background: #181a2a;
+    color: #e5e7eb;
+    border: 1px solid #334155;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &--restriction {
+    max-width: 400px;
+  }
+
+  &--homework {
+    max-width: 500px;
+  }
+}
+
+.ds-hsu-teach-dayschedules__modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.25rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.ds-hsu-teach-dayschedules__modal-title {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0;
+
+  [data-theme='dark'] & {
+    color: #e5e7eb;
+  }
+}
+
+.ds-hsu-teach-dayschedules__modal-icon {
+  font-size: 0.75rem;
+}
+
+.ds-hsu-teach-dayschedules__modal-close {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  color: #dc2626;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    color: white;
+    transform: rotate(90deg);
+
+    [data-theme='dark'] & {
+      background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+    }
+  }
+}
+
+.ds-hsu-teach-dayschedules__modal-body {
+  padding: 1.25rem;
+}
+
+.ds-hsu-teach-dayschedules__modal-subtitle {
+  font-size: 0.7rem;
+  color: #64748b;
+  margin: 0 0 1rem 0;
+
+  [data-theme='dark'] & {
+    color: #cbd5e1;
+  }
+}
+
+.ds-hsu-teach-dayschedules__restriction-message {
+  font-size: 0.875rem;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0 0 0.75rem 0;
+  font-weight: 600;
+}
+
+.ds-hsu-teach-dayschedules__restriction-submessage {
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ds-hsu-teach-dayschedules__modal-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border-radius: 8px;
+  font-size: 0.7rem;
+  color: #1e40af;
+  margin-bottom: 1rem;
+}
+
+.ds-hsu-teach-dayschedules__modal-info-icon {
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.ds-hsu-teach-dayschedules__form-group {
+  margin-bottom: 1rem;
+}
+
+.ds-hsu-teach-dayschedules__form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.ds-hsu-teach-dayschedules__form-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.5rem;
+
+  [data-theme='dark'] & {
+    color: white;
+  }
+}
+
+.ds-hsu-teach-dayschedules__form-input,
+.ds-hsu-teach-dayschedules__form-select {
+  width: 100%;
+  padding: 0.625rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  color: #334155;
+  transition: all 0.3s ease;
+
+  [data-theme='dark'] & {
+    background: #11122d;
+    color: #bdc5d1;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+  }
+
+  &::placeholder {
+    color: #94a3b8;
+  }
+}
+
+.ds-hsu-teach-dayschedules__form-textarea {
+  width: 100%;
+  padding: 0.625rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  color: #334155;
+  resize: vertical;
+  font-family: inherit;
+  transition: all 0.3s ease;
+
+  [data-theme='dark'] & {
+    background: #11122d;
+    color: #bdc5d1;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+  }
+
+  &::placeholder {
+    color: #94a3b8;
+  }
+}
+
+.ds-hsu-teach-dayschedules__upload-icon {
+  font-size: 1rem;
+  margin-right: 0.25rem;
+}
+
+.ds-hsu-teach-dayschedules__upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+  color: #4f46e5;
+  border: 2px solid #c7d2fe;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+    color: white;
+    border-color: #4f46e5;
+  }
+}
+
+.ds-hsu-teach-dayschedules__upload-btn-icon {
+  font-size: 0.75rem;
+}
+
+.ds-hsu-teach-dayschedules__file-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.625rem;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-radius: 8px;
+  font-size: 0.7rem;
+  color: #15803d;
+}
+
+.ds-hsu-teach-dayschedules__file-icon {
+  font-size: 0.75rem;
+}
+
+.ds-hsu-teach-dayschedules__file-name {
+  flex: 1;
+  font-weight: 600;
+}
+
+.ds-hsu-teach-dayschedules__file-size {
+  color: #16a34a;
+}
+
+.ds-hsu-teach-dayschedules__modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.ds-hsu-teach-dayschedules__modal-btn {
+  padding: 0.625rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 90px;
+
+  &--cancel {
+    background: white;
+    color: #64748b;
+    border: 1.5px solid #e2e8f0;
+
+    &:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #475569;
+    }
+  }
+
+  &--save {
+    background: #4f46e5;
+    color: white;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+
+    &:hover {
+      background: #4338ca;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+      transform: translateY(-1px);
+
+      [data-theme='dark'] & {
+        background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+.ds-hsu-teach-dayschedules__calendar-wrapper {
+  overflow-x: visible;
+}
+
+.ds-hsu-teach-dayschedules__timeline {
+  padding: 1rem;
+}
+
+// =============================================================================
+// DESKTOP — max-width: 1535px
+// =============================================================================
+
+// No styles needed at this breakpoint currently.
+
+// =============================================================================
+// LAPTOP — max-width: 1279px
+// =============================================================================
+
+@media (max-width: 1279px) {
+  .ds-hsu-teach-dayschedules__container {
+    grid-template-columns: 65% 35%;
+  }
+}
+
+// =============================================================================
+// TABLET — max-width: 1023px
+// =============================================================================
+
+@media (max-width: 1023px) {
+  .ds-hsu-teach-dayschedules__container {
+    grid-template-columns: 1fr;
+  }
+
+  .ds-hsu-teach-dayschedules__right {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+// =============================================================================
+// MOBILE — max-width: 767px
+// =============================================================================
+
+@media (max-width: 767px) {
+  .ds-hsu-teach-dayschedules {
+    padding: 1rem;
+  }
+
+  .ds-hsu-teach-dayschedules__header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .ds-hsu-teach-dayschedules__assign-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ds-hsu-teach-dayschedules__right {
+    grid-template-columns: 1fr;
+  }
+
+  .ds-hsu-teach-dayschedules__class-actions {
+    flex-direction: column;
+  }
+
+  .ds-hsu-teach-dayschedules__form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ds-hsu-teach-dayschedules__controls {
+    flex-direction: column;
+    gap: 0.5rem;
+
+    >* {
+      width: 100%;
+    }
+  }
+
+  .ds-hsu-teach-dayschedules__calendar-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ds-hsu-teach-dayschedules__timeline {
+    padding: 0.75rem;
+  }
+}
+
+// =============================================================================
+// SMALL MOBILE — max-width: 479px
+// =============================================================================
+
+@media (max-width: 479px) {
+  .ds-hsu-teach-dayschedules__title {
+    font-size: 1.5rem;
+  }
+
+  .ds-hsu-teach-dayschedules__section-title {
+    font-size: 1.25rem;
+  }
+
+  .ds-hsu-teach-dayschedules__class-subject {
+    font-size: 1.1rem;
+  }
+
+  .ds-hsu-teach-dayschedules__modal {
+    max-width: 100%;
+    border-radius: 0;
+  }
+}

@@ -1,0 +1,1063 @@
+@import './mixins.scss';
+
+.com-hsu-teach-communication {
+  // padding: 1rem;
+  background: $light-bg-secondary;
+  // min-height: 100vh;
+
+  [data-theme='dark'] & {
+    background: $dark-bg;
+  }
+
+  // Main Container
+  &__container {
+    display: flex;
+    gap: 1.25rem;
+    height: calc(100vh - 11rem);
+  }
+
+  // ============================================
+  // LEFT SIDE - CHAT LIST (30%)
+  // ============================================
+  &__left {
+    width: 30%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__chat-list {
+    background: $light-bg;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+
+    [data-theme='dark'] & {
+      background: $dark-bg-secondary;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  // List Header
+  &__list-header {
+    padding: 0.85rem 1.25rem 0;
+    // border-bottom: 2px solid #e2e8f0;
+    flex-shrink: 0;
+  }
+
+  &__header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__header-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0 0 0.3rem 0;
+
+    [data-theme='dark'] & {
+      color: #ccd1da;
+    }
+  }
+
+  &__header-icon {
+    font-size: 1.5rem;
+  }
+
+  &__add-btn {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+
+    [data-theme='dark'] & {
+      background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+    }
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
+    }
+  }
+
+  // Search Section
+  &__search-section {
+    padding: 0.875rem 1.25rem;
+    border-bottom: 1px solid $light-border;
+    flex-shrink: 0;
+
+    [data-theme='dark'] & {
+      border-bottom-color: $dark-border;
+    }
+  }
+
+  &__search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__search-icon {
+    position: absolute;
+    left: 1rem;
+    font-size: 1.1rem;
+    color: #94a3b8;
+  }
+
+  &__search-input {
+    width: 100%;
+    padding: 0.5rem 1rem 0.5rem 2.75rem;
+    border: 2px solid $light-border;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    color: $light-text;
+    background: $light-bg;
+    transition: all 0.3s ease;
+
+    [data-theme='dark'] & {
+      background: $dark-bg;
+      border-color: $dark-border;
+      color: $dark-text;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+    }
+
+    &::placeholder {
+      color: #94a3b8;
+    }
+  }
+
+  // Tabs
+  &__tabs {
+    display: flex;
+    padding: 0 1.25rem;
+    border-bottom: 1px solid $light-border;
+    gap: 0.5rem;
+    flex-shrink: 0;
+
+    [data-theme='dark'] & {
+      border-bottom-color: $dark-border;
+    }
+  }
+
+  &__tab {
+    flex: 1;
+    padding: 0.625rem 1rem;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: $light-bg-secondary;
+      color: $primary-color;
+
+      [data-theme='dark'] & {
+        background: rgba(37, 99, 235, 0.1);
+        color: $primary-light;
+      }
+    }
+
+    &--active {
+      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+      color: white;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+
+      [data-theme='dark'] & {
+        background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+      }
+    }
+  }
+
+  // Chats Container
+  &__chats-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    [data-theme='dark'] & {
+      border: 1px solid #2f3339;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  // Chat Item
+  &__chat-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.875rem 1.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+
+    &:hover {
+      background: $light-bg-secondary;
+
+      [data-theme='dark'] & {
+        background: rgba(255, 255, 255, 0.05);
+      }
+    }
+
+    &--active {
+      background: rgba(79, 70, 229, 0.1);
+      border-left-color: $primary-color;
+
+      [data-theme='dark'] & {
+        background: rgba(79, 70, 229, 0.2);
+      }
+    }
+  }
+
+  &__chat-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__chat-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__chat-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // margin-bottom: 0.375rem;
+  }
+
+  &__chat-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: $light-text;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    [data-theme='dark'] & {
+      color: $dark-text;
+    }
+  }
+
+  &__chat-time {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+  }
+
+  &__chat-footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__chat-message {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__unread-badge {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+  }
+
+  // ============================================
+  // RIGHT SIDE - CHAT PREVIEW (70%)
+  // ============================================
+  &__right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__chat-preview {
+    background: $light-bg;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+
+    [data-theme='dark'] & {
+      background: $dark-bg-secondary;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  // Preview Header
+  &__preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border-bottom: 2px solid $light-border;
+    flex-shrink: 0;
+
+    [data-theme='dark'] & {
+      border-bottom-color: $dark-border;
+    }
+  }
+
+  &__preview-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__preview-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__preview-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  &__preview-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: $light-text;
+    margin: 0;
+
+    [data-theme='dark'] & {
+      color: $dark-text;
+    }
+  }
+
+  &__preview-role {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin: 0;
+  }
+
+  &__preview-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &__action-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: $light-bg-secondary;
+    border: 2px solid $light-border;
+    color: $light-text-secondary;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    [data-theme='dark'] & {
+      background: $dark-bg;
+      border-color: $dark-border;
+      color: $dark-text-secondary;
+    }
+
+    &:hover {
+      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+      border-color: #4f46e5;
+      transform: scale(1.1);
+
+      [data-theme='dark'] & {
+        background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+      }
+    }
+  }
+
+  // Chat Search
+  &__chat-search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(79, 70, 229, 0.05);
+    border-bottom: 1px solid rgba(79, 70, 229, 0.2);
+
+    [data-theme='dark'] & {
+      background: rgba(79, 70, 229, 0.1);
+      border-bottom-color: rgba(79, 70, 229, 0.3);
+    }
+  }
+
+  &__chat-search-input {
+    flex: 1;
+    padding: 0.25rem 0.75rem;
+    border: 2px solid rgba(79, 70, 229, 0.2);
+    border-radius: 8px;
+    font-size: 0.75rem;
+    color: $light-text;
+    background: $light-bg;
+
+    [data-theme='dark'] & {
+      background: $dark-bg;
+      border-color: $dark-border;
+      color: $dark-text;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+    }
+  }
+
+  &__chat-search-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: $light-bg;
+    border: 2px solid rgba(79, 70, 229, 0.2);
+    color: $light-text-secondary;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    [data-theme='dark'] & {
+      background: $dark-bg;
+      border-color: $dark-border;
+      color: $dark-text-secondary;
+    }
+
+    &:hover {
+      background: $danger-color;
+      border-color: $danger-color;
+      color: $white;
+    }
+  }
+
+  // Messages Area
+  &__messages-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    background: $light-bg-secondary;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    [data-theme='dark'] & {
+      background: $dark-bg;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  // Empty State
+  &__empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 1rem;
+  }
+
+  &__empty-icon {
+    font-size: 4rem;
+    opacity: 0.3;
+  }
+
+  &__empty-text {
+    font-size: 1rem;
+    color: #94a3b8;
+    font-weight: 500;
+  }
+
+  // Search Not Found Message
+  &__search-not-found {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(220, 38, 38, 0.1);
+    border: 2px solid rgba(220, 38, 38, 0.3);
+    border-radius: 12px;
+    color: $danger-color;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+
+  // Message
+  &__message {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-end;
+
+    &--received {
+      justify-content: flex-start;
+    }
+
+    &--sent {
+      justify-content: flex-end;
+    }
+
+    &--highlighted {
+      animation: highlight-pulse 1.5s ease-in-out;
+
+      .com-hsu-teach-communication__message-bubble {
+        background: #fef3c7 !important;
+        border-color: #fbbf24 !important;
+        color: #92400e !important;
+      }
+    }
+  }
+
+  @keyframes highlight-pulse {
+
+    0%,
+    100% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.02);
+    }
+  }
+
+  &__message-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  &__message-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    max-width: 60%;
+
+    .com-hsu-teach-communication__message--sent & {
+      align-items: flex-end;
+    }
+  }
+
+  &__message-bubble {
+    padding: 0.5rem 1.125rem;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    border: 1px solid #002eff3d;
+    word-wrap: break-word;
+
+    .com-hsu-teach-communication__message--received & {
+      background: $light-bg;
+      color: $light-text;
+      border: 2px solid $light-border;
+      border-bottom-left-radius: 4px;
+
+      [data-theme='dark'] & {
+        background: $dark-bg-secondary;
+        color: $dark-text;
+        border-color: $dark-border;
+      }
+    }
+
+    .com-hsu-teach-communication__message--sent & {
+      background: $primary-color;
+      color: $white;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+    }
+  }
+
+  &__message-time {
+    font-size: 0.65rem;
+    color: #94a3b8;
+    padding: 0 0.25rem;
+
+    .com-hsu-teach-communication__message--received & {
+      align-self: flex-start;
+    }
+
+    .com-hsu-teach-communication__message--sent & {
+      align-self: flex-end;
+    }
+  }
+
+  // Input Area
+  &__input-area {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1.25rem;
+    border-top: 2px solid $light-border;
+    background: $light-bg;
+    flex-shrink: 0;
+
+    [data-theme='dark'] & {
+      border-top-color: $dark-border;
+      background: $dark-bg-secondary;
+    }
+  }
+
+  &__attachment-btn {
+    width: 32px;
+    height: 33px;
+    border-radius: 50%;
+    background: $light-bg-secondary;
+    border: 2px solid $light-border;
+    color: $light-text-secondary;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+
+    [data-theme='dark'] & {
+      background: $dark-bg;
+      border-color: $dark-border;
+      color: $dark-text-secondary;
+    }
+
+    &:hover {
+      background: $primary-color;
+      border-color: $primary-color;
+      color: $white;
+      transform: scale(1.1);
+    }
+  }
+
+  &__message-input {
+    flex: 1;
+    padding: 0.5rem 1.25rem;
+    border: 2px solid $light-border;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    color: $light-text;
+    background: $light-bg;
+    transition: all 0.3s ease;
+
+    [data-theme='dark'] & {
+      background: $dark-bg;
+      border-color: $dark-border;
+      color: $dark-text;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+    }
+
+    &::placeholder {
+      color: #94a3b8;
+    }
+  }
+
+  &__send-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: $primary-color;
+    color: $white;
+    border: none;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    flex-shrink: 0;
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  // ============================================
+  // MODAL STYLES
+  // ============================================
+  &__modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+
+    [data-theme='dark'] & {
+      background: rgba(20, 22, 34, 0.85);
+    }
+  }
+
+  &__modal {
+    background: $light-bg;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+    [data-theme='dark'] & {
+      background: $dark-bg-secondary;
+      border: 1px solid #334155;
+      color: #e5e7eb;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    [data-theme='dark'] &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem;
+    border-bottom: 2px solid $light-border;
+
+    [data-theme='dark'] & {
+      border-bottom-color: $dark-border;
+    }
+  }
+
+  &__modal-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $light-text;
+    margin: 0;
+
+    [data-theme='dark'] & {
+      color: $dark-text;
+    }
+  }
+
+  &__modal-close {
+    width: 36px;
+    height: 36px;
+    background: rgba(220, 38, 38, 0.1);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.25rem;
+    color: $danger-color;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: $danger-color;
+      color: $white;
+      transform: rotate(90deg);
+    }
+  }
+
+  &__modal-body {
+    padding: 1.25rem;
+
+    p {
+      font-size: 1rem;
+      color: $light-text;
+      margin: 0 0 1rem 0;
+      line-height: 1.6;
+
+      [data-theme='dark'] & {
+        color: $dark-text;
+      }
+
+      strong {
+        color: $light-text;
+        font-weight: 600;
+
+        [data-theme='dark'] & {
+          color: $dark-text;
+        }
+      }
+    }
+  }
+
+  &__modal-warning {
+    font-size: 0.875rem !important;
+    color: #dc2626 !important;
+    margin: 0 !important;
+  }
+
+  &__modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-top: 2px solid $light-border;
+
+    [data-theme='dark'] & {
+      border-top-color: $dark-border;
+    }
+  }
+
+  &__modal-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &--cancel {
+      background: $gray-200;
+      color: $gray-700;
+
+      [data-theme='dark'] & {
+        background: $dark-border;
+        color: $dark-text;
+      }
+
+      &:hover {
+        background: $gray-300;
+
+        [data-theme='dark'] & {
+          background: $gray-600;
+        }
+      }
+    }
+
+    &--delete {
+      background: $danger-color;
+      color: $white;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4);
+      }
+    }
+  }
+
+  // ============================================
+  // RESPONSIVE ARCHITECTURE
+  // ============================================
+
+  // ============================================
+  // Desktop - max-width: 1535px
+  // ============================================
+  // No changes needed for desktop
+}
+
+// Laptop
+@media (max-width: 1279px) {
+  .com-hsu-teach-communication {
+    &__left {
+      width: 30%;
+    }
+  }
+}
+
+// Tablet
+@media (max-width: 1023px) {
+  .com-hsu-teach-communication {
+    &__container {
+      flex-direction: column;
+      height: auto;
+    }
+
+    &__left,
+    &__right {
+      width: 100%;
+      height: 50vh;
+    }
+  }
+}
+
+// Mobile
+@media (max-width: 767px) {
+  .com-hsu-teach-communication {
+    padding: 1rem;
+
+    &__container {
+      gap: 1rem;
+      flex-direction: column;
+      height: auto;
+    }
+
+    &__left,
+    &__right {
+      width: 100%;
+      height: 45vh;
+    }
+
+    &__message-content {
+      max-width: 75%;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .com-hsu-teach-communication {
+      &__header-title {
+        font-size: 0.9rem;
+      }
+
+      &__preview-name {
+        font-size: 0.9rem;
+      }
+
+      &__message-content {
+        max-width: 85%;
+      }
+
+      &__modal {
+        max-width: 100%;
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .com-hsu-teach-communication {
+    &__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    &__layout {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    &__chat-area {
+      width: 100%;
+      height: calc(100vh - 420px);
+    }
+
+    &__compose-toolbar {
+      flex-wrap: wrap;
+      gap: 0.375rem;
+    }
+
+    &__attachments-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+// Small Mobile
+@media (max-width: 479px) {
+  .com-hsu-teach-communication {
+    &__header-title {
+      font-size: 0.9rem;
+    }
+
+    &__preview-name {
+      font-size: 0.9rem;
+    }
+
+    &__message-content {
+      max-width: 85%;
+    }
+
+    &__modal {
+      max-width: 100%;
+      border-radius: 0;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+// src/Assets/styles/ScrollArea.scss
+// BEM-based styles for the ScrollArea component
+
+// ─── Block: scroll-area ──────────────────────────────────────────────────────
+
+.scroll-area {
+    position: relative;
+
+    // ─── Element: viewport ────────────────────────────────────────────
+
+    &__viewport {
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        outline: none;
+        transition: color 150ms ease, box-shadow 150ms ease;
+
+        &:focus-visible {
+            outline: 1px solid currentColor;
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
+        }
+    }
+
+    // ─── Element: scrollbar (base) ────────────────────────────────────
+
+    &__scrollbar {
+        display: flex;
+        padding: 1px;
+        touch-action: none;
+        user-select: none;
+        transition: background-color 150ms ease;
+
+        // -- Modifier: vertical ──────────────────────────────────────────
+        &--vertical {
+            height: 100%;
+            width: 0.625rem; // w-2.5
+            flex-direction: column;
+            border-left: 1px solid transparent;
+        }
+
+        // -- Modifier: horizontal ────────────────────────────────────────
+        &--horizontal {
+            height: 0.625rem; // h-2.5
+            flex-direction: row;
+            border-top: 1px solid transparent;
+        }
+    }
+
+    // ─── Element: thumb ───────────────────────────────────────────────
+
+    &__thumb {
+        position: relative;
+        flex: 1;
+        border-radius: 9999px; // rounded-full
+        background-color: var(--border);
+    }
+}

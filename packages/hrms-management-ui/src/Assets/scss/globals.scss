@@ -1,0 +1,53 @@
+// ─── Management UI — shared global styles ────────────────────────────────────
+// Loaded via index.scss (standalone) and ManagementLayout / MainLayout (integrated).
+@import '../styles/_erp-tokens.scss';
+
+// ─── Dropdown fade animations ────────────────────────────────────────────────
+@keyframes mgmt-dropdown-in {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes mgmt-dropdown-out {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+}
+
+// ─── Content area theme inheritance ──────────────────────────────────────────
+.main-layout__main-content {
+    [class$="-root"] {
+        min-height: 100%;
+        background: transparent;
+        color: var(--foreground);
+    }
+}
+
+// ─── Navbar dropdown panels (fade, theme-aware) ────────────────────────────────
+.sidebar__header-profile-dropdown,
+.sidebar__header-notif-dropdown {
+    transform-origin: top right !important;
+    background: var(--popover) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--popover-foreground) !important;
+    box-shadow: $erp-shadow-lg !important;
+
+    &[data-state="open"] {
+        animation: mgmt-dropdown-in 150ms ease-out !important;
+    }
+
+    &[data-state="closed"] {
+        animation: mgmt-dropdown-out 120ms ease-in !important;
+    }
+}

@@ -1,0 +1,999 @@
+// ============================================
+// Live Classes Page - Styles
+// ============================================
+@import './mixins.scss';
+
+$bp-mobile: 360px;
+$bp-tablet: 768px;
+$bp-laptop: 1024px;
+$bp-desktop: 1440px;
+
+.lc-live-classes {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 0;
+
+  @media (max-width: 768px) { gap: 0.875rem; }
+}
+
+// ── Badges ──────────────────────────────────────
+.lc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  &--live {
+    background: #ff4d4f;
+    color: #fff;
+    animation: pulse-badge 1.5s infinite;
+  }
+
+  &--live-data {
+    background: transparent;
+    color: $primary-color;
+    border: 1px solid $primary-color;
+    font-size: 0.7rem;
+  }
+
+  &--present {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  &--absent {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+
+  &--leave {
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 0.7rem;
+  }
+
+  &--count {
+    background: #eff6ff;
+    color: $primary-color;
+  }
+
+  &--neutral {
+    background: $gray-200;
+    color: $gray-600;
+    padding: 4px 10px;
+    border-radius: $radius-md;
+    font-size: 0.75rem;
+  }
+}
+
+@keyframes pulse-badge {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+// ── Header ─────────────────────────────────────
+.lc-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-xs;
+
+  &__left {
+    @include flex-start;
+    gap: $spacing-sm;
+    flex: 1;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-color, #1e293b);
+    margin: 0;
+
+    [data-theme='dark'] & {
+      color: #e2e8f0;
+    }
+  }
+
+  &__right {
+    margin-left: auto;
+  }
+
+  &__session {
+    @include flex-start;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: $primary-color;
+    background: #eff6ff;
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+
+  &__subtitle {
+    width: 100%;
+    margin: 2px 0 0;
+    font-size: 0.775rem;
+    color: var(--text-secondary, #64748b);
+  }
+}
+
+// ── Class Info Card ──────────────────────────────
+.lc-class-card {
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: $radius-xl;
+  padding: 1.25rem 1.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  box-shadow: $shadow-sm;
+
+  [data-theme='dark'] & {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  &__info {
+    @include flex-start;
+    gap: $spacing-md;
+  }
+
+  &__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: $radius-lg;
+    @include flex-center;
+    background: #1e3a8a;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  &__name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-color, #1e293b);
+
+    [data-theme='dark'] & {
+      color: #e2e8f0;
+    }
+  }
+
+  &__meta {
+    @include flex-start;
+    gap: $spacing-md;
+    margin-top: 3px;
+    font-size: 0.75rem;
+    color: var(--text-secondary, #64748b);
+
+    span {
+      @include flex-start;
+      gap: 4px;
+    }
+  }
+}
+
+// ── Metric Cards Grid ────────────────────────────
+.lc-metric-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-sm;
+
+  @media (max-width: #{$bp-laptop - 1px}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: #{$bp-tablet - 1px}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: #{$bp-mobile + 40px}) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lc-metric-card {
+  border-radius: $radius-lg;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  border: 1px solid transparent;
+  transition: transform $transition-fast, box-shadow $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+
+  &--green {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+  }
+
+  &--red {
+    background: #fef2f2;
+    border-color: #fecaca;
+  }
+
+  &--blue {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+  }
+
+  &--orange {
+    background: #fff7ed;
+    border-color: #fed7aa;
+  }
+
+  [data-theme='dark'] & {
+    &--green {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.25);
+    }
+
+    &--red {
+      background: rgba(239, 68, 68, 0.12);
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+
+    &--blue {
+      background: rgba(59, 130, 246, 0.12);
+      border-color: rgba(59, 130, 246, 0.25);
+    }
+
+    &--orange {
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(245, 158, 11, 0.25);
+    }
+  }
+
+  &__icon {
+    width: 42px;
+    height: 42px;
+    border-radius: $radius-md;
+    @include flex-center;
+    flex-shrink: 0;
+
+    &--green {
+      background: #d1fae5;
+      color: #059669;
+    }
+
+    &--red {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    &--blue {
+      background: #dbeafe;
+      color: #2563eb;
+    }
+
+    &--orange {
+      background: #fed7aa;
+      color: #d97706;
+    }
+  }
+
+  &__body {
+    @include flex-column;
+    gap: 2px;
+    flex: 1;
+  }
+
+  &__label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary, #64748b);
+
+    .lc-metric-card--green & {
+      color: #059669;
+    }
+
+    .lc-metric-card--red & {
+      color: #dc2626;
+    }
+
+    .lc-metric-card--blue & {
+      color: #2563eb;
+    }
+
+    .lc-metric-card--orange & {
+      color: #d97706;
+    }
+  }
+
+  &__sub {
+    font-size: 0.6rem;
+    color: var(--text-secondary, #94a3b8);
+  }
+
+  &__value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color, #1e293b);
+    margin-left: auto;
+
+    [data-theme='dark'] & {
+      color: #e2e8f0;
+    }
+  }
+}
+
+// ── Quick Actions ────────────────────────────────
+.lc-quick-actions {
+  @include flex-between;
+  padding: $spacing-sm 0 $spacing-xs;
+  border-top: 1px dashed var(--border-color, #e2e8f0);
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+
+  &__label {
+    @include flex-start;
+    gap: 6px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary, #94a3b8);
+    text-transform: uppercase;
+  }
+
+  &__btns {
+    @include flex-start;
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+  }
+
+  &__btn {
+    @include button-base;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    border-radius: $radius-md;
+    gap: 6px;
+
+    &--present {
+      background: #10b981;
+      color: #fff;
+      border: none;
+
+      &:hover {
+        background: #059669;
+      }
+    }
+
+    &--absent {
+      background: transparent;
+      color: var(--text-color, #374151);
+      border: 1px solid var(--border-color, #d1d5db);
+
+      &:hover {
+        background: var(--bg-secondary, #f3f4f6);
+      }
+    }
+  }
+}
+
+// ── Performance Section ─────────────────────────
+.lc-perf-section {
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: $radius-xl;
+  padding: 1.25rem 1.5rem;
+  box-shadow: $shadow-sm;
+
+  [data-theme='dark'] & {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  &__header {
+    @include flex-between;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+
+  &__title-block {
+    @include flex-start;
+    gap: $spacing-sm;
+  }
+
+  &__icon {
+    color: $primary-color;
+  }
+
+  &__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-color, #1e293b);
+
+    [data-theme='dark'] & {
+      color: #e2e8f0;
+    }
+  }
+
+  &__sub {
+    font-size: 0.7rem;
+    color: var(--text-secondary, #64748b);
+  }
+}
+
+.lc-perf-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: $spacing-sm;
+
+  @media (max-width: #{$bp-desktop - 1px}) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: #{$bp-tablet - 1px}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Performance Card ─────────────────────────────
+.lc-perf-card {
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: $radius-lg;
+  padding: 0.875rem;
+  @include flex-column;
+  gap: 6px;
+  transition: all $transition-fast;
+
+  [data-theme='dark'] & {
+    background: #0f172a;
+    border-color: #1e293b;
+  }
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+
+  &__top {
+    @include flex-between;
+    align-items: flex-start;
+  }
+
+  &__icon {
+    font-size: 1.1rem;
+  }
+
+  &__change {
+    font-size: 0.65rem;
+    font-weight: 600;
+
+    &.pos {
+      color: #10b981;
+    }
+
+    &.neg {
+      color: #ef4444;
+    }
+  }
+
+  &__title {
+    font-size: 0.7rem;
+    color: var(--text-secondary, #64748b);
+    line-height: 1.3;
+  }
+
+  &__value {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  &__bar-bg {
+    height: 4px;
+    background: var(--border-color, #e5e7eb);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  &__bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.5s ease;
+  }
+}
+
+// ── Roster Section ───────────────────────────────
+.lc-roster-section {
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: $radius-xl;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+
+  [data-theme='dark'] & {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  &__header {
+    @include flex-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color, #e2e8f0);
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+
+  &__title-block {
+    @include flex-start;
+    gap: $spacing-sm;
+  }
+
+  &__icon {
+    color: $primary-color;
+  }
+
+  &__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-color, #1e293b);
+
+    [data-theme='dark'] & {
+      color: #e2e8f0;
+    }
+  }
+
+  &__sub {
+    font-size: 0.7rem;
+    color: var(--text-secondary, #64748b);
+  }
+}
+
+// ── Student Table ────────────────────────────────
+.lc-student-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.lc-student-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+
+  th {
+    background: var(--bg-secondary, #f8fafc);
+    color: var(--text-secondary, #64748b);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.625rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color, #e2e8f0);
+    white-space: nowrap;
+
+    [data-theme='dark'] & {
+      background: #0f172a;
+    }
+  }
+}
+
+// ── Student Row ──────────────────────────────────
+.lc-student-row {
+  border-bottom: 1px solid var(--border-color, #f1f5f9);
+  transition: background $transition-fast;
+
+  &:hover {
+    background: var(--bg-secondary, #f8fafc);
+  }
+
+  &--on-leave {
+    background: #fefce8 !important;
+
+    [data-theme='dark'] & {
+      background: rgba(250, 204, 21, 0.06) !important;
+    }
+  }
+
+  td {
+    padding: 0.75rem 1rem;
+    color: var(--text-color, #374151);
+
+    [data-theme='dark'] & {
+      color: #cbd5e1;
+    }
+  }
+
+  &__roll {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary, #64748b) !important;
+    white-space: nowrap;
+  }
+
+  &__student {
+    @include flex-start;
+    gap: $spacing-sm;
+    white-space: nowrap;
+  }
+
+  &__avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: $radius-full;
+    @include flex-center;
+    background: #1e3a8a;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  &__name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-color, #1e293b);
+
+    [data-theme='dark'] & {
+      color: #e2e8f0;
+    }
+  }
+
+  &__roll-sub {
+    font-size: 0.65rem;
+    color: var(--text-secondary, #94a3b8);
+  }
+
+  &__check {
+    text-align: center;
+  }
+
+  &__leave-icon {
+    color: #d97706;
+    font-weight: 700;
+  }
+
+  &__notes-input {
+    width: 100%;
+    min-width: 160px;
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: $radius-sm;
+    background: var(--bg-secondary, #f8fafc);
+    color: var(--text-color, #374151);
+    outline: none;
+    transition: border-color $transition-fast;
+
+    &:focus {
+      border-color: $primary-color;
+    }
+
+    &::placeholder {
+      color: var(--text-secondary, #9ca3af);
+    }
+
+    [data-theme='dark'] & {
+      background: #1e293b;
+      border-color: #334155;
+      color: #cbd5e1;
+    }
+  }
+}
+
+// ── Checkbox Button ───────────────────────────────
+.lc-check-btn {
+  @include button-base;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: $radius-full;
+  border: 2px solid var(--border-color, #d1d5db);
+  background: transparent;
+
+  &:hover {
+    border-color: #10b981;
+  }
+
+  &--present {
+    background: #10b981;
+    border-color: #10b981;
+    color: #fff;
+  }
+
+  &--hw {
+    background: $primary-color;
+    border-color: $primary-color;
+    color: #fff;
+  }
+}
+
+// ── Next Class Plan ──────────────────────────────
+.lc-next-plan {
+  margin: 1rem;
+  padding: 1.25rem;
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: $radius-xl;
+
+  [data-theme='dark'] & {
+    background: #0f172a;
+    border-color: #334155;
+  }
+
+  &__header {
+    @include flex-start;
+    gap: $spacing-sm;
+    margin-bottom: 1rem;
+  }
+
+  &__icon {
+    width: 36px;
+    height: 36px;
+    @include flex-center;
+    border-radius: $radius-md;
+    background: #eff6ff;
+    color: $primary-color;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-color, #1e293b);
+
+    [data-theme='dark'] & {
+      color: #e2e8f0;
+    }
+  }
+
+  &__sub {
+    font-size: 0.7rem;
+    color: var(--text-secondary, #64748b);
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+
+    @media (max-width: #{$bp-tablet - 1px}) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__field {
+    @include flex-column;
+    gap: 4px;
+  }
+
+  &__field-label {
+    @include flex-start;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-color, #1e293b);
+
+    [data-theme='dark'] & {
+      color: #e2e8f0;
+    }
+  }
+
+  &__field-hint {
+    font-size: 0.65rem;
+    color: var(--text-secondary, #94a3b8);
+    margin-bottom: 2px;
+  }
+
+  &__hw-header {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+
+  &__no-hw-label {
+    @include flex-start;
+    gap: 6px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-secondary, #64748b);
+    cursor: pointer;
+  }
+
+  &__no-hw-check {
+    cursor: pointer;
+    accent-color: $primary-color;
+  }
+
+  &__input {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: $radius-md;
+    background: var(--bg-secondary, #f8fafc);
+    color: var(--text-color, #374151);
+    outline: none;
+    transition: border-color $transition-fast;
+    width: 100%;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+    }
+
+    &::placeholder {
+      color: var(--text-secondary, #9ca3af);
+    }
+
+    [data-theme='dark'] & {
+      background: #1e293b;
+      border-color: #334155;
+      color: #cbd5e1;
+    }
+  }
+}
+
+// ── Progress Bar Row ─────────────────────────────
+.lc-progress-bar-row {
+  @include flex-start;
+  gap: $spacing-sm;
+  padding: 0.75rem 1.5rem;
+  border-top: 1px solid var(--border-color, #e2e8f0);
+  flex-wrap: wrap;
+
+  &__icon {
+    color: var(--text-secondary, #94a3b8);
+    flex-shrink: 0;
+  }
+
+  &__label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary, #94a3b8);
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  &__bar {
+    flex: 1;
+    min-width: 100px;
+    height: 8px;
+    background: var(--border-color, #e5e7eb);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  &__fill {
+    height: 100%;
+    background: #1e3a8a;
+    border-radius: 999px;
+    transition: width 0.5s ease;
+  }
+
+  &__count {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary, #64748b);
+    white-space: nowrap;
+  }
+
+  &__submit {
+    @include button-base;
+    gap: 6px;
+    margin-left: auto;
+    padding: 8px 18px;
+    background: #1e3a8a;
+    color: #fff;
+    border: none;
+    border-radius: $radius-md;
+    font-size: 0.775rem;
+
+    &:hover {
+      background: #1e40af;
+    }
+  }
+}
+
+// ── Summary Cards (Bottom) ────────────────────────
+.lc-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-sm;
+
+  @media (max-width: #{$bp-tablet - 1px}) {
+    grid-template-columns: 1fr;
+  }
+
+  &__card {
+    border-radius: $radius-xl;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+
+    &--green {
+      background: linear-gradient(135deg, #6ee7b7 0%, #a7f3d0 100%);
+
+      .lc-summary__value {
+        color: #065f46;
+      }
+
+      .lc-summary__label {
+        color: #059669;
+      }
+    }
+
+    &--purple {
+      background: linear-gradient(135deg, #c4b5fd 0%, #e9d5ff 100%);
+
+      .lc-summary__value {
+        color: #5b21b6;
+      }
+
+      .lc-summary__label {
+        color: #7c3aed;
+      }
+    }
+
+    &--pink {
+      background: linear-gradient(135deg, #f9a8d4 0%, #fce7f3 100%);
+
+      .lc-summary__value {
+        color: #9d174d;
+      }
+
+      .lc-summary__label {
+        color: #db2777;
+      }
+    }
+  }
+
+  &__value {
+    font-size: 1.75rem;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  &__label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+}
+
+// ── Responsive overrides ──────────────────────────
+@media (max-width: #{$bp-mobile + 40px}) {
+  .lc-progress-bar-row {
+    &__submit {
+      width: 100%;
+      justify-content: center;
+      margin-left: 0;
+    }
+  }
+}

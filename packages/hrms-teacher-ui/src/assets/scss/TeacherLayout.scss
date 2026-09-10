@@ -1,0 +1,170 @@
+@import './mixins.scss';
+
+.hsu-teach-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 1rem;
+  background: #f5f7fb;
+  overflow: visible;
+
+  &__navbar {
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: visible;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 100;
+  }
+
+  &__body {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+    min-height: 0;
+  }
+
+  &__sidebar-wrapper {
+    width: $sidebar-width;
+    flex-shrink: 0;
+    border-radius: 12px;
+    // background: white;
+    box-shadow: 0 2px 100px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    transition: width $transition-base;
+
+    // Collapsed (desktop toggle)
+    &.collapsed {
+      width: $sidebar-collapsed-width;
+    }
+  }
+
+  &__main {
+    flex: 1;
+    min-width: 0;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__content {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #f5f7fb;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+// ── Dark theme ────────────────────────────────────
+[data-theme='dark'] {
+  .hsu-teach-layout {
+    background: #0f172a;
+
+    &__navbar,
+    &__sidebar-wrapper,
+    &__main {
+      background: #1e293b;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    &__content {
+      background: #0f172a;
+    }
+  }
+}
+
+// ── Tablet (768px - 1023px): icon-only sidebar ────
+@media (min-width: $breakpoint-md) and (max-width: #{$breakpoint-lg - 1px}) {
+  .hsu-teach-layout {
+    padding: 0.75rem;
+
+    &__navbar {
+      margin-bottom: 0.75rem;
+    }
+
+    &__body {
+      gap: 0.75rem;
+    }
+
+    &__sidebar-wrapper {
+      width: $sidebar-collapsed-width;
+      overflow: visible;
+    }
+  }
+}
+
+// ── Mobile (< 768px): full-page drawer ───────────
+@media (max-width: #{$breakpoint-md - 1px}) {
+  .hsu-teach-layout {
+    padding: 0.5rem;
+    height: 100dvh;
+
+    &__navbar {
+      margin-bottom: 0.5rem;
+      border-radius: 8px;
+    }
+
+    &__body {
+      gap: 0;
+      position: relative;
+    }
+
+    // Sidebar breaks out of flow – becomes position:fixed via Sidebar.scss
+    // Wrapper is zero-width so it doesn't push main content
+    &__sidebar-wrapper {
+      width: 0;
+      overflow: visible;
+      background: transparent;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 0;
+    }
+
+    &__main {
+      border-radius: 8px;
+      width: 100%;
+    }
+
+    &__content {
+      padding: 1rem 0.875rem;
+    }
+  }
+}
+
+// ── Small mobile (< 480px) ────────────────────────
+@media (max-width: 479px) {
+  .hsu-teach-layout {
+    padding: 0.375rem;
+
+    &__content {
+      padding: 0.75rem 0.625rem;
+    }
+  }
+}
+
+// ── Large desktop (>= 1440px) ─────────────────────
+@media (min-width: 1440px) {
+  .hsu-teach-layout {
+    padding: 1.25rem 1.5rem;
+
+    &__body {
+      gap: 1.25rem;
+    }
+
+    &__content {
+      padding: 2rem;
+    }
+  }
+}

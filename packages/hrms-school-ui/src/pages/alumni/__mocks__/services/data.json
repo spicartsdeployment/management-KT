@@ -1,0 +1,229 @@
+{
+  "alumni": [
+    {
+      "id": 1,
+      "initials": "SJ",
+      "name": "Sarah Johnson",
+      "year": 2018,
+      "title": "Software Engineer",
+      "company": "Google",
+      "location": "San Francisco, CA",
+      "tags": [
+        { "label": "Technology", "color": "bg-blue-100 text-blue-700" },
+        { "label": "Google Developer Expert", "color": "bg-blue-100 text-blue-700" },
+        { "label": "Tech Lead", "color": "bg-green-100 text-green-700" },
+        { "label": "Available for Mentoring", "color": "bg-green-200 text-green-800" }
+      ]
+    },
+    {
+      "id": 2,
+      "initials": "MC",
+      "name": "Michael Chen",
+      "year": 2016,
+      "title": "Product Manager",
+      "company": "Microsoft",
+      "location": "Seattle, WA",
+      "tags": [
+        { "label": "Technology", "color": "bg-blue-100 text-blue-700" },
+        { "label": "Product Innovation Award", "color": "bg-blue-100 text-blue-700" },
+        { "label": "MBA from Stanford", "color": "bg-blue-100 text-blue-700" },
+        { "label": "Available for Mentoring", "color": "bg-green-200 text-green-800" }
+      ]
+    },
+    {
+      "id": 3,
+      "initials": "ER",
+      "name": "Emily Rodriguez",
+      "year": 2019,
+      "title": "Marketing Director",
+      "company": "Tesla",
+      "location": "Austin, TX",
+      "tags": [
+        { "label": "Healthcare", "color": "bg-blue-100 text-blue-700" },
+        { "label": "Marketing Excellence Award", "color": "bg-blue-100 text-blue-700" },
+        { "label": "TEDx Speaker", "color": "bg-blue-100 text-blue-700" }
+      ]
+    },
+     {
+      "id": 4,
+      "initials": "KM",
+      "name": "Karen Miller",
+      "year": 2022,
+      "title": "Software Engineer",
+      "company": "DXC Technology",
+      "location": "San Francisco, CA",
+      "tags": [
+        { "label": "Google Developer Expert", "color": "bg-blue-100 text-blue-700" },
+        { "label": "Tech Lead", "color": "bg-green-100 text-green-700" },
+        { "label": "Available for Mentoring", "color": "bg-green-200 text-green-800" }
+      ]
+    },
+    {
+      "id": 5,
+      "initials": "RN",
+      "name": "Robert Nelson",
+      "year": 2006,
+      "title": "Product Manager",
+      "company": "Microsoft",
+      "location": "Seattle, WA",
+      "tags": [
+        { "label": "Education", "color": "bg-blue-100 text-blue-700" },
+        { "label": "MBA from Stanford", "color": "bg-blue-100 text-blue-700" },
+        { "label": "Available for Mentoring", "color": "bg-green-200 text-green-800" }
+      ]
+    },
+    {
+      "id": 6,
+      "initials": "JT",
+      "name": "James Thompson",
+      "year": 2015,
+      "title": "Investment Banker",
+      "company": "Goldman Sachs",
+      "location": "New York, NY",
+      "tags": [
+        { "label": "Finance", "color": "bg-yellow-100 text-yellow-700" },
+        { "label": "CFA Certified", "color": "bg-blue-100 text-blue-700" },
+        { "label": "Available for Mentoring", "color": "bg-green-200 text-green-800" }
+      ]
+    },
+    {
+      "id": 7,
+      "initials": "PP",
+      "name": "Priya Patel",
+      "year": 2020,
+      "title": "Clinical Research Manager",
+      "company": "Mayo Clinic",
+      "location": "Chicago, IL",
+      "tags": [
+        { "label": "Healthcare", "color": "bg-red-100 text-red-700" },
+        { "label": "Medical Research", "color": "bg-blue-100 text-blue-700" },
+        { "label": "Available for Mentoring", "color": "bg-green-200 text-green-800" }
+      ]
+    },
+    {
+      "id": 8,
+      "initials": "DM",
+      "name": "David Martinez",
+      "year": 2017,
+      "title": "Automotive Engineer",
+      "company": "Ford Motor Company",
+      "location": "Detroit, MI",
+      "tags": [
+        { "label": "Automotive", "color": "bg-gray-100 text-gray-700" },
+        { "label": "Electric Vehicles", "color": "bg-green-100 text-green-700" },
+        { "label": "Engineering Excellence Award", "color": "bg-blue-100 text-blue-700" }
+      ]
+    },
+    {
+      "id": 9,
+      "initials": "LW",
+      "name": "Lisa Wang",
+      "year": 2014,
+      "title": "Portfolio Manager",
+      "company": "JPMorgan Chase",
+      "location": "Boston, MA",
+      "tags": [
+        { "label": "Finance", "color": "bg-yellow-100 text-yellow-700" },
+        { "label": "Wealth Management", "color": "bg-blue-100 text-blue-700" },
+        { "label": "Available for Mentoring", "color": "bg-green-200 text-green-800" }
+      ]
+    },
+    {
+      "id": 10,
+      "initials": "MJ",
+      "name": "Marcus Johnson",
+      "year": 2021,
+      "title": "Hospital Administrator",
+      "company": "Johns Hopkins Hospital",
+      "location": "Houston, TX",
+      "tags": [
+        { "label": "Healthcare", "color": "bg-red-100 text-red-700" },
+        { "label": "Hospital Administration", "color": "bg-blue-100 text-blue-700" },
+        { "label": "Available for Mentoring", "color": "bg-green-200 text-green-800" }
+      ]
+    },
+    {
+      "id": 11,
+      "initials": "RK",
+      "name": "Rachel Kim",
+      "year": 2013,
+      "title": "Vehicle Dynamics Engineer",
+      "company": "General Motors",
+      "location": "Los Angeles, CA",
+      "tags": [
+        { "label": "Automotive", "color": "bg-gray-100 text-gray-700" },
+        { "label": "EV Technology", "color": "bg-green-100 text-green-700" },
+        { "label": "Patent Holder", "color": "bg-blue-100 text-blue-700" }
+      ]
+    },
+    {
+      "id": 12,
+      "initials": "DB",
+      "name": "Daniel Brown",
+      "year": 2023,
+      "title": "Financial Analyst",
+      "company": "Morgan Stanley",
+      "location": "Miami, FL",
+      "tags": [
+        { "label": "Finance", "color": "bg-yellow-100 text-yellow-700" },
+        { "label": "Investment Strategy", "color": "bg-blue-100 text-blue-700" }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "title": "Alumni Career Fair 2024",
+      "dateTime": "March 15, 2024 • 10:00 AM - 4:00 PM",
+      "location": "Main Campus Auditorium",
+      "attendees": 156,
+      "tag": "Networking",
+      "tagColor": "bg-orange-100 text-orange-700"
+    },
+    {
+      "id": 2,
+      "title": "Tech Talk: AI in Healthcare",
+      "dateTime": "March 22, 2024 • 6:00 PM - 8:00 PM",
+      "location": "Virtual Event",
+      "attendees": 89,
+      "tag": "Education",
+      "tagColor": "bg-blue-100 text-blue-700"
+    },
+    {
+      "id": 3,
+      "title": "Annual Alumni Gala",
+      "dateTime": "April 5, 2024 • 7:00 PM - 11:00 PM",
+      "location": "Grand Hotel Ballroom",
+      "attendees": 245,
+      "tag": "Social",
+      "tagColor": "bg-purple-100 text-purple-700"
+    },
+     {
+      "id": 4,
+      "title": "Alumni Career Fair 2024",
+      "dateTime": "March 15, 2024 • 10:00 AM - 4:00 PM",
+      "location": "Main Campus Auditorium",
+      "attendees": 156,
+      "tag": "Networking",
+      "tagColor": "bg-orange-100 text-orange-700"
+    },
+    {
+      "id": 5,
+      "title": "Tech Talk: AI in Healthcare",
+      "dateTime": "March 22, 2024 • 6:00 PM - 8:00 PM",
+      "location": "Virtual Event",
+      "attendees": 89,
+      "tag": "Education",
+      "tagColor": "bg-blue-100 text-blue-700"
+    },
+    {
+      "id": 6,
+      "title": "Annual Alumni Gala",
+      "dateTime": "April 5, 2024 • 7:00 PM - 11:00 PM",
+      "location": "Grand Hotel Ballroom",
+      "attendees": 245,
+      "tag": "Social",
+      "tagColor": "bg-purple-100 text-purple-700"
+    }
+  ]
+}

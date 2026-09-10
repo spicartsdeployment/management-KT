@@ -1,0 +1,181 @@
+.management-page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  
+    border-radius: 1.25rem;
+    padding: 1.5rem 1.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  border-radius: 1.25rem;
+  padding: 1.5rem 0.25rem !important;
+  position: relative;
+  overflow: hidden;
+  // margin-bottom: 1.5rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #c9a962 0%, #a8894a 50%, transparent 100%);
+    border-radius: 1.25rem 1.25rem 0 0;
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 0;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    flex-wrap: wrap;
+  }
+
+  &__pills {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+}
+
+.management-page-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  color: var(--sm-muted, #9ca3af);
+
+  &__sep {
+    opacity: 0.45;
+  }
+
+  &__active {
+    // color: var(--sm-text, #f0f2f5);
+    font-weight: 500;
+  }
+}
+
+.management-page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #c9a962 0%, #a8894a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.management-page-subtitle {
+  font-size: 0.875rem;
+  color: var(--sm-muted, #9ca3af);
+  margin: 0;
+}
+
+.management-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.32rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  &--live {
+    background: rgba(34, 197, 94, 0.15);
+    color: #16a34a;
+    border: 1px solid rgba(34, 197, 94, 0.28);
+  }
+
+  &--year {
+    background: rgba(201, 169, 98, 0.15);
+    color: #c9a962;
+    border: 1px solid rgba(201, 169, 98, 0.28);
+  }
+
+  &--date {
+    background: rgba(37, 99, 235, 0.12);
+    color: #60a5fa;
+    border: 1px solid rgba(37, 99, 235, 0.26);
+  }
+}
+
+@media (max-width: 1024px) {
+  .management-page-header {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .management-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+
+    &__right {
+      width: 100%;
+      justify-content: flex-start;
+      // flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    &__actions,
+    &__pills {
+      // width: 100%;
+      justify-content: flex-start;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .management-page-header {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .management-page-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .management-page-subtitle {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .management-page-header {
+    padding: 0.75rem;
+  }
+
+  .management-status-pill {
+    font-size: 0.66rem;
+    padding: 0.28rem 0.55rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .management-page-header {
+    padding: 1.625rem 1.875rem;
+  }
+}

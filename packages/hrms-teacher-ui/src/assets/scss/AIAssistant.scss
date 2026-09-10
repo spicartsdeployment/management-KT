@@ -1,0 +1,618 @@
+.ai-hsu-teach-aiassistant {
+  // padding: 1.5rem;
+  // background: #f8f9fa;
+  min-height: 100vh;
+
+  // Header
+  &__header {
+    // margin-bottom: 1.5rem;
+  }
+
+  &__header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 0.3rem 0;
+    [data-theme='dark'] & {
+      color: #ccd1da;
+    }  }
+
+  &__subtitle {
+    font-size: 0.775rem;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  // Insight Cards
+  &__insights {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__insight-card {
+    border-radius: 12px;
+    padding: 0.875rem;
+    display: flex;
+    gap: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    [data-theme='dark'] & {
+      border: 1px solid rgb(143, 142, 142);
+    }
+
+    &--positive {
+      background: #f0fdf4;
+      border-color: #d1fae5;
+      [data-theme='dark'] & { background: #052e16; border-color: #14532d; }
+      .ai-hsu-teach-aiassistant__insight-icon {
+        background: transparent;
+        color: #10b981;
+        box-shadow: none;
+      }
+      .ai-hsu-teach-aiassistant__insight-title {
+        color: #10b981;
+      }
+    }
+
+    &--alert {
+      background: #fef2f2;
+      border-color: #fee2e2;
+      [data-theme='dark'] & { background: #450a0a; border-color: #7f1d1d; }
+      .ai-hsu-teach-aiassistant__insight-icon {
+        background: transparent;
+        color: #ef4444;
+        box-shadow: none;
+      }
+      .ai-hsu-teach-aiassistant__insight-title {
+        color: #ef4444;
+      }
+    }
+
+    &--warning {
+      background: #fffbeb;
+      border-color: #fde68a;
+      [data-theme='dark'] & { background: #451a03; border-color: #78350f; }
+      .ai-hsu-teach-aiassistant__insight-icon {
+        background: transparent;
+        color: #f59e0b;
+        box-shadow: none;
+      }
+      .ai-hsu-teach-aiassistant__insight-title {
+        color: #f59e0b;
+      }
+    }
+
+    &--info {
+      background: #eff6ff;
+      border-color: #dbeafe;
+      [data-theme='dark'] & { background: #0c1a2e; border-color: #1e3a5f; }
+      .ai-hsu-teach-aiassistant__insight-icon {
+        background: transparent;
+        color: #3b82f6;
+        box-shadow: none;
+      }
+      .ai-hsu-teach-aiassistant__insight-title {
+        color: #3b82f6;
+      }
+    }
+  }
+
+  &__insight-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &__insight-content {
+    flex: 1;
+  }
+
+  &__insight-title {
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin: 0 0 0.25rem 0;
+  }
+
+  &__insight-desc {
+    font-size: 0.6875rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  // Main Content
+  &__main {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 1.25rem;
+    align-items: flex-start;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // Chat Section
+  &__chat-section {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 560px;
+    overflow: hidden;
+    
+    [data-theme='dark'] & {
+      // background: #1e293b;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgb(75, 74, 74);
+    }
+  }
+
+  &__chat-header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #1a3354 100%);
+    padding: 0.8rem 1.25rem;
+    display: flex;
+    align-items: center;
+    border-radius: 1rem 1rem 0 0;
+    gap: 0.75rem;
+  }
+
+  &__chat-header-icon {
+    font-size: 1.5rem;
+  }
+
+  &__chat-header-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+  }
+
+  &__chat-messages {
+    flex: 1;
+    padding: 1.25rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    // background: #f9fafb;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__message {
+    display: flex;
+    animation: slideIn 0.3s ease;
+
+    &--assistant {
+      justify-content: flex-start;
+    }
+
+    &--user {
+      justify-content: flex-end;
+    }
+  }
+
+  &__message-bubble {
+    max-width: 70%;
+    padding: 0.625rem 0.75rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    line-height: 1.5;
+
+    [data-theme='dark'] & {
+      background: #1e293b;
+      color: #cbd5e1;
+    }
+
+    .ai-hsu-teach-aiassistant__message--assistant & {
+      // background: #f0f8ff;
+      color: #1e293b;
+      border: 1px solid #dbeafe;
+      box-shadow: none;
+
+      [data-theme='dark'] & {
+        background: #334155;
+        border-color: #475569;
+        color: #e0e7ff;
+      }
+    }
+
+    .ai-hsu-teach-aiassistant__message--user & {
+      background: linear-gradient(135deg, #3730a3 0%, #4f46e5 100%);
+      color: white;
+    }
+  }
+
+  &__chat-input-wrapper {
+    padding: 1rem 1.25rem;
+    // background: #fafbfc;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    gap: 0.625rem;
+    align-items: center;
+  }
+
+  &__chat-input {
+    flex: 1;
+    padding: 0.625rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    outline: none;
+    transition: all 0.2s ease;
+
+    &:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    &::placeholder {
+      color: #9ca3af;
+
+      [data-theme='dark'] & {
+        color: #6b7280;
+      }
+    }
+  }
+
+  &__chat-send-btn,
+  &__chat-voice-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  &__chat-send-btn {
+    background: linear-gradient(135deg, #3730a3 0%, #4f46e5 100%);
+    color: white;
+
+    [data-theme='dark'] & {
+      background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+    }
+
+    &:hover {
+      transform: scale(1.03);
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+    }
+
+    &:active {
+      transform: scale(0.97);
+
+      box-shadow: 0 1px 4px rgba(79, 70, 229, 0.2);
+    }
+  }
+
+  &__chat-voice-btn {
+    // background: white;
+    color: #64748b;
+    border: 1px solid #e5e7eb;
+
+    &:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+  }
+
+  // Sidebar
+  &__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: sticky;
+    top: 1rem;
+  }
+
+  &__sidebar-section {
+    background: white;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+    [data-theme='dark'] & {
+      background: #1e293b;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    }
+  }
+
+  &__sidebar-title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 0.75rem 0;
+
+    [data-theme='dark'] & {
+      color: #cbd5e1;
+    }
+  }
+
+  // Quick Queries
+  &__quick-queries {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__quick-query-btn {
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    // background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 0.75rem;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    line-height: 1.4;
+
+    [data-theme='dark'] & {
+      color: #cbd5e1;
+      border-color: #475569;
+    }
+
+    &:hover {
+      background: #f8fafc;
+      border-color: #4f46e5;
+      color: #4f46e5;
+      transform: translateX(2px);
+
+      [data-theme='dark'] & {
+        background: #1e293b;
+        border-color: #6366f1;
+        color: #c7d2fe;
+      }
+    }
+  }
+
+  // Reports
+  &__reports {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__report-btn {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    // background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      transform: translateX(2px);
+
+      [data-theme='dark'] & {
+        background: #1e293b;
+        border-color: #475569;
+      }
+    }
+  }
+
+  &__report-icon {
+    width: 18px;
+    height: 18px;
+    color: #64748b;
+    flex-shrink: 0;
+
+    [data-theme='dark'] & {
+      color: #94a3b8;
+    }
+  }
+
+  &__report-title {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #334155;
+
+    [data-theme='dark'] & {
+      color: #cbd5e1;
+    }
+  }
+
+  // AI Insights Stats
+  &__insights-stats {
+    display: flex;
+    flex-direction: column;
+    // gap: 0.75rem;
+  }
+
+  &__insight-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25rem 0;
+    border-bottom: none;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__insight-stat-label {
+    font-size: 0.75rem;
+    color: #64748b;
+
+    [data-theme='dark'] & {
+      color: #94a3b8;
+    }
+  }
+
+  &__insight-stat-value {
+    font-size: 0.6125rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #3730a3 0%, #4f46e5 100%);
+    padding: 0.3125rem 0.625rem;
+    border-radius: 20px;
+    min-width: 42px;
+    text-align: center;
+
+    [data-theme='dark'] & {
+      background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+    }
+  }
+
+  // Floating Button
+  &__floating-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #3730a3 0%, #4f46e5 100%);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+    transition: all 0.3s ease;
+    z-index: 1000;
+
+    [data-theme='dark'] & {
+      background: linear-gradient(135deg, #26384d 0%, #354d82 100%);
+    }
+
+    &:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.5);
+    }
+
+    &:active {
+      transform: scale(0.95) rotate(5deg);
+    }
+  }
+
+  // Animations
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: 768px) {
+    padding: 1rem;
+
+    &__title {
+      font-size: 1.25rem;
+    }
+
+    &__insights {
+      gap: 0.75rem;
+    }
+
+    &__insight-card {
+      padding: 0.875rem;
+    }
+
+    &__chat-section {
+      height: 500px;
+    }
+
+    &__main {
+      gap: 0.875rem;
+    }
+
+    &__sidebar-section {
+      padding: 0.875rem;
+    }
+
+    &__floating-btn {
+      width: 50px;
+      height: 50px;
+      bottom: 1rem;
+      right: 1rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .ai-hsu-teach-aiassistant {
+    &__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    &__layout {
+      flex-direction: column;
+    }
+
+    &__sidebar {
+      width: 100%;
+      max-height: 260px;
+    }
+
+    &__main {
+      width: 100%;
+      height: calc(100vh - 380px);
+    }
+
+    &__suggestions-grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__input-area {
+      flex-direction: column;
+      gap: 0.5rem;
+
+      button[type='submit'] { width: 100%; }
+    }
+  }
+}
